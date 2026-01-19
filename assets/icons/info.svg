@@ -1,0 +1,24 @@
+<svg width="28" height="30" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_33_14400)" filter="url(#filter0_d_33_14400)">
+<path d="M14 21C18.9706 21 23 16.9706 23 12C23 7.02944 18.9706 3 14 3C9.02944 3 5 7.02944 5 12C5 16.9706 9.02944 21 14 21Z" stroke="#EC5800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13 15.5H15.31" stroke="#EC5800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.159 15.5V11.25H13.009" stroke="#EC5800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.1001 8.24695C14.1001 8.29639 14.0854 8.34473 14.058 8.38584C14.0305 8.42695 13.9915 8.459 13.9458 8.47792C13.9001 8.49684 13.8498 8.50179 13.8013 8.49214C13.7528 8.4825 13.7083 8.45869 13.6733 8.42372C13.6384 8.38876 13.6145 8.34422 13.6049 8.29572C13.5953 8.24723 13.6002 8.19696 13.6191 8.15128C13.638 8.1056 13.6701 8.06655 13.7112 8.03908C13.7523 8.01161 13.8007 7.99695 13.8501 7.99695" stroke="#EC5800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.8501 7.99695C13.9164 7.99695 13.98 8.02329 14.0269 8.07017C14.0738 8.11705 14.1001 8.18064 14.1001 8.24695" stroke="#EC5800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_d_33_14400" x="-2" y="0" width="32" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_33_14400"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_33_14400" result="shape"/>
+</filter>
+<clipPath id="clip0_33_14400">
+<rect width="24" height="24" fill="white" transform="translate(2)"/>
+</clipPath>
+</defs>
+</svg>

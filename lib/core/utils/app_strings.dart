@@ -1,0 +1,32 @@
+const pageSize = 10;
+
+class AppStrings {
+  ///App Core
+  static const String appName = "Bond";
+  static const String arabicFont = "GE";
+  static const String englishFont = "Inter";
+  static const String englishCode = "en";
+  static const String arabicCode = "ar";
+
+  /// Keys
+  static const String onBoarding = "onBoarding";
+  static const String userToken = "access_token";
+  static const String locale = "locale";
+  static const String theme = "theme";
+  static const String light = "light";
+  static const String dark = "dark";
+  static const String isGuest = "isGuest";
+  static const String location = "location";
+
+  ///Common
+  static const String contentType = 'Content-Type';
+  static const String accept = 'Accept';
+  static const String acceptLanguage = 'Accept-Language';
+  static const String applicationJson = 'application/json';
+  static const String xApiKey = 'X-API-KEY';
+  static const String version = 'version';
+  static const String versionValue = 'v2';
+
+  static const String userPhone = "user_phone";
+  static const String userId = "user_id";
+}
