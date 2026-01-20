@@ -18,7 +18,6 @@ class PolicyAccessCubit extends Cubit<BaseState<PolicyAccessModel>>
     await handleAsync(
       call: () => policiesRepositoryImpl.getPolicyAccess(policyId: policyId),
       onSuccess: (data) => data,
-      identifier: 'get_policy_access',
     );
   }
 }

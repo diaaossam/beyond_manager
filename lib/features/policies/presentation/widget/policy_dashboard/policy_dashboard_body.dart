@@ -1,0 +1,99 @@
+import 'package:bond/features/policies/presentation/widget/policy_dashboard/policy_dashboard_item.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/bloc/helper/base_state.dart';
+import '../../../../../core/extensions/app_localizations_extension.dart';
+import '../../../../../gen/assets.gen.dart';
+import '../../../../../widgets/app_bar/custom_app_bar.dart';
+import '../../../../../widgets/loading/loading_widget.dart';
+import '../../../data/models/policy_access_model.dart';
+import '../../cubit/policy_access/policy_access_cubit.dart';
+
+class PolicyDashboardBody extends StatelessWidget {
+  const PolicyDashboardBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PolicyAccessCubit, BaseState<PolicyAccessModel>>(
+      builder: (context, state) {
+        if (state.isLoading) {
+          return LoadingWidget();
+        } else {
+          final model = state.data!;
+          return Scaffold(
+            appBar: CustomAppBar(title: context.localizations.policyDetails),
+            body: Column(
+              children: [
+                if (model.accessActiveList == true)
+                  PolicyDashboardItem(
+                    icon: Assets.icons.checkmark,
+                    title: context.localizations.activeList,
+                    press: () async {
+                      /*return AppConstant.navigateTo(
+                        context: context,
+                        widget: ActiveListScreen(
+                          policyId: model.policyId!.toInt(),
+                        ),
+                      );*/
+                    },
+                  ),
+                if (model.accessPolicyDetails == true)
+                  PolicyDashboardItem(
+                    icon: Assets.icons.info,
+                    title: context.localizations.policyInformation,
+                    press: () {
+                      /*          AppConstant.navigateTo(
+                          context: context,
+                          widget: PolicyInfoScreen(
+                            policyId: model.policyId!.toInt(),
+                          ),
+                        );*/
+                    },
+                  ),
+                if (model.accessUtilization == true)
+                  PolicyDashboardItem(
+                    icon: Assets.icons.utilization,
+                    title: context.localizations.utilization,
+                    press: () {
+                      /*   AppConstant.navigateTo(
+                          context: context,
+                          widget: UtilizationScreen(
+                            policyId: model.policyId!.toInt(),
+                          ),
+                        );*/
+                    },
+                  ),
+                if (model.accessPayments == true)
+                  PolicyDashboardItem(
+                    icon: Assets.icons.policyPayment,
+                    title: context.localizations.policyPayment,
+                    press: () {
+                      /*   AppConstant.navigateTo(
+                          context: context,
+                          widget: PaymentDetailsScreen(
+                            policyId: model.policyId!.toInt(),
+                          ),
+                        );*/
+                    },
+                  ),
+                PolicyDashboardItem(
+                  icon: Assets.icons.policies,
+                  title: context.localizations.reimbursementRequests,
+                  press: () {
+                    /* AppConstant.navigateTo(
+                      context: context,
+                      widget: ReimbursementScreen(
+                        policyId: model.policyId!.toInt(),
+                      ),
+                    );*/
+                  },
+                ),
+              ],
+            ),
+          );
+        }
+      },
+    );
+  }
+}

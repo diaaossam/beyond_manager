@@ -3783,6 +3783,121 @@ class S {
       args: [],
     );
   }
+
+  /// `Beyond Utilization Dashboard`
+  String get beyondUtilizationDashboard {
+    return Intl.message(
+      'Beyond Utilization Dashboard',
+      name: 'beyondUtilizationDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no utilization please ask Beyond to add`
+  String get noBeyondUtilizationDashboard {
+    return Intl.message(
+      'There is no utilization please ask Beyond to add',
+      name: 'noBeyondUtilizationDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get policy_status_all {
+    return Intl.message('All', name: 'policy_status_all', desc: '', args: []);
+  }
+
+  /// `Active`
+  String get policy_status_active {
+    return Intl.message(
+      'Active',
+      name: 'policy_status_active',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expired`
+  String get policy_status_expired {
+    return Intl.message(
+      'Expired',
+      name: 'policy_status_expired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suspended`
+  String get policy_status_suspended {
+    return Intl.message(
+      'Suspended',
+      name: 'policy_status_suspended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terminated with Insurance Company`
+  String get policy_status_terminated_with_insurance_company {
+    return Intl.message(
+      'Terminated with Insurance Company',
+      name: 'policy_status_terminated_with_insurance_company',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Under Issuance`
+  String get policy_status_under_issuance {
+    return Intl.message(
+      'Under Issuance',
+      name: 'policy_status_under_issuance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Draft`
+  String get policy_status_draft {
+    return Intl.message(
+      'Draft',
+      name: 'policy_status_draft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terminated With Beyond`
+  String get policy_status_terminated_with_beyond {
+    return Intl.message(
+      'Terminated With Beyond',
+      name: 'policy_status_terminated_with_beyond',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lapsed Bupa`
+  String get policy_status_lapsed_bupa {
+    return Intl.message(
+      'Lapsed Bupa',
+      name: 'policy_status_lapsed_bupa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get policy_status_cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'policy_status_cancel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

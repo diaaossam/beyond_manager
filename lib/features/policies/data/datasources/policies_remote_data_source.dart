@@ -54,26 +54,9 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
         .params({
           "page_number": page,
           "page_size": pageSize,
-          if (state != "All") "policy_state": state,
+          if (state != "all") "policy_state": state,
         })
-        .factory((json) {
-          // json is already the raw response
-          if (json is List) {
-            return (json as List)
-                .map((e) => MainPolicyModel.fromJson(e as Map<String, dynamic>))
-                .toList();
-          } else {
-            // In case it's wrapped in a result key
-            final jsonMap = json as Map;
-            final list = jsonMap['result'];
-            if (list is List) {
-              return list
-                  .map((e) => MainPolicyModel.fromJson(e as Map<String, dynamic>))
-                  .toList();
-            }
-          }
-          return <MainPolicyModel>[];
-        })
+        .factory((json) => MainPolicyModel.fromJsonList(json))
         .execute();
   }
 
@@ -131,27 +114,19 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
     return await dioConsumer
         .get(EndPoints.policyAccess)
         .params({"policy_id": policyId})
-        .factory((json) {
-          if (json is List && json.isNotEmpty) {
-            return PolicyAccessModel.fromJson(json[0]);
-          }
-          return PolicyAccessModel.fromJson(json);
-        })
+        .factory((json) => PolicyAccessModel.fromJson(json['result'][0]))
         .execute();
   }
 
   @override
   Future<String> getTerms() async {
-    return await dioConsumer
-        .get(EndPoints.terms)
-        .factory((json) {
-          if (json.containsKey('result') && 
-              json['result'] is Map &&
-              json['result'].containsKey('conditions')) {
-            return json['result']['conditions'] as String;
-          }
-          return '';
-        })
-        .execute();
+    return await dioConsumer.get(EndPoints.terms).factory((json) {
+      if (json.containsKey('result') &&
+          json['result'] is Map &&
+          json['result'].containsKey('conditions')) {
+        return json['result']['conditions'] as String;
+      }
+      return '';
+    }).execute();
   }
 }

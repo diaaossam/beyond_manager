@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/policies/data/models/main_policy_model.dart';
 import 'package:bond/features/policies/data/repositories/policies_repository_impl.dart';
@@ -6,17 +7,26 @@ import 'package:equatable/equatable.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/enum/policy_status.dart';
+
 part 'policies_state.dart';
 
 @injectable
-class PoliciesCubit extends Cubit<PoliciesState> {
+class PoliciesCubit extends Cubit<BaseState<PolicyStatus>> {
   final PoliciesRepositoryImpl policiesRepositoryImpl;
-  
-  late final PagingController<int, MainPolicyModel> pagingController;
-  String currentState = "All";
 
-  PoliciesCubit(this.policiesRepositoryImpl) : super(PoliciesState()) {
+  late final PagingController<int, MainPolicyModel> pagingController;
+  PolicyStatus currentStatus = PolicyStatus.all;
+  int tag = 0;
+
+  PoliciesCubit(this.policiesRepositoryImpl) : super(BaseState()) {
     pagingController = _buildPagingController();
+  }
+
+  Future<void> fetchPage(int page, PolicyStatus status) async {
+    currentStatus = status;
+    pagingController.refresh();
+    emit(state.copyWith(data: status));
   }
 
   Future<List<MainPolicyModel>> _getCompanyPolicies({
@@ -37,7 +47,7 @@ class PoliciesCubit extends Cubit<PoliciesState> {
       fetchPage: (pageKey) async {
         final newItems = await _getCompanyPolicies(
           page: pageKey,
-          state: currentState,
+          state: currentStatus.name,
         );
         final isLastPage = newItems.length < pageSize;
         if (isLastPage) {
@@ -58,11 +68,5 @@ class PoliciesCubit extends Cubit<PoliciesState> {
       return firstPageKey;
     }
     return keys.last + 1;
-  }
-
-  void changeState(String state) {
-    currentState = state;
-    pagingController.refresh();
-    emit(PoliciesState(selectedState: state));
   }
 }

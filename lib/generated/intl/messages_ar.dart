@@ -92,6 +92,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneValidation": MessageLookupByLibrary.simpleMessage("رقم الهاتف مطلوب"),
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
+    "policy_status_active": MessageLookupByLibrary.simpleMessage("نشط"),
+    "policy_status_all": MessageLookupByLibrary.simpleMessage("الكل"),
+    "policy_status_cancel": MessageLookupByLibrary.simpleMessage("ملغي"),
+    "policy_status_draft": MessageLookupByLibrary.simpleMessage("مسودة"),
+    "policy_status_expired": MessageLookupByLibrary.simpleMessage("منتهي"),
+    "policy_status_lapsed_bupa": MessageLookupByLibrary.simpleMessage(
+      "منتهي بوبا",
+    ),
+    "policy_status_suspended": MessageLookupByLibrary.simpleMessage("موقوف"),
+    "policy_status_terminated_with_beyond":
+        MessageLookupByLibrary.simpleMessage("منتهي من بيوند"),
+    "policy_status_terminated_with_insurance_company":
+        MessageLookupByLibrary.simpleMessage("منتهي من شركة التأمين"),
+    "policy_status_under_issuance": MessageLookupByLibrary.simpleMessage(
+      "قيد الإصدار",
+    ),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "requestDemo": MessageLookupByLibrary.simpleMessage("طلب عرض تجريبي"),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),

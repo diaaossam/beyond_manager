@@ -59,6 +59,16 @@
   "phoneValidation": "رقم الهاتف مطلوب",
   "sendWhatsAppSms": "يمكنك طلب رمز الرسائل النصية الجديد بعد:",
   "noEmergenciesFound": "لا توجد طلبات طوارئ",
-  "errorLoadingData": "حدث خطأ أثناء تحميل البيانات"
+  "errorLoadingData": "حدث خطأ أثناء تحميل البيانات",
+  "policy_status_all": "الكل",
+  "policy_status_active": "نشط",
+  "policy_status_expired": "منتهي",
+  "policy_status_suspended": "موقوف",
+  "policy_status_terminated_with_insurance_company": "منتهي من شركة التأمين",
+  "policy_status_under_issuance": "قيد الإصدار",
+  "policy_status_draft": "مسودة",
+  "policy_status_terminated_with_beyond": "منتهي من بيوند",
+  "policy_status_lapsed_bupa": "منتهي بوبا",
+  "policy_status_cancel": "ملغي"
 
 }

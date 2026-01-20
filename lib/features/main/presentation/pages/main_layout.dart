@@ -22,33 +22,17 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
-        if (context.tabsRouter.activeIndex == 0) {
-          DateTime now = DateTime.now();
-          if (currentBackPressTime == null ||
-              now.difference(currentBackPressTime!) >
-                  const Duration(seconds: 2)) {
-            currentBackPressTime = now;
-            AppConstant.showToast(
-              msg: context.localizations.areYouSureYouWantToCloseApp,
-            );
-          } else {
-            Navigator.of(context).pop();
-          }
-        } else if (context.tabsRouter.activeIndex == 2) {
-          Navigator.of(context).pop();
-        } else {
-          context.tabsRouter.setActiveIndex(0);
+        final tabsRouter = context.tabsRouter;
+        if (tabsRouter.activeIndex != 0) {
+          tabsRouter.setActiveIndex(0);
         }
       },
       child: AutoTabsScaffold(
         routes: [
           HomeRoute(),
           MyEmergencyRoute(),
-          TermsRoute(),
+          PoliciesRoute(),
           ProfileRoute(),
-          /*HomeRoute(),
-          HomeRoute(),
-          HomeRoute(),*/
         ],
         bottomNavigationBuilder: (context, tabsRouter) {
           return BottomNavigationBar(

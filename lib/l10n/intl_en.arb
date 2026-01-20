@@ -454,5 +454,18 @@
   "darkMode": "Dark Mode",
   "lightMode": "Light Mode",
   "mode": "Mode",
-  "logoutBody": "Are you sure you want to log out?"
+  "logoutBody": "Are you sure you want to log out?",
+  "beyondUtilizationDashboard": "Beyond Utilization Dashboard",
+  "noBeyondUtilizationDashboard": "There is no utilization please ask Beyond to add",
+
+  "policy_status_all": "All",
+  "policy_status_active": "Active",
+  "policy_status_expired": "Expired",
+  "policy_status_suspended": "Suspended",
+  "policy_status_terminated_with_insurance_company": "Terminated with Insurance Company",
+  "policy_status_under_issuance": "Under Issuance",
+  "policy_status_draft": "Draft",
+  "policy_status_terminated_with_beyond": "Terminated With Beyond",
+  "policy_status_lapsed_bupa": "Lapsed Bupa",
+  "policy_status_cancel": "Cancel"
 }

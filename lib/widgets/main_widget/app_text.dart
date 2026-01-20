@@ -97,7 +97,7 @@ class AppText extends StatelessWidget {
       textAlign: align,
       overflow: TextOverflow.ellipsis,
       style: baseStyle.copyWith(
-        fontFamily: fontFamily ?? AppStrings.arabicFont,
+        fontFamily: fontFamily ?? AppStrings.englishFont,
         height: textHeight,
         decoration: textDecoration,
         color: fontColor(context: context),

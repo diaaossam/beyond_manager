@@ -111,6 +111,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Beyond Sales Agent",
     ),
     "beyondService": MessageLookupByLibrary.simpleMessage("Beyond Services"),
+    "beyondUtilizationDashboard": MessageLookupByLibrary.simpleMessage(
+      "Beyond Utilization Dashboard",
+    ),
     "boardingDescription1": MessageLookupByLibrary.simpleMessage(
       "Discover thousands of products and choose what suits you quickly and easily from anywhere.",
     ),
@@ -484,6 +487,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "no": MessageLookupByLibrary.simpleMessage("No"),
     "noArticals": MessageLookupByLibrary.simpleMessage("No articles found"),
+    "noBeyondUtilizationDashboard": MessageLookupByLibrary.simpleMessage(
+      "There is no utilization please ask Beyond to add",
+    ),
     "noData": MessageLookupByLibrary.simpleMessage(
       "No Data Found , please try again later",
     ),
@@ -589,6 +595,26 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "policyNumber": MessageLookupByLibrary.simpleMessage("Policy Number: "),
     "policyPayment": MessageLookupByLibrary.simpleMessage("Policy Payment"),
+    "policy_status_active": MessageLookupByLibrary.simpleMessage("Active"),
+    "policy_status_all": MessageLookupByLibrary.simpleMessage("All"),
+    "policy_status_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "policy_status_draft": MessageLookupByLibrary.simpleMessage("Draft"),
+    "policy_status_expired": MessageLookupByLibrary.simpleMessage("Expired"),
+    "policy_status_lapsed_bupa": MessageLookupByLibrary.simpleMessage(
+      "Lapsed Bupa",
+    ),
+    "policy_status_suspended": MessageLookupByLibrary.simpleMessage(
+      "Suspended",
+    ),
+    "policy_status_terminated_with_beyond":
+        MessageLookupByLibrary.simpleMessage("Terminated With Beyond"),
+    "policy_status_terminated_with_insurance_company":
+        MessageLookupByLibrary.simpleMessage(
+          "Terminated with Insurance Company",
+        ),
+    "policy_status_under_issuance": MessageLookupByLibrary.simpleMessage(
+      "Under Issuance",
+    ),
     "principalInsuranceID": MessageLookupByLibrary.simpleMessage(
       "Principal Insurance ID: ",
     ),

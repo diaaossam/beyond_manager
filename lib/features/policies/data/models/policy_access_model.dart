@@ -1,11 +1,12 @@
 class PolicyAccessModel {
   PolicyAccessModel({
-      this.accessActiveList, 
-      this.accessPayments, 
-      this.accessPolicyDetails, 
-      this.accessUtilization, 
-      this.companyId, 
-      this.policyId,});
+    this.accessActiveList,
+    this.accessPayments,
+    this.accessPolicyDetails,
+    this.accessUtilization,
+    this.companyId,
+    this.policyId,
+  });
 
   PolicyAccessModel.fromJson(dynamic json) {
     accessActiveList = json['access_active_list'];
@@ -15,25 +16,30 @@ class PolicyAccessModel {
     companyId = json['company_id'];
     policyId = json['policy_id'];
   }
+
   bool? accessActiveList;
   bool? accessPayments;
   bool? accessPolicyDetails;
   bool? accessUtilization;
   num? companyId;
   num? policyId;
-PolicyAccessModel copyWith({  bool? accessActiveList,
-  bool? accessPayments,
-  bool? accessPolicyDetails,
-  bool? accessUtilization,
-  num? companyId,
-  num? policyId,
-}) => PolicyAccessModel(  accessActiveList: accessActiveList ?? this.accessActiveList,
-  accessPayments: accessPayments ?? this.accessPayments,
-  accessPolicyDetails: accessPolicyDetails ?? this.accessPolicyDetails,
-  accessUtilization: accessUtilization ?? this.accessUtilization,
-  companyId: companyId ?? this.companyId,
-  policyId: policyId ?? this.policyId,
-);
+
+  PolicyAccessModel copyWith({
+    bool? accessActiveList,
+    bool? accessPayments,
+    bool? accessPolicyDetails,
+    bool? accessUtilization,
+    num? companyId,
+    num? policyId,
+  }) => PolicyAccessModel(
+    accessActiveList: accessActiveList ?? this.accessActiveList,
+    accessPayments: accessPayments ?? this.accessPayments,
+    accessPolicyDetails: accessPolicyDetails ?? this.accessPolicyDetails,
+    accessUtilization: accessUtilization ?? this.accessUtilization,
+    companyId: companyId ?? this.companyId,
+    policyId: policyId ?? this.policyId,
+  );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['access_active_list'] = accessActiveList;
@@ -44,5 +50,4 @@ PolicyAccessModel copyWith({  bool? accessActiveList,
     map['policy_id'] = policyId;
     return map;
   }
-
 }

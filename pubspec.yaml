@@ -84,6 +84,8 @@ dependencies:
   form_builder_validators: ^11.2.0
   flutter_screenutil: ^5.9.3
   syncfusion_flutter_pdfviewer: ^32.1.23
+  webview_flutter: ^4.13.1
+  chips_choice: ^3.0.1
 
   ### State Management
   flutter_bloc: ^9.1.1

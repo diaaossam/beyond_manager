@@ -9,13 +9,14 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: LoginRoute.page),
     AutoRoute(page: OtpLoginRoute.page),
     AutoRoute(page: TermsRoute.page),
+    AutoRoute(page: PolicyAccessSelectionRoute.page),
 
     AutoRoute(
       page: MainLayoutRoute.page,
       children: [
         AutoRoute(page: HomeRoute.page),
         AutoRoute(page: MyEmergencyRoute.page),
-        AutoRoute(page: TermsRoute.page),
+        AutoRoute(page: PoliciesRoute.page),
         AutoRoute(page: ProfileRoute.page),
       ],
     ),

@@ -1,7 +1,8 @@
-import 'package:beymanger/widgets/app_text.dart';
-import 'package:beymanger/widgets/custom_app_bar.dart';
+import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import '../../../../widgets/app_bar/custom_app_bar.dart';
+import '../../../../widgets/no_item_design.dart';
 
 class WebViewScreen extends StatefulWidget {
   final String url;
@@ -27,16 +28,13 @@ class _WebViewScreenState extends State<WebViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(text: "Beyond Utilization Dashboard"),
+      appBar: CustomAppBar(
+        title: context.localizations.beyondUtilizationDashboard,
+      ),
       body: widget.url.isNotEmpty
           ? WebViewWidget(controller: controller)
-          : const Center(
-              child: AppText(
-                maxLines: 2,
-                align: TextAlign.center,
-                text: "There is no utilization please ask Beyond to add",
-                color: Colors.grey,
-              ),
+          : EmptyWidgetDesign(
+              body: context.localizations.noBeyondUtilizationDashboard,
             ),
     );
   }

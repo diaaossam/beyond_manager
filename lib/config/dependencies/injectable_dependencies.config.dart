@@ -66,8 +66,6 @@ import '../../features/policies/presentation/cubit/policy_details/policy_details
     as _i928;
 import '../../features/policies/presentation/cubit/policy_payment/policy_payment_bloc.dart'
     as _i161;
-import '../../features/policies/presentation/cubit/terms/terms_cubit.dart'
-    as _i676;
 import '../../features/policies/presentation/cubit/utilization/utilization_bloc.dart'
     as _i797;
 import '../../features/settings/data/datasources/settings_remote_data_source.dart'
@@ -195,9 +193,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i161.PolicyPaymentCubit>(
       () => _i161.PolicyPaymentCubit(gh<_i998.PoliciesRepositoryImpl>()),
-    );
-    gh.factory<_i676.TermsCubit>(
-      () => _i676.TermsCubit(gh<_i998.PoliciesRepositoryImpl>()),
     );
     gh.factory<_i797.UtilizationCubit>(
       () => _i797.UtilizationCubit(gh<_i998.PoliciesRepositoryImpl>()),

@@ -232,35 +232,10 @@ class _EmptyWidgetDesignState extends State<EmptyWidgetDesign>
                 ),
               );
             },
-            child: Container(
-              width: 100.w,
-              height: 100.w,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [colorScheme.primary, colorScheme.secondary],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: colorScheme.primary.withValues(alpha: 0.4),
-                    blurRadius: 20,
-                    spreadRadius: 2,
-                    offset: const Offset(0, 8),
-                  ),
-                ],
-              ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  AppImage.asset(
-                    widget.icon ?? Assets.images.logo.path,
-                    size: 44.w,
-                  ),
-                  // Small "z" letters floating
-                ],
-              ),
+            child: AppImage.asset(
+              widget.icon ?? Assets.images.logo.path,
+              size: 100.w,
+              fit: BoxFit.cover,
             ),
           ),
         ],
@@ -343,7 +318,7 @@ class _EmptyWidgetDesignState extends State<EmptyWidgetDesign>
               text: widget.title ?? context.localizations.noDataTitle,
               textSize: 16,
               fontWeight: FontWeight.w700,
-              color: Colors.white,
+             // color: Colors.white,
               align: TextAlign.center,
             ),
           ),
