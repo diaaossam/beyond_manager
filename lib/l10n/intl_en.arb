@@ -444,7 +444,6 @@
   "expired": "Expired",
   "noEmergenciesFound": "No emergency requests found",
   "errorLoadingData": "Error loading data",
-
   "noDataTitle": "لا توجد بيانات",
   "noDataBody": "ستظهر بياناتك هنا عند استلامها",
   "errorTitle": "حدث خطأ غير متوقع",
@@ -457,7 +456,6 @@
   "logoutBody": "Are you sure you want to log out?",
   "beyondUtilizationDashboard": "Beyond Utilization Dashboard",
   "noBeyondUtilizationDashboard": "There is no utilization please ask Beyond to add",
-
   "policy_status_all": "All",
   "policy_status_active": "Active",
   "policy_status_expired": "Expired",
@@ -467,5 +465,9 @@
   "policy_status_draft": "Draft",
   "policy_status_terminated_with_beyond": "Terminated With Beyond",
   "policy_status_lapsed_bupa": "Lapsed Bupa",
-  "policy_status_cancel": "Cancel"
+  "policy_status_cancel": "Cancel",
+  "paymentFile": "Payment File",
+  "thereIsNoFile": "There is no Files",
+  "cannotOpenFile": "Cannot open file",
+  "noPolicyDetailsFound": "No policy details available"
 }

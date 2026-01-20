@@ -3898,6 +3898,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Payment File`
+  String get paymentFile {
+    return Intl.message(
+      'Payment File',
+      name: 'paymentFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no Files`
+  String get thereIsNoFile {
+    return Intl.message(
+      'There is no Files',
+      name: 'thereIsNoFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cannot open file`
+  String get cannotOpenFile {
+    return Intl.message(
+      'Cannot open file',
+      name: 'cannotOpenFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No policy details available`
+  String get noPolicyDetailsFound {
+    return Intl.message(
+      'No policy details available',
+      name: 'noPolicyDetailsFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

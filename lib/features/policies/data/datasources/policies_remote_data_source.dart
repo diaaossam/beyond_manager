@@ -34,8 +34,6 @@ abstract class PoliciesRemoteDataSource {
   });
 
   Future<PolicyAccessModel> getPolicyAccess({required int policyId});
-
-  Future<String> getTerms();
 }
 
 @Injectable(as: PoliciesRemoteDataSource)
@@ -100,12 +98,7 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
     return await dioConsumer
         .get(EndPoints.policyDetails)
         .params(getActiveListParams.toJson())
-        .factory((json) {
-          if (json is List && json.isNotEmpty) {
-            return PolicyDetails.fromJson(json[0]);
-          }
-          return PolicyDetails.fromJson(json);
-        })
+        .factory((json) => PolicyDetails.fromJson(json['result'][0]))
         .execute();
   }
 
@@ -116,17 +109,5 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
         .params({"policy_id": policyId})
         .factory((json) => PolicyAccessModel.fromJson(json['result'][0]))
         .execute();
-  }
-
-  @override
-  Future<String> getTerms() async {
-    return await dioConsumer.get(EndPoints.terms).factory((json) {
-      if (json.containsKey('result') &&
-          json['result'] is Map &&
-          json['result'].containsKey('conditions')) {
-        return json['result']['conditions'] as String;
-      }
-      return '';
-    }).execute();
   }
 }

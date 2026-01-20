@@ -82,11 +82,4 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
     );
     return response;
   }
-
-  Future<Either<Failure, String>> getTerms() async {
-    final response = await handleApi(
-      () => policiesRemoteDataSource.getTerms(),
-    );
-    return response;
-  }
 }

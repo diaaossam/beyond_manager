@@ -18,7 +18,7 @@ class PolicyAccessSelectionScreen extends StatelessWidget {
       create: (context) =>
           sl<PolicyAccessCubit>()
             ..getPolicyAccess(policyId: model.policyId!.toInt()),
-      child: PolicyDashboardBody(),
+      child: PolicyDashboardBody(policyId: model.policyId!.toInt()),
     );
   }
 }

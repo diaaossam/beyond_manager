@@ -139,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Contact your account manager for\nmore details!",
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "cannotOpenFile": MessageLookupByLibrary.simpleMessage("Cannot open file"),
     "cash": MessageLookupByLibrary.simpleMessage("Cash"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "categoryBody": MessageLookupByLibrary.simpleMessage(
@@ -509,6 +510,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noInternetBody": MessageLookupByLibrary.simpleMessage(
       "يبدو أن جهازك غير متصل بالإنترنت\nتحقق من الاتصال وحاول مرة أخرى",
     ),
+    "noPolicyDetailsFound": MessageLookupByLibrary.simpleMessage(
+      "No policy details available",
+    ),
     "noReservationFound": MessageLookupByLibrary.simpleMessage(
       "No Reservation Date Found",
     ),
@@ -554,6 +558,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "paymentDate": MessageLookupByLibrary.simpleMessage("Payment date"),
     "paymentDetails": MessageLookupByLibrary.simpleMessage("Payment Details"),
+    "paymentFile": MessageLookupByLibrary.simpleMessage("Payment File"),
     "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment method"),
     "paymentPlan": MessageLookupByLibrary.simpleMessage("Payment Plan"),
     "pending": MessageLookupByLibrary.simpleMessage("Pending"),
@@ -767,6 +772,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "thereIsNoCategory": MessageLookupByLibrary.simpleMessage(
       "There is no category",
     ),
+    "thereIsNoFile": MessageLookupByLibrary.simpleMessage("There is no Files"),
     "thereIsNoReservation": MessageLookupByLibrary.simpleMessage(
       "There is no reservations",
     ),
