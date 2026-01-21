@@ -1,3 +1,4 @@
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import '../../core/utils/app_size.dart';
 import '../main_widget/app_text.dart';
@@ -37,6 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       leadingWidth: leadingWidth ?? SizeConfig.screenWidth * .13,
       elevation: 0,
+      backgroundColor: context.colorScheme.surface,
       centerTitle: isCenterTitle,
       title:
           titleWidget ??
@@ -56,6 +58,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
       actions: actions,
       bottom: preferredSizeWidget,
+      flexibleSpace: Container(color: context.colorScheme.surface,),
     );
   }
 

@@ -6,7 +6,6 @@ import 'package:bond/features/policies/data/repositories/policies_repository_imp
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/response/active_list_model.dart';
 
 @injectable
@@ -20,11 +19,42 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
 
   Future<void> fetchActiveList({required ActiveListParams params}) async {
     emit(state.copyWith(status: BaseStatus.loading));
+    activeListParams = params;
+    final firstPageResponse = await policiesRepositoryImpl.getActivePolicy(
+      activeListParams: params.copyWith(pageKey: 1),
+    );
+    
+    final firstPageModel = firstPageResponse.getOrElse(() => ActiveListModel());
+    
+    // ملء state.data بأول صفحة
+    emit(state.copyWith(
+      status: BaseStatus.success,
+      data: firstPageModel,
+    ));
+    
     pagingController = PagingController<int, Result>(
       getNextPageKey: (state) => _nextIntPageKey(state, firstPageKey: 1),
       fetchPage: (pageKey) async {
+        final pageSize = activeListParams?.pageSize ?? 8;
+        if (pageKey == 1) {
+          final response = await policiesRepositoryImpl.getActivePolicy(
+            activeListParams: activeListParams!.copyWith(pageKey: 1),
+          );
+          
+          final model = response.getOrElse(() => ActiveListModel());
+          final items = model.result ?? [];
+          
+          emit(state.copyWith(
+            status: BaseStatus.success,
+            data: model,
+          ));
+          
+          return items;
+        }
+        
+        // للصفحات التالية
         final response = await policiesRepositoryImpl.getActivePolicy(
-          activeListParams: params.copyWith(pageKey: pageKey),
+          activeListParams: activeListParams!.copyWith(pageKey: pageKey),
         );
 
         final newModel = response.getOrElse(() => ActiveListModel());
@@ -35,6 +65,7 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
 
         final updatedModel = newModel.copyWith(result: combinedItems);
         emit(state.copyWith(status: BaseStatus.success, data: updatedModel));
+        
         final isLastPage = newItems.length < pageSize;
         if (isLastPage) {
           pagingController.value = pagingController.value.copyWith(
@@ -45,6 +76,7 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
         return newItems;
       },
     );
+
   }
 
   int _nextIntPageKey(

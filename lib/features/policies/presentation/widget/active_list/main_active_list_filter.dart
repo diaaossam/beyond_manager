@@ -1,6 +1,7 @@
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/utils/app_size.dart';
@@ -25,11 +26,12 @@ class MainActiveListFilter extends StatelessWidget
         dividerColor: Colors.transparent,
         onTap: onTap,
         isScrollable: true,
+        tabAlignment: TabAlignment.start,
         indicatorSize: TabBarIndicatorSize.tab,
         unselectedLabelColor: context.colorScheme.onSurface,
         labelColor: Colors.white,
-        labelStyle: const TextStyle(
-          fontSize: 12,
+        labelStyle:  TextStyle(
+          fontSize: 11.sp,
           fontWeight: FontWeight.w600,
           fontFamily: AppStrings.englishFont,
         ),

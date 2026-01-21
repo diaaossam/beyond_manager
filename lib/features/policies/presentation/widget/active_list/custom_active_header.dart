@@ -19,10 +19,8 @@ class CustomActiveHeaderExpanded extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: SizeConfig.bodyHeight * .02),
       decoration: BoxDecoration(
-        color: context.colorScheme.onPrimary,
-        // border: Border.all(color: const Color(0xffEAEAEA)),
+        color: context.colorScheme.secondary,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -32,7 +30,7 @@ class CustomActiveHeaderExpanded extends StatelessWidget {
           AppText(
             text: result.member ?? "",
             fontWeight: FontWeight.bold,
-            textSize: 18,
+            textSize: 12,
           ),
           SizedBox(height: SizeConfig.bodyHeight * .01),
           AppText(

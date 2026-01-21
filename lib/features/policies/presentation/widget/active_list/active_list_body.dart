@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animate_do/animate_do.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
 import 'package:bond/features/policies/data/models/response/active_list_model.dart';
@@ -248,7 +249,8 @@ class _ActiveListBodyState extends State<ActiveListBody>
           ),
           body: state.builder(
             onTapRetry: () => bloc.fetchActiveList(params: ActiveListParams(policyId: 1)),
-            onSuccess: (data) => Padding(
+            onSuccess: (data) {
+              return Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: SizeConfig.screenWidth * .04,
               ),
@@ -277,7 +279,7 @@ class _ActiveListBodyState extends State<ActiveListBody>
                               SizedBox(width: SizeConfig.screenWidth * .015),
                               AppText(
                                 text: context.localizations.search,
-                                textSize: 16,
+                                textSize: 13,
                               ),
                               const Spacer(),
                               AppText(
@@ -462,17 +464,24 @@ class _ActiveListBodyState extends State<ActiveListBody>
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 5,
                                   ),
-                                  child: CustomExpandedTile(
-                                    title: CustomActiveHeaderExpanded(
-                                      result: item,
-                                      isBusinessLife: true,
+                                  child: FadeInLeft(
+                                    duration: Duration(
+                                      milliseconds: 300 + (index * 50),
                                     ),
-                                    body: CustomActiveBody(
-                                      result: item,
-                                      isBusinessLife: true,
-                                      currentFilter: mainIndex,
-                                    ),
+                                    delay: Duration(milliseconds:50),
+                                    from: 20,
+                                    child: CustomExpandedTile(
+                                      title: CustomActiveHeaderExpanded(
+                                        result: item,
+                                        isBusinessLife: true,
+                                      ),
+                                      body: CustomActiveBody(
+                                        result: item,
+                                        isBusinessLife: true,
+                                        currentFilter: mainIndex,
+                                      ),
 
+                                    ),
                                   ),
                                 );
                               }
@@ -481,15 +490,22 @@ class _ActiveListBodyState extends State<ActiveListBody>
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 5,
                                   ),
-                                  child: CustomExpandedTile(
-                                    body: CustomActiveBody(
-                                      result: item,
-                                      currentFilter: mainIndex,
-                                      isBusinessLife: false,
+                                  child: FadeInLeft(
+                                    duration: Duration(
+                                      milliseconds: 300 + (index * 50),
                                     ),
-                                    title: CustomActiveHeaderExpanded(
-                                      result: item,
-                                      isBusinessLife: false,
+                                    delay: Duration(milliseconds: 50),
+                                    from: 20,
+                                    child: CustomExpandedTile(
+                                      body: CustomActiveBody(
+                                        result: item,
+                                        currentFilter: mainIndex,
+                                        isBusinessLife: false,
+                                      ),
+                                      title: CustomActiveHeaderExpanded(
+                                        result: item,
+                                        isBusinessLife: false,
+                                      ),
                                     ),
                                   ),
                                 );
@@ -498,8 +514,15 @@ class _ActiveListBodyState extends State<ActiveListBody>
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 5,
                                   ),
-                                  child: CustomActiveMemberCardExpanded(
-                                    result: item,
+                                  child: FadeInLeft(
+                                    duration: Duration(
+                                      milliseconds: 300 + (index * 50),
+                                    ),
+                                    delay: Duration(milliseconds: 50),
+                                    from: 20,
+                                    child: CustomActiveMemberCardExpanded(
+                                      result: item,
+                                    ),
                                   ),
                                 );
                               }
@@ -511,7 +534,8 @@ class _ActiveListBodyState extends State<ActiveListBody>
                   ],
                 ),
               ),
-            ),
+            );
+            },
           ),
         );
       },

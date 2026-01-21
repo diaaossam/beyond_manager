@@ -1,3 +1,4 @@
+import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/features/policies/data/models/response/active_list_model.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class CustomActiveMemberCardExpanded extends StatelessWidget {
         horizontal: SizeConfig.bodyHeight * .02,
       ),
       decoration: BoxDecoration(
-        color: context.colorScheme.onPrimary,
+        color: context.colorScheme.secondary,
         border: Border.all(color: context.colorScheme.outline),
         borderRadius: BorderRadius.circular(10),
       ),
@@ -26,13 +27,13 @@ class CustomActiveMemberCardExpanded extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText(
-            text: "Item : ${result.name.toString()}",
+            text: "${context.localizations.item} : ${result.name.toString()}",
             fontWeight: FontWeight.bold,
             maxLines: 2,
             textSize: 14,
           ),
           SizedBox(height: SizeConfig.bodyHeight * .01),
-          AppText(text: "Description: ${result.value.toString()}"),
+          AppText(text: "${context.localizations.description}: ${result.value.toString()}"),
         ],
       ),
     );

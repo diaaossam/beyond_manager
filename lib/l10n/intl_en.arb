@@ -469,5 +469,6 @@
   "paymentFile": "Payment File",
   "thereIsNoFile": "There is no Files",
   "cannotOpenFile": "Cannot open file",
-  "noPolicyDetailsFound": "No policy details available"
+  "noPolicyDetailsFound": "No policy details available",
+  "item": "Item"
 }

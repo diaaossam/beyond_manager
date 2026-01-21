@@ -428,6 +428,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "invoiced": MessageLookupByLibrary.simpleMessage("Invoiced"),
     "isDeleted": MessageLookupByLibrary.simpleMessage("is Deleted"),
     "issuingType": MessageLookupByLibrary.simpleMessage("Issuing Type"),
+    "item": MessageLookupByLibrary.simpleMessage("Item"),
     "jobDesciprtion": MessageLookupByLibrary.simpleMessage("job Description"),
     "jobTitle": MessageLookupByLibrary.simpleMessage("Job Title"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
