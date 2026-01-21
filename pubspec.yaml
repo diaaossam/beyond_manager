@@ -24,6 +24,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^32.1.24
   open_file: ^3.5.11
   syncfusion_flutter_xlsio: ^32.1.24
+  fl_chart: ^1.1.1
 
   permission_handler: ^12.0.1
   logger: ^2.6.2

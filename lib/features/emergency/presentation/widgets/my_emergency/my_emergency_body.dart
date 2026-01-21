@@ -27,8 +27,7 @@ class MyEmergencyBody extends StatelessWidget {
                 padding: screenPadding(),
                 sliver: PagingListener<int, EmergencyModel>(
                   controller: bloc.pagingController,
-                  builder: (context, state, fetchNextPage) =>
-                      PagedSliverList<int, EmergencyModel>(
+                  builder: (context, state, fetchNextPage) => PagedSliverList<int, EmergencyModel>(
                         state: state,
                         fetchNextPage: fetchNextPage,
                         addAutomaticKeepAlives: true,

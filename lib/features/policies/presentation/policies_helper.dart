@@ -1,4 +1,5 @@
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/features/policies/presentation/widget/active_list/date_picker_design.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -8,14 +9,20 @@ class PoliciesHelper {
       {required BuildContext context,
         required bool isSingle,
         required Function(Map<String, dynamic>) map}) async {
-/*    showCupertinoModalBottomSheet(
+    showCupertinoModalBottomSheet(
       context: context,
       builder: (context) => DatePickerDesign(
         isSingle: isSingle,
         date: map,
       ),
-    );*/
+    );
   }
+
+  String formatDateToApi({required DateTime date, String locale = "en"}) {
+    String formattedDate = DateFormat('yyyy-MM-dd', locale).format(date);
+    return formattedDate;
+  }
+
 
   String formatDate({required DateTime date}) {
     return DateFormat.yMMMEd().format(date);
