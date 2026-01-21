@@ -3,7 +3,6 @@ import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/features/policies/data/models/policy_details.dart';
 import 'package:bond/features/policies/data/repositories/policies_repository_impl.dart';
-import 'package:bond/features/policies/data/models/get_active_list_params.dart';
 import 'package:injectable/injectable.dart';
 
 part 'policy_details_state.dart';
@@ -15,13 +14,9 @@ class PolicyDetailsCubit extends Cubit<BaseState<PolicyDetails>>
 
   PolicyDetailsCubit(this.policiesRepositoryImpl) : super(BaseState());
 
-  Future<void> getPolicyDetails({
-    required GetActiveListParams getActiveListParams,
-  }) async {
+  Future<void> getPolicyDetails({required num policyId}) async {
     await handleAsync(
-      call: () => policiesRepositoryImpl.getPolicyDetails(
-        getActiveListParams: getActiveListParams,
-      ),
+      call: () => policiesRepositoryImpl.getPolicyDetails(policyId: policyId),
       onSuccess: (data) => data,
       identifier: 'get_policy_details',
     );

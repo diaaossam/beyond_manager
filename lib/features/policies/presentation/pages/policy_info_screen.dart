@@ -21,10 +21,8 @@ class PolicyInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<PolicyDetailsCubit>()
-        ..getPolicyDetails(
-          getActiveListParams: GetActiveListParams(policyId: policyId),
-        ),
+      create: (context) =>
+          sl<PolicyDetailsCubit>()..getPolicyDetails(policyId: policyId),
       child: Scaffold(
         appBar: CustomAppBar(title: context.localizations.policyInformation),
         body: BlocBuilder<PolicyDetailsCubit, BaseState<PolicyDetails>>(
@@ -35,7 +33,9 @@ class PolicyInfoScreen extends StatelessWidget {
 
             final policyDetails = state.data;
             if (policyDetails == null) {
-              return EmptyWidgetDesign(title: context.localizations.noPolicyDetailsFound,);
+              return EmptyWidgetDesign(
+                title: context.localizations.noPolicyDetailsFound,
+              );
             }
 
             return PolicyInfoBody(policyDetails: policyDetails);

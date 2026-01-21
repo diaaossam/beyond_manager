@@ -18,20 +18,18 @@ abstract class PoliciesRemoteDataSource {
   });
 
   Future<ActiveListPolicyModel> getActivePolicy({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   });
 
   Future<UtilizationPolicyModel> getUtilization({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   });
 
   Future<MainPolicyPayment> getPolicyPayment({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   });
 
-  Future<PolicyDetails> getPolicyDetails({
-    required GetActiveListParams getActiveListParams,
-  });
+  Future<PolicyDetails> getPolicyDetails({required num policyId});
 
   Future<PolicyAccessModel> getPolicyAccess({required int policyId});
 }
@@ -60,7 +58,7 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
 
   @override
   Future<ActiveListPolicyModel> getActivePolicy({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   }) async {
     return await dioConsumer
         .get(EndPoints.activePolicy)
@@ -71,7 +69,7 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
 
   @override
   Future<UtilizationPolicyModel> getUtilization({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   }) async {
     return await dioConsumer
         .get(EndPoints.utilitzationPolicy)
@@ -82,7 +80,7 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
 
   @override
   Future<MainPolicyPayment> getPolicyPayment({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   }) async {
     return await dioConsumer
         .get(EndPoints.policyPayment)
@@ -92,12 +90,10 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
   }
 
   @override
-  Future<PolicyDetails> getPolicyDetails({
-    required GetActiveListParams getActiveListParams,
-  }) async {
+  Future<PolicyDetails> getPolicyDetails({required num policyId}) async {
     return await dioConsumer
         .get(EndPoints.policyDetails)
-        .params(getActiveListParams.toJson())
+        .params({"policy_id": policyId})
         .factory((json) => PolicyDetails.fromJson(json['result'][0]))
         .execute();
   }

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:bond/features/policies/data/models/active_list_policy_model.dart';
 import 'package:bond/features/policies/data/models/active_list_statics_model.dart';
@@ -10,107 +11,72 @@ import 'package:injectable/injectable.dart';
 part 'active_policy_state.dart';
 
 @injectable
-class ActivePolicyCubit extends Cubit<ActivePolicyState> {
+class ActivePolicyCubit extends Cubit<BaseState<ActivePolicyState>> {
   final PoliciesRepositoryImpl policiesRepositoryImpl;
 
   late final PagingController<int, ActiveListResult> pagingController;
-  
-  String lastUpdateDate = "";
-  bool? isMedical;
-  bool? isBusiness;
-  bool showExcel = false;
-  num? totalMembers;
-  ActiveListStaticsModel? staticsModel;
-  GetActiveListParams? _currentParams;
 
-  ActivePolicyCubit(this.policiesRepositoryImpl) : super(ActivePolicyState()) {
-    pagingController = _buildPagingController();
-  }
-
+  ActivePolicyCubit(this.policiesRepositoryImpl) : super(BaseState());
+/*
   Future<void> initGetActiveList({required int policyId}) async {
-    _currentParams = GetActiveListParams(
-      policyId: policyId,
-      pageKey: 1,
-      pageSize: pageSize,
+    final response = await getActivePoliciesUseCase(
+      getActiveListParams: GetActiveListParams(
+        policyId: policyId,
+        pageKey: 1,
+        pageSize: pageSize,
+      ),
     );
-    
-    final response = await policiesRepositoryImpl.getActivePolicy(
-      getActiveListParams: _currentParams!,
-    );
-    
-    response.fold(
-      (l) => emit(ActivePolicyState(error: l.message)),
-      (r) {
-        lastUpdateDate = r.lastUpdatedDate ?? "";
-        isBusiness = r.isisBusinessLife ?? false;
-        isMedical = r.isMedical ?? false;
-        staticsModel = r.activeListStaticsModel;
-        if (r.result != null && r.result!.isNotEmpty) {
+    response.fold((l) {}, (r) {
+      lastUpdateDate = r.lastUpdatedDate ?? "";
+      isBusiness = r.isisBusinessLife ?? false;
+      isMedical = r.isMedical ?? false;
+      staticsModel = r.activeListStaticsModel;
+      if (r.result != null) {
+        if (r.result!.isNotEmpty) {
           showExcel = true;
         }
-        emit(ActivePolicyState(
-          lastUpdateDate: lastUpdateDate,
-          isMedical: isMedical,
-          isBusiness: isBusiness,
-          showExcel: showExcel,
-          staticsModel: staticsModel,
-        ));
-      },
-    );
+      }
+      emit(GetActiveListState());
+    });
   }
 
-  Future<List<ActiveListResult>> _getActiveList({
-    required GetActiveListParams params,
+  Future<List<ActiveListResult>> getActiveList({
+    required GetActiveListParams getActiveListParams,
   }) async {
-    final response = await policiesRepositoryImpl.getActivePolicy(
-      getActiveListParams: params,
+    List<ActiveListResult> list = [];
+    final response = await getActivePoliciesUseCase(
+      getActiveListParams: getActiveListParams,
     );
-    return response.fold(
-      (l) => [],
+    response.fold(
+      (l) {
+        return [];
+      },
       (r) {
+        list = r.result ?? [];
         totalMembers = r.activeListStaticsModel?.totalMembers;
-        if (r.result != null && r.result!.isNotEmpty) {
-          showExcel = true;
-        }
-        return r.result ?? [];
+        showExcel = true;
+        emit(SetActiveListMembers());
       },
     );
+    return list;
   }
 
-  PagingController<int, ActiveListResult> _buildPagingController() {
-    late final PagingController<int, ActiveListResult> controller;
-    controller = PagingController(
-      getNextPageKey: (state) => _nextIntPageKey(state, firstPageKey: 1),
-      fetchPage: (pageKey) async {
-        if (_currentParams == null) return [];
-        
-        final params = _currentParams!.copyWith(pageKey: pageKey);
-        final newItems = await _getActiveList(params: params);
-        final isLastPage = newItems.length < pageSize;
-        
-        if (isLastPage) {
-          controller.value = controller.value.copyWith(hasNextPage: false);
-        }
-        
-        return newItems;
-      },
-    );
-    return controller;
-  }
-
-  int _nextIntPageKey(
-    PagingState<int, ActiveListResult> state, {
-    required int firstPageKey,
-  }) {
-    final keys = state.keys;
-    if (keys == null || keys.isEmpty) {
-      return firstPageKey;
+  Future<void> fetchPage({
+    required GetActiveListParams getActiveListParams,
+  }) async {
+    try {
+      final newItems = await getActiveList(
+        getActiveListParams: getActiveListParams,
+      );
+      final isLastPage = newItems.length < pageSize;
+      if (isLastPage) {
+        pagingController.appendLastPage(newItems);
+      } else {
+        final nextPageKey = getActiveListParams.pageKey + 1;
+        pagingController.appendPage(newItems, nextPageKey);
+      }
+    } catch (error) {
+      pagingController.error = error;
     }
-    return keys.last + 1;
-  }
-
-  void updateFilters(GetActiveListParams newParams) {
-    _currentParams = newParams;
-    pagingController.refresh();
-  }
+  }*/
 }

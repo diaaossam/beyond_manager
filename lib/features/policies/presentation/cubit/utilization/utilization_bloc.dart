@@ -17,14 +17,14 @@ class UtilizationCubit extends Cubit<UtilizationState> {
   String lastUpdateDate = "";
   bool? isMedical;
   String dashboardUrl = "";
-  GetActiveListParams? _currentParams;
+  ActiveListParams? _currentParams;
 
   UtilizationCubit(this.policiesRepositoryImpl) : super(UtilizationState()) {
     pagingController = _buildPagingController();
   }
 
   Future<void> initUtilization({required int policyId}) async {
-    _currentParams = GetActiveListParams(
+    _currentParams = ActiveListParams(
       policyId: policyId,
       pageKey: 1,
       pageSize: pageSize,
@@ -50,7 +50,7 @@ class UtilizationCubit extends Cubit<UtilizationState> {
   }
 
   Future<List<Utilization>> _getUtilization({
-    required GetActiveListParams params,
+    required ActiveListParams params,
   }) async {
     final response = await policiesRepositoryImpl.getUtilization(
       getActiveListParams: params,
@@ -93,7 +93,7 @@ class UtilizationCubit extends Cubit<UtilizationState> {
     return keys.last + 1;
   }
 
-  void updateFilters(GetActiveListParams newParams) {
+  void updateFilters(ActiveListParams newParams) {
     _currentParams = newParams;
     pagingController.refresh();
   }

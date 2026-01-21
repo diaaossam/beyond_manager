@@ -12,7 +12,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: PolicyAccessSelectionRoute.page),
     AutoRoute(page: PolicyPaymentRoute.page),
     AutoRoute(page: PolicyInfoRoute.page),
-
+    AutoRoute(page: ActiveListRoute.page),
     AutoRoute(
       page: MainLayoutRoute.page,
       children: [

@@ -33,14 +33,7 @@ class PolicyDashboardBody extends StatelessWidget {
                   PolicyDashboardItem(
                     icon: Assets.icons.checkmark,
                     title: context.localizations.activeList,
-                    press: () async {
-                      /*return AppConstant.navigateTo(
-                        context: context,
-                        widget: ActiveListScreen(
-                          policyId: model.policyId!.toInt(),
-                        ),
-                      );*/
-                    },
+                    press: () async => context.router.push(ActiveListRoute(policyId: policyId)),
                   ),
                 if (model.accessPolicyDetails == true)
                   PolicyDashboardItem(

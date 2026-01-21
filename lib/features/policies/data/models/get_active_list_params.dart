@@ -1,4 +1,4 @@
-class GetActiveListParams {
+class ActiveListParams {
   final int pageKey;
   final int? pageSize;
   final int policyId;
@@ -37,7 +37,7 @@ class GetActiveListParams {
   final int? dobYear;
   final int? dobMonth;
 
-  GetActiveListParams({
+  ActiveListParams({
     this.pageKey = 1,
     required this.policyId,
     this.name,
@@ -110,11 +110,16 @@ class GetActiveListParams {
       "dob_year": dobYear,
       "dob_month": dobMonth,
     };
-    map.removeWhere((key, value) => value == null || value.toString().isEmpty || value.toString() == "null");
+    map.removeWhere(
+      (key, value) =>
+          value == null ||
+          value.toString().isEmpty ||
+          value.toString() == "null",
+    );
     return map;
   }
 
-  GetActiveListParams copyWith({
+  ActiveListParams copyWith({
     int? pageKey,
     int? policyId,
     String? name,
@@ -150,7 +155,7 @@ class GetActiveListParams {
     int? dobYear,
     int? dobMonth,
   }) {
-    return GetActiveListParams(
+    return ActiveListParams(
       pageSize: pageSize ?? this.pageSize,
       pageKey: pageKey ?? this.pageKey,
       memberName: memberName ?? this.memberName,
@@ -162,19 +167,45 @@ class GetActiveListParams {
       member: member ?? this.member,
       activeListPolicyNumber:
           activeListPolicyNumber ?? this.activeListPolicyNumber,
-      memberStatus: (memberStatus != null && memberStatus.isEmpty) ? null : memberStatus ?? this.memberStatus,
-      subStatus: (subStatus != null && subStatus.isEmpty) ? null : subStatus ?? this.subStatus,
-      dateFrom: (dateFrom != null && dateFrom.isEmpty) ? null : dateFrom ?? this.dateFrom,
+      memberStatus: (memberStatus != null && memberStatus.isEmpty)
+          ? null
+          : memberStatus ?? this.memberStatus,
+      subStatus: (subStatus != null && subStatus.isEmpty)
+          ? null
+          : subStatus ?? this.subStatus,
+      dateFrom: (dateFrom != null && dateFrom.isEmpty)
+          ? null
+          : dateFrom ?? this.dateFrom,
       dateTo: (dateTo != null && dateTo.isEmpty) ? null : dateTo ?? this.dateTo,
-      startDateFrom: (startDateFrom != null && startDateFrom.isEmpty) ? null : startDateFrom ?? this.startDateFrom,
-      startDateTo: (startDateTo != null && startDateTo.isEmpty) ? null : startDateTo ?? this.startDateTo,
-      reactivationDateFrom: (reactivationDateFrom != null && reactivationDateFrom.isEmpty) ? null : reactivationDateFrom ?? this.reactivationDateFrom,
-      reactivationDateTo: (reactivationDateTo != null && reactivationDateTo.isEmpty) ? null : reactivationDateTo ?? this.reactivationDateTo,
-      endDateFrom: (endDateFrom != null && endDateFrom.isEmpty) ? null : endDateFrom ?? this.endDateFrom,
-      endDateTo: (endDateTo != null && endDateTo.isEmpty) ? null : endDateTo ?? this.endDateTo,
-      deletionDateFrom: (deletionDateFrom != null && deletionDateFrom.isEmpty) ? null : deletionDateFrom ?? this.deletionDateFrom,
-      deletionDateTo: (deletionDateTo != null && deletionDateTo.isEmpty) ? null : deletionDateTo ?? this.deletionDateTo,
-      dobFrom: (dobFrom != null && dobFrom.isEmpty) ? null : dobFrom ?? this.dobFrom,
+      startDateFrom: (startDateFrom != null && startDateFrom.isEmpty)
+          ? null
+          : startDateFrom ?? this.startDateFrom,
+      startDateTo: (startDateTo != null && startDateTo.isEmpty)
+          ? null
+          : startDateTo ?? this.startDateTo,
+      reactivationDateFrom:
+          (reactivationDateFrom != null && reactivationDateFrom.isEmpty)
+          ? null
+          : reactivationDateFrom ?? this.reactivationDateFrom,
+      reactivationDateTo:
+          (reactivationDateTo != null && reactivationDateTo.isEmpty)
+          ? null
+          : reactivationDateTo ?? this.reactivationDateTo,
+      endDateFrom: (endDateFrom != null && endDateFrom.isEmpty)
+          ? null
+          : endDateFrom ?? this.endDateFrom,
+      endDateTo: (endDateTo != null && endDateTo.isEmpty)
+          ? null
+          : endDateTo ?? this.endDateTo,
+      deletionDateFrom: (deletionDateFrom != null && deletionDateFrom.isEmpty)
+          ? null
+          : deletionDateFrom ?? this.deletionDateFrom,
+      deletionDateTo: (deletionDateTo != null && deletionDateTo.isEmpty)
+          ? null
+          : deletionDateTo ?? this.deletionDateTo,
+      dobFrom: (dobFrom != null && dobFrom.isEmpty)
+          ? null
+          : dobFrom ?? this.dobFrom,
       dobTo: (dobTo != null && dobTo.isEmpty) ? null : dobTo ?? this.dobTo,
       startDateYear: startDateYear ?? this.startDateYear,
       startDateMonth: startDateMonth ?? this.startDateMonth,
@@ -190,74 +221,4 @@ class GetActiveListParams {
     );
   }
 }
-
-
-
-/*
-import 'package:bond/features/policies/presentation/cubit/active_policy/active_policy_bloc.dart';
-
-class GetActiveListParams {
-  final int pageKey;
-  final int? pageSize;
-  final int policyId;
-  final String? name;
-  final String? memberName;
-
-  final String? insuranceId;
-  final String? staffId;
-  final String? policyNumber;
-
-  GetActiveListParams(
-      {this.pageKey = 1,
-        required this.policyId,
-        this.name,
-        this.pageSize,
-        this.policyNumber,
-        this.memberName,
-        this.staffId,
-        this.insuranceId});
-
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {
-      "policy_id": policyId,
-      "page_number": pageKey,
-      "page_size": pageSize,
-      "member": name,
-      "insurance_id": insuranceId,
-      if(memberName != null && memberName!.isNotEmpty)"name": memberName,
-      "staff_id": staffId,
-      "policy_number": policyNumber,
-    };
-    map.removeWhere((key, value) => value == null);
-    return map;
-  }
-
-  GetActiveListParams copyWith(
-      {int? pageKey,
-        int? policyId,
-        String? name,
-        String? memberName,
-        String? insuranceId,
-        String? staffId,
-        String? policyNumber,
-        int? pageSize}) {
-    return GetActiveListParams(
-        pageSize: pageSize ?? this.pageSize,
-        pageKey: pageKey ?? this.pageKey,
-        memberName: memberName ?? this.memberName,
-        policyId: policyId ?? this.policyId,
-        name: name ?? this.name,
-        insuranceId: insuranceId ?? this.insuranceId,
-        policyNumber: policyNumber ?? this.policyNumber,
-        staffId: staffId ?? this.staffId);
-  }
-}
-*/
-
-
-
-
-
-
-
 

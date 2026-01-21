@@ -16,14 +16,14 @@ class PolicyPaymentCubit extends Cubit<BaseState<MainPolicyPayment>>
   final PoliciesRepositoryImpl policiesRepositoryImpl;
 
   late final PagingController<int, PolicyPayment> pagingController;
-  GetActiveListParams? _currentParams;
+  ActiveListParams? _currentParams;
 
   PolicyPaymentCubit(this.policiesRepositoryImpl) : super(BaseState()) {
     pagingController = _buildPagingController();
   }
 
   Future<List<PolicyPayment>> _getPolicyPayment({
-    required GetActiveListParams params,
+    required ActiveListParams params,
   }) async {
     final response = await policiesRepositoryImpl.getPolicyPayment(
       getActiveListParams: params,
@@ -67,7 +67,7 @@ class PolicyPaymentCubit extends Cubit<BaseState<MainPolicyPayment>>
   }
 
   void initPayment({required int policyId}) {
-    _currentParams = GetActiveListParams(
+    _currentParams = ActiveListParams(
       policyId: policyId,
       pageKey: 1,
       pageSize: pageSize,

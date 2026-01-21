@@ -22,16 +22,14 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
     required String state,
   }) async {
     final response = await handleApi(
-      () => policiesRemoteDataSource.getCompanyPolicies(
-        page: page,
-        state: state,
-      ),
+      () =>
+          policiesRemoteDataSource.getCompanyPolicies(page: page, state: state),
     );
     return response;
   }
 
   Future<Either<Failure, ActiveListPolicyModel>> getActivePolicy({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   }) async {
     final response = await handleApi(
       () => policiesRemoteDataSource.getActivePolicy(
@@ -42,7 +40,7 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
   }
 
   Future<Either<Failure, UtilizationPolicyModel>> getUtilization({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   }) async {
     final response = await handleApi(
       () => policiesRemoteDataSource.getUtilization(
@@ -53,7 +51,7 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
   }
 
   Future<Either<Failure, MainPolicyPayment>> getPolicyPayment({
-    required GetActiveListParams getActiveListParams,
+    required ActiveListParams getActiveListParams,
   }) async {
     final response = await handleApi(
       () => policiesRemoteDataSource.getPolicyPayment(
@@ -64,12 +62,10 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
   }
 
   Future<Either<Failure, PolicyDetails>> getPolicyDetails({
-    required GetActiveListParams getActiveListParams,
+    required num policyId,
   }) async {
     final response = await handleApi(
-      () => policiesRemoteDataSource.getPolicyDetails(
-        getActiveListParams: getActiveListParams,
-      ),
+      () => policiesRemoteDataSource.getPolicyDetails(policyId: policyId),
     );
     return response;
   }
