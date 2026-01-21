@@ -1,13 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/utils/app_strings.dart';
-import 'package:bond/features/policies/data/models/main_policy_model.dart';
 import 'package:bond/features/policies/data/repositories/policies_repository_impl.dart';
-import 'package:equatable/equatable.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/enum/policy_status.dart';
+import '../../data/models/response/main_policy_model.dart';
 
 part 'policies_state.dart';
 

@@ -1,18 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/utils/app_size.dart';
-import 'package:bond/features/policies/data/models/main_policy_model.dart';
 import 'package:bond/widgets/app_failure.dart';
 import 'package:bond/widgets/loading/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-
 import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/enum/policy_status.dart';
 import '../../../../../widgets/no_item_design.dart';
+import '../../../data/models/response/main_policy_model.dart';
 import '../../cubit/policies_cubit.dart';
-import '../../pages/policy_dashboard.dart';
 import '../select_policy/custom_policy_item.dart';
 import '../../../../../widgets/chips_choice_widget.dart';
 

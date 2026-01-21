@@ -3,18 +3,17 @@ import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/features/policies/presentation/widget/policy_dashboard/policy_dashboard_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/bloc/helper/base_state.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../../../widgets/loading/loading_widget.dart';
-import '../../../data/models/policy_access_model.dart';
+import '../../../data/models/response/policy_access_model.dart';
 import '../../cubit/policy_access/policy_access_cubit.dart';
-import '../../pages/policy_payment_screen.dart';
 
 class PolicyDashboardBody extends StatelessWidget {
   final int policyId;
+
   const PolicyDashboardBody({super.key, required this.policyId});
 
   @override
@@ -33,13 +32,17 @@ class PolicyDashboardBody extends StatelessWidget {
                   PolicyDashboardItem(
                     icon: Assets.icons.checkmark,
                     title: context.localizations.activeList,
-                    press: () async => context.router.push(ActiveListRoute(policyId: policyId)),
+                    press: () async => context.router.push(
+                      ActiveListRoute(policyId: policyId),
+                    ),
                   ),
                 if (model.accessPolicyDetails == true)
                   PolicyDashboardItem(
                     icon: Assets.icons.info,
                     title: context.localizations.policyInformation,
-                    press: ()=> context.router.push(PolicyInfoRoute(policyId: policyId)),
+                    press: () => context.router.push(
+                      PolicyInfoRoute(policyId: policyId),
+                    ),
                   ),
                 if (model.accessUtilization == true)
                   PolicyDashboardItem(
@@ -59,7 +62,9 @@ class PolicyDashboardBody extends StatelessWidget {
                     icon: Assets.icons.policyPayment,
                     title: context.localizations.policyPayment,
                     press: () {
-                     context.router.push(PolicyPaymentRoute(policyId: policyId,));
+                      context.router.push(
+                        PolicyPaymentRoute(policyId: policyId),
+                      );
                     },
                   ),
                 PolicyDashboardItem(

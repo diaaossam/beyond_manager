@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
-import '../../../data/models/policy_details.dart';
+import '../../../data/models/response/policy_details.dart';
 
 class PolicyInfoBranchesSection extends StatelessWidget {
   final PolicyDetails policyDetails;

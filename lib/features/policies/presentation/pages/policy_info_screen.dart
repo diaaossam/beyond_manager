@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/dependencies/injectable_dependencies.dart';
 import '../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../widgets/app_bar/custom_app_bar.dart';
-import '../../data/models/get_active_list_params.dart';
-import '../../data/models/policy_details.dart';
+import '../../data/models/request/get_active_list_params.dart';
+import '../../data/models/response/policy_details.dart';
 import '../cubit/policy_details/policy_details_bloc.dart';
 import '../widget/policy_info/policy_info_body.dart';
 

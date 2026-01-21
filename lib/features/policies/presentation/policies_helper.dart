@@ -1,24 +1,25 @@
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class PoliciesHelper {
-  static String policiesStatus({required int value}) {
-    switch (value) {
-      case 0:
-        return "All";
-      case 1:
-        return "Active";
-      case 2:
-        return "Expired";
-      case 3:
-        return "Cancelled";
-      default:
-        return "All";
-    }
+  Future<void> showCustomDatePicker(
+      {required BuildContext context,
+        required bool isSingle,
+        required Function(Map<String, dynamic>) map}) async {
+/*    showCupertinoModalBottomSheet(
+      context: context,
+      builder: (context) => DatePickerDesign(
+        isSingle: isSingle,
+        date: map,
+      ),
+    );*/
   }
 
-  List<String> get options => ["All", "Active", "Expired", "Cancelled"];
-
+  String formatDate({required DateTime date}) {
+    return DateFormat.yMMMEd().format(date);
+  }
   Color setUpStatusColor({
     required String status,
     required BuildContext context,

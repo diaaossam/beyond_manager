@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/bloc/helper/either_extensions.dart';
-import 'package:bond/features/policies/data/models/policy_access_model.dart';
 import 'package:bond/features/policies/data/repositories/policies_repository_impl.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../data/models/response/policy_access_model.dart';
 
 part 'policy_access_state.dart';
 

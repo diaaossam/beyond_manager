@@ -4,7 +4,7 @@ import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
-import '../../../data/models/policy_details.dart';
+import '../../../data/models/response/policy_details.dart';
 
 class PolicyInfoPaymentSection extends StatelessWidget {
   final PolicyDetails policyDetails;

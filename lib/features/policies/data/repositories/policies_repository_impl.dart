@@ -1,15 +1,16 @@
 import 'package:bond/core/services/api/api_handler_mixin.dart';
 import 'package:bond/core/services/network/error/failures.dart';
 import 'package:bond/features/policies/data/datasources/policies_remote_data_source.dart';
-import 'package:bond/features/policies/data/models/active_list_policy_model.dart';
-import 'package:bond/features/policies/data/models/main_policy_model.dart';
-import 'package:bond/features/policies/data/models/policy_access_model.dart';
-import 'package:bond/features/policies/data/models/policy_details.dart';
-import 'package:bond/features/policies/data/models/policy_payment.dart';
-import 'package:bond/features/policies/data/models/utilization_policy_model.dart';
-import 'package:bond/features/policies/data/models/get_active_list_params.dart';
+import 'package:bond/features/policies/data/models/response/policy_details.dart';
+import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+
+import '../models/response/active_list_model.dart';
+import '../models/response/main_policy_model.dart';
+import '../models/response/policy_access_model.dart';
+import '../models/response/policy_payment.dart';
+import '../models/response/utilization_policy_model.dart';
 
 @LazySingleton()
 class PoliciesRepositoryImpl with ApiHandlerMixin {
@@ -28,12 +29,12 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, ActiveListPolicyModel>> getActivePolicy({
-    required ActiveListParams getActiveListParams,
+  Future<Either<Failure, ActiveListModel>> getActivePolicy({
+    required ActiveListParams activeListParams,
   }) async {
     final response = await handleApi(
       () => policiesRemoteDataSource.getActivePolicy(
-        getActiveListParams: getActiveListParams,
+        activeListParams: activeListParams,
       ),
     );
     return response;

@@ -2,11 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/core/utils/app_strings.dart';
-import 'package:bond/features/policies/data/models/policy_payment.dart';
 import 'package:bond/features/policies/data/repositories/policies_repository_impl.dart';
-import 'package:bond/features/policies/data/models/get_active_list_params.dart';
+import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../data/models/response/policy_payment.dart';
 
 part 'policy_payment_state.dart';
 
@@ -28,10 +29,7 @@ class PolicyPaymentCubit extends Cubit<BaseState<MainPolicyPayment>>
     final response = await policiesRepositoryImpl.getPolicyPayment(
       getActiveListParams: params,
     );
-    return response.fold(
-      (l) => [],
-      (r) => r.result ?? [],
-    );
+    return response.fold((l) => [], (r) => r.result ?? []);
   }
 
   PagingController<int, PolicyPayment> _buildPagingController() {
@@ -40,15 +38,15 @@ class PolicyPaymentCubit extends Cubit<BaseState<MainPolicyPayment>>
       getNextPageKey: (state) => _nextIntPageKey(state, firstPageKey: 1),
       fetchPage: (pageKey) async {
         if (_currentParams == null) return [];
-        
+
         final params = _currentParams!.copyWith(pageKey: pageKey);
         final newItems = await _getPolicyPayment(params: params);
         final isLastPage = newItems.length < pageSize;
-        
+
         if (isLastPage) {
           controller.value = controller.value.copyWith(hasNextPage: false);
         }
-        
+
         return newItems;
       },
     );

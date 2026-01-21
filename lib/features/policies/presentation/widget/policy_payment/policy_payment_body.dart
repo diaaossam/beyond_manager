@@ -6,11 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../core/utils/app_size.dart';
-import '../../../../../widgets/custom_divider_design.dart';
 import '../../../../../widgets/custom_expanded_tile_design.dart';
 import '../../../../../widgets/no_item_design.dart';
+import '../../../data/models/response/policy_payment.dart';
 import '../../cubit/policy_payment/policy_payment_bloc.dart';
-import '../../../data/models/policy_payment.dart';
 import 'custom_payment_details_body.dart';
 import 'custom_payment_details_header.dart';
 
@@ -58,13 +57,9 @@ class _PolicyPaymentBodyState extends State<PolicyPaymentBody> {
                         padding: EdgeInsets.symmetric(
                           vertical: SizeConfig.bodyHeight * .005,
                         ),
-                        child:CustomExpandedTile(
-                          title: CustomPaymentHeaderExpanded(
-                            result: item,
-                          ),
-                          body: CustomPaymentBody(
-                            result: item,
-                          ),
+                        child: CustomExpandedTile(
+                          title: CustomPaymentHeaderExpanded(result: item),
+                          body: CustomPaymentBody(result: item),
                         ),
                       ),
                     ),
@@ -78,4 +73,3 @@ class _PolicyPaymentBodyState extends State<PolicyPaymentBody> {
     );
   }
 }
-

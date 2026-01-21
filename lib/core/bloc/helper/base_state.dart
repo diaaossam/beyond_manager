@@ -1,4 +1,8 @@
+import 'package:bond/widgets/app_failure.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+
+import '../../../widgets/loading/loading_widget.dart';
 
 enum BaseStatus { initial, loading, success, failure }
 
@@ -62,10 +66,7 @@ class BaseState<T> extends Equatable {
 
   /// Returns a new loading state, preserving current data
   BaseState<T> loading({String? identifier}) {
-    return copyWith(
-      status: BaseStatus.loading,
-      identifier: identifier,
-    );
+    return copyWith(status: BaseStatus.loading, identifier: identifier);
   }
 
   /// Returns a new success state, optionally updating data
@@ -102,8 +103,6 @@ class BaseState<T> extends Equatable {
   /// Returns true if status is failure
   bool get isFailure => status == BaseStatus.failure;
 
-
-
   BaseState<T> copyWith({
     BaseStatus? status,
     T? data,
@@ -116,6 +115,31 @@ class BaseState<T> extends Equatable {
       error: error ?? this.error,
       identifier: identifier ?? this.identifier,
     );
+  }
+
+  Widget builder({
+    Widget? loadingWidget,
+    Widget? failedWidget,
+    VoidCallback? onTapRetry,
+    required Widget Function(T data) onSuccess,
+  }) {
+    if (failedWidget == null && onTapRetry == null) {
+      throw ArgumentError(
+        'Either failed widget or onTapRetry must be provided.',
+      );
+    }
+    if (isSuccess) {
+      return onSuccess(data!);
+    }
+    if (isLoading) {
+      return loadingWidget ?? const LoadingWidget();
+    } else {
+      return failedWidget ??
+          AppFailureWidget(
+            body: error.toString(),
+            callback: onTapRetry ?? () {},
+          );
+    }
   }
 
   @override

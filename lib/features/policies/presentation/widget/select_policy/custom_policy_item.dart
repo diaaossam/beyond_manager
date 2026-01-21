@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
-import '../../../data/models/main_policy_model.dart';
+import '../../../data/models/response/main_policy_model.dart';
 import '../../policies_helper.dart';
 
 class CustomPolicyItem extends StatelessWidget {
@@ -30,7 +30,7 @@ class CustomPolicyItem extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
-            border: Border.all(color:context.colorScheme.outline),
+            border: Border.all(color: context.colorScheme.outline),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(

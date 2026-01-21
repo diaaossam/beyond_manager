@@ -20,7 +20,7 @@ import 'package:bond/features/emergency/presentation/pages/emergency_screen.dart
     as _i7;
 import 'package:bond/features/main/presentation/pages/home_screen.dart' as _i4;
 import 'package:bond/features/main/presentation/pages/main_layout.dart' as _i6;
-import 'package:bond/features/policies/data/models/main_policy_model.dart'
+import 'package:bond/features/policies/data/models/response/main_policy_model.dart'
     as _i19;
 import 'package:bond/features/policies/presentation/pages/active_list_screen.dart'
     as _i1;

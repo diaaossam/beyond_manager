@@ -2,14 +2,13 @@ import 'package:bond/core/services/api/dio_consumer.dart';
 import 'package:bond/core/services/api/end_points.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:injectable/injectable.dart';
-
-import '../models/active_list_policy_model.dart';
-import '../models/main_policy_model.dart';
-import '../models/policy_access_model.dart';
-import '../models/policy_details.dart';
-import '../models/policy_payment.dart';
-import '../models/utilization_policy_model.dart';
-import '../models/get_active_list_params.dart';
+import '../models/response/active_list_model.dart';
+import '../models/response/main_policy_model.dart';
+import '../models/response/policy_access_model.dart';
+import '../models/response/policy_details.dart';
+import '../models/request/get_active_list_params.dart';
+import '../models/response/policy_payment.dart';
+import '../models/response/utilization_policy_model.dart';
 
 abstract class PoliciesRemoteDataSource {
   Future<List<MainPolicyModel>> getCompanyPolicies({
@@ -17,8 +16,8 @@ abstract class PoliciesRemoteDataSource {
     required String state,
   });
 
-  Future<ActiveListPolicyModel> getActivePolicy({
-    required ActiveListParams getActiveListParams,
+  Future<ActiveListModel> getActivePolicy({
+    required ActiveListParams activeListParams,
   });
 
   Future<UtilizationPolicyModel> getUtilization({
@@ -57,13 +56,13 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
   }
 
   @override
-  Future<ActiveListPolicyModel> getActivePolicy({
-    required ActiveListParams getActiveListParams,
+  Future<ActiveListModel> getActivePolicy({
+    required ActiveListParams activeListParams,
   }) async {
     return await dioConsumer
         .get(EndPoints.activePolicy)
-        .params(getActiveListParams.toJson())
-        .factory((json) => ActiveListPolicyModel.fromJson(json))
+        .params(activeListParams.toJson())
+        .factory((json) => ActiveListModel.fromJson(json))
         .execute();
   }
 

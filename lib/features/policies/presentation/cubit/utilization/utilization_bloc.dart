@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/utils/app_strings.dart';
-import 'package:bond/features/policies/data/models/utilization_policy_model.dart';
 import 'package:bond/features/policies/data/repositories/policies_repository_impl.dart';
-import 'package:bond/features/policies/data/models/get_active_list_params.dart';
+import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:injectable/injectable.dart';
+import '../../../data/models/response/utilization_policy_model.dart';
 
 part 'utilization_state.dart';
 
@@ -13,7 +13,7 @@ class UtilizationCubit extends Cubit<UtilizationState> {
   final PoliciesRepositoryImpl policiesRepositoryImpl;
 
   late final PagingController<int, Utilization> pagingController;
-  
+
   String lastUpdateDate = "";
   bool? isMedical;
   String dashboardUrl = "";
@@ -29,24 +29,23 @@ class UtilizationCubit extends Cubit<UtilizationState> {
       pageKey: 1,
       pageSize: pageSize,
     );
-    
+
     final response = await policiesRepositoryImpl.getUtilization(
       getActiveListParams: _currentParams!,
     );
-    
-    response.fold(
-      (l) => emit(UtilizationState(error: l.message)),
-      (r) {
-        lastUpdateDate = r.lastUpdatedDate ?? "";
-        isMedical = r.isMedical ?? false;
-        dashboardUrl = r.dashboardLink ?? "";
-        emit(UtilizationState(
+
+    response.fold((l) => emit(UtilizationState(error: l.message)), (r) {
+      lastUpdateDate = r.lastUpdatedDate ?? "";
+      isMedical = r.isMedical ?? false;
+      dashboardUrl = r.dashboardLink ?? "";
+      emit(
+        UtilizationState(
           lastUpdateDate: lastUpdateDate,
           isMedical: isMedical,
           dashboardUrl: dashboardUrl,
-        ));
-      },
-    );
+        ),
+      );
+    });
   }
 
   Future<List<Utilization>> _getUtilization({
@@ -55,10 +54,7 @@ class UtilizationCubit extends Cubit<UtilizationState> {
     final response = await policiesRepositoryImpl.getUtilization(
       getActiveListParams: params,
     );
-    return response.fold(
-      (l) => [],
-      (r) => r.result ?? [],
-    );
+    return response.fold((l) => [], (r) => r.result ?? []);
   }
 
   PagingController<int, Utilization> _buildPagingController() {
@@ -67,15 +63,15 @@ class UtilizationCubit extends Cubit<UtilizationState> {
       getNextPageKey: (state) => _nextIntPageKey(state, firstPageKey: 1),
       fetchPage: (pageKey) async {
         if (_currentParams == null) return [];
-        
+
         final params = _currentParams!.copyWith(pageKey: pageKey);
         final newItems = await _getUtilization(params: params);
         final isLastPage = newItems.length < pageSize;
-        
+
         if (isLastPage) {
           controller.value = controller.value.copyWith(hasNextPage: false);
         }
-        
+
         return newItems;
       },
     );

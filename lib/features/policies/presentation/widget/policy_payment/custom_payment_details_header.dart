@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
-import '../../../data/models/policy_payment.dart';
+import '../../../data/models/response/policy_payment.dart';
 
 class CustomPaymentHeaderExpanded extends StatelessWidget {
   final PolicyPayment result;
@@ -78,7 +78,7 @@ class CustomPaymentHeaderExpanded extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: result.paid == true
                       ? Theme.of(context).colorScheme.tertiary
-                      :context.colorScheme.error,
+                      : context.colorScheme.error,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: AppText(

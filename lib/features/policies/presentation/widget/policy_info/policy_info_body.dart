@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_size.dart';
-import '../../../data/models/policy_details.dart';
+import '../../../data/models/response/policy_details.dart';
 import 'policy_info_branches_section.dart';
 import 'policy_info_contacts_section.dart';
 import 'policy_info_dates_section.dart';
