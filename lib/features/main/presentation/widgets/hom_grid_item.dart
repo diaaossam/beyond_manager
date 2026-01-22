@@ -57,8 +57,7 @@ class CustomItemHome extends StatelessWidget {
               AppText(
                 align: TextAlign.center,
                 text: title,
-                color: Colors.black,
-                textSize: 14,
+                textSize: 12,
                 fontWeight: FontWeight.w600,
               ),
               SizedBox(height: SizeConfig.bodyHeight * .01),

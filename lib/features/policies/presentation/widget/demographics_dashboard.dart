@@ -1,5 +1,6 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
 import 'package:bond/features/policies/data/models/response/active_list_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
@@ -88,6 +89,9 @@ class _DemographicsDashboardState extends State<DemographicsDashboard>
     return BlocBuilder<ActivePolicyCubit, BaseState<ActiveListModel>>(
       builder: (context, state) {
         return state.builder(
+          onTapRetry: () => context.read<ActivePolicyCubit>().fetchActiveList(
+            params: context.read<ActivePolicyCubit>().activeListParams!,
+          ),
           onSuccess: (data) => SingleChildScrollView(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Column(

@@ -198,7 +198,8 @@ class _ActiveListBodyState extends State<ActiveListBody>
       policyId: widget.policyId,
       pageKey: 1,
     );
-    bloc.fetchActiveList(params: getActiveListParams!);
+    bloc.initPagination();
+    bloc.fetchFirstActiveList(params: getActiveListParams!);
     super.initState();
   }
 
@@ -456,7 +457,7 @@ class _ActiveListBodyState extends State<ActiveListBody>
                           builderDelegate:
                           PagedChildBuilderDelegate<Result>(
                             firstPageProgressIndicatorBuilder: (context) => LoadingWidget(),
-                            firstPageErrorIndicatorBuilder: (context) => AppFailureWidget(),
+                            firstPageErrorIndicatorBuilder: (context) => AppFailureWidget(callback: () => bloc.pagingController.refresh(),),
                             noItemsFoundIndicatorBuilder: (context) => EmptyWidgetDesign(),
                             itemBuilder: (context, item, index) {
                               if (data.isLife == true) {

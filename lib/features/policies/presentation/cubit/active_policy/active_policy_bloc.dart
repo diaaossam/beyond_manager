@@ -14,58 +14,44 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
   final PoliciesRepositoryImpl policiesRepositoryImpl;
 
   late final PagingController<int, Result> pagingController;
-  ActiveListParams ? activeListParams;
+  ActiveListParams? activeListParams;
+
   ActivePolicyCubit(this.policiesRepositoryImpl) : super(BaseState());
 
-  Future<void> fetchActiveList({required ActiveListParams params}) async {
+  Future<void> fetchFirstActiveList({required ActiveListParams params}) async {
     emit(state.copyWith(status: BaseStatus.loading));
     activeListParams = params;
     final firstPageResponse = await policiesRepositoryImpl.getActivePolicy(
       activeListParams: params.copyWith(pageKey: 1),
     );
-    
-    final firstPageModel = firstPageResponse.getOrElse(() => ActiveListModel());
-    
-    // ملء state.data بأول صفحة
-    emit(state.copyWith(
-      status: BaseStatus.success,
-      data: firstPageModel,
-    ));
-    
+    firstPageResponse.fold(
+      (failure) {
+        throw Exception(
+          'Failed to fetch active policy list: ${failure.message}',
+        );
+      },
+      (data) {
+        emit(state.copyWith(status: BaseStatus.success, data: data));
+      },
+    );
+  }
+
+  Future<void> initPagination() async {
     pagingController = PagingController<int, Result>(
       getNextPageKey: (state) => _nextIntPageKey(state, firstPageKey: 1),
       fetchPage: (pageKey) async {
         final pageSize = activeListParams?.pageSize ?? 8;
-        if (pageKey == 1) {
-          final response = await policiesRepositoryImpl.getActivePolicy(
-            activeListParams: activeListParams!.copyWith(pageKey: 1),
-          );
-          
-          final model = response.getOrElse(() => ActiveListModel());
-          final items = model.result ?? [];
-          
-          emit(state.copyWith(
-            status: BaseStatus.success,
-            data: model,
-          ));
-          
-          return items;
-        }
-        
-        // للصفحات التالية
         final response = await policiesRepositoryImpl.getActivePolicy(
           activeListParams: activeListParams!.copyWith(pageKey: pageKey),
         );
-
-        final newModel = response.getOrElse(() => ActiveListModel());
+        final newModel = response.fold((failure) {
+          throw Exception();
+        }, (data) => data);
         final newItems = newModel.result ?? [];
-
         final oldModel = state.data;
         final combinedItems = [...?oldModel?.result, ...newItems];
-
         final updatedModel = newModel.copyWith(result: combinedItems);
         emit(state.copyWith(status: BaseStatus.success, data: updatedModel));
-        
         final isLastPage = newItems.length < pageSize;
         if (isLastPage) {
           pagingController.value = pagingController.value.copyWith(
@@ -76,7 +62,12 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
         return newItems;
       },
     );
+  }
 
+  void fetchActiveList({required ActiveListParams params}) {
+    activeListParams = params;
+    pagingController.refresh();
+    emit(state.copyWith(status: BaseStatus.success));
   }
 
   int _nextIntPageKey(
@@ -89,5 +80,4 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
     }
     return keys.last + 1;
   }
-
 }

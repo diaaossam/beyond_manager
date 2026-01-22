@@ -13,6 +13,7 @@ class ActiveListModel {
     this.totalCount,
     this.totalCountIncludingDeleted,
     this.totalPages,
+    this.errorMsg,
   });
 
   ActiveListModel.fromJson(dynamic json) {
@@ -47,6 +48,7 @@ class ActiveListModel {
   num? totalCount;
   num? totalCountIncludingDeleted;
   num? totalPages;
+  String? errorMsg;
 
   ActiveListModel copyWith({
     bool? isLife,
@@ -54,6 +56,7 @@ class ActiveListModel {
     String? lastUpdatedDate,
     num? currentPage,
     String? message,
+    String? errorMsg,
     num? pageSize,
     List<Result>? result,
     Statistics? statistics,
@@ -70,6 +73,7 @@ class ActiveListModel {
     result: result ?? this.result,
     statistics: statistics ?? this.statistics,
     totalCount: totalCount ?? this.totalCount,
+    errorMsg: errorMsg ?? this.errorMsg,
     totalCountIncludingDeleted:
         totalCountIncludingDeleted ?? this.totalCountIncludingDeleted,
     totalPages: totalPages ?? this.totalPages,
@@ -433,29 +437,30 @@ class AgeStatistics {
 }
 
 class Result {
-  Result(
-      {this.bankAccount,
-        this.beyondDeletionDate,
-        this.branch,
-        this.category,
-        this.dateOfBirth,
-        this.deletionDate,
-        this.endDate,
-        this.insuranceCardName,
-        this.member,
-        this.plan,
-        this.principleInsuranceId,
-        this.relation,
-        this.staff,
-        this.startDate,
-        this.memberId,
-        this.isDeleted,
-        this.uploadType,
-        this.insuranceID,
-        this.reactivationDate,
-        this.value,
-        this.name,
-        this.policyNumber});
+  Result({
+    this.bankAccount,
+    this.beyondDeletionDate,
+    this.branch,
+    this.category,
+    this.dateOfBirth,
+    this.deletionDate,
+    this.endDate,
+    this.insuranceCardName,
+    this.member,
+    this.plan,
+    this.principleInsuranceId,
+    this.relation,
+    this.staff,
+    this.startDate,
+    this.memberId,
+    this.isDeleted,
+    this.uploadType,
+    this.insuranceID,
+    this.reactivationDate,
+    this.value,
+    this.name,
+    this.policyNumber,
+  });
 
   Result.fromJson(dynamic json) {
     bankAccount = json['Bank Account'];
