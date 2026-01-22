@@ -49,12 +49,7 @@ class PolicyDashboardBody extends StatelessWidget {
                     icon: Assets.icons.utilization,
                     title: context.localizations.utilization,
                     press: () {
-                      /*   AppConstant.navigateTo(
-                          context: context,
-                          widget: UtilizationScreen(
-                            policyId: model.policyId!.toInt(),
-                          ),
-                        );*/
+                      context.router.push(UtilizationRoute(policyId: policyId));
                     },
                   ),
                 if (model.accessPayments == true)

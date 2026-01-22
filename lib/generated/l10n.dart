@@ -3943,6 +3943,21 @@ class S {
   String get item {
     return Intl.message('Item', name: 'item', desc: '', args: []);
   }
+
+  /// `Utilization/Claim History`
+  String get utilizationClaimHistory {
+    return Intl.message(
+      'Utilization/Claim History',
+      name: 'utilizationClaimHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Value`
+  String get value {
+    return Intl.message('Value', name: 'value', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

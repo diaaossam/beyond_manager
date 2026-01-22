@@ -470,5 +470,7 @@
   "thereIsNoFile": "There is no Files",
   "cannotOpenFile": "Cannot open file",
   "noPolicyDetailsFound": "No policy details available",
-  "item": "Item"
+  "item": "Item",
+  "utilizationClaimHistory": "Utilization/Claim History",
+  "value": "Value"
 }

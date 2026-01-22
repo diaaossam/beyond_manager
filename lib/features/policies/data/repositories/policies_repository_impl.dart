@@ -3,6 +3,7 @@ import 'package:bond/core/services/network/error/failures.dart';
 import 'package:bond/features/policies/data/datasources/policies_remote_data_source.dart';
 import 'package:bond/features/policies/data/models/response/policy_details.dart';
 import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
+import 'package:bond/features/policies/data/models/response/utilization_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,7 +11,6 @@ import '../models/response/active_list_model.dart';
 import '../models/response/main_policy_model.dart';
 import '../models/response/policy_access_model.dart';
 import '../models/response/policy_payment.dart';
-import '../models/response/utilization_policy_model.dart';
 
 @LazySingleton()
 class PoliciesRepositoryImpl with ApiHandlerMixin {
@@ -40,12 +40,12 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, UtilizationPolicyModel>> getUtilization({
-    required ActiveListParams getActiveListParams,
+  Future<Either<Failure, UtilizationModel>> getUtilization({
+    required ActiveListParams activeListParams,
   }) async {
     final response = await handleApi(
       () => policiesRemoteDataSource.getUtilization(
-        getActiveListParams: getActiveListParams,
+        getActiveListParams: activeListParams,
       ),
     );
     return response;

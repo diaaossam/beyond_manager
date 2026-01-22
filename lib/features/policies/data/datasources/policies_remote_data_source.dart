@@ -8,7 +8,7 @@ import '../models/response/policy_access_model.dart';
 import '../models/response/policy_details.dart';
 import '../models/request/get_active_list_params.dart';
 import '../models/response/policy_payment.dart';
-import '../models/response/utilization_policy_model.dart';
+import '../models/response/utilization_model.dart';
 
 abstract class PoliciesRemoteDataSource {
   Future<List<MainPolicyModel>> getCompanyPolicies({
@@ -20,7 +20,7 @@ abstract class PoliciesRemoteDataSource {
     required ActiveListParams activeListParams,
   });
 
-  Future<UtilizationPolicyModel> getUtilization({
+  Future<UtilizationModel> getUtilization({
     required ActiveListParams getActiveListParams,
   });
 
@@ -67,13 +67,13 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
   }
 
   @override
-  Future<UtilizationPolicyModel> getUtilization({
+  Future<UtilizationModel> getUtilization({
     required ActiveListParams getActiveListParams,
   }) async {
     return await dioConsumer
         .get(EndPoints.utilitzationPolicy)
         .params(getActiveListParams.toJson())
-        .factory((json) => UtilizationPolicyModel.fromJson(json))
+        .factory((json) => UtilizationModel.fromJson(json))
         .execute();
   }
 

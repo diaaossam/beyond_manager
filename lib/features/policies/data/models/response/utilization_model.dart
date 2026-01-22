@@ -1,5 +1,5 @@
-class UtilizationPolicyModel {
-  UtilizationPolicyModel({
+class UtilizationModel {
+  UtilizationModel({
     this.dashboardLink,
     this.isMedical,
     this.lastUpdatedDate,
@@ -8,7 +8,7 @@ class UtilizationPolicyModel {
     this.totalPages,
   });
 
-  UtilizationPolicyModel.fromJson(dynamic json) {
+  UtilizationModel.fromJson(dynamic json) {
     dashboardLink = json['Dashboard Link'];
     isMedical = json['Is Medical'];
     lastUpdatedDate = json['Last Updated Date'];
@@ -22,40 +22,69 @@ class UtilizationPolicyModel {
     totalPages = json['total_pages'];
   }
 
-  String? dashboardLink;
+  dynamic dashboardLink;
   bool? isMedical;
   String? lastUpdatedDate;
   List<Utilization>? result;
   num? totalCount;
   num? totalPages;
+
+  UtilizationModel copyWith({
+    dynamic dashboardLink,
+    bool? isMedical,
+    String? lastUpdatedDate,
+    List<Utilization>? result,
+    num? totalCount,
+    num? totalPages,
+  }) => UtilizationModel(
+    dashboardLink: dashboardLink ?? this.dashboardLink,
+    isMedical: isMedical ?? this.isMedical,
+    lastUpdatedDate: lastUpdatedDate ?? this.lastUpdatedDate,
+    result: result ?? this.result,
+    totalCount: totalCount ?? this.totalCount,
+    totalPages: totalPages ?? this.totalPages,
+  );
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['Dashboard Link'] = dashboardLink;
+    map['Is Medical'] = isMedical;
+    map['Last Updated Date'] = lastUpdatedDate;
+    if (result != null) {
+    //  map['result'] = result?.map((v) => v.toJson()).toList();
+    }
+    map['total_count'] = totalCount;
+    map['total_pages'] = totalPages;
+    return map;
+  }
 }
 
 class Utilization {
   Utilization(
       {this.account,
-      this.age,
-      this.branch,
-      this.chronic,
-      this.claimDate,
-      this.claimID,
-      this.disease,
-      this.diseaseCategory,
-      this.gender,
-      this.iCDCode,
-      this.insuredMember,
-      this.memberID,
-      this.memberName,
-      this.month,
-      this.provider,
-      this.relation,
-      this.riskCarrier,
-      this.servicesGroup,
-      this.tpa,
-      this.totalAmount,
-      this.name,
-      this.value,
-      this.staffId,
-      this.policyNumber});
+        this.age,
+        this.branch,
+        this.chronic,
+        this.claimDate,
+        this.claimID,
+        this.disease,
+        this.diseaseCategory,
+        this.gender,
+        this.iCDCode,
+        this.insuredMember,
+        this.memberID,
+        this.memberName,
+        this.month,
+        this.provider,
+        this.relation,
+        this.riskCarrier,
+        this.servicesGroup,
+        this.tpa,
+        this.totalAmount,
+        this.name,
+        this.value,
+        this.staffId,
+        this.policyNumber});
 
   Utilization.fromJson(dynamic json) {
     account = json['Account'];

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/features/policies/data/models/response/utilization_model.dart';
 import 'app_router.gr.dart';
 
 @AutoRouterConfig()
@@ -25,6 +26,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: AddEmergenceRoute.page),
     AutoRoute(page: ProfileRoute.page),
     AutoRoute(page: ComplaintRoute.page),
+    AutoRoute(page: UtilizationRoute.page),
     AutoRoute(page: PdfViewRoute.page),
   ];
 }

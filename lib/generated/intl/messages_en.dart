@@ -820,10 +820,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "userName1": MessageLookupByLibrary.simpleMessage("Your User Name"),
     "userName2": MessageLookupByLibrary.simpleMessage("Username is required"),
     "utilization": MessageLookupByLibrary.simpleMessage("Utilization"),
+    "utilizationClaimHistory": MessageLookupByLibrary.simpleMessage(
+      "Utilization/Claim History",
+    ),
     "validated": MessageLookupByLibrary.simpleMessage("Validated"),
     "validation": MessageLookupByLibrary.simpleMessage(
       "This field is required",
     ),
+    "value": MessageLookupByLibrary.simpleMessage("Value"),
     "vehicleBrand": MessageLookupByLibrary.simpleMessage("Vehicle Brand"),
     "viewFeedback": MessageLookupByLibrary.simpleMessage("View Feedback"),
     "website": MessageLookupByLibrary.simpleMessage("Website"),
