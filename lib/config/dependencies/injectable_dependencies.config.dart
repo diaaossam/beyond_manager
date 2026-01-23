@@ -116,6 +116,29 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i913.GlobalCubit(gh<_i460.SharedPreferences>()),
     );
     gh.factory<_i620.DeviceHelper>(() => _i620.DeviceHelperImpl());
+    gh.lazySingleton<_i998.PoliciesRepositoryImpl>(
+      () => _i998.PoliciesRepositoryImpl(
+        policiesRemoteDataSource: gh<_i60.PoliciesRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i333.ActivePolicyCubit>(
+      () => _i333.ActivePolicyCubit(gh<_i998.PoliciesRepositoryImpl>()),
+    );
+    gh.factory<_i592.PoliciesCubit>(
+      () => _i592.PoliciesCubit(gh<_i998.PoliciesRepositoryImpl>()),
+    );
+    gh.factory<_i12.PolicyAccessCubit>(
+      () => _i12.PolicyAccessCubit(gh<_i998.PoliciesRepositoryImpl>()),
+    );
+    gh.factory<_i928.PolicyDetailsCubit>(
+      () => _i928.PolicyDetailsCubit(gh<_i998.PoliciesRepositoryImpl>()),
+    );
+    gh.factory<_i161.PolicyPaymentCubit>(
+      () => _i161.PolicyPaymentCubit(gh<_i998.PoliciesRepositoryImpl>()),
+    );
+    gh.factory<_i797.UtilizationCubit>(
+      () => _i797.UtilizationCubit(gh<_i998.PoliciesRepositoryImpl>()),
+    );
     gh.factory<_i734.TokenRepository>(
       () => _i734.TokenRepositoryImp(
         secureStorage: gh<_i558.FlutterSecureStorage>(),
@@ -142,11 +165,6 @@ extension GetItInjectableX on _i174.GetIt {
         tokenRepository: gh<_i734.TokenRepository>(),
       ),
     );
-    gh.factory<_i60.PoliciesRemoteDataSource>(
-      () => _i60.PoliciesRemoteDataSourceImpl(
-        dioConsumer: gh<_i384.DioConsumer>(),
-      ),
-    );
     gh.lazySingleton<_i662.AuthRepository>(
       () => _i662.AuthRepository(
         authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
@@ -165,11 +183,6 @@ extension GetItInjectableX on _i174.GetIt {
         authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
       ),
     );
-    gh.lazySingleton<_i998.PoliciesRepositoryImpl>(
-      () => _i998.PoliciesRepositoryImpl(
-        policiesRemoteDataSource: gh<_i60.PoliciesRemoteDataSource>(),
-      ),
-    );
     gh.lazySingleton<_i941.InitRepo>(
       () =>
           _i941.InitRepo(initRemoteDataSource: gh<_i95.InitRemoteDataSource>()),
@@ -178,24 +191,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i281.EmergencyRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
-    );
-    gh.factory<_i333.ActivePolicyCubit>(
-      () => _i333.ActivePolicyCubit(gh<_i998.PoliciesRepositoryImpl>()),
-    );
-    gh.factory<_i592.PoliciesCubit>(
-      () => _i592.PoliciesCubit(gh<_i998.PoliciesRepositoryImpl>()),
-    );
-    gh.factory<_i12.PolicyAccessCubit>(
-      () => _i12.PolicyAccessCubit(gh<_i998.PoliciesRepositoryImpl>()),
-    );
-    gh.factory<_i928.PolicyDetailsCubit>(
-      () => _i928.PolicyDetailsCubit(gh<_i998.PoliciesRepositoryImpl>()),
-    );
-    gh.factory<_i161.PolicyPaymentCubit>(
-      () => _i161.PolicyPaymentCubit(gh<_i998.PoliciesRepositoryImpl>()),
-    );
-    gh.factory<_i797.UtilizationCubit>(
-      () => _i797.UtilizationCubit(gh<_i998.PoliciesRepositoryImpl>()),
     );
     gh.lazySingleton<_i91.SettingsRepositoryImpl>(
       () => _i91.SettingsRepositoryImpl(

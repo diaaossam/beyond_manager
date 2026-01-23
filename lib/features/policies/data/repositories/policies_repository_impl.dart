@@ -1,3 +1,4 @@
+import 'package:bond/core/global_models/generic_model.dart';
 import 'package:bond/core/services/api/api_handler_mixin.dart';
 import 'package:bond/core/services/network/error/failures.dart';
 import 'package:bond/features/policies/data/datasources/policies_remote_data_source.dart';
@@ -7,16 +8,34 @@ import 'package:bond/features/policies/data/models/response/utilization_model.da
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../models/request/reimbursement_filter_model.dart';
 import '../models/response/active_list_model.dart';
 import '../models/response/main_policy_model.dart';
 import '../models/response/policy_access_model.dart';
 import '../models/response/policy_payment.dart';
+import '../models/response/reimbursement_model.dart';
 
 @LazySingleton()
 class PoliciesRepositoryImpl with ApiHandlerMixin {
   final PoliciesRemoteDataSource policiesRemoteDataSource;
 
   PoliciesRepositoryImpl({required this.policiesRemoteDataSource});
+
+  Future<Either<Failure, List<GenericModel>>> getReimursementStatus() async {
+    final response = await handleApi(
+      () => policiesRemoteDataSource.getReimursementStatus(),
+    );
+    return response;
+  }
+
+  Future<Either<Failure, ReimbursementResponseModel>> getReimursement({
+    required ReimbursementFilterModel params,
+  }) async {
+    final response = await handleApi(
+      () => policiesRemoteDataSource.getReimursement(params: params),
+    );
+    return response;
+  }
 
   Future<Either<Failure, List<MainPolicyModel>>> getCompanyPolicies({
     required int page,

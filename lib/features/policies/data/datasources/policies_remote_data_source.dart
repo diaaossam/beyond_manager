@@ -2,12 +2,15 @@ import 'package:bond/core/services/api/dio_consumer.dart';
 import 'package:bond/core/services/api/end_points.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:injectable/injectable.dart';
+import '../../../../core/global_models/generic_model.dart';
+import '../models/request/reimbursement_filter_model.dart';
 import '../models/response/active_list_model.dart';
 import '../models/response/main_policy_model.dart';
 import '../models/response/policy_access_model.dart';
 import '../models/response/policy_details.dart';
 import '../models/request/get_active_list_params.dart';
 import '../models/response/policy_payment.dart';
+import '../models/response/reimbursement_model.dart';
 import '../models/response/utilization_model.dart';
 
 abstract class PoliciesRemoteDataSource {
@@ -31,6 +34,12 @@ abstract class PoliciesRemoteDataSource {
   Future<PolicyDetails> getPolicyDetails({required num policyId});
 
   Future<PolicyAccessModel> getPolicyAccess({required int policyId});
+
+  Future<List<GenericModel>> getReimursementStatus();
+
+  Future<ReimbursementResponseModel> getReimursement({
+    required ReimbursementFilterModel params,
+  });
 }
 
 @Injectable(as: PoliciesRemoteDataSource)
@@ -103,6 +112,25 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
         .get(EndPoints.policyAccess)
         .params({"policy_id": policyId})
         .factory((json) => PolicyAccessModel.fromJson(json['result'][0]))
+        .execute();
+  }
+
+  @override
+  Future<List<GenericModel>> getReimursementStatus() async {
+    return await dioConsumer
+        .get(EndPoints.reimbursemtStatus)
+        .factory(GenericModel.fromJsonList)
+        .execute();
+  }
+
+  @override
+  Future<ReimbursementResponseModel> getReimursement({
+    required ReimbursementFilterModel params,
+  }) async {
+    return await dioConsumer
+        .get(EndPoints.policyAccess)
+        .params(params.toQueryParams())
+        .factory((json) => ReimbursementResponseModel.fromJson(json))
         .execute();
   }
 }
