@@ -1,9 +1,27 @@
 import 'dart:async';
+import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/features/policies/presentation/widget/reimburment/reimbursement_filter_sheet.dart';
+import 'package:bond/gen/assets.gen.dart';
+import 'package:bond/widgets/custom_search_text_form_field.dart';
+import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/utils/app_size.dart';
+import '../../../../../widgets/app_bar/custom_app_bar.dart';
+import '../../../../../widgets/loading/loading_widget.dart';
+import '../../../../../widgets/main_widget/app_text.dart';
+import '../../../../../widgets/main_widget/custom_button.dart';
+import '../../../../../widgets/no_item_design.dart';
+import '../../../../../widgets/app_failure.dart';
+import '../../../../../widgets/custom_expanded_tile_design.dart';
+import '../../../../../config/helper/excel_helper.dart';
+import '../../../data/models/request/reimbursement_filter_model.dart';
+import '../../../data/models/response/reimbursement_model.dart';
+import '../../cubit/reimbursement/reimbursement_cubit.dart';
+import 'reimbursement_title_card.dart';
+import 'reumbursement_card_body.dart';
 
 class RembursementBody extends StatefulWidget {
   final int policyId;
@@ -18,28 +36,21 @@ class _RembursementBodyState extends State<RembursementBody> {
   ReimbursementFilterModel? currentFilter;
   bool isViewingSpecificMember = false;
   String? viewingMemberName;
+  bool isSearch = false;
+  Timer? _debounce;
 
   @override
   void initState() {
-    final bloc = context.read<ReimbursementCubit>();
-    bloc.pagingController.addPageRequestListener((pageKey) {
-      if (!isSearch) {
-        if (pageKey == 0) {
-          pageKey = 1;
-          currentFilter = ReimbursementFilterModel(
-            pageSize: 8,
-            policyId: widget.policyId,
-            pageKey: pageKey,
-          );
-        }
-        bloc.fetchPage(params: currentFilter!.copyWith(pageKey: pageKey));
-      }
-    });
     super.initState();
+    final bloc = context.read<ReimbursementCubit>();
+    currentFilter = ReimbursementFilterModel(
+      pageSize: 8,
+      policyId: widget.policyId,
+      pageKey: 1,
+    );
+    bloc.initPagination(initialParams: currentFilter);
+    bloc.fetchFirstReimbursement(params: currentFilter!);
   }
-
-  bool isSearch = false;
-  Timer? _debounce;
 
   void showFilterSheet({required BuildContext context}) {
     showModalBottomSheet(
@@ -48,7 +59,7 @@ class _RembursementBodyState extends State<RembursementBody> {
       backgroundColor: Colors.transparent,
       builder: (_) => ReimbursementFilterSheet(
         policyId: widget.policyId,
-        list: context.read<ReimbursementCubit>().claimStatusOptions,
+        list: context.read<ReimbursementCubit>().state.data?.status ?? [],
         currentFilter: currentFilter,
         onApplyFilters: (filter) {
           setState(() {
@@ -56,8 +67,7 @@ class _RembursementBodyState extends State<RembursementBody> {
             isSearch = true;
           });
 
-          context.read<ReimbursementCubit>().pagingController.refresh();
-          context.read<ReimbursementCubit>().fetchPage(params: filter);
+          context.read<ReimbursementCubit>().fetchUtilization(params: filter);
           setState(() {
             isSearch = false;
           });
@@ -95,9 +105,7 @@ class _RembursementBodyState extends State<RembursementBody> {
       viewingMemberName = item.memberName ?? '';
       isSearch = true;
     });
-
-    context.read<ReimbursementCubit>().pagingController.refresh();
-    context.read<ReimbursementCubit>().fetchPage(params: currentFilter!);
+    context.read<ReimbursementCubit>().fetchUtilization(params: currentFilter!);
     setState(() {
       isSearch = false;
     });
@@ -115,8 +123,7 @@ class _RembursementBodyState extends State<RembursementBody> {
       isSearch = true;
     });
 
-    context.read<ReimbursementCubit>().pagingController.refresh();
-    context.read<ReimbursementCubit>().fetchPage(params: currentFilter!);
+    context.read<ReimbursementCubit>().fetchUtilization(params: currentFilter!);
     setState(() {
       isSearch = false;
     });
@@ -124,201 +131,188 @@ class _RembursementBodyState extends State<RembursementBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ReimbursementCubit, ReimbursementState>(
+    return BlocBuilder<
+      ReimbursementCubit,
+      BaseState<ReimbursementResponseModel>
+    >(
       builder: (context, state) {
         final bloc = context.read<ReimbursementCubit>();
-        return Scaffold(
-          appBar: CustomAppBar(
-            text: isViewingSpecificMember
-                ? '$viewingMemberName\'s Claims'
-                : context.localizations.reimbursementRequests,
-            isHaveActions: bloc.showExcel,
-            onActionPress: () async {
-              final list = await context
-                  .read<ReimbursementCubit>()
-                  .getReimbursementList(
-                    params: ReimbursementFilterModel(
-                      policyId: widget.policyId,
-                      pageSize: 1000, // Get all records for Excel
-                      pageKey: 1,
-                    ),
-                  );
-
-              ExcelHelper().createReimbursementExcel(reimbursementList: list);
-            },
+        return state.builder(
+          onTapRetry: () => bloc.fetchUtilization(
+            params: ReimbursementFilterModel(policyId: widget.policyId),
           ),
-          body: Padding(
-            padding: screenPadding(),
-            child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: SizedBox(height: SizeConfig.bodyHeight * .01),
-                ),
-                if (isViewingSpecificMember)
-                  SliverToBoxAdapter(
-                    child: CustomButton(
-                      text: "Back To All",
-                      press: _handleBackToAll,
-                    ),
-                  ),
-                /*if
-                  (bloc.videoTutorial.isNotEmpty && !isViewingSpecificMember)
-                  SliverToBoxAdapter(
-                    child: InkWell(
-                      onTap: () => showVideoPlayerDialog(context: context,videoUrl:bloc.videoTutorial ,),
-                      child: Container(
-                        decoration: BoxDecoration(color:AppColors.primary.withValues(alpha: 0.2) ,borderRadius: BorderRadius.circular(10)),
-                        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10,),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                color: AppColors.primary,
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color:Colors.white,width: 1)
-                              ),
-                              child: const Icon(Icons.question_mark_outlined,color: Colors.white,),
+          onSuccess: (data) {
+            return Scaffold(
+              appBar: CustomAppBar(
+                title: isViewingSpecificMember
+                    ? '$viewingMemberName\'s Claims'
+                    : context.localizations.reimbursementRequests,
+                  actions: [
+                    if ((state.data?.result ?? []).isNotEmpty)
+                      InkWell(
+                        onTap: () async {
+                          final response = await context
+                              .read<ReimbursementCubit>()
+                              .policiesRepositoryImpl
+                              .getReimursement(
+                            params: ReimbursementFilterModel(
+                              policyId: widget.policyId,
                             ),
-                            const SizedBox(width: 10,),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
+                          );
+                          final model = response.getOrElse(() => ReimbursementResponseModel());
+                          ExcelHelper().createReimbursementExcel(
+                            reimbursementList: model.result ?? [],
+                          );
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: SizeConfig.screenWidth * .04,
+                          ),
+                          child: Stack(
+                            alignment: AlignmentDirectional.topStart,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: AppImage.asset(Assets.icons.excel),
+                              ),
+                              AppImage.asset(Assets.icons.downloadExcel),
+                            ],
+                          ),
+                        ),
+                      ),
+                  ],
+
+              ),
+              body: Padding(
+                padding: screenPadding(),
+                child: RefreshIndicator(
+                  onRefresh: () async => bloc.pagingController.refresh(),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: SizedBox(height: SizeConfig.bodyHeight * .01),
+                      ),
+                      if (isViewingSpecificMember)
+                        SliverToBoxAdapter(
+                          child: CustomButton(
+                            text: "Back To All",
+                            press: _handleBackToAll,
+                          ),
+                        ),
+
+                      SliverToBoxAdapter(
+                        child: SizedBox(height: SizeConfig.bodyHeight * .01),
+                      ),
+                      if (!isViewingSpecificMember) ...[
+                        SliverToBoxAdapter(
+                          child: Row(
+                            children: [
+                              AppImage.asset(Assets.icons.search),
+                              SizedBox(width: SizeConfig.screenWidth * .015),
+                              AppText(
+                                text: context.localizations.search,
+                                textSize: 16,
+                              ),
+                              const Spacer(),
+                              AppText(
+                                text:
+                                    "${context.localizations.lastUpdated} ${state.data?.lastUpdatedDate ?? ''}",
+                              ),
+                            ],
+                          ),
+                        ),
+                        SliverToBoxAdapter(
+                          child: SizedBox(height: SizeConfig.bodyHeight * .02),
+                        ),
+                        SliverToBoxAdapter(
+                          child: Column(
+                            children: [
+                              Row(
                                 children: [
-                                  const AppText(text: "How to Use Reimbursement Management",fontWeight: FontWeight.w600,textSize: 13,),
-                                  SizedBox(height: SizeConfig.bodyHeight*.005,),
-                                  const AppText(text: "Learn how to search, filter, and manage medical reimbursement requests",maxLines: 3,),
-                                  Row(
-                                    children: [
-                                      const Spacer(),
-                                      AppText(text: "Show Guide",color: AppColors.primary,textSize: 12,fontWeight: FontWeight.bold,),
-                                    ],
+                                  Expanded(
+                                    child: CustomSearchTextFormField(
+                                      hintText: context.localizations.name,
+                                      onChange: (value) {
+                                        if (_debounce?.isActive ?? false) {
+                                          _debounce!.cancel();
+                                        }
+                                        _debounce = Timer(
+                                          const Duration(milliseconds: 300),
+                                          () {
+                                            setState(() => isSearch = true);
+                                            currentFilter = currentFilter
+                                                ?.copyWith(
+                                                  name: value.toString(),
+                                                );
+
+                                            bloc.fetchUtilization(
+                                              params: currentFilter!,
+                                            );
+                                            setState(() => isSearch = false);
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(width: SizeConfig.bodyHeight * .01),
+                                  Expanded(
+                                    child: CustomSearchTextFormField(
+                                      hintText:
+                                          context.localizations.insuranceID,
+                                      onChange: (value) {
+                                        if (_debounce?.isActive ?? false)
+                                          _debounce!.cancel();
+                                        _debounce = Timer(
+                                          const Duration(milliseconds: 300),
+                                          () {
+                                            setState(() {
+                                              isSearch = true;
+                                            });
+                                            currentFilter = currentFilter
+                                                ?.copyWith(
+                                                  insuranceId: value.toString(),
+                                                );
+
+                                            bloc.fetchUtilization(
+                                              params: currentFilter!,
+                                            );
+                                            setState(() => isSearch = false);
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(width: SizeConfig.bodyHeight * .01),
+                                  Expanded(
+                                    child: CustomSearchTextFormField(
+                                      hintText: context.localizations.staffId,
+                                      onChange: (value) {
+                                        if (_debounce?.isActive ?? false)
+                                          _debounce!.cancel();
+                                        _debounce = Timer(
+                                          const Duration(milliseconds: 300),
+                                          () {
+                                            setState(() {
+                                              isSearch = true;
+                                            });
+                                            currentFilter = currentFilter
+                                                ?.copyWith(
+                                                  staffId: value.toString(),
+                                                );
+
+                                            bloc.fetchUtilization(
+                                              params: currentFilter!,
+                                            );
+                                            setState(() => isSearch = false);
+                                          },
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),*/
-                SliverToBoxAdapter(
-                  child: SizedBox(height: SizeConfig.bodyHeight * .01),
-                ),
-                if (!isViewingSpecificMember) ...[
-                  SliverToBoxAdapter(
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(AppAssets.search),
-                        SizedBox(width: SizeConfig.screenWidth * .015),
-                        AppText(
-                          text: context.localizations.search,
-                          textSize: 16,
-                        ),
-                        const Spacer(),
-                        AppText(
-                          text:
-                              "${context.localizations.lastUpdated} ${bloc.lastUpdateDate}",
-                        ),
-                      ],
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: SizedBox(height: SizeConfig.bodyHeight * .02),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CustomSearchTextFormField(
-                                hintText: context.localizations.name,
-                                onChange: (value) {
-                                  if (_debounce?.isActive ?? false) {
-                                    _debounce!.cancel();
-                                  }
-                                  _debounce = Timer(
-                                    const Duration(milliseconds: 300),
-                                    () {
-                                      setState(() => isSearch = true);
-                                      currentFilter = currentFilter?.copyWith(
-                                        name: value.toString(),
-                                      );
-
-                                      bloc.pagingController.refresh();
-                                      bloc
-                                          .fetchPage(params: currentFilter!)
-                                          .then((_) {
-                                            setState(() => isSearch = false);
-                                          });
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                            SizedBox(width: SizeConfig.bodyHeight * .01),
-                            Expanded(
-                              child: CustomSearchTextFormField(
-                                hintText: context.localizations.insuranceID,
-                                onChange: (value) {
-                                  if (_debounce?.isActive ?? false)
-                                    _debounce!.cancel();
-                                  _debounce = Timer(
-                                    const Duration(milliseconds: 300),
-                                    () {
-                                      setState(() {
-                                        isSearch = true;
-                                      });
-                                      currentFilter = currentFilter?.copyWith(
-                                        insuranceId: value.toString(),
-                                      );
-
-                                      bloc.pagingController.refresh();
-                                      bloc
-                                          .fetchPage(params: currentFilter!)
-                                          .then((_) {
-                                            setState(() => isSearch = false);
-                                          });
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                            SizedBox(width: SizeConfig.bodyHeight * .01),
-                            Expanded(
-                              child: CustomSearchTextFormField(
-                                hintText: context.localizations.staffId,
-                                onChange: (value) {
-                                  if (_debounce?.isActive ?? false)
-                                    _debounce!.cancel();
-                                  _debounce = Timer(
-                                    const Duration(milliseconds: 300),
-                                    () {
-                                      setState(() {
-                                        isSearch = true;
-                                      });
-                                      currentFilter = currentFilter?.copyWith(
-                                        staffId: value.toString(),
-                                      );
-
-                                      bloc.pagingController.refresh();
-                                      bloc
-                                          .fetchPage(params: currentFilter!)
-                                          .then((_) {
-                                            setState(() => isSearch = false);
-                                          });
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: SizeConfig.bodyHeight * .01),
-                        /*Row(
+                              SizedBox(height: SizeConfig.bodyHeight * .01),
+                              /*Row(
                           children: [
                             Expanded(
                               child: CustomSearchTextFormField(
@@ -371,56 +365,83 @@ class _RembursementBodyState extends State<RembursementBody> {
                             ),
                           ],
                         ),*/
-                      ],
-                    ),
-                  ),
-                ],
-                if (bloc.totalMembers != null)
-                  SliverToBoxAdapter(
-                    child: Row(
-                      children: [
-                        AppText(text: "Total Members: ${bloc.totalMembers}"),
-                        if (!isViewingSpecificMember)
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const SizedBox.shrink(),
-                                IconButton(
-                                  icon: const Icon(Icons.filter_alt),
-                                  onPressed: () =>
-                                      showFilterSheet(context: context),
-                                ),
-                              ],
-                            ),
+                            ],
                           ),
-                      ],
-                    ),
-                  ),
-                PagedSliverList(
-                  pagingController: bloc.pagingController,
-                  builderDelegate: PagedChildBuilderDelegate(
-                    itemBuilder: (context, ReimbursementModel item, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: CustomExpandedWidget(
-                          title: ReimbursementTitleCard(
-                            request: item,
-                            onViewAllClaims: isViewingSpecificMember
-                                ? null
-                                : () {
-                                    _handleViewAllClaims(item);
-                                  },
-                          ),
-                          body: ReimbursementCardBody(result: item),
                         ),
-                      );
-                    },
+                      ],
+                      if (state.data?.totalCount != null)
+                        SliverToBoxAdapter(
+                          child: Row(
+                            children: [
+                              AppText(
+                                text: "Total Members: ${state.data?.totalCount}",
+                              ),
+                              if (!isViewingSpecificMember)
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const SizedBox.shrink(),
+                                      IconButton(
+                                        icon: const Icon(Icons.filter_alt),
+                                        onPressed: () =>
+                                            showFilterSheet(context: context),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      PagingListener<int, ReimbursementModel>(
+                        controller: bloc.pagingController,
+                        builder: (context, pagingState, fetchNextPage) =>
+                            PagedSliverList<int, ReimbursementModel>(
+                              state: pagingState,
+                              fetchNextPage: fetchNextPage,
+                              addAutomaticKeepAlives: true,
+                              builderDelegate:
+                                  PagedChildBuilderDelegate<ReimbursementModel>(
+                                    firstPageProgressIndicatorBuilder:
+                                        (context) => const LoadingWidget(),
+                                    firstPageErrorIndicatorBuilder: (context) =>
+                                        AppFailureWidget(
+                                          callback: () =>
+                                              bloc.pagingController.refresh(),
+                                        ),
+                                    noItemsFoundIndicatorBuilder: (context) =>
+                                        const EmptyWidgetDesign(),
+                                    itemBuilder: (context, item, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 5,
+                                        ),
+                                        child: CustomExpandedTile(
+                                          title: ReimbursementTitleCard(
+                                            request: item,
+                                            onViewAllClaims:
+                                                isViewingSpecificMember
+                                                ? null
+                                                : () {
+                                                    _handleViewAllClaims(item);
+                                                  },
+                                          ),
+                                          body: ReimbursementCardBody(
+                                            result: item,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                            ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
       },
     );

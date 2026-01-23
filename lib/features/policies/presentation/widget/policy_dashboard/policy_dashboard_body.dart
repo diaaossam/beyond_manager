@@ -65,14 +65,7 @@ class PolicyDashboardBody extends StatelessWidget {
                 PolicyDashboardItem(
                   icon: Assets.icons.policies,
                   title: context.localizations.reimbursementRequests,
-                  press: () {
-                    /* AppConstant.navigateTo(
-                      context: context,
-                      widget: ReimbursementScreen(
-                        policyId: model.policyId!.toInt(),
-                      ),
-                    );*/
-                  },
+                  press: () => context.router.push(ReimbursementRoute(policyId: policyId)),
                 ),
               ],
             ),

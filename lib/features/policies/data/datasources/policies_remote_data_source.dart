@@ -2,6 +2,7 @@ import 'package:bond/core/services/api/dio_consumer.dart';
 import 'package:bond/core/services/api/end_points.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 import '../../../../core/global_models/generic_model.dart';
 import '../models/request/reimbursement_filter_model.dart';
 import '../models/response/active_list_model.dart';
@@ -128,7 +129,7 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
     required ReimbursementFilterModel params,
   }) async {
     return await dioConsumer
-        .get(EndPoints.policyAccess)
+        .get(EndPoints.reimbursemt)
         .params(params.toQueryParams())
         .factory((json) => ReimbursementResponseModel.fromJson(json))
         .execute();

@@ -5,7 +5,7 @@ import 'attachment_model.dart';
 class ReimbursementResponseModel {
   String? tutorialVideo;
   String? lastUpdatedDate;
-  String? totalCount;
+  int? totalCount;
   List<ReimbursementModel>? result;
   List<GenericModel>? status;
 
@@ -32,7 +32,7 @@ class ReimbursementResponseModel {
   ReimbursementResponseModel copyWith({
     String? tutorialVideo,
     String? lastUpdatedDate,
-    String? totalCount,
+    int? totalCount,
     List<ReimbursementModel>? result,
     List<GenericModel>? status,
   }) {

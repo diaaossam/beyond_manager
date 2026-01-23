@@ -1,10 +1,13 @@
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
-
 import '../../../../../core/global_models/generic_model.dart';
 import '../../../../../core/utils/app_size.dart';
+import '../../../../../widgets/main_widget/app_drop_down.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
+import '../../../../../widgets/main_widget/custom_button.dart';
+import '../../../../../widgets/main_widget/custom_text_form_field.dart';
 import '../../../data/models/request/reimbursement_filter_model.dart';
 
 class ReimbursementFilterSheet extends StatefulWidget {
@@ -29,11 +32,11 @@ class ReimbursementFilterSheet extends StatefulWidget {
 }
 
 class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
+  final _formKey = GlobalKey<FormBuilderState>();
   GenericModel? _selectedClaimStatus;
   GenericModel? _selectedServiceType;
   DateTime? _serviceDateFrom;
   DateTime? _serviceDateTo;
-  bool? _isLifeClaim;
   String sortBy = "newest";
 
   final List<GenericModel> _serviceTypes = [
@@ -79,9 +82,6 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
       _serviceDateFrom = filter.serviceDateFrom;
       _serviceDateTo = filter.serviceDateTo;
 
-      // Set life claim
-      _isLifeClaim = filter.isLifeClaim;
-
       // Set sort by
       sortBy = filter.sortBy ?? "newest";
     }
@@ -123,7 +123,6 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                       _selectedServiceType = null;
                       _serviceDateFrom = null;
                       _serviceDateTo = null;
-                      _isLifeClaim = null;
                     });
                     widget.onClearFilters();
                     Navigator.pop(context);
@@ -144,188 +143,88 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
               padding: EdgeInsets.symmetric(
                 horizontal: SizeConfig.screenWidth * 0.04,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffFEFAF8),
-                      border: Border.all(color: const Color(0xffEDEDED)),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(SizeConfig.bodyHeight * .01),
-                      ),
+              child: FormBuilder(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppDropDown<GenericModel>(
+                      name: 'claimStatus',
+                      hint: 'Claim Status',
+                      items: _buildDropdownItems(widget.list),
+                      initialValue: _selectedClaimStatus,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedClaimStatus = value;
+                        });
+                      },
                     ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2<GenericModel>(
-                        alignment: AlignmentDirectional.topStart,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        hint: Container(
-                          alignment: AlignmentDirectional.centerStart,
-                          padding: EdgeInsetsDirectional.only(
-                            start: SizeConfig.screenWidth * .04,
-                          ),
-                          child: const AppText(
-                            text: "Claim Status",
-                            color: Color(0xff292D32),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        isExpanded: true,
-                        isDense: true,
-                        iconStyleData: const IconStyleData(
-                          icon: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.arrow_drop_down_rounded,
-                              color: Colors.black,
-                              size: 35,
+                    SizedBox(height: SizeConfig.bodyHeight * 0.02),
+                    AppDropDown<GenericModel>(
+                      name: 'serviceType',
+                      hint: 'Service Type',
+                      items: _buildDropdownItems(_serviceTypes),
+                      initialValue: _selectedServiceType,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedServiceType = value;
+                        });
+                      },
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * 0.02),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomTextFormField(
+                            hintText: 'From Date',
+                            readOnly: true,
+                            onTap: () => _selectDate(context, true),
+                            controller: TextEditingController(
+                              text: _serviceDateFrom != null
+                                  ? DateFormat(
+                                      'MMM dd, yyyy',
+                                    ).format(_serviceDateFrom!)
+                                  : '',
                             ),
                           ),
                         ),
-                        buttonStyleData: const ButtonStyleData(height: 50),
-                        menuItemStyleData: const MenuItemStyleData(
-                          padding: EdgeInsets.zero,
-                        ),
-                        items: EmergencyHelper().claimStatusItems(
-                          widget.list,
-                          context,
-                        ),
-                        value: _selectedClaimStatus,
-                        onChanged: (value) {
-                          setState(() {
-                            _isLifeClaim = null;
-                            _selectedClaimStatus = value;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: SizeConfig.bodyHeight * 0.02),
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffFEFAF8),
-                      border: Border.all(color: const Color(0xffEDEDED)),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(SizeConfig.bodyHeight * .01),
-                      ),
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton2<GenericModel>(
-                        alignment: AlignmentDirectional.topStart,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        hint: Container(
-                          alignment: AlignmentDirectional.centerStart,
-                          padding: EdgeInsetsDirectional.only(
-                            start: SizeConfig.screenWidth * .04,
-                          ),
-                          child: const AppText(
-                            text: "Service Type",
-                            color: Color(0xff292D32),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        isExpanded: true,
-                        isDense: true,
-                        iconStyleData: const IconStyleData(
-                          icon: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.arrow_drop_down_rounded,
-                              color: Colors.black,
-                              size: 35,
+                        SizedBox(width: SizeConfig.screenWidth * 0.02),
+                        Expanded(
+                          child: CustomTextFormField(
+                            hintText: 'To Date',
+                            readOnly: true,
+                            onTap: () => _selectDate(context, false),
+                            controller: TextEditingController(
+                              text: _serviceDateTo != null
+                                  ? DateFormat(
+                                      'MMM dd, yyyy',
+                                    ).format(_serviceDateTo!)
+                                  : '',
                             ),
                           ),
                         ),
-                        buttonStyleData: const ButtonStyleData(height: 50),
-                        menuItemStyleData: const MenuItemStyleData(
-                          padding: EdgeInsets.zero,
-                        ),
-                        items: EmergencyHelper().claimStatusItems(
-                          _serviceTypes,
-                          context,
-                        ),
-                        value: _selectedServiceType,
-                        onChanged: (value) =>
-                            setState(() => _selectedServiceType = value),
-                      ),
+                      ],
                     ),
-                  ),
-                  SizedBox(height: SizeConfig.bodyHeight * 0.02),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomTextFormField(
-                          hintText: 'From Date',
-                          readOnly: true,
-                          onTap: () => _selectDate(context, true),
-                          controller: TextEditingController(
-                            text: _serviceDateFrom != null
-                                ? DateFormat(
-                                    'MMM dd, yyyy',
-                                  ).format(_serviceDateFrom!)
-                                : '',
+                    SizedBox(height: SizeConfig.bodyHeight * 0.02),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: SizeConfig.screenWidth * 0.2,
+                          child: const AppText(
+                            text: 'Sort By',
+                            textSize: 16,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                      ),
-                      SizedBox(width: SizeConfig.screenWidth * 0.02),
-                      Expanded(
-                        child: CustomTextFormField(
-                          hintText: 'To Date',
-                          readOnly: true,
-                          onTap: () => _selectDate(context, false),
-                          controller: TextEditingController(
-                            text: _serviceDateTo != null
-                                ? DateFormat(
-                                    'MMM dd, yyyy',
-                                  ).format(_serviceDateTo!)
-                                : '',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  /*  SizedBox(height: SizeConfig.bodyHeight * 0.02),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: SizeConfig.screenWidth * 0.2,
-                        child: const AppText(
-                          text: 'Life Claim',
-                          textSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(width: SizeConfig.screenWidth * 0.02),
-                      Expanded(
-                        child: _buildLifeClaimOption('Yes', true),
-                      ),
-                      SizedBox(width: SizeConfig.screenWidth * 0.02),
-                      Expanded(
-                        child: _buildLifeClaimOption('No', false),
-                      ),
-                    ],
-                  ),*/
-                  SizedBox(height: SizeConfig.bodyHeight * 0.02),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: SizeConfig.screenWidth * 0.2,
-                        child: const AppText(
-                          text: 'Sort By',
-                          textSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(width: SizeConfig.screenWidth * 0.02),
-                      Expanded(child: _buildSortByOption('Newest', "newest")),
-                      SizedBox(width: SizeConfig.screenWidth * 0.02),
-                      Expanded(child: _buildSortByOption('Oldest', "oldest")),
-                    ],
-                  ),
-                  SizedBox(height: SizeConfig.bodyHeight * 0.05),
-                ],
+                        SizedBox(width: SizeConfig.screenWidth * 0.02),
+                        Expanded(child: _buildSortByOption('Newest', "newest")),
+                        SizedBox(width: SizeConfig.screenWidth * 0.02),
+                        Expanded(child: _buildSortByOption('Oldest', "oldest")),
+                      ],
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * 0.05),
+                  ],
+                ),
               ),
             ),
           ),
@@ -357,37 +256,6 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
     );
   }
 
-  Widget _buildLifeClaimOption(String label, bool? value) {
-    final isSelected = _isLifeClaim == value;
-    return GestureDetector(
-      onTap: () => setState(() {
-        _selectedClaimStatus = null;
-        _isLifeClaim = value;
-      }),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: SizeConfig.bodyHeight * 0.015,
-          horizontal: SizeConfig.screenWidth * 0.02,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected ? context.colorScheme.primary : Colors.white,
-          border: Border.all(
-            color: isSelected
-                ? context.colorScheme.primary
-                : AppColors.lightGrey,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: AppText(
-          text: label,
-          textSize: 14,
-          color: isSelected ? Colors.white : AppColors.iconGrey,
-          align: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
   Widget _buildSortByOption(String label, String value) {
     final isSelected = sortBy == value;
     return GestureDetector(
@@ -402,18 +270,36 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
           border: Border.all(
             color: isSelected
                 ? context.colorScheme.primary
-                : AppColors.lightGrey,
+                : context.colorScheme.outline,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
         child: AppText(
           text: label,
           textSize: 14,
-          color: isSelected ? Colors.white : AppColors.iconGrey,
+          color: isSelected ? Colors.white : context.colorScheme.shadow,
           align: TextAlign.center,
         ),
       ),
     );
+  }
+
+  List<DropdownMenuItem<GenericModel>> _buildDropdownItems(List<GenericModel> items) {
+    return items.map((item) {
+      return DropdownMenuItem<GenericModel>(
+        value: item,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: SizeConfig.screenWidth * 0.04,
+            vertical: SizeConfig.bodyHeight * 0.01,
+          ),
+          child: AppText(
+            text: item.name,
+            textSize: 14,
+          ),
+        ),
+      );
+    }).toList();
   }
 
   Future<void> _selectDate(BuildContext context, bool isFromDate) async {

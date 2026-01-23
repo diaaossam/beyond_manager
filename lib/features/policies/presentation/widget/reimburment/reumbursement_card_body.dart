@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:open_file/open_file.dart';
-
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
+import '../../../data/models/response/attachment_model.dart';
 import '../../../data/models/response/reimbursement_model.dart';
 
 class ReimbursementCardBody extends StatelessWidget {
@@ -20,15 +23,31 @@ class ReimbursementCardBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           // Basic Information Section
-          _buildSectionTitle("Requested Information"),
+          _buildSectionTitle("Requested Information", context),
           const SizedBox(height: 12),
-          _buildInfoRow("Mobile Number", result.mobileNumber ?? 'N/A'),
+          _buildInfoRow(
+            "Mobile Number",
+            result.mobileNumber ?? 'N/A',
+            context: context,
+          ),
           const SizedBox(height: 8),
-          _buildInfoRow("Missing Documents", result.missingDocs ?? 'N/A'),
+          _buildInfoRow(
+            "Missing Documents",
+            result.missingDocs ?? 'N/A',
+            context: context,
+          ),
           const SizedBox(height: 8),
-          _buildInfoRow("Service Type", result.serviceType ?? 'N/A'),
+          _buildInfoRow(
+            "Service Type",
+            result.serviceType ?? 'N/A',
+            context: context,
+          ),
           const SizedBox(height: 8),
-          _buildInfoRow("Service Date", result.serviceDate ?? 'N/A'),
+          _buildInfoRow(
+            "Service Date",
+            result.serviceDate ?? 'N/A',
+            context: context,
+          ),
           const SizedBox(height: 8),
           _buildInfoRow(
             "Approved Amount",
@@ -36,10 +55,15 @@ class ReimbursementCardBody extends StatelessWidget {
                 ? '${result.approvedAmount} EGP'
                 : 'N/A',
             isAmount: true,
+            context: context,
           ),
           const SizedBox(height: 8),
 
-          _buildInfoRow('ID Number', result.idNumber ?? 'N/A'),
+          _buildInfoRow(
+            'ID Number',
+            result.idNumber ?? 'N/A',
+            context: context,
+          ),
           const SizedBox(height: 8),
 
           _buildInfoRow(
@@ -48,13 +72,22 @@ class ReimbursementCardBody extends StatelessWidget {
                 ? '${result.claimedAmount!.toString()} EGP'
                 : 'N/A',
             isAmount: true,
+            context: context,
           ),
           const SizedBox(height: 8),
-          _buildInfoRow("Payment State", result.paymentState ?? 'N/A'),
+          _buildInfoRow(
+            "Payment State",
+            result.paymentState ?? 'N/A',
+            context: context,
+          ),
           const SizedBox(height: 8),
-          _buildInfoRow("Batch No", result.batchNo ?? 'N/A'),
+          _buildInfoRow("Batch No", result.batchNo ?? 'N/A', context: context),
           const SizedBox(height: 8),
-          _buildInfoRow("Breakdown Reason", result.breakdownReason ?? 'N/A'),
+          _buildInfoRow(
+            "Breakdown Reason",
+            result.breakdownReason ?? 'N/A',
+            context: context,
+          ),
           const SizedBox(height: 20),
           _buildSupportingDocumentsSection(context),
         ],
@@ -62,16 +95,21 @@ class ReimbursementCardBody extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionTitle(String title) {
+  Widget _buildSectionTitle(String title, BuildContext context) {
     return AppText(
       text: title,
       textSize: 14,
       fontWeight: FontWeight.bold,
-      color: AppColors.primary,
+      color: context.colorScheme.primary,
     );
   }
 
-  Widget _buildInfoRow(String label, String value, {bool isAmount = false}) {
+  Widget _buildInfoRow(
+    String label,
+    String value, {
+    bool isAmount = false,
+    required BuildContext context,
+  }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -80,7 +118,7 @@ class ReimbursementCardBody extends StatelessWidget {
           child: AppText(
             text: "$label:",
             textSize: 12,
-            color: AppColors.iconGrey,
+            color: context.colorScheme.shadow,
           ),
         ),
         Expanded(
@@ -88,7 +126,7 @@ class ReimbursementCardBody extends StatelessWidget {
             text: value,
             textSize: 12,
             maxLines: 4,
-            color: isAmount ? AppColors.primary : AppColors.black,
+            color: isAmount ? context.colorScheme.primary : null,
             fontWeight: isAmount ? FontWeight.bold : FontWeight.normal,
           ),
         ),
@@ -104,7 +142,7 @@ class ReimbursementCardBody extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 4,
             offset: const Offset(0, 2),
@@ -118,7 +156,6 @@ class ReimbursementCardBody extends StatelessWidget {
             text: "Supporting Documents",
             textSize: 16,
             fontWeight: FontWeight.bold,
-            color: AppColors.black,
           ),
           const SizedBox(height: 16),
 
@@ -194,7 +231,7 @@ class ReimbursementCardBody extends StatelessWidget {
         decoration: BoxDecoration(
           color: lightColor,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: color.withOpacity(0.3)),
+          border: Border.all(color: color.withValues(alpha: 0.3)),
         ),
         child: Row(
           children: [
@@ -211,7 +248,7 @@ class ReimbursementCardBody extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Row(
@@ -243,12 +280,7 @@ class ReimbursementCardBody extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: AppText(
-          text: title,
-          textSize: 16,
-          fontWeight: FontWeight.bold,
-          color: AppColors.black,
-        ),
+        title: AppText(text: title, textSize: 16, fontWeight: FontWeight.bold),
         content: SizedBox(
           width: double.maxFinite,
           child: ListView.builder(
@@ -263,17 +295,12 @@ class ReimbursementCardBody extends StatelessWidget {
               return ListTile(
                 leading: Icon(
                   _getFileIcon(mimeType),
-                  color: _getFileColor(mimeType),
+                  color: _getFileColor(mimeType, context),
                 ),
-                title: AppText(
-                  text: fileName,
-                  textSize: 14,
-                  color: AppColors.black,
-                ),
+                title: AppText(text: fileName, textSize: 14),
                 subtitle: AppText(
                   text: _getFileTypeDescription(mimeType),
                   textSize: 12,
-                  color: AppColors.iconGrey,
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -289,7 +316,7 @@ class ReimbursementCardBody extends StatelessWidget {
             child: AppText(
               text: 'Close',
               textSize: 14,
-              color: AppColors.primary,
+              color: context.colorScheme.primary,
             ),
           ),
         ],
@@ -311,10 +338,7 @@ class ReimbursementCardBody extends StatelessWidget {
       _showVideoPlayer(context, url, fileName);
     } else if (_isDocumentFile(mimeType)) {
       if (mimeType == 'application/pdf') {
-        AppConstant.navigateTo(
-          context: context,
-          widget: PdfViewScreen(url: url),
-        );
+        context.router.push(PdfViewRoute(url: url));
       } else {
         _openDocumentFile(url, fileName);
       }
@@ -537,22 +561,24 @@ class ReimbursementCardBody extends StatelessWidget {
     return Icons.attach_file;
   }
 
-  Color _getFileColor(String mimeType) {
+  Color _getFileColor(String mimeType, BuildContext context) {
     if (_isImageFile(mimeType)) return Colors.blue;
     if (_isVideoFile(mimeType)) return Colors.red;
     if (mimeType == 'application/pdf') return Colors.red;
-    if (mimeType.contains('spreadsheet') || mimeType.contains('excel'))
+    if (mimeType.contains('spreadsheet') || mimeType.contains('excel')) {
       return Colors.green;
+    }
     if (mimeType.contains('wordprocessing')) return Colors.blue;
-    return AppColors.iconGrey;
+    return context.colorScheme.shadow;
   }
 
   String _getFileTypeDescription(String mimeType) {
     if (_isImageFile(mimeType)) return 'Image file';
     if (_isVideoFile(mimeType)) return 'Video file';
     if (mimeType == 'application/pdf') return 'PDF document';
-    if (mimeType.contains('spreadsheet') || mimeType.contains('excel'))
+    if (mimeType.contains('spreadsheet') || mimeType.contains('excel')) {
       return 'Excel spreadsheet';
+    }
     if (mimeType.contains('wordprocessing')) return 'Word document';
     return 'Document file';
   }

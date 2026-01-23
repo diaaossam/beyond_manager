@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bond/features/policies/data/models/response/active_list_model.dart';
+import 'package:bond/features/policies/data/models/response/reimbursement_model.dart';
 import 'package:dio/dio.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -206,7 +207,7 @@ class ExcelHelper {
   }
 
   /// Create Reimbursement Excel file
-/*  Future<FileOperationResult> createReimbursementExcel({
+  Future<FileOperationResult> createReimbursementExcel({
     required List<ReimbursementModel> reimbursementList,
   }) async {
     if (reimbursementList.isEmpty) {
@@ -272,7 +273,7 @@ class ExcelHelper {
     } catch (e) {
       return FileOperationResult.failure('Error creating Excel: $e');
     }
-  }*/
+  }
 
   /// Download file from URL and open it
   Future<FileOperationResult> downloadAndOpenFile({

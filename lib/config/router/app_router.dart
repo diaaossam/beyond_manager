@@ -28,5 +28,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ComplaintRoute.page),
     AutoRoute(page: UtilizationRoute.page),
     AutoRoute(page: PdfViewRoute.page),
+    AutoRoute(page: ReimbursementRoute.page),
   ];
 }
