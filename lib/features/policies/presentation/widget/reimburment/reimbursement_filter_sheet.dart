@@ -1,14 +1,11 @@
-import 'package:beymanger/core/utils/app_colors.dart';
-import 'package:beymanger/core/utils/app_size.dart';
-import 'package:beymanger/features/app/generic_model.dart';
-import 'package:beymanger/features/emergency/emergency_helper.dart';
-import 'package:beymanger/features/reimbursement/data/models/reimbursement_filter_model.dart';
-import 'package:beymanger/widgets/app_text.dart';
-import 'package:beymanger/widgets/custom_button.dart';
-import 'package:beymanger/widgets/custom_text_form_field.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../../core/global_models/generic_model.dart';
+import '../../../../../core/utils/app_size.dart';
+import '../../../../../widgets/main_widget/app_text.dart';
+import '../../../data/models/request/reimbursement_filter_model.dart';
 
 class ReimbursementFilterSheet extends StatefulWidget {
   final List<GenericModel> list;
@@ -40,17 +37,17 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
   String sortBy = "newest";
 
   final List<GenericModel> _serviceTypes = [
-    const GenericModel(id: 1, name: 'medication'),
-    const GenericModel(id: 2, name: 'lab'),
-    const GenericModel(id: 3, name: 'scan'),
-    const GenericModel(id: 4, name: 'doctor_visit'),
-    const GenericModel(id: 5, name: 'inpatient'),
-    const GenericModel(id: 6, name: 'physical_therapy'),
-    const GenericModel(id: 7, name: 'maternity'),
-    const GenericModel(id: 8, name: 'emergency'),
-    const GenericModel(id: 9, name: 'dental'),
-    const GenericModel(id: 10, name: 'optical'),
-    const GenericModel(id: 11, name: 'other'),
+    GenericModel(id: 1, name: 'medication'),
+    GenericModel(id: 2, name: 'lab'),
+    GenericModel(id: 3, name: 'scan'),
+    GenericModel(id: 4, name: 'doctor_visit'),
+    GenericModel(id: 5, name: 'inpatient'),
+    GenericModel(id: 6, name: 'physical_therapy'),
+    GenericModel(id: 7, name: 'maternity'),
+    GenericModel(id: 8, name: 'emergency'),
+    GenericModel(id: 9, name: 'dental'),
+    GenericModel(id: 10, name: 'optical'),
+    GenericModel(id: 11, name: 'other'),
   ];
 
   @override
@@ -62,15 +59,14 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
   void _initializeFromCurrentFilter() {
     if (widget.currentFilter != null) {
       final filter = widget.currentFilter!;
-      
-      // Set claim status
+
       if (filter.claimStatus != null) {
         _selectedClaimStatus = widget.list.firstWhere(
           (item) => item.name == filter.claimStatus,
           orElse: () => widget.list.first,
         );
       }
-      
+
       // Set service type
       if (filter.serviceType != null) {
         _selectedServiceType = _serviceTypes.firstWhere(
@@ -78,14 +74,14 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
           orElse: () => _serviceTypes.first,
         );
       }
-      
+
       // Set dates
       _serviceDateFrom = filter.serviceDateFrom;
       _serviceDateTo = filter.serviceDateTo;
-      
+
       // Set life claim
       _isLifeClaim = filter.isLifeClaim;
-      
+
       // Set sort by
       sortBy = filter.sortBy ?? "newest";
     }
@@ -96,7 +92,6 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
     return Container(
       height: SizeConfig.bodyHeight * 0.7,
       decoration: const BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
@@ -107,7 +102,7 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
             height: 4,
             margin: EdgeInsets.only(top: SizeConfig.bodyHeight * 0.01),
             decoration: BoxDecoration(
-              color: AppColors.iconGrey,
+              color: context.colorScheme.shadow,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -135,7 +130,7 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                   },
                   child: AppText(
                     text: 'Clear',
-                    color: AppColors.primary,
+                    color: context.colorScheme.primary,
                     textSize: 14,
                   ),
                 ),
@@ -147,95 +142,116 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
           Expanded(
             child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenWidth * 0.04),
+                horizontal: SizeConfig.screenWidth * 0.04,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: const Color(0xffFEFAF8),
-                          border: Border.all(color: const Color(0xffEDEDED)),
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(SizeConfig.bodyHeight * .01))),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton2<GenericModel>(
-                            alignment: AlignmentDirectional.topStart,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            hint: Container(
-                              alignment: AlignmentDirectional.centerStart,
-                              padding: EdgeInsetsDirectional.only(
-                                  start: SizeConfig.screenWidth * .04),
-                              child: const AppText(
-                                text: "Claim Status",
-                                color: Color(0xff292D32),
-                                fontWeight: FontWeight.w600,
-                              ),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xffFEFAF8),
+                      border: Border.all(color: const Color(0xffEDEDED)),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(SizeConfig.bodyHeight * .01),
+                      ),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2<GenericModel>(
+                        alignment: AlignmentDirectional.topStart,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        hint: Container(
+                          alignment: AlignmentDirectional.centerStart,
+                          padding: EdgeInsetsDirectional.only(
+                            start: SizeConfig.screenWidth * .04,
+                          ),
+                          child: const AppText(
+                            text: "Claim Status",
+                            color: Color(0xff292D32),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        isExpanded: true,
+                        isDense: true,
+                        iconStyleData: const IconStyleData(
+                          icon: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.arrow_drop_down_rounded,
+                              color: Colors.black,
+                              size: 35,
                             ),
-                            isExpanded: true,
-                            isDense: true,
-                            iconStyleData: const IconStyleData(
-                              icon: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(Icons.arrow_drop_down_rounded,
-                                    color: Colors.black, size: 35),
-                              ),
-                            ),
-                            buttonStyleData: const ButtonStyleData(height: 50),
-                            menuItemStyleData: const MenuItemStyleData(
-                              padding: EdgeInsets.zero,
-                            ),
-                            items: EmergencyHelper()
-                                .claimStatusItems(widget.list, context),
-                            value: _selectedClaimStatus,
-                            onChanged: (value) {
-                              setState(() {
-                                _isLifeClaim = null;
-                                _selectedClaimStatus = value;
-                              });
-                            }),
-                      )),
+                          ),
+                        ),
+                        buttonStyleData: const ButtonStyleData(height: 50),
+                        menuItemStyleData: const MenuItemStyleData(
+                          padding: EdgeInsets.zero,
+                        ),
+                        items: EmergencyHelper().claimStatusItems(
+                          widget.list,
+                          context,
+                        ),
+                        value: _selectedClaimStatus,
+                        onChanged: (value) {
+                          setState(() {
+                            _isLifeClaim = null;
+                            _selectedClaimStatus = value;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
                   SizedBox(height: SizeConfig.bodyHeight * 0.02),
                   Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: const Color(0xffFEFAF8),
-                          border: Border.all(color: const Color(0xffEDEDED)),
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(SizeConfig.bodyHeight * .01))),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton2<GenericModel>(
-                            alignment: AlignmentDirectional.topStart,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            hint: Container(
-                              alignment: AlignmentDirectional.centerStart,
-                              padding: EdgeInsetsDirectional.only(
-                                  start: SizeConfig.screenWidth * .04),
-                              child: const AppText(
-                                text: "Service Type",
-                                color: Color(0xff292D32),
-                                fontWeight: FontWeight.w600,
-                              ),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xffFEFAF8),
+                      border: Border.all(color: const Color(0xffEDEDED)),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(SizeConfig.bodyHeight * .01),
+                      ),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2<GenericModel>(
+                        alignment: AlignmentDirectional.topStart,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        hint: Container(
+                          alignment: AlignmentDirectional.centerStart,
+                          padding: EdgeInsetsDirectional.only(
+                            start: SizeConfig.screenWidth * .04,
+                          ),
+                          child: const AppText(
+                            text: "Service Type",
+                            color: Color(0xff292D32),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        isExpanded: true,
+                        isDense: true,
+                        iconStyleData: const IconStyleData(
+                          icon: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.arrow_drop_down_rounded,
+                              color: Colors.black,
+                              size: 35,
                             ),
-                            isExpanded: true,
-                            isDense: true,
-                            iconStyleData: const IconStyleData(
-                              icon: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(Icons.arrow_drop_down_rounded,
-                                    color: Colors.black, size: 35),
-                              ),
-                            ),
-                            buttonStyleData: const ButtonStyleData(height: 50),
-                            menuItemStyleData: const MenuItemStyleData(
-                              padding: EdgeInsets.zero,
-                            ),
-                            items: EmergencyHelper()
-                                .claimStatusItems(_serviceTypes, context),
-                            value: _selectedServiceType,
-                            onChanged: (value) =>
-                                setState(() => _selectedServiceType = value)),
-                      )),
+                          ),
+                        ),
+                        buttonStyleData: const ButtonStyleData(height: 50),
+                        menuItemStyleData: const MenuItemStyleData(
+                          padding: EdgeInsets.zero,
+                        ),
+                        items: EmergencyHelper().claimStatusItems(
+                          _serviceTypes,
+                          context,
+                        ),
+                        value: _selectedServiceType,
+                        onChanged: (value) =>
+                            setState(() => _selectedServiceType = value),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: SizeConfig.bodyHeight * 0.02),
                   Row(
                     children: [
@@ -246,8 +262,9 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                           onTap: () => _selectDate(context, true),
                           controller: TextEditingController(
                             text: _serviceDateFrom != null
-                                ? DateFormat('MMM dd, yyyy')
-                                    .format(_serviceDateFrom!)
+                                ? DateFormat(
+                                    'MMM dd, yyyy',
+                                  ).format(_serviceDateFrom!)
                                 : '',
                           ),
                         ),
@@ -260,15 +277,16 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                           onTap: () => _selectDate(context, false),
                           controller: TextEditingController(
                             text: _serviceDateTo != null
-                                ? DateFormat('MMM dd, yyyy')
-                                    .format(_serviceDateTo!)
+                                ? DateFormat(
+                                    'MMM dd, yyyy',
+                                  ).format(_serviceDateTo!)
                                 : '',
                           ),
                         ),
                       ),
                     ],
                   ),
-                /*  SizedBox(height: SizeConfig.bodyHeight * 0.02),
+                  /*  SizedBox(height: SizeConfig.bodyHeight * 0.02),
                   Row(
                     children: [
                       SizedBox(
@@ -301,13 +319,9 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                         ),
                       ),
                       SizedBox(width: SizeConfig.screenWidth * 0.02),
-                      Expanded(
-                        child: _buildSortByOption('Newest', "newest"),
-                      ),
+                      Expanded(child: _buildSortByOption('Newest', "newest")),
                       SizedBox(width: SizeConfig.screenWidth * 0.02),
-                      Expanded(
-                        child: _buildSortByOption('Oldest', "oldest"),
-                      ),
+                      Expanded(child: _buildSortByOption('Oldest', "oldest")),
                     ],
                   ),
                   SizedBox(height: SizeConfig.bodyHeight * 0.05),
@@ -323,15 +337,16 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
               text: 'Apply',
               press: () {
                 final filter = ReimbursementFilterModel(
-                    claimStatus: _selectedClaimStatus?.name,
-                    serviceType: _selectedServiceType?.name,
-                    serviceDateFrom: _serviceDateFrom,
-                    serviceDateTo: _serviceDateTo,
-                   // isLifeClaim: _isLifeClaim,
-                    pageSize: 8,
-                    pageKey: 1,
-                    sortBy: sortBy == "oldest"? "oldest":"newest",
-                    policyId: widget.policyId);
+                  claimStatus: _selectedClaimStatus?.name,
+                  serviceType: _selectedServiceType?.name,
+                  serviceDateFrom: _serviceDateFrom,
+                  serviceDateTo: _serviceDateTo,
+                  // isLifeClaim: _isLifeClaim,
+                  pageSize: 8,
+                  pageKey: 1,
+                  sortBy: sortBy == "oldest" ? "oldest" : "newest",
+                  policyId: widget.policyId,
+                );
                 widget.onApplyFilters(filter);
                 Navigator.pop(context);
               },
@@ -346,7 +361,7 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
     final isSelected = _isLifeClaim == value;
     return GestureDetector(
       onTap: () => setState(() {
-          _selectedClaimStatus = null;
+        _selectedClaimStatus = null;
         _isLifeClaim = value;
       }),
       child: Container(
@@ -355,9 +370,11 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
           horizontal: SizeConfig.screenWidth * 0.02,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : Colors.white,
+          color: isSelected ? context.colorScheme.primary : Colors.white,
           border: Border.all(
-            color: isSelected ? AppColors.primary : AppColors.lightGrey,
+            color: isSelected
+                ? context.colorScheme.primary
+                : AppColors.lightGrey,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
@@ -381,9 +398,11 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
           horizontal: SizeConfig.screenWidth * 0.02,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : Colors.white,
+          color: isSelected ? context.colorScheme.primary : Colors.white,
           border: Border.all(
-            color: isSelected ? AppColors.primary : AppColors.lightGrey,
+            color: isSelected
+                ? context.colorScheme.primary
+                : AppColors.lightGrey,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
@@ -410,17 +429,17 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
           data: Theme.of(context).copyWith(
             datePickerTheme: DatePickerThemeData(
               backgroundColor: Colors.white,
-              dayForegroundColor: MaterialStateProperty.resolveWith<Color?>(
-                (states) {
-                  if (states.contains(WidgetState.selected)) {
-                    return Colors.white;
-                  }
-                  if (states.contains(WidgetState.disabled)) {
-                    return Colors.grey; // الأيام المقفولة
-                  }
-                  return Colors.black; // باقي الأيام
-                },
-              ),
+              dayForegroundColor: MaterialStateProperty.resolveWith<Color?>((
+                states,
+              ) {
+                if (states.contains(WidgetState.selected)) {
+                  return Colors.white;
+                }
+                if (states.contains(WidgetState.disabled)) {
+                  return Colors.grey; // الأيام المقفولة
+                }
+                return Colors.black; // باقي الأيام
+              }),
               todayForegroundColor: WidgetStateProperty.all(Colors.orange),
               todayBackgroundColor: WidgetStateProperty.all(
                 Colors.orange.withOpacity(0.2),
@@ -442,7 +461,7 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
       });
     }
 
-/*    final DateTime? picked = await showDatePicker(
+    /*    final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: isFromDate
           ? _serviceDateFrom ?? DateTime.now()

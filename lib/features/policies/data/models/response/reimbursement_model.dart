@@ -1,3 +1,5 @@
+import 'package:bond/core/global_models/generic_model.dart';
+
 import 'attachment_model.dart';
 
 class ReimbursementResponseModel {
@@ -5,12 +7,14 @@ class ReimbursementResponseModel {
   String? lastUpdatedDate;
   String? totalCount;
   List<ReimbursementModel>? result;
+  List<GenericModel>? status;
 
   ReimbursementResponseModel({
     this.tutorialVideo,
     this.lastUpdatedDate,
     this.totalCount,
     this.result,
+    this.status,
   });
 
   ReimbursementResponseModel.fromJson(dynamic json) {
@@ -23,7 +27,22 @@ class ReimbursementResponseModel {
         result?.add(ReimbursementModel.fromJson(v));
       });
     }
+  }
 
+  ReimbursementResponseModel copyWith({
+    String? tutorialVideo,
+    String? lastUpdatedDate,
+    String? totalCount,
+    List<ReimbursementModel>? result,
+    List<GenericModel>? status,
+  }) {
+    return ReimbursementResponseModel(
+      tutorialVideo: tutorialVideo ?? this.tutorialVideo,
+      lastUpdatedDate: lastUpdatedDate ?? this.lastUpdatedDate,
+      totalCount: totalCount ?? this.totalCount,
+      result: result ?? this.result,
+      status: status ?? this.status,
+    );
   }
 }
 

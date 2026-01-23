@@ -38,7 +38,7 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
 
   Future<void> initPagination() async {
     pagingController = PagingController<int, Result>(
-      getNextPageKey: (state) => _nextIntPageKey(state, firstPageKey: 1),
+      getNextPageKey: (state) => state.lastPageIsEmpty ? null : state.nextIntPageKey,
       fetchPage: (pageKey) async {
         final pageSize = activeListParams?.pageSize ?? 8;
         final response = await policiesRepositoryImpl.getActivePolicy(
@@ -68,16 +68,5 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
     activeListParams = params;
     pagingController.refresh();
     emit(state.copyWith(status: BaseStatus.success));
-  }
-
-  int _nextIntPageKey(
-    PagingState<int, Result> state, {
-    required int firstPageKey,
-  }) {
-    final keys = state.keys;
-    if (keys == null || keys.isEmpty) {
-      return firstPageKey;
-    }
-    return keys.last + 1;
   }
 }

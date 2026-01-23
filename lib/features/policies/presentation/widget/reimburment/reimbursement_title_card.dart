@@ -1,12 +1,11 @@
-import 'package:beymanger/core/utils/app_colors.dart';
-import 'package:beymanger/core/utils/app_size.dart';
-import 'package:beymanger/features/reimbursement/data/models/reimbursement_model.dart';
-import 'package:beymanger/widgets/app_text.dart';
-import 'package:beymanger/widgets/custom_button.dart';
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:super_tooltip/super_tooltip.dart';
 
+import '../../../../../core/utils/app_size.dart';
+import '../../../../../widgets/main_widget/app_text.dart';
+import '../../../../../widgets/main_widget/custom_button.dart';
+import '../../../data/models/response/reimbursement_model.dart';
 import 'info_bubble.dart';
 
 class ReimbursementTitleCard extends StatelessWidget {
@@ -26,34 +25,26 @@ class ReimbursementTitleCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
- AppText(
+          AppText(
             text: '${request.memberName}',
             fontWeight: FontWeight.bold,
             textSize: 13,
-            color: AppColors.primary,
+            color: context.colorScheme.primary,
           ),
           SizedBox(height: SizeConfig.bodyHeight * 0.01),
-          _buildInfoRow(
-            'ID Number',
-            request.idNumber ?? 'N/A',
-          ),
+          _buildInfoRow('ID Number', request.idNumber ?? 'N/A',context: context),
           SizedBox(height: SizeConfig.bodyHeight * 0.01),
-          _buildInfoRow(
-            'Staff Id',
-            request.staffId ?? 'N/A',
-          ),
+          _buildInfoRow('Staff Id', request.staffId ?? 'N/A',context: context),
           SizedBox(height: SizeConfig.bodyHeight * 0.01),
-          _buildInfoRow(
-            'Service Type',
-            request.serviceType ?? 'N/A',
-          ),
+          _buildInfoRow('Service Type', request.serviceType ?? 'N/A',context: context),
           SizedBox(height: SizeConfig.bodyHeight * 0.01),
           _buildInfoRow(
             'Service Date',
             request.serviceDate != null && request.serviceDate!.isNotEmpty
-                ? DateFormat('MMM dd, yyyy')
-                    .format(DateTime.parse(request.serviceDate.toString()))
-                : 'N/A',
+                ? DateFormat(
+                    'MMM dd, yyyy',
+                  ).format(DateTime.parse(request.serviceDate.toString()))
+                : 'N/A',context: context
           ),
           SizedBox(height: SizeConfig.bodyHeight * 0.01),
           _buildInfoRow(
@@ -61,12 +52,12 @@ class ReimbursementTitleCard extends StatelessWidget {
             request.claimedAmount != null
                 ? '${request.claimedAmount!.toString()} EGP'
                 : 'N/A',
-            isAmount: true,
+            isAmount: true,context: context
           ),
           SizedBox(height: SizeConfig.bodyHeight * 0.01),
-          _buildStatusWidget(),
+          _buildStatusWidget(context),
           SizedBox(height: SizeConfig.bodyHeight * 0.01),
-          InfoBubble(message: '${request.statusInfo}',),
+          InfoBubble(message: '${request.statusInfo}'),
           SizedBox(height: SizeConfig.bodyHeight * 0.01),
 
           if (onViewAllClaims != null) ...[
@@ -83,7 +74,12 @@ class ReimbursementTitleCard extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(String label, String value, {bool isAmount = false}) {
+  Widget _buildInfoRow(
+    String label,
+    String value, {
+    bool isAmount = false,
+    required BuildContext context,
+  }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -92,14 +88,14 @@ class ReimbursementTitleCard extends StatelessWidget {
           child: AppText(
             text: "$label:",
             textSize: 12,
-            color: AppColors.iconGrey,
+            color: context.colorScheme.shadow,
           ),
         ),
         Expanded(
           child: AppText(
             text: value,
             textSize: 12,
-            color: isAmount ? AppColors.primary : null,
+            color: isAmount ?context.colorScheme.primary : null,
             fontWeight: isAmount ? FontWeight.bold : FontWeight.normal,
           ),
         ),
@@ -107,9 +103,7 @@ class ReimbursementTitleCard extends StatelessWidget {
     );
   }
 
-  final _controller = SuperTooltipController();
-
-  Widget _buildStatusWidget() {
+  Widget _buildStatusWidget(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -118,7 +112,7 @@ class ReimbursementTitleCard extends StatelessWidget {
           child: AppText(
             text: "Status :",
             textSize: 14,
-            color: AppColors.iconGrey,
+            color: context.colorScheme.shadow,
           ),
         ),
         Expanded(
@@ -129,23 +123,9 @@ class ReimbursementTitleCard extends StatelessWidget {
             maxLines: 10,
             textHeight: 1.8,
           ),
-        )
+        ),
       ],
     );
   }
 
-  Color _getStatusColor(String? status) {
-    switch (status?.toLowerCase()) {
-      case 'approved':
-        return AppColors.green;
-      case 'pending':
-        return AppColors.primaryYellow;
-      case 'under review':
-        return AppColors.blue;
-      case 'rejected':
-        return AppColors.red;
-      default:
-        return AppColors.iconGrey;
-    }
-  }
 }

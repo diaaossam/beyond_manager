@@ -1,26 +1,9 @@
 import 'dart:async';
-
-import 'package:beymanger/config/helper/locale_helper/app_localizations_extension.dart';
-import 'package:beymanger/core/excel_helper/excel_helper.dart';
-import 'package:beymanger/core/utils/app_colors.dart';
-import 'package:beymanger/features/reimbursement/data/models/reimbursement_model.dart';
-import 'package:beymanger/features/reimbursement/presentation/cubit/reimbursement_cubit.dart';
-import 'package:beymanger/widgets/custom_app_bar.dart';
-import 'package:beymanger/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-
-import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_size.dart';
-import '../../../../../widgets/app_text.dart';
-import '../../../../network/presentation/widgets/filter_expanded/custom_expanded_widget.dart';
-import '../../../../policies/presentation/widgets/search_custom_text_form_field.dart';
-import '../../../data/models/reimbursement_filter_model.dart';
-import '../reimbursement_filter_sheet.dart';
-import '../reimbursement_title_card.dart';
-import '../reumbursement_card_body.dart';
 
 class RembursementBody extends StatefulWidget {
   final int policyId;
@@ -44,7 +27,10 @@ class _RembursementBodyState extends State<RembursementBody> {
         if (pageKey == 0) {
           pageKey = 1;
           currentFilter = ReimbursementFilterModel(
-              pageSize: 8, policyId: widget.policyId, pageKey: pageKey);
+            pageSize: 8,
+            policyId: widget.policyId,
+            pageKey: pageKey,
+          );
         }
         bloc.fetchPage(params: currentFilter!.copyWith(pageKey: pageKey));
       }
@@ -79,7 +65,10 @@ class _RembursementBodyState extends State<RembursementBody> {
         onClearFilters: () {
           setState(() {
             currentFilter = ReimbursementFilterModel(
-                pageSize: 8, policyId: widget.policyId, pageKey: 1);
+              pageSize: 8,
+              policyId: widget.policyId,
+              pageKey: 1,
+            );
             isSearch = false;
           });
           // Refresh the paging controller
@@ -117,9 +106,9 @@ class _RembursementBodyState extends State<RembursementBody> {
   void _handleBackToAll() {
     setState(() {
       currentFilter = ReimbursementFilterModel(
-        pageSize: 8, 
-        policyId: widget.policyId, 
-        pageKey: 1
+        pageSize: 8,
+        policyId: widget.policyId,
+        pageKey: 1,
       );
       isViewingSpecificMember = false;
       viewingMemberName = null;
@@ -140,7 +129,7 @@ class _RembursementBodyState extends State<RembursementBody> {
         final bloc = context.read<ReimbursementCubit>();
         return Scaffold(
           appBar: CustomAppBar(
-            text: isViewingSpecificMember 
+            text: isViewingSpecificMember
                 ? '$viewingMemberName\'s Claims'
                 : context.localizations.reimbursementRequests,
             isHaveActions: bloc.showExcel,
@@ -155,23 +144,24 @@ class _RembursementBodyState extends State<RembursementBody> {
                     ),
                   );
 
-              ExcelHelper().createReimbursementExcel(
-                reimbursementList: list,
-              );
+              ExcelHelper().createReimbursementExcel(reimbursementList: list);
             },
           ),
           body: Padding(
             padding: screenPadding(),
-              child: CustomScrollView(
-                slivers: [
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: SizedBox(height: SizeConfig.bodyHeight * .01),
+                ),
+                if (isViewingSpecificMember)
                   SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: SizeConfig.bodyHeight * .01,
+                    child: CustomButton(
+                      text: "Back To All",
+                      press: _handleBackToAll,
                     ),
                   ),
-                  if (isViewingSpecificMember)
-                   SliverToBoxAdapter(child:  CustomButton(text: "Back To All", press: _handleBackToAll),),
-                   /*if
+                /*if
                   (bloc.videoTutorial.isNotEmpty && !isViewingSpecificMember)
                   SliverToBoxAdapter(
                     child: InkWell(
@@ -214,113 +204,121 @@ class _RembursementBodyState extends State<RembursementBody> {
                       ),
                     ),
                   ),*/
+                SliverToBoxAdapter(
+                  child: SizedBox(height: SizeConfig.bodyHeight * .01),
+                ),
+                if (!isViewingSpecificMember) ...[
                   SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: SizeConfig.bodyHeight * .01,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(AppAssets.search),
+                        SizedBox(width: SizeConfig.screenWidth * .015),
+                        AppText(
+                          text: context.localizations.search,
+                          textSize: 16,
+                        ),
+                        const Spacer(),
+                        AppText(
+                          text:
+                              "${context.localizations.lastUpdated} ${bloc.lastUpdateDate}",
+                        ),
+                      ],
                     ),
                   ),
-                  if(!isViewingSpecificMember)...[
-                    SliverToBoxAdapter(
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(AppAssets.search),
-                          SizedBox(width: SizeConfig.screenWidth * .015),
-                          AppText(
-                              text: context.localizations.search, textSize: 16),
-                          const Spacer(),
-                          AppText(
-                              text:
-                              "${context.localizations.lastUpdated} ${bloc.lastUpdateDate}")
-                        ],
-                      ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: SizeConfig.bodyHeight * .02,
-                      ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: CustomSearchTextFormField(
-                                  hintText: context.localizations.name,
-                                  onChange: (value) {
-                                    if (_debounce?.isActive ?? false) {
-                                      _debounce!.cancel();
-                                    }
-                                    _debounce = Timer(
-                                        const Duration(milliseconds: 300), () {
+                  SliverToBoxAdapter(
+                    child: SizedBox(height: SizeConfig.bodyHeight * .02),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CustomSearchTextFormField(
+                                hintText: context.localizations.name,
+                                onChange: (value) {
+                                  if (_debounce?.isActive ?? false) {
+                                    _debounce!.cancel();
+                                  }
+                                  _debounce = Timer(
+                                    const Duration(milliseconds: 300),
+                                    () {
                                       setState(() => isSearch = true);
                                       currentFilter = currentFilter?.copyWith(
-                                          name: value.toString());
+                                        name: value.toString(),
+                                      );
 
                                       bloc.pagingController.refresh();
                                       bloc
                                           .fetchPage(params: currentFilter!)
                                           .then((_) {
-                                        setState(() => isSearch = false);
-                                      });
-                                    });
-                                  },
-                                ),
+                                            setState(() => isSearch = false);
+                                          });
+                                    },
+                                  );
+                                },
                               ),
-                              SizedBox(width: SizeConfig.bodyHeight * .01),
-                              Expanded(
-                                child: CustomSearchTextFormField(
-                                  hintText: context.localizations.insuranceID,
-                                  onChange: (value) {
-                                    if (_debounce?.isActive ?? false)
-                                      _debounce!.cancel();
-                                    _debounce = Timer(
-                                        const Duration(milliseconds: 300), () {
+                            ),
+                            SizedBox(width: SizeConfig.bodyHeight * .01),
+                            Expanded(
+                              child: CustomSearchTextFormField(
+                                hintText: context.localizations.insuranceID,
+                                onChange: (value) {
+                                  if (_debounce?.isActive ?? false)
+                                    _debounce!.cancel();
+                                  _debounce = Timer(
+                                    const Duration(milliseconds: 300),
+                                    () {
                                       setState(() {
                                         isSearch = true;
                                       });
                                       currentFilter = currentFilter?.copyWith(
-                                          insuranceId: value.toString());
+                                        insuranceId: value.toString(),
+                                      );
 
                                       bloc.pagingController.refresh();
                                       bloc
                                           .fetchPage(params: currentFilter!)
                                           .then((_) {
-                                        setState(() => isSearch = false);
-                                      });
-                                    });
-                                  },
-                                ),
+                                            setState(() => isSearch = false);
+                                          });
+                                    },
+                                  );
+                                },
                               ),
-                              SizedBox(width: SizeConfig.bodyHeight * .01),
-                              Expanded(
-                                child: CustomSearchTextFormField(
-                                  hintText: context.localizations.staffId,
-                                  onChange: (value) {
-                                    if (_debounce?.isActive ?? false)
-                                      _debounce!.cancel();
-                                    _debounce = Timer(
-                                        const Duration(milliseconds: 300), () {
+                            ),
+                            SizedBox(width: SizeConfig.bodyHeight * .01),
+                            Expanded(
+                              child: CustomSearchTextFormField(
+                                hintText: context.localizations.staffId,
+                                onChange: (value) {
+                                  if (_debounce?.isActive ?? false)
+                                    _debounce!.cancel();
+                                  _debounce = Timer(
+                                    const Duration(milliseconds: 300),
+                                    () {
                                       setState(() {
                                         isSearch = true;
                                       });
                                       currentFilter = currentFilter?.copyWith(
-                                          staffId: value.toString());
+                                        staffId: value.toString(),
+                                      );
 
                                       bloc.pagingController.refresh();
                                       bloc
                                           .fetchPage(params: currentFilter!)
                                           .then((_) {
-                                        setState(() => isSearch = false);
-                                      });
-                                    });
-                                  },
-                                ),
+                                            setState(() => isSearch = false);
+                                          });
+                                    },
+                                  );
+                                },
                               ),
-                            ],
-                          ),
-                          SizedBox(height: SizeConfig.bodyHeight * .01),
-                          /*Row(
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: SizeConfig.bodyHeight * .01),
+                        /*Row(
                           children: [
                             Expanded(
                               child: CustomSearchTextFormField(
@@ -373,17 +371,16 @@ class _RembursementBodyState extends State<RembursementBody> {
                             ),
                           ],
                         ),*/
-                        ],
-                      ),
+                      ],
                     ),
-                  ],
-                  if (bloc.totalMembers != null)
-                    SliverToBoxAdapter(
-                      child: Row(
-                        children: [
-                          AppText(
-                              text: "Total Members: ${bloc.totalMembers}"),
-                          if(!isViewingSpecificMember)
+                  ),
+                ],
+                if (bloc.totalMembers != null)
+                  SliverToBoxAdapter(
+                    child: Row(
+                      children: [
+                        AppText(text: "Total Members: ${bloc.totalMembers}"),
+                        if (!isViewingSpecificMember)
                           Expanded(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -391,37 +388,39 @@ class _RembursementBodyState extends State<RembursementBody> {
                                 const SizedBox.shrink(),
                                 IconButton(
                                   icon: const Icon(Icons.filter_alt),
-                                  onPressed: () => showFilterSheet(context: context),
+                                  onPressed: () =>
+                                      showFilterSheet(context: context),
                                 ),
                               ],
                             ),
                           ),
-                        ],
-                      ),
+                      ],
+                    ),
                   ),
-                  PagedSliverList(
-                      pagingController: bloc.pagingController,
-                      builderDelegate: PagedChildBuilderDelegate(
-                        itemBuilder: (context, ReimbursementModel item, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
-                            child: CustomExpandedWidget(
-                              title: ReimbursementTitleCard(
-                                request: item,
-                                onViewAllClaims: isViewingSpecificMember ? null : () {
-                                  _handleViewAllClaims(item);
-                                },
-                              ),
-                              body: ReimbursementCardBody(
-                                result: item,
-                              ),
-                            ),
-                          );
-                        },
-                      ))
-                ],
-              ),
+                PagedSliverList(
+                  pagingController: bloc.pagingController,
+                  builderDelegate: PagedChildBuilderDelegate(
+                    itemBuilder: (context, ReimbursementModel item, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: CustomExpandedWidget(
+                          title: ReimbursementTitleCard(
+                            request: item,
+                            onViewAllClaims: isViewingSpecificMember
+                                ? null
+                                : () {
+                                    _handleViewAllClaims(item);
+                                  },
+                          ),
+                          body: ReimbursementCardBody(result: item),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
+          ),
         );
       },
     );

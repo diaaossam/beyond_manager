@@ -38,7 +38,7 @@ class UtilizationCubit extends Cubit<BaseState<UtilizationModel>>
 
   Future<void> initPagination() async {
     pagingController = PagingController<int, Utilization>(
-      getNextPageKey: (state) => _nextIntPageKey(state, firstPageKey: 1),
+      getNextPageKey: (state) => state.lastPageIsEmpty ? null : state.nextIntPageKey,
       fetchPage: (pageKey) async {
         final pageSize = activeListParams?.pageSize ?? 8;
         final response = await policiesRepositoryImpl.getUtilization(
@@ -70,16 +70,7 @@ class UtilizationCubit extends Cubit<BaseState<UtilizationModel>>
     emit(state.copyWith(status: BaseStatus.success));
   }
 
-  int _nextIntPageKey(
-    PagingState<int, Utilization> state, {
-    required int firstPageKey,
-  }) {
-    final keys = state.keys;
-    if (keys == null || keys.isEmpty) {
-      return firstPageKey;
-    }
-    return keys.last + 1;
-  }
+
 
   // Getters for convenience
   bool? get isMedical => state.data?.isMedical;

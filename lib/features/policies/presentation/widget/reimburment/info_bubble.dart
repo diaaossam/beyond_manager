@@ -14,8 +14,8 @@ class InfoBubble extends StatelessWidget {
     Key? key,
     this.title = 'Status Info:',
     required this.message,
-    this.accentColor = const Color(0xFF0A84FF), // الأزرق في الشريط
-    this.backgroundColor = const Color(0xFFF3F8FF), // خلفية فاتحة
+    this.accentColor = const Color(0xFF0A84FF),
+    this.backgroundColor = const Color(0xFFF3F8FF),
     this.borderRadius = 12.0,
     this.leftBarWidth = 6.0,
     this.padding = const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
@@ -53,10 +53,10 @@ class InfoBubble extends StatelessWidget {
                 Text(
                   title,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 13,
-                        color: Colors.black87,
-                      ),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 13,
+                    color: Colors.black87,
+                  ),
                 ),
 
                 const SizedBox(height: 4),
@@ -65,21 +65,17 @@ class InfoBubble extends StatelessWidget {
                 Text(
                   message,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13,
-                        color: Colors.black87,
-                        height: 1.25,
-                      ),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                    color: Colors.black87,
+                    height: 1.25,
+                  ),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
           ),
-
-          // لو عايز أيقونة صغيرة على اليمين (اختياري) ممكن تفعلها
-          // SizedBox(width: 8),
-          // Icon(Icons.info_outline, size: 18, color: accentColor),
         ],
       ),
     );

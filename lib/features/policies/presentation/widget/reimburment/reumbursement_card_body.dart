@@ -1,22 +1,15 @@
-import 'package:beymanger/core/utils/app_constant.dart';
-import 'package:beymanger/features/reimbursement/data/models/attachment_model.dart';
-import 'package:beymanger/features/reimbursement/data/models/reimbursement_model.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:open_file/open_file.dart';
 
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_size.dart';
-import '../../../../widgets/app_text.dart';
-import '../../../main/presentation/pages/pdf_view_screen.dart';
+import '../../../../../core/utils/app_size.dart';
+import '../../../../../widgets/main_widget/app_text.dart';
+import '../../../data/models/response/reimbursement_model.dart';
 
 class ReimbursementCardBody extends StatelessWidget {
   final ReimbursementModel result;
 
-  const ReimbursementCardBody({
-    super.key,
-    required this.result,
-  });
+  const ReimbursementCardBody({super.key, required this.result});
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +31,15 @@ class ReimbursementCardBody extends StatelessWidget {
           _buildInfoRow("Service Date", result.serviceDate ?? 'N/A'),
           const SizedBox(height: 8),
           _buildInfoRow(
-              "Approved Amount",
-              result.approvedAmount != null && result.approvedAmount!.isNotEmpty
-                  ? '${result.approvedAmount} EGP'
-                  : 'N/A',
-              isAmount: true),
+            "Approved Amount",
+            result.approvedAmount != null && result.approvedAmount!.isNotEmpty
+                ? '${result.approvedAmount} EGP'
+                : 'N/A',
+            isAmount: true,
+          ),
           const SizedBox(height: 8),
 
-          _buildInfoRow(
-            'ID Number',
-            result.idNumber ?? 'N/A',
-          ),
+          _buildInfoRow('ID Number', result.idNumber ?? 'N/A'),
           const SizedBox(height: 8),
 
           _buildInfoRow(
@@ -131,16 +122,19 @@ class ReimbursementCardBody extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          if(result.reimbursement_copy_type != "hard")
-          _buildDocumentSection(
-            title: "Scanned Copy",
-            icon: Icons.description,
-            color: const Color(0xFF2196F3),
-            lightColor: const Color(0xFFE3F2FD),
-            files: result.attachmentFiles ?? [],
-            onTap: () => _showDocumentsDialog(
-                context, "Scanned Copy", result.attachmentFiles ?? []),
-          ),
+          if (result.reimbursement_copy_type != "hard")
+            _buildDocumentSection(
+              title: "Scanned Copy",
+              icon: Icons.description,
+              color: const Color(0xFF2196F3),
+              lightColor: const Color(0xFFE3F2FD),
+              files: result.attachmentFiles ?? [],
+              onTap: () => _showDocumentsDialog(
+                context,
+                "Scanned Copy",
+                result.attachmentFiles ?? [],
+              ),
+            ),
 
           const SizedBox(height: 12),
 
@@ -154,7 +148,10 @@ class ReimbursementCardBody extends StatelessWidget {
             // Light orange
             files: result.breakdownFiles ?? [],
             onTap: () => _showDocumentsDialog(
-                context, "Breakdown Files", result.breakdownFiles ?? []),
+              context,
+              "Breakdown Files",
+              result.breakdownFiles ?? [],
+            ),
           ),
 
           const SizedBox(height: 12),
@@ -169,7 +166,10 @@ class ReimbursementCardBody extends StatelessWidget {
             // Light green
             files: result.paymentProofFiles ?? [],
             onTap: () => _showDocumentsDialog(
-                context, "Payment Proof Files", result.paymentProofFiles ?? []),
+              context,
+              "Payment Proof Files",
+              result.paymentProofFiles ?? [],
+            ),
           ),
         ],
       ),
@@ -198,11 +198,7 @@ class ReimbursementCardBody extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              color: color,
-              size: 20,
-            ),
+            Icon(icon, color: color, size: 20),
             const SizedBox(width: 6),
             Expanded(
               child: AppText(
@@ -221,11 +217,7 @@ class ReimbursementCardBody extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    icon,
-                    color: color,
-                    size: 16,
-                  ),
+                  Icon(icon, color: color, size: 16),
                   const SizedBox(width: 6),
                   AppText(
                     text: "View ($fileCount)",
@@ -243,7 +235,10 @@ class ReimbursementCardBody extends StatelessWidget {
   }
 
   void _showDocumentsDialog(
-      BuildContext context, String title, List<dynamic> files) {
+    BuildContext context,
+    String title,
+    List<dynamic> files,
+  ) {
     if (files.isEmpty) return;
     showDialog(
       context: context,
@@ -303,7 +298,11 @@ class ReimbursementCardBody extends StatelessWidget {
   }
 
   void _handleFileOpen(
-      BuildContext context, String url, String mimeType, String fileName) {
+    BuildContext context,
+    String url,
+    String mimeType,
+    String fileName,
+  ) {
     if (url.isEmpty) return;
 
     if (_isImageFile(mimeType)) {
@@ -312,7 +311,10 @@ class ReimbursementCardBody extends StatelessWidget {
       _showVideoPlayer(context, url, fileName);
     } else if (_isDocumentFile(mimeType)) {
       if (mimeType == 'application/pdf') {
-        AppConstant.navigateTo(context: context, widget: PdfViewScreen(url: url,));
+        AppConstant.navigateTo(
+          context: context,
+          widget: PdfViewScreen(url: url),
+        );
       } else {
         _openDocumentFile(url, fileName);
       }
@@ -322,7 +324,10 @@ class ReimbursementCardBody extends StatelessWidget {
   }
 
   void _showImageViewer(
-      BuildContext context, String imageUrl, String fileName) {
+    BuildContext context,
+    String imageUrl,
+    String fileName,
+  ) {
     showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -390,11 +395,7 @@ class ReimbursementCardBody extends StatelessWidget {
                     color: Colors.black54,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: 20,
-                  ),
+                  child: const Icon(Icons.close, color: Colors.white, size: 20),
                 ),
               ),
             ),
@@ -405,7 +406,10 @@ class ReimbursementCardBody extends StatelessWidget {
   }
 
   void _showVideoPlayer(
-      BuildContext context, String videoUrl, String fileName) {
+    BuildContext context,
+    String videoUrl,
+    String fileName,
+  ) {
     showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -449,11 +453,7 @@ class ReimbursementCardBody extends StatelessWidget {
                     color: Colors.black54,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: 20,
-                  ),
+                  child: const Icon(Icons.close, color: Colors.white, size: 20),
                 ),
               ),
             ),
@@ -463,9 +463,7 @@ class ReimbursementCardBody extends StatelessWidget {
                   Navigator.pop(context);
                   _launchUrl(videoUrl);
                 },
-                child: Container(
-                  color: Colors.transparent,
-                ),
+                child: Container(color: Colors.transparent),
               ),
             ),
           ],
