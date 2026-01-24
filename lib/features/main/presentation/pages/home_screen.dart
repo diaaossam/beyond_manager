@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/utils/app_size.dart';

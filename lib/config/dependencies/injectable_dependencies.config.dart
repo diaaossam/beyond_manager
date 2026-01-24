@@ -52,6 +52,14 @@ import '../../features/emergency/presentation/cubit/create_emergency_cubit.dart'
     as _i1050;
 import '../../features/emergency/presentation/cubit/emergency_cubit.dart'
     as _i1041;
+import '../../features/other_line/data/datasources/other_line_remote_data_source.dart'
+    as _i932;
+import '../../features/other_line/data/repositories/other_line_repository_impl.dart'
+    as _i214;
+import '../../features/other_line/presentation/cubit/insurance/insurance_cubit.dart'
+    as _i323;
+import '../../features/other_line/presentation/cubit/other_line_cubit.dart'
+    as _i859;
 import '../../features/policies/data/datasources/policies_remote_data_source.dart'
     as _i60;
 import '../../features/policies/data/repositories/policies_repository_impl.dart'
@@ -136,6 +144,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i384.DioConsumer>(
       () => _i384.DioConsumer(client: gh<_i763.DioClient>()),
     );
+    gh.factory<_i932.OtherLineRemoteDataSource>(
+      () => _i932.OtherLineRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
     gh.factory<_i107.AuthRemoteDataSource>(
       () => _i107.AuthRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
@@ -147,6 +160,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i60.PoliciesRemoteDataSource>(
       () => _i60.PoliciesRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
+    gh.lazySingleton<_i214.OtherLineRepositoryImpl>(
+      () => _i214.OtherLineRepositoryImpl(
+        otherLineRemoteDataSource: gh<_i932.OtherLineRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i662.AuthRepository>(
@@ -225,6 +243,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i401.LogoutCubit(gh<_i662.AuthRepository>()),
     );
     gh.factory<_i90.OtpCubit>(() => _i90.OtpCubit(gh<_i662.AuthRepository>()));
+    gh.factory<_i323.InsuranceCubit>(
+      () => _i323.InsuranceCubit(gh<_i214.OtherLineRepositoryImpl>()),
+    );
+    gh.factory<_i859.OtherLineCubit>(
+      () => _i859.OtherLineCubit(gh<_i214.OtherLineRepositoryImpl>()),
+    );
     gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
     gh.factory<_i792.SettingsCubit>(
       () => _i792.SettingsCubit(gh<_i91.SettingsRepositoryImpl>()),
