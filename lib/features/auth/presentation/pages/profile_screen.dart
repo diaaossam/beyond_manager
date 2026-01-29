@@ -28,16 +28,15 @@ class ProfileScreen extends StatelessWidget {
         ),
         child: ListView(
           children: [
-            SizedBox(height: SizeConfig.bodyHeight * .04),
             Container(
               padding: EdgeInsets.symmetric(
                 vertical: SizeConfig.bodyHeight * .04,
                 horizontal: SizeConfig.bodyHeight * .02,
               ),
               decoration: BoxDecoration(
-                color: const Color(0xffFEFAF8),
+                color: context.colorScheme.secondary,
                 borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: const Color(0xffE7E7E7)),
+                border: Border.all(color: context.colorScheme.outline),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,19 +45,19 @@ class ProfileScreen extends StatelessWidget {
                   AppText(
                     maxLines: 2,
                     text: UserDataService().getUserData()?.name??"",
-                    fontWeight: FontWeight.bold,
-                    textSize: 14,
+                    fontWeight: FontWeight.w600,
+                    textSize: 12,
                   ),
                   SizedBox(height: SizeConfig.bodyHeight * .01),
-                  const CompanyDropDown(),
-                  SizedBox(height: SizeConfig.bodyHeight * .005),
                   AppText(
                     maxLines: 2,
                     text: UserDataService().getUserData()?.jobDescription ?? "",
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xffEC5800),
-                    textSize: 17,
+                    fontWeight: FontWeight.w600,
+                    color: context.colorScheme.primary,
+                    textSize: 13,
                   ),
+                  SizedBox(height: SizeConfig.bodyHeight * .02),
+                  const CompanyDropDown(),
                 ],
               ),
             ),
@@ -77,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 const Spacer(),
                 ProfileItemDesign(
-                  title: "workEmail",
+                  title: context.localizations.workEmail,
                   body: UserDataService().getUserData()?.email ?? "",
                   icon: Assets.icons.email,
                 ),
@@ -101,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
+                border: Border.all(color: context.colorScheme.outline),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
@@ -111,21 +110,12 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(height: SizeConfig.bodyHeight * .01),
                   AppText(
                     text: context.localizations.notes,
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
+                    textSize: 12,
+                    fontWeight: FontWeight.w600,
                   ),
-                  SizedBox(height: SizeConfig.bodyHeight * .01),
-                  const AppText(text: "", maxLines: 10, textSize: 12),
                   SizedBox(height: SizeConfig.bodyHeight * .01),
                 ],
               ),
-            ),
-            SizedBox(height: SizeConfig.bodyHeight * .04),
-            CustomButton(
-              text: context.localizations.logOut,
-              press: () async {
-                LogoutDialog.show(context);
-              },
             ),
             SizedBox(height: SizeConfig.bodyHeight * .02),
             CustomButton(
@@ -135,7 +125,6 @@ class ProfileScreen extends StatelessWidget {
             text: context.localizations.complaint,
             press: () => context.router.push(ComplaintRoute()),
           ),
-          SizedBox(height: SizeConfig.bodyHeight * .02),
           TextButton(
             onPressed: () => context.router.push(TermsRoute()),
             child: AppText(
@@ -146,10 +135,17 @@ class ProfileScreen extends StatelessWidget {
               textSize: 14,
             ),
           ),
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+
+            CustomButton(
+              text: context.localizations.logOut,
+              press: () async => LogoutDialog.show(context),
+            ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomButton(
-            borderColor: Colors.red,
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.transparent,
+            textColor: context.colorScheme.primary,
+            borderColor: context.colorScheme.primary,
             text: context.localizations.deleteAccount,
             press: () async {
 

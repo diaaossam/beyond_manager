@@ -3,6 +3,7 @@ import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/gen/assets.gen.dart';
+import 'package:bond/widgets/arrow_expanded_forward.dart';
 import 'package:bond/widgets/main_widget/back_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -48,14 +49,14 @@ class AppSuccessDialogDesign extends StatelessWidget {
                     });
                   },
                   child: AppText(
-                    text: context.localizations.back,
+                    text: context.localizations.home,
                     textSize: 20,
                     color: context.colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(width: 5),
-                BackArrowWidget(color: context.colorScheme.primary),
+                ArrowExpandedForwardDesign(color: context.colorScheme.primary),
               ],
             ),
           ],

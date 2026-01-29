@@ -21,7 +21,9 @@ class ReimbursementCubit extends Cubit<BaseState<ReimbursementResponseModel>>
     handleAsync(
       identifier: "getStatus",
       call: () => policiesRepositoryImpl.getReimursementStatus(),
-      onSuccess: (data) => state.data!.copyWith(status: data),
+      onSuccess: (data) {
+        return state.data!.copyWith(status: data);
+      },
     );
   }
 

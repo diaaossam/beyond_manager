@@ -89,7 +89,7 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Material(child: Container(
       height: SizeConfig.bodyHeight * 0.7,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -153,11 +153,7 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                       hint: 'Claim Status',
                       items: _buildDropdownItems(widget.list),
                       initialValue: _selectedClaimStatus,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedClaimStatus = value;
-                        });
-                      },
+                      onChanged: (value) => setState(() => _selectedClaimStatus = value),
                     ),
                     SizedBox(height: SizeConfig.bodyHeight * 0.02),
                     AppDropDown<GenericModel>(
@@ -182,8 +178,8 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                             controller: TextEditingController(
                               text: _serviceDateFrom != null
                                   ? DateFormat(
-                                      'MMM dd, yyyy',
-                                    ).format(_serviceDateFrom!)
+                                'MMM dd, yyyy',
+                              ).format(_serviceDateFrom!)
                                   : '',
                             ),
                           ),
@@ -197,8 +193,8 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                             controller: TextEditingController(
                               text: _serviceDateTo != null
                                   ? DateFormat(
-                                      'MMM dd, yyyy',
-                                    ).format(_serviceDateTo!)
+                                'MMM dd, yyyy',
+                              ).format(_serviceDateTo!)
                                   : '',
                             ),
                           ),
@@ -253,7 +249,7 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
           ),
         ],
       ),
-    );
+    ),);
   }
 
   Widget _buildSortByOption(String label, String value) {

@@ -27,8 +27,12 @@ class EndPoints {
   static String getHospitalsName = "/get/beyond/hospitals";
   static String getHospitals = "/get/cleopatra/hospitals";
   static String getSpecialities = "/get/cleopatra/specialities";
+  static String searchForDoctors = "/search/cleopatra/doctors";
+  static String getTimeslot = "/get/cleopatra/doctors/time/slot";
   static String timeslot = "/get/cleopatra/doctors/time/slot";
+  static String postReservation = "/post/cleopatra/appointments";
   static String appointment = "/post/cleopatra/appointments";
+  static String getReservation = "/get/cleopatra/manager/reservations";
   static String getMyAppointment = "/get/cleopatra/manager/reservations";
 
   static const String tpa = "/Get/All/Tpa";

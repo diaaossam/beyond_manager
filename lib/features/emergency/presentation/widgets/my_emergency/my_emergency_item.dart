@@ -6,6 +6,8 @@ import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../core/extensions/color_extensions.dart';
+
 class MyEmergencyItemDesign extends StatelessWidget {
   final EmergencyModel model;
   final int index;
@@ -19,8 +21,8 @@ class MyEmergencyItemDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SlideInLeft(
-      duration: Duration(milliseconds: 400 + (index * 50)),
-      delay: Duration(milliseconds: index * 50),
+      duration: Duration(milliseconds: 400 + (50)),
+      delay: Duration(milliseconds: 50),
       from: 50,
       child: Container(
         margin: EdgeInsets.only(bottom: SizeConfig.bodyHeight * 0.015),
@@ -29,15 +31,12 @@ class MyEmergencyItemDesign extends StatelessWidget {
           vertical: SizeConfig.bodyHeight * 0.02,
         ),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainer,
-          border: Border.all(
-            color: Theme.of(context).colorScheme.outline,
-            width: 1,
-          ),
+          color: context.colorScheme.surfaceContainer,
+          border: Border.all(color: context.colorScheme.outline, width: 1),
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.05),
+              color: context.colorScheme.shadow.withValues(alpha: 0.05),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -50,15 +49,15 @@ class MyEmergencyItemDesign extends StatelessWidget {
               children: [
                 AppText(
                   text: "${context.localizations.name}: ",
-                  textSize: 14,
-                  color: Theme.of(context).colorScheme.shadow,
+                  textSize: 12,
+                  color: context.colorScheme.shadow,
                 ),
                 Expanded(
                   child: AppText(
                     text: model.name ?? "",
-                    textSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
+                    textSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: context.colorScheme.onSurface,
                   ),
                 ),
               ],
@@ -69,16 +68,16 @@ class MyEmergencyItemDesign extends StatelessWidget {
               children: [
                 AppText(
                   text: "${context.localizations.notes}: ",
-                  textSize: 14,
-                  color: Theme.of(context).colorScheme.shadow,
+                  textSize: 12,
+                  color: context.colorScheme.shadow,
                 ),
                 Expanded(
                   child: AppText(
                     text: model.note ?? "",
-                    textSize: 14,
-                    fontWeight: FontWeight.w500,
+                    textSize: 12,
+                    fontWeight: FontWeight.w600,
                     maxLines: 3,
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: context.colorScheme.onSurface,
                   ),
                 ),
               ],
@@ -89,14 +88,14 @@ class MyEmergencyItemDesign extends StatelessWidget {
                 Icon(
                   Icons.access_time,
                   size: 14,
-                  color: Theme.of(context).colorScheme.shadow,
+                  color: context.colorScheme.shadow,
                 ),
                 SizedBox(width: SizeConfig.screenWidth * 0.01),
                 Expanded(
                   child: AppText(
                     text: _formatDate(model.date),
-                    textSize: 12,
-                    color: Theme.of(context).colorScheme.shadow,
+                    textSize: 11,
+                    color: context.colorScheme.shadow,
                   ),
                 ),
                 _buildStatusBadge(context),
@@ -116,9 +115,7 @@ class MyEmergencyItemDesign extends StatelessWidget {
         vertical: SizeConfig.bodyHeight * 0.008,
       ),
       decoration: BoxDecoration(
-        color: isDone
-            ? Theme.of(context).colorScheme.tertiary
-            : const Color(0xffFFC107),
+        color: isDone ? context.colorScheme.tertiary : const Color(0xffFFC107),
         borderRadius: BorderRadius.circular(20),
       ),
       child: AppText(

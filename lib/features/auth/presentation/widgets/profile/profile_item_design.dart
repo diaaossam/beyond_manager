@@ -27,16 +27,16 @@ class ProfileItemDesign extends StatelessWidget {
         AppText(
           maxLines: 1,
           text: title,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
           color: context.colorScheme.shadow,
-          textSize: 15,
+          textSize: 12,
         ),
         SizedBox(height: SizeConfig.bodyHeight * .01),
         AppText(
           maxLines: 1,
           text: body,
-          fontWeight: FontWeight.bold,
-          textSize: 14,
+          fontWeight: FontWeight.w600,
+          textSize: 12,
         ),
       ],
     );

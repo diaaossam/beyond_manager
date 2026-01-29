@@ -5,6 +5,7 @@ import 'package:bond/features/emergency/data/models/emergency_model.dart';
 import 'package:bond/features/emergency/data/repositories/emergency_repo_impl.dart';
 import 'package:injectable/injectable.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../core/utils/app_strings.dart';
 

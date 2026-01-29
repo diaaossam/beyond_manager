@@ -35,7 +35,11 @@ class EmergencyRemoteDataSourceImpl implements EmergencyRemoteDataSource {
         .get(EndPoints.myEmergency)
         .params({"page_number": page, "page_size": pageSize})
         .factory((json) {
-          return [];
+          return json['result']
+              .map<EmergencyModel>(
+                (element) => EmergencyModel.fromJson(element),
+              )
+              .toList();
         })
         .execute();
   }

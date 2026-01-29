@@ -19,7 +19,9 @@ class BackArrowWidget extends StatelessWidget {
     return Visibility(
       visible: context.router.canPop(),
       child: InkWell(
-        onTap: () => context.router.canPop() ? context.router.pop() : null,
+        onTap: () {
+          context.router.canPop() ? Navigator.pop(context) : null;
+        },
         child: Container(
           decoration: BoxDecoration(
             color: context.colorScheme.surface,
