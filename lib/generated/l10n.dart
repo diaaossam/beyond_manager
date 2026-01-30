@@ -4028,6 +4028,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Unique services`
+  String get uniqueService {
+    return Intl.message(
+      'Unique services',
+      name: 'uniqueService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select tpa first`
+  String get pleaseSelectTpa {
+    return Intl.message(
+      'Please select tpa first',
+      name: 'pleaseSelectTpa',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -29,4 +29,12 @@ class AppStrings {
 
   static const String userPhone = "user_phone";
   static const String userId = "user_id";
+
+  /// Defaults
+  static const String defaultLogo =
+      'https://beyondcare.me/wp-content/uploads/2023/05/beyondcare-logo-color.png';
+
+  /// Error Messages
+  static const String notConnectedToInternetConnection =
+      'No internet connection. Please check your network settings.';
 }

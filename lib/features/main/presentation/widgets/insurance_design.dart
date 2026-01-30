@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ class InsuranceDesign extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        context.router.push(SelectInsuranceRoute());
         /*AppConstant.navigateTo(
         context: context,
         widget: const SelectInsuranceScreen(),

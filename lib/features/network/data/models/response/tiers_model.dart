@@ -1,4 +1,3 @@
-
 class TiersModel {
   TiersModel({
     this.areas,

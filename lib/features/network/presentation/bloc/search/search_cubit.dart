@@ -1,120 +1,167 @@
-import 'package:bond/features/network/data/models/tiers_model.dart';
-import 'package:bond/features/network/data/models/tpa_model.dart';
-import 'package:bond/features/network/domain/usecases/get_all_tiers_use_case.dart';
-import 'package:bond/features/network/domain/usecases/get_all_tpa_use_case.dart';
 import 'package:bloc/bloc.dart';
-part 'search_state.dart';
+import 'package:bond/core/bloc/helper/async_handler.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/features/network/data/models/response/tiers_model.dart';
+import 'package:bond/features/network/data/models/response/tpa_model.dart';
+import 'package:injectable/injectable.dart';
 
-class SearchCubit extends Cubit<SearchState> {
-  final GetAllTpaUseCase getAllTpaUseCase;
-  final GetAllTiersUseCase getAllTiersUseCase;
+import '../../../data/repositories/network_repository.dart';
+
+@injectable
+class SearchCubit extends Cubit<BaseState<List<TpaModel>>>
+    with AsyncHandler<List<TpaModel>> {
+  final NetworkRepositoryImpl _networkRepository;
+
+  SearchCubit(this._networkRepository) : super(BaseState.initial());
+
+  // ============================================================================
+  // Data Properties
+  // ============================================================================
 
   List<TpaModel> tpaList = [];
-  List<Company> comapnyList = [];
-  TpaModel? chosenTpaModel;
-  Company? chosenComapny;
-  List<MainTiersModel> _allArea = [];
-  List<MainTiersModel> area = [];
+  List<Company> companyList = [];
+  TpaModel? selectedTpa;
+  Company? selectedCompany;
+
+  List<MainTiersModel> _allAreas = [];
+  List<MainTiersModel> areas = [];
   List<MainTiersModel> cities = [];
-  List<MainTiersModel> _allProviderType = [];
-  List<MainTiersModel> providerType = [];
-  List<MainTiersModel> _allSpecialty = [];
-  List<MainTiersModel> specialty = [];
+
+  List<MainTiersModel> _allProviderTypes = [];
+  List<MainTiersModel> providerTypes = [];
+
+  List<MainTiersModel> _allSpecialties = [];
+  List<MainTiersModel> specialties = [];
+
   List<Tiers> tiers = [];
 
-  SearchCubit(this.getAllTpaUseCase, this.getAllTiersUseCase)
-      : super(SearchInitial());
+  // ============================================================================
+  // TPA Operations
+  // ============================================================================
 
-  Future<void> changeTPAIndex(TpaModel tpaModel) async {
-    chosenComapny = null;
-    tiers.clear();
-    chosenTpaModel = tpaModel;
-    comapnyList = tpaModel.companies ?? [];
-    emit(ChangeTPAIndexState(tpaModel: tpaModel));
-  }
-
-
-  void clearData(){
-    chosenComapny = null;
-    chosenTpaModel = null;
-    tpaList.clear();
-    emit(ClearAllDataState());
-  }
   Future<void> getAllTpa() async {
-    emit(GetAllTpaLoading());
-    final response = await getAllTpaUseCase();
-    response.fold((l) => emit(GetAllTpaError(errorMsg: l.message)), (r) async {
-      tpaList = r;
-      emit(GetAllTpaSuccess(tpaList: r));
-    });
+    await handleAsync(
+      call: () => _networkRepository.getAllTpa(),
+      onSuccess: (data) {
+        tpaList = data;
+        return data;
+      },
+      identifier: 'get_all_tpa',
+    );
   }
 
-  Future<void> getAllTiers({required Company selectedCompany}) async {
+  void selectTpa(TpaModel tpaModel) {
+    selectedCompany = null;
     tiers.clear();
-    emit(GetAllTiersLoading());
-    chosenComapny = selectedCompany;
-    final response = await getAllTiersUseCase(
-        tpaId: chosenTpaModel!.tpaId!.toInt(), companyId: selectedCompany.id);
-    emit(response.fold((l) => GetAllTiersError(errorMsg: l.message), (r) {
-      tiers = r.tiers ?? [];
-      cities = r.cities ?? [];
-      _allArea = r.areas ?? [];
-      _allProviderType = r.providerTypes ?? [];
-      _allSpecialty = r.specialties ?? [];
-      return GetAllTiersSuccess();
-    }));
+    selectedTpa = tpaModel;
+    companyList = tpaModel.companies ?? [];
+    emit(state.copyWith(data: tpaList,identifier: "select_tpa"));
   }
 
-  void chooseAreaFromCities(List<MainTiersModel> cities) {
-    area.clear();
-    for (var element in cities) {
+  void clearAllData() {
+    selectedCompany = null;
+    selectedTpa = null;
+    tpaList.clear();
+    companyList.clear();
+    tiers.clear();
+    areas.clear();
+    cities.clear();
+    providerTypes.clear();
+    specialties.clear();
+    emit(BaseState.initial());
+  }
 
-      for (var ele in _allArea) {
-        if (ele.cityId == element.id) {
-          area.add(ele);
+  // ============================================================================
+  // Tiers Operations
+  // ============================================================================
+
+  Future<void> getAllTiers({required Company company}) async {
+    tiers.clear();
+    selectedCompany = company;
+
+    emit(state.loading(identifier: 'get_all_tiers'));
+
+    final response = await _networkRepository.getAllTiers(
+      tpaId: selectedTpa!.tpaId!.toInt(),
+      companyId: company.id,
+    );
+
+    response.fold(
+      (failure) {
+        emit(BaseState.failure(
+          error: failure.message,
+          identifier: 'get_all_tiers',
+        ));
+      },
+      (tiersModel) {
+        tiers = tiersModel.tiers ?? [];
+        cities = tiersModel.cities ?? [];
+        _allAreas = tiersModel.areas ?? [];
+        _allProviderTypes = tiersModel.providerTypes ?? [];
+        _allSpecialties = tiersModel.specialties ?? [];
+        emit(BaseState.success(data: tpaList, identifier: 'get_all_tiers'));
+      },
+    );
+  }
+
+  // ============================================================================
+  // Filter Operations
+  // ============================================================================
+
+  void filterAreasByCities(List<MainTiersModel> selectedCities) {
+    areas.clear();
+    for (var city in selectedCities) {
+      for (var area in _allAreas) {
+        if (area.cityId == city.id) {
+          areas.add(area);
         }
       }
     }
   }
 
-  void chooseProviderTypeFromArea(List<MainTiersModel> selectedArea) {
-    providerType.clear();
-    for (var element in selectedArea) {
-      for (var ele in _allProviderType) {
-        if (ele.areaId == element.id) {
-          providerType.add(ele);
-        }
-      }
-    }
-
-  }
-
-  void chooseSpecialtyFromProviderType(List<MainTiersModel> selectedProviderType) {
-    specialty.clear();
-    for (var element in selectedProviderType) {
-      for (var ele in _allSpecialty) {
-        if (ele.providerTypeId == element.id) {
-          specialty.add(ele);
+  void filterProviderTypesByAreas(List<MainTiersModel> selectedAreas) {
+    providerTypes.clear();
+    for (var area in selectedAreas) {
+      for (var providerType in _allProviderTypes) {
+        if (providerType.areaId == area.id) {
+          providerTypes.add(providerType);
         }
       }
     }
   }
 
-  void clearArea() {
-    area.clear();
-    providerType.clear();
-    specialty.clear();
-    emit(ClearAreaState());
+  void filterSpecialtiesByProviderTypes(
+    List<MainTiersModel> selectedProviderTypes,
+  ) {
+    specialties.clear();
+    for (var providerType in selectedProviderTypes) {
+      for (var specialty in _allSpecialties) {
+        if (specialty.providerTypeId == providerType.id) {
+          specialties.add(specialty);
+        }
+      }
+    }
   }
 
-  void clearProviderType() {
-    providerType.clear();
-    specialty.clear();
-    emit(ClearProviderTypeState());
+  // ============================================================================
+  // Clear Filter Operations
+  // ============================================================================
+
+  void clearAreas() {
+    areas.clear();
+    providerTypes.clear();
+    specialties.clear();
+    emit(state.copyWith(data: tpaList));
   }
 
-  void clearSpeciality() {
-    specialty.clear();
-    emit(ClearSpecialityState());
+  void clearProviderTypes() {
+    providerTypes.clear();
+    specialties.clear();
+    emit(state.copyWith(data: tpaList));
+  }
+
+  void clearSpecialties() {
+    specialties.clear();
+    emit(state.copyWith(data: tpaList));
   }
 }

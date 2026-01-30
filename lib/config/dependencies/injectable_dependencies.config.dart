@@ -68,14 +68,8 @@ import '../../features/network/data/datasources/network_remote_data_source.dart'
     as _i98;
 import '../../features/network/data/repositories/network_repository.dart'
     as _i950;
-import '../../features/network/domain/repositories/network_repository.dart'
-    as _i270;
-import '../../features/network/domain/usecases/get_all_tiers_use_case.dart'
-    as _i466;
-import '../../features/network/domain/usecases/get_all_tpa_use_case.dart'
-    as _i646;
-import '../../features/network/domain/usecases/search_for_tpa_use_case.dart'
-    as _i1002;
+import '../../features/network/presentation/bloc/search/search_cubit.dart'
+    as _i504;
 import '../../features/network/presentation/bloc/search_result/search_result_cubit.dart'
     as _i114;
 import '../../features/other_line/data/datasources/other_line_remote_data_source.dart'
@@ -217,9 +211,15 @@ extension GetItInjectableX on _i174.GetIt {
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
     );
-    gh.lazySingleton<_i98.NetworkRemoteDataSource>(
+    gh.factory<_i98.NetworkRemoteDataSource>(
       () => _i98.NetworkRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
+    gh.factory<_i950.NetworkRepositoryImpl>(
+      () => _i950.NetworkRepositoryImpl(
+        networkInfo: gh<_i1035.NetworkInfo>(),
+        networkRemoteDataSource: gh<_i98.NetworkRemoteDataSource>(),
       ),
     );
     gh.factory<_i107.AuthRemoteDataSource>(
@@ -239,20 +239,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i881.CarServiceRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
-    );
-    gh.lazySingleton<_i270.NetworkRepository>(
-      () => _i950.NetworkRepositoryImpl(
-        networkRemoteDataSource: gh<_i98.NetworkRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i466.GetAllTiersUseCase>(
-      () => _i466.GetAllTiersUseCase(gh<_i270.NetworkRepository>()),
-    );
-    gh.factory<_i646.GetAllTpaUseCase>(
-      () => _i646.GetAllTpaUseCase(gh<_i270.NetworkRepository>()),
-    );
-    gh.factory<_i1002.SearchForTpaUseCase>(
-      () => _i1002.SearchForTpaUseCase(gh<_i270.NetworkRepository>()),
     );
     gh.lazySingleton<_i41.CarServiceRepository>(
       () => _i136.CarServiceRepositoryImpl(
@@ -286,6 +272,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i86.ReservationRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
+    );
+    gh.factory<_i504.SearchCubit>(
+      () => _i504.SearchCubit(gh<_i950.NetworkRepositoryImpl>()),
+    );
+    gh.factory<_i114.SearchResultCubit>(
+      () => _i114.SearchResultCubit(gh<_i950.NetworkRepositoryImpl>()),
     );
     gh.lazySingleton<_i998.PoliciesRepositoryImpl>(
       () => _i998.PoliciesRepositoryImpl(
@@ -331,9 +323,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i91.SettingsRepositoryImpl(
         settingsRemoteDataSource: gh<_i188.SettingsRemoteDataSource>(),
       ),
-    );
-    gh.factory<_i114.SearchResultCubit>(
-      () => _i114.SearchResultCubit(gh<_i1002.SearchForTpaUseCase>()),
     );
     gh.lazySingleton<_i1008.EmergencyRepositoryImpl>(
       () => _i1008.EmergencyRepositoryImpl(

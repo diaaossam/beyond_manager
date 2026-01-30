@@ -602,6 +602,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectTheInsuranceCompany": MessageLookupByLibrary.simpleMessage(
       "Please select the Insurance Company",
     ),
+    "pleaseSelectTpa": MessageLookupByLibrary.simpleMessage(
+      "Please select tpa first",
+    ),
     "pleaseUploadAttachments": MessageLookupByLibrary.simpleMessage(
       "Please Upload at least one Attachments",
     ),
@@ -812,6 +815,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
     "underAddition": MessageLookupByLibrary.simpleMessage("Under Addition"),
     "underDeletion": MessageLookupByLibrary.simpleMessage("Under Deletions"),
+    "uniqueService": MessageLookupByLibrary.simpleMessage("Unique services"),
     "unpaid": MessageLookupByLibrary.simpleMessage("Unpaid"),
     "updateApp": MessageLookupByLibrary.simpleMessage(
       "Please update app to newest version",

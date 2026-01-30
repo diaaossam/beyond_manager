@@ -5,7 +5,6 @@ import 'app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
-
   @override
   GlobalKey<NavigatorState> get navigatorKey => NavigationService.navigatorKey;
 
@@ -42,5 +41,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: MySickLeaveRoute.page),
     AutoRoute(page: SickLeaveAnalyticsRoute.page),
     AutoRoute(page: FeedbackRoute.page),
+    AutoRoute(page: SelectInsuranceRoute.page),
+    AutoRoute(page: MedicalFilterRoute.page),
+    AutoRoute(page: CarServiceRoute.page),
+    AutoRoute(page: ChooseReservationRoute.page),
+    AutoRoute(page: UniqueServiceRoute.page),
+    AutoRoute(page: SearchResultRoute.page),
   ];
 }

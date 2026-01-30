@@ -483,5 +483,7 @@
   "emergency": "Emergency",
   "dental": "Dental",
   "optical": "Optical",
-  "sickLeaveCreatedSuccessfully": "Sick Leave Created Successfully"
+  "sickLeaveCreatedSuccessfully": "Sick Leave Created Successfully",
+  "uniqueService": "Unique services",
+  "pleaseSelectTpa": "Please select tpa first"
 }

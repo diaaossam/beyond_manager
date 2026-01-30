@@ -1,7 +1,13 @@
+import 'package:bond/core/utils/app_strings.dart';
 
 class TpaModel {
-  TpaModel(
-      {this.companies, this.tpaId, this.tpaName, this.logo, this.lastUpdate});
+  TpaModel({
+    this.companies,
+    this.tpaId,
+    this.tpaName,
+    this.logo,
+    this.lastUpdate,
+  });
 
   TpaModel.fromJson(dynamic json) {
     List<Company> companiesList = [];
@@ -13,8 +19,15 @@ class TpaModel {
     companies = companiesList;
     tpaId = json['tpa_id'];
     tpaName = json['tpa_name'];
-    logo = json['logo'] ?? "";
+    logo = json['logo'] ?? AppStrings.defaultLogo;
     lastUpdate = json['last_update'] ?? "";
+  }
+
+  static List<TpaModel> fromJsonList(dynamic json) {
+    if (json is List) {
+      return json.map<TpaModel>((e) => TpaModel.fromJson(e)).toList();
+    }
+    return [];
   }
 
   List<Company>? companies;
@@ -43,18 +56,21 @@ class Company {
   final String name;
   final String logo;
 
-  Company({
-    required this.id,
-    required this.name,
-    required this.logo,
-  });
+  Company({required this.id, required this.name, required this.logo});
 
   factory Company.fromJson(Map<String, dynamic> json) {
     return Company(
       id: json['id'],
       name: json["name"],
-      logo: json["logo"] ?? "",
+      logo: json["logo"] ?? AppStrings.defaultLogo,
     );
+  }
+
+  static List<Company> fromJsonList(dynamic json) {
+    if (json is List) {
+      return json.map<Company>((e) => Company.fromJson(e)).toList();
+    }
+    return [];
   }
 
   @override
@@ -62,7 +78,7 @@ class Company {
     return name;
   }
 
-  List<dynamic> toJson() {
-    return [id, name];
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'name': name, 'logo': logo};
   }
 }

@@ -352,10 +352,6 @@ class $AssetsImagesGen {
   AssetGenImage get beyondManagerLogo1 =>
       const AssetGenImage('assets/images/Beyond-Manager-logo (1).png');
 
-  /// File path: assets/images/Beyond-Services-EN.jpg
-  AssetGenImage get beyondServicesEN =>
-      const AssetGenImage('assets/images/Beyond-Services-EN.jpg');
-
   /// File path: assets/images/Beyond-Services-EN1.jpg
   AssetGenImage get beyondServicesEN1 =>
       const AssetGenImage('assets/images/Beyond-Services-EN1.jpg');
@@ -442,7 +438,6 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     beyondManagerLogo1,
-    beyondServicesEN,
     beyondServicesEN1,
     bottomLogin,
     call2,

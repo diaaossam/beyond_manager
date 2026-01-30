@@ -1,8 +1,10 @@
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/core/utils/app_size.dart';
-import 'package:bond/widgets/main_widget/app_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../../core/utils/app_size.dart';
+import '../../../../../widgets/main_widget/app_text.dart';
 
 class ExpandedTitleDesign extends StatelessWidget {
   final String title;
@@ -11,13 +13,14 @@ class ExpandedTitleDesign extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isChangeSubTitleColor;
 
-  const ExpandedTitleDesign(
-      {super.key,
-      required this.title,
-      required this.subTitle,
-      required this.icon,
-      required this.onPressed,
-      required this.isChangeSubTitleColor});
+  const ExpandedTitleDesign({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.icon,
+    required this.onPressed,
+    required this.isChangeSubTitleColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +33,12 @@ class ExpandedTitleDesign extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
-                  shape: BoxShape.circle, color:  context.colorScheme.onPrimary),
+                shape: BoxShape.circle,
+                color: context.colorScheme.secondary,
+              ),
               child: SvgPicture.asset(icon),
             ),
-            SizedBox(
-              width: SizeConfig.screenWidth * .04,
-            ),
+            SizedBox(width: SizeConfig.screenWidth * .04),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,17 +47,16 @@ class ExpandedTitleDesign extends StatelessWidget {
                   AppText(
                     text: title,
                     fontWeight: FontWeight.bold,
-                    textSize: 14,
-                    color: Colors.black,
+                    textSize: 12,
                   ),
-                  SizedBox(
-                    height: SizeConfig.bodyHeight * .01,
-                  ),
+                  SizedBox(height: SizeConfig.bodyHeight * .01),
                   AppText(
-                    text:subTitle,
+                    text: subTitle,
                     fontWeight: FontWeight.w500,
                     textSize: 12,
-                    color:isChangeSubTitleColor ? Colors.blue : Colors.grey,
+                    color: isChangeSubTitleColor
+                        ? context.colorScheme.primary
+                        : context.colorScheme.shadow,
                   ),
                 ],
               ),
