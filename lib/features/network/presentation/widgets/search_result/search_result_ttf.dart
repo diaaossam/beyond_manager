@@ -2,7 +2,6 @@ import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/config/theme/theme_helper.dart';
 import 'package:bond/core/utils/app_assets.dart';
-import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/network/data/models/response/hospital_model.dart';
 import 'package:bond/features/network/data/models/response/search_params.dart';
 import 'package:bond/features/network/presentation/bloc/search_result/search_result_cubit.dart';
@@ -26,11 +25,12 @@ class SearchResultTff extends StatelessWidget {
     return BlocBuilder<SearchResultCubit, BaseState<List<HospitalModel>>>(
       builder: (context, state) {
         return TextFormField(
-          onChanged: (value) async {
-            if (value.isNotEmpty) {
-              SearchParamsModel paramsModel = searchParamsModel.copyWith(provider: value);
-              pagingController.refresh();
-            }
+          onChanged: (value) {
+            SearchParamsModel paramsModel = searchParamsModel.copyWith(
+              provider: value.isNotEmpty ? value : null,
+              pageNumber: 1,
+            );
+            context.read<SearchResultCubit>().updateSearchParams(paramsModel);
           },
           decoration: InputDecoration(
             hintText: context.localizations.searchByName,

@@ -16,13 +16,20 @@ class SearchResultCubit extends Cubit<BaseState<List<HospitalModel>>> {
 
   PagingController<int, HospitalModel>? pagingController;
   String totalCount = "0";
+  SearchParamsModel? _currentSearchParams;
 
   // ============================================================================
   // Initialization
   // ============================================================================
 
   void initPagingController({required SearchParamsModel searchParams}) {
+    _currentSearchParams = searchParams;
     pagingController = _buildPagingController(searchParams: searchParams);
+  }
+
+  void updateSearchParams(SearchParamsModel searchParams) {
+    _currentSearchParams = searchParams;
+    pagingController?.refresh();
   }
 
   PagingController<int, HospitalModel> _buildPagingController({
@@ -34,7 +41,7 @@ class SearchResultCubit extends Cubit<BaseState<List<HospitalModel>>> {
           state.lastPageIsEmpty ? null : state.nextIntPageKey,
       fetchPage: (pageKey) async {
         final newItems = await _searchForHospitals(
-          searchParams: searchParams.copyWith(pageNumber: pageKey),
+          searchParams: (_currentSearchParams ?? searchParams).copyWith(pageNumber: pageKey),
         );
         final isLastPage = newItems.length < _pageSize;
         if (isLastPage) {
