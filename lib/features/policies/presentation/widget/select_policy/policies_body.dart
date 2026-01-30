@@ -9,6 +9,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/enum/policy_status.dart';
 import '../../../../../widgets/no_item_design.dart';
+import 'policies_list_design.dart';
 import '../../../data/models/response/main_policy_model.dart';
 import '../../cubit/policies_cubit.dart';
 import '../select_policy/custom_policy_item.dart';
@@ -35,39 +36,12 @@ class PoliciesBody extends StatelessWidget {
                   selectedItem: cubit.currentStatus,
                 ),
               ),
-              SliverPadding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenWidth * .05,
-                ),
-                sliver: PagingListener<int, MainPolicyModel>(
-                  controller: cubit.pagingController,
-                  builder: (context, state, fetchNextPage) =>
-                      PagedSliverList<int, MainPolicyModel>(
-                        state: state,
-                        fetchNextPage: fetchNextPage,
-                        addAutomaticKeepAlives: true,
-                        builderDelegate:
-                            PagedChildBuilderDelegate<MainPolicyModel>(
-                              firstPageProgressIndicatorBuilder: (context) =>
-                                  const LoadingWidget(),
-                              firstPageErrorIndicatorBuilder: (context) =>
-                                  const AppFailureWidget(),
-                              noItemsFoundIndicatorBuilder: (context) =>
-                                  const EmptyWidgetDesign(),
-                              itemBuilder: (context, item, index) => Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: SizeConfig.bodyHeight * .01,
-                                ),
-                                child: CustomPolicyItem(
-                                  result: item,
-                                  callback: () => context.router.push(PolicyAccessSelectionRoute(model: item)),
-                                ),
-                              ),
-                            ),
-                      ),
-                ),
-              ),
-            ],
+              PolicyListDesign(
+                pagingController: cubit.pagingController,
+                onItemTap: (item) {
+                  context.router.push(PolicyAccessSelectionRoute(model: item));
+                },
+              )],
           ),
         );
       },

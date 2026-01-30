@@ -1,8 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import '../helper/context_helper.dart';
 import 'app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+
+  @override
+  GlobalKey<NavigatorState> get navigatorKey => NavigationService.navigatorKey;
+
   @override
   List<AutoRoute> get routes => [
     AutoRoute(page: SplashRoute.page, initial: true),
@@ -30,5 +36,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ReimbursementRoute.page),
     AutoRoute(page: OtherLineRoute.page),
     AutoRoute(page: InsuranceRoute.page),
+    AutoRoute(page: SickLeavePolicesRoute.page),
+    AutoRoute(page: SickLeaveServiceRoute.page),
+    AutoRoute(page: CreateSickLeaveRoute.page),
+    AutoRoute(page: MySickLeaveRoute.page),
+    AutoRoute(page: SickLeaveAnalyticsRoute.page),
+    AutoRoute(page: FeedbackRoute.page),
   ];
 }

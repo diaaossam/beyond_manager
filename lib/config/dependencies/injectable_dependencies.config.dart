@@ -44,6 +44,18 @@ import '../../features/auth/presentation/cubit/profile/profile_cubit.dart'
     as _i394;
 import '../../features/auth/presentation/cubit/request_demo/request_demo_cubit.dart'
     as _i769;
+import '../../features/car_service/data/datasources/car_service_remote_data_source.dart'
+    as _i881;
+import '../../features/car_service/data/repositories/car_service_repository_impl.dart'
+    as _i136;
+import '../../features/car_service/domain/repositories/car_service_repository.dart'
+    as _i41;
+import '../../features/car_service/domain/usecases/get_insurance_company_use_case.dart'
+    as _i1042;
+import '../../features/car_service/domain/usecases/get_service_centers_use_case.dart'
+    as _i831;
+import '../../features/car_service/presentation/cubit/car_service_cubit.dart'
+    as _i392;
 import '../../features/emergency/data/datasources/emergency_remote_data_source.dart'
     as _i281;
 import '../../features/emergency/data/repositories/emergency_repo_impl.dart'
@@ -52,6 +64,20 @@ import '../../features/emergency/presentation/cubit/create_emergency_cubit.dart'
     as _i1050;
 import '../../features/emergency/presentation/cubit/emergency_cubit.dart'
     as _i1041;
+import '../../features/network/data/datasources/network_remote_data_source.dart'
+    as _i98;
+import '../../features/network/data/repositories/network_repository.dart'
+    as _i950;
+import '../../features/network/domain/repositories/network_repository.dart'
+    as _i270;
+import '../../features/network/domain/usecases/get_all_tiers_use_case.dart'
+    as _i466;
+import '../../features/network/domain/usecases/get_all_tpa_use_case.dart'
+    as _i646;
+import '../../features/network/domain/usecases/search_for_tpa_use_case.dart'
+    as _i1002;
+import '../../features/network/presentation/bloc/search_result/search_result_cubit.dart'
+    as _i114;
 import '../../features/other_line/data/datasources/other_line_remote_data_source.dart'
     as _i932;
 import '../../features/other_line/data/repositories/other_line_repository_impl.dart'
@@ -78,6 +104,34 @@ import '../../features/policies/presentation/cubit/reimbursement/reimbursement_c
     as _i892;
 import '../../features/policies/presentation/cubit/utilization/utilization_bloc.dart'
     as _i797;
+import '../../features/reservation/data/datasources/reservation_remote_data_source.dart'
+    as _i86;
+import '../../features/reservation/data/repositories/reservation_repository_impl.dart'
+    as _i264;
+import '../../features/reservation/domain/repositories/reservation_repository.dart'
+    as _i588;
+import '../../features/reservation/domain/usecases/book_doctor_use_case.dart'
+    as _i25;
+import '../../features/reservation/domain/usecases/get_all_branches_use_case.dart'
+    as _i607;
+import '../../features/reservation/domain/usecases/get_all_hospitals_use_case.dart'
+    as _i332;
+import '../../features/reservation/domain/usecases/get_all_specialty_use_case.dart'
+    as _i511;
+import '../../features/reservation/domain/usecases/get_my_reservation_use_case.dart'
+    as _i137;
+import '../../features/reservation/domain/usecases/get_time_slot_use_case.dart'
+    as _i291;
+import '../../features/reservation/domain/usecases/search_for_doctors_use_case.dart'
+    as _i282;
+import '../../features/reservation/presentation/cubit/booking/booking_cubit.dart'
+    as _i268;
+import '../../features/reservation/presentation/cubit/doctor_result/doctor_result_cubit.dart'
+    as _i438;
+import '../../features/reservation/presentation/cubit/new_reservation/new_reservation_cubit.dart'
+    as _i574;
+import '../../features/reservation/presentation/cubit/reservation_cubit.dart'
+    as _i927;
 import '../../features/settings/data/datasources/settings_remote_data_source.dart'
     as _i188;
 import '../../features/settings/data/repositories/settings_repo_impl.dart'
@@ -85,6 +139,20 @@ import '../../features/settings/data/repositories/settings_repo_impl.dart'
 import '../../features/settings/presentation/cubit/settings_cubit.dart'
     as _i792;
 import '../../features/settings/presentation/cubit/terms_cubit.dart' as _i562;
+import '../../features/sick_leave/data/datasources/sick_leave_remote_data_source.dart'
+    as _i190;
+import '../../features/sick_leave/data/repositories/sick_leave_repo_impl.dart'
+    as _i1072;
+import '../../features/sick_leave/presentation/cubit/create_sick_leave/create_sick_leave_cubit.dart'
+    as _i828;
+import '../../features/sick_leave/presentation/cubit/feedback/feedback_cubit.dart'
+    as _i92;
+import '../../features/sick_leave/presentation/cubit/my_sick_leave/my_sick_leave_cubit.dart'
+    as _i163;
+import '../../features/sick_leave/presentation/cubit/sick_leave_active_list/sl_active_list_cubit.dart'
+    as _i119;
+import '../../features/sick_leave/presentation/cubit/sick_leave_analytics/sick_leave_analytics_cubit.dart'
+    as _i191;
 import '../../features/start/data/datasources/init_remote_data_source.dart'
     as _i95;
 import '../../features/start/data/repositories/init_repo_impl.dart' as _i941;
@@ -149,6 +217,11 @@ extension GetItInjectableX on _i174.GetIt {
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
     );
+    gh.lazySingleton<_i98.NetworkRemoteDataSource>(
+      () => _i98.NetworkRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
     gh.factory<_i107.AuthRemoteDataSource>(
       () => _i107.AuthRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
@@ -160,6 +233,30 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i60.PoliciesRemoteDataSource>(
       () => _i60.PoliciesRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
+    gh.lazySingleton<_i881.CarServiceRemoteDataSource>(
+      () => _i881.CarServiceRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
+    gh.lazySingleton<_i270.NetworkRepository>(
+      () => _i950.NetworkRepositoryImpl(
+        networkRemoteDataSource: gh<_i98.NetworkRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i466.GetAllTiersUseCase>(
+      () => _i466.GetAllTiersUseCase(gh<_i270.NetworkRepository>()),
+    );
+    gh.factory<_i646.GetAllTpaUseCase>(
+      () => _i646.GetAllTpaUseCase(gh<_i270.NetworkRepository>()),
+    );
+    gh.factory<_i1002.SearchForTpaUseCase>(
+      () => _i1002.SearchForTpaUseCase(gh<_i270.NetworkRepository>()),
+    );
+    gh.lazySingleton<_i41.CarServiceRepository>(
+      () => _i136.CarServiceRepositoryImpl(
+        carServiceRemoteDataSource: gh<_i881.CarServiceRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i214.OtherLineRepositoryImpl>(
@@ -185,9 +282,19 @@ extension GetItInjectableX on _i174.GetIt {
         authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i86.ReservationRemoteDataSource>(
+      () => _i86.ReservationRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
     gh.lazySingleton<_i998.PoliciesRepositoryImpl>(
       () => _i998.PoliciesRepositoryImpl(
         policiesRemoteDataSource: gh<_i60.PoliciesRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i190.SickLeaveRemoteDataSource>(
+      () => _i190.SickLeaveRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
       ),
     );
     gh.lazySingleton<_i941.InitRepo>(
@@ -225,16 +332,45 @@ extension GetItInjectableX on _i174.GetIt {
         settingsRemoteDataSource: gh<_i188.SettingsRemoteDataSource>(),
       ),
     );
+    gh.factory<_i114.SearchResultCubit>(
+      () => _i114.SearchResultCubit(gh<_i1002.SearchForTpaUseCase>()),
+    );
     gh.lazySingleton<_i1008.EmergencyRepositoryImpl>(
       () => _i1008.EmergencyRepositoryImpl(
         emergencyRemoteDataSource: gh<_i281.EmergencyRemoteDataSource>(),
       ),
+    );
+    gh.lazySingleton<_i1072.SickLeaveRepositoryImpl>(
+      () => _i1072.SickLeaveRepositoryImpl(
+        sickLeaveRemoteDataSource: gh<_i190.SickLeaveRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i828.CreateSickLeaveCubit>(
+      () => _i828.CreateSickLeaveCubit(gh<_i1072.SickLeaveRepositoryImpl>()),
+    );
+    gh.factory<_i92.FeedbackCubit>(
+      () => _i92.FeedbackCubit(gh<_i1072.SickLeaveRepositoryImpl>()),
+    );
+    gh.factory<_i163.MySickLeaveCubit>(
+      () => _i163.MySickLeaveCubit(gh<_i1072.SickLeaveRepositoryImpl>()),
+    );
+    gh.factory<_i119.SlActiveListCubit>(
+      () => _i119.SlActiveListCubit(gh<_i1072.SickLeaveRepositoryImpl>()),
+    );
+    gh.factory<_i191.SickLeaveAnalyticsCubit>(
+      () => _i191.SickLeaveAnalyticsCubit(gh<_i1072.SickLeaveRepositoryImpl>()),
     );
     gh.factory<_i394.ProfileCubit>(
       () => _i394.ProfileCubit(gh<_i662.AuthRepository>()),
     );
     gh.factory<_i769.RequestDemoCubit>(
       () => _i769.RequestDemoCubit(gh<_i662.AuthRepository>()),
+    );
+    gh.factory<_i1042.GetInsuranceCompanyUseCase>(
+      () => _i1042.GetInsuranceCompanyUseCase(gh<_i41.CarServiceRepository>()),
+    );
+    gh.factory<_i831.GetServiceCentersUseCase>(
+      () => _i831.GetServiceCentersUseCase(gh<_i41.CarServiceRepository>()),
     );
     gh.factory<_i153.LoginCubit>(
       () => _i153.LoginCubit(gh<_i662.AuthRepository>()),
@@ -250,6 +386,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i859.OtherLineCubit(gh<_i214.OtherLineRepositoryImpl>()),
     );
     gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
+    gh.lazySingleton<_i588.ReservationRepository>(
+      () => _i264.ReservationRepositoryImpl(
+        remoteDataSource: gh<_i86.ReservationRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i792.SettingsCubit>(
       () => _i792.SettingsCubit(gh<_i91.SettingsRepositoryImpl>()),
     );
@@ -261,6 +402,50 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1041.EmergencyCubit>(
       () => _i1041.EmergencyCubit(gh<_i1008.EmergencyRepositoryImpl>()),
+    );
+    gh.factory<_i392.CarServiceCubit>(
+      () => _i392.CarServiceCubit(
+        gh<_i1042.GetInsuranceCompanyUseCase>(),
+        gh<_i831.GetServiceCentersUseCase>(),
+      ),
+    );
+    gh.factory<_i25.BookDoctorUseCase>(
+      () => _i25.BookDoctorUseCase(gh<_i588.ReservationRepository>()),
+    );
+    gh.factory<_i607.GetAllBranchesUseCase>(
+      () => _i607.GetAllBranchesUseCase(gh<_i588.ReservationRepository>()),
+    );
+    gh.factory<_i332.GetAllHospitalsUseCase>(
+      () => _i332.GetAllHospitalsUseCase(gh<_i588.ReservationRepository>()),
+    );
+    gh.factory<_i511.GetAllSpecialityUseCase>(
+      () => _i511.GetAllSpecialityUseCase(gh<_i588.ReservationRepository>()),
+    );
+    gh.factory<_i137.GetMyReservationUseCase>(
+      () => _i137.GetMyReservationUseCase(gh<_i588.ReservationRepository>()),
+    );
+    gh.factory<_i291.GetTimeSlotUseCase>(
+      () => _i291.GetTimeSlotUseCase(gh<_i588.ReservationRepository>()),
+    );
+    gh.factory<_i282.SearchForDoctorsUseCase>(
+      () => _i282.SearchForDoctorsUseCase(gh<_i588.ReservationRepository>()),
+    );
+    gh.factory<_i927.ReservationCubit>(
+      () => _i927.ReservationCubit(gh<_i137.GetMyReservationUseCase>()),
+    );
+    gh.factory<_i574.NewReservationCubit>(
+      () => _i574.NewReservationCubit(
+        gh<_i332.GetAllHospitalsUseCase>(),
+        gh<_i607.GetAllBranchesUseCase>(),
+        gh<_i511.GetAllSpecialityUseCase>(),
+        gh<_i291.GetTimeSlotUseCase>(),
+      ),
+    );
+    gh.factory<_i268.BookingCubit>(
+      () => _i268.BookingCubit(gh<_i25.BookDoctorUseCase>()),
+    );
+    gh.factory<_i438.DoctorResultCubit>(
+      () => _i438.DoctorResultCubit(gh<_i291.GetTimeSlotUseCase>()),
     );
     return this;
   }

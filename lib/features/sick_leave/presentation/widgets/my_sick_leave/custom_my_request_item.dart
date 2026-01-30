@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
+import 'package:bond/config/theme/color_scheme.dart';
 import 'package:bond/core/enum/status_enum.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/sick_leave/data/models/my_sick_leave.dart';
-import 'package:bond/features/sick_leave/presentation/pages/feedback_screen.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
@@ -16,23 +19,16 @@ class CustomMyRequestItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => FeedbackScreen(
-            myRequestsModel: myRequestsModel,
-          ),
-        ),
-      ),
+      onTap: () =>context.router.push(FeedbackRoute(myRequestsModel: myRequestsModel)),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth * .03),
         margin: EdgeInsets.symmetric(
             horizontal: SizeConfig.screenWidth * .04,
             vertical: SizeConfig.bodyHeight * .015),
         decoration: BoxDecoration(
-            color: const Color(0xffFEFAF8),
+            color: context.colorScheme.secondary,
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: const Color(0xffF4F4F4))),
+            border: Border.all(color: context.colorScheme.outline)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -44,7 +40,7 @@ class CustomMyRequestItem extends StatelessWidget {
               children: [
                 AppText(
                     text: myRequestsModel.insuredMemberName ?? "",
-                    textSize: 14,
+                    textSize: 12,
                     maxLines: 2,
                     fontWeight: FontWeight.bold),
                 const Spacer(),
@@ -62,7 +58,7 @@ class CustomMyRequestItem extends StatelessWidget {
                     children: [
                       AppText(
                         text: myRequestsModel.state!.name,
-                        textSize: 12,
+                        textSize: 11,
                         fontWeight: FontWeight.w500,
                         color: myRequestsModel.state == StatusEnum.pending
                             ? Colors.black
@@ -79,11 +75,11 @@ class CustomMyRequestItem extends StatelessWidget {
                 children: [
                   AppText(
                       text: "${context.localizations.insuranceID}: ",
-                      textSize: 14),
+                      textSize: 12),
                   AppText(
                       text: myRequestsModel.insuredMemberInsuranceId ?? "",
-                      textSize: 14,
-                      fontWeight: FontWeight.bold),
+                      textSize: 12,
+                      fontWeight: FontWeight.w600),
                 ],
               ),
             },
@@ -96,7 +92,7 @@ class CustomMyRequestItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    AppText(text: "${myRequestsModel.number_of_days_approved} Days Approved ",fontWeight: FontWeight.bold,color: Colors.green,),
+                    AppText(text: "${myRequestsModel.number_of_days_approved} Days Approved ",fontWeight: FontWeight.w600,color: Colors.green,),
                     SizedBox(height: SizeConfig.bodyHeight*.01,),
                     AppText(text: "From: ${myRequestsModel.date_of_injury} - To: ${myRequestsModel.return_date}",fontWeight: FontWeight.bold,color: Colors.green,)
                   ],
@@ -106,7 +102,7 @@ class CustomMyRequestItem extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
                 decoration: BoxDecoration(color: Colors.red.withValues(alpha: 0.3),borderRadius: BorderRadius.circular(10)),
-                child: const AppText(text: "Not Approved",fontWeight: FontWeight.bold,color: Colors.red,),
+                child: const AppText(text: "Not Approved",fontWeight: FontWeight.w600,color: Colors.red,),
               ),
             SizedBox(height: SizeConfig.bodyHeight * .025),
             Row(
@@ -116,7 +112,7 @@ class CustomMyRequestItem extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                       vertical: SizeConfig.bodyHeight * .01),
                   decoration: BoxDecoration(
-                    color: const Color(0xfffceae5),
+                    color: context.colorScheme.onPrimary,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Row(
@@ -125,7 +121,7 @@ class CustomMyRequestItem extends StatelessWidget {
                     children: [
                       AppText(
                           text: context.localizations.viewFeedback,
-                          textSize: 14),
+                          textSize: 11),
                       SizedBox(width: SizeConfig.screenWidth * .02),
                       AppImage.asset(Assets.icons.arrowForward),
                     ],
@@ -140,11 +136,11 @@ class CustomMyRequestItem extends StatelessWidget {
                       children: [
                         AppText(
                             text: "${context.localizations.requestDate}: ",
-                            textSize: 12),
+                            textSize: 10),
                         AppText(
                             text: myRequestsModel.date.toString(),
-                            textSize: 12,
-                            fontWeight: FontWeight.bold),
+                            textSize: 10,
+                            fontWeight: FontWeight.w600),
                       ],
                     ),
                     SizedBox(
@@ -152,19 +148,19 @@ class CustomMyRequestItem extends StatelessWidget {
                     ),
                     if (myRequestsModel.state == StatusEnum.pending)
                       const AppText(
-                          text: "Estimated response: 6-24 hours", textSize: 12)
+                          text: "Estimated response: 6-24 hours", textSize: 11)
                     else if (myRequestsModel.state == StatusEnum.processing)
-                      const AppText(text: "Under medical review", textSize: 12)
+                      const AppText(text: "Under medical review", textSize: 11)
                     else
                       if(myRequestsModel.change_state_date != null && myRequestsModel.change_state_date!.isNotEmpty)
                       Row(
                         children: [
                           AppText(
                               text: "${context.localizations.completed}: ",
-                              textSize: 14),
+                              textSize: 11),
                           AppText(
                               text: myRequestsModel.change_state_date.toString(),
-                              textSize: 12,
+                              textSize: 11,
                               fontWeight: FontWeight.w500),
                         ],
                       ),
@@ -179,12 +175,12 @@ class CustomMyRequestItem extends StatelessWidget {
     );
   }
 
-  _getColor(StatusEnum? state) {
+  Color _getColor(StatusEnum? state) {
     switch (state) {
       case null:
         return Colors.red;
       case StatusEnum.done:
-        return const Color(0xff14c286);
+        return AppColorScheme.light.tertiary;
       case StatusEnum.pending:
         return Colors.amberAccent;
       case StatusEnum.processing:

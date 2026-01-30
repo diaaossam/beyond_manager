@@ -27,21 +27,27 @@ class ReimbursementResponseModel {
         result?.add(ReimbursementModel.fromJson(v));
       });
     }
+    if (json['status'] != null) {
+      status = [];
+      json['status'].forEach((v) {
+        status?.add(GenericModel.fromJson(v));
+      });
+    }
   }
 
   ReimbursementResponseModel copyWith({
-    String? tutorialVideo,
-    String? lastUpdatedDate,
-    int? totalCount,
-    List<ReimbursementModel>? result,
-    List<GenericModel>? status,
+    Object? tutorialVideo = const _Undefined(),
+    Object? lastUpdatedDate = const _Undefined(),
+    Object? totalCount = const _Undefined(),
+    Object? result = const _Undefined(),
+    Object? status = const _Undefined(),
   }) {
     return ReimbursementResponseModel(
-      tutorialVideo: tutorialVideo ?? this.tutorialVideo,
-      lastUpdatedDate: lastUpdatedDate ?? this.lastUpdatedDate,
-      totalCount: totalCount ?? this.totalCount,
-      result: result ?? this.result,
-      status: status ?? this.status,
+      tutorialVideo: tutorialVideo is _Undefined ? this.tutorialVideo : tutorialVideo as String?,
+      lastUpdatedDate: lastUpdatedDate is _Undefined ? this.lastUpdatedDate : lastUpdatedDate as String?,
+      totalCount: totalCount is _Undefined ? this.totalCount : totalCount as int?,
+      result: result is _Undefined ? this.result : result as List<ReimbursementModel>?,
+      status: status is _Undefined ? this.status : status as List<GenericModel>?,
     );
   }
 }
@@ -134,4 +140,9 @@ class ReimbursementModel {
   String? tutorialVideo;
   String? statusInfo;
   String? reimbursement_copy_type;
+}
+
+/// Helper class to distinguish between "not provided" and "null" in copyWith
+class _Undefined {
+  const _Undefined();
 }

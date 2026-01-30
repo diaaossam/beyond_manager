@@ -13,19 +13,7 @@ class ReimbursementCubit extends Cubit<BaseState<ReimbursementResponseModel>>
   final PoliciesRepositoryImpl policiesRepositoryImpl;
 
   ReimbursementCubit(this.policiesRepositoryImpl)
-    : super(BaseState(data: ReimbursementResponseModel())) {
-    getReimbursementStatus();
-  }
-
-  Future<void> getReimbursementStatus() async {
-    handleAsync(
-      identifier: "getStatus",
-      call: () => policiesRepositoryImpl.getReimursementStatus(),
-      onSuccess: (data) {
-        return state.data!.copyWith(status: data);
-      },
-    );
-  }
+    : super(BaseState(data: ReimbursementResponseModel()));
 
   late final PagingController<int, ReimbursementModel> pagingController;
   ReimbursementFilterModel? reimbursementFilterModel;
@@ -38,9 +26,6 @@ class ReimbursementCubit extends Cubit<BaseState<ReimbursementResponseModel>>
       getNextPageKey: (state) =>
           state.lastPageIsEmpty ? null : state.nextIntPageKey,
       fetchPage: (pageKey) async {
-        if (reimbursementFilterModel == null) {
-          throw Exception('ReimbursementFilterModel is not initialized');
-        }
         final pageSize = reimbursementFilterModel!.pageSize ?? 8;
         final response = await policiesRepositoryImpl.getReimursement(
           params: reimbursementFilterModel!.copyWith(pageKey: pageKey),
@@ -49,7 +34,9 @@ class ReimbursementCubit extends Cubit<BaseState<ReimbursementResponseModel>>
           throw Exception();
         }, (data) => data);
         final newItems = newModel.result ?? [];
+
         final oldModel = state.data;
+
         final combinedItems = [...?oldModel?.result, ...newItems];
         final updatedModel = newModel.copyWith(result: combinedItems);
         emit(state.copyWith(status: BaseStatus.success, data: updatedModel));
@@ -104,6 +91,4 @@ class ReimbursementCubit extends Cubit<BaseState<ReimbursementResponseModel>>
     reimbursementFilterModel = params;
     pagingController.refresh();
   }
-
-
 }

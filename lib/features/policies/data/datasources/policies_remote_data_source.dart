@@ -2,7 +2,6 @@ import 'package:bond/core/services/api/dio_consumer.dart';
 import 'package:bond/core/services/api/end_points.dart';
 import 'package:bond/core/utils/app_strings.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import '../../../../core/global_models/generic_model.dart';
 import '../models/request/reimbursement_filter_model.dart';
 import '../models/response/active_list_model.dart';
@@ -35,8 +34,6 @@ abstract class PoliciesRemoteDataSource {
   Future<PolicyDetails> getPolicyDetails({required num policyId});
 
   Future<PolicyAccessModel> getPolicyAccess({required int policyId});
-
-  Future<List<GenericModel>> getReimursementStatus();
 
   Future<ReimbursementResponseModel> getReimursement({
     required ReimbursementFilterModel params,
@@ -116,7 +113,6 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
         .execute();
   }
 
-  @override
   Future<List<GenericModel>> getReimursementStatus() async {
     return await dioConsumer
         .get(EndPoints.reimbursemtStatus)
@@ -131,7 +127,17 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
     return await dioConsumer
         .get(EndPoints.reimbursemt)
         .params(params.toQueryParams())
-        .factory((json) => ReimbursementResponseModel.fromJson(json))
+        .factory((json) async {
+          if (params.pageKey == 1) {
+            final status = await getReimursementStatus();
+            final data = (ReimbursementResponseModel.fromJson(
+              json,
+            )).copyWith(status: status);
+            return data;
+          } else {
+            return ReimbursementResponseModel.fromJson(json);
+          }
+        })
         .execute();
   }
 }

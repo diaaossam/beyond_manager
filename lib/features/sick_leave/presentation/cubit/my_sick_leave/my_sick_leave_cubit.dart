@@ -26,8 +26,6 @@ class MySickLeaveCubit extends Cubit<BaseState<int>> {
 
   Future<void> initPagination({required int policyId}) async {
     currentPolicyId = policyId;
-
-    // Initialize pending controller
     pendingPagingController = PagingController<int, MySickLeave>(
       getNextPageKey: (state) =>
           state.lastPageIsEmpty ? null : state.nextIntPageKey,
@@ -36,8 +34,6 @@ class MySickLeaveCubit extends Cubit<BaseState<int>> {
         status: "pending",
       ),
     );
-
-    // Initialize processing controller
     processingPagingController = PagingController<int, MySickLeave>(
       getNextPageKey: (state) =>
           state.lastPageIsEmpty ? null : state.nextIntPageKey,
@@ -46,8 +42,6 @@ class MySickLeaveCubit extends Cubit<BaseState<int>> {
         status: "processing",
       ),
     );
-
-    // Initialize done controller
     donePagingController = PagingController<int, MySickLeave>(
       getNextPageKey: (state) =>
           state.lastPageIsEmpty ? null : state.nextIntPageKey,
@@ -65,7 +59,6 @@ class MySickLeaveCubit extends Cubit<BaseState<int>> {
     if (currentPolicyId == null) {
       throw Exception('Policy ID is not set');
     }
-
     final response = await sickLeaveRepositoryImpl.getMySickLeave(
       page: pageKey,
       status: status,
@@ -73,43 +66,10 @@ class MySickLeaveCubit extends Cubit<BaseState<int>> {
     );
 
     return response.fold(
-      (failure) {
-        throw Exception(failure.message);
-      },
+      (failure) => [],
       (newItems) => newItems,
     );
   }
-
-  void refreshAll() {
-    pendingPagingController.refresh();
-    processingPagingController.refresh();
-    donePagingController.refresh();
-  }
-
-  Future<void> fetchPendingPage({
-    required int pageKey,
-    required int policyId,
-  }) async {
-    currentPolicyId = policyId;
-    pendingPagingController.refresh();
-  }
-
-  Future<void> fetchDonePage({
-    required int pageKey,
-    required int policyId,
-  }) async {
-    currentPolicyId = policyId;
-    donePagingController.refresh();
-  }
-
-  Future<void> fetchProcessingPage({
-    required int pageKey,
-    required int policyId,
-  }) async {
-    currentPolicyId = policyId;
-    processingPagingController.refresh();
-  }
-
   @override
   Future<void> close() {
     pendingPagingController.dispose();

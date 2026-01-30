@@ -9,42 +9,37 @@ import 'package:injectable/injectable.dart';
 part 'create_sick_leave_state.dart';
 
 @injectable
-class CreateSickLeaveCubit extends Cubit<BaseState<String>>
-    with AsyncHandler<String> {
+class CreateSickLeaveCubit extends Cubit<BaseState<List<File>>>
+    with AsyncHandler<List<File>> {
   final SickLeaveRepositoryImpl sickLeaveRepositoryImpl;
 
   CreateSickLeaveCubit(this.sickLeaveRepositoryImpl) : super(BaseState());
 
-  List<File> listFiles = [];
-
+  String ? msg;
   Future<void> createNewSickLeave({
     required SickLeaveParams sickLeaveParams,
   }) async {
     await handleAsync(
       call: () => sickLeaveRepositoryImpl.createNewSickLeave(
         sickLeaveParams: sickLeaveParams,
-        files: listFiles,
+        files: state.data ?? [],
       ),
-      onSuccess: (data) {
-        listFiles.clear();
-        return data;
-      },
+      onSuccess: (data) => [],
       identifier: 'create_sick_leave',
     );
   }
 
   void updateFiles({required List<File> files}) {
-    listFiles = files;
-    emit(state.copyWith());
+    emit(BaseState(status: BaseStatus.success, data: files));
   }
 
   void removeFileFromList({required File file}) {
-    listFiles.removeWhere((element) => element.path == file.path);
-    emit(state.copyWith());
+    state.data?.removeWhere((element) => element.path == file.path);
+    emit(BaseState(status: BaseStatus.success, data: state.data));
   }
 
   void clearFiles() {
-    listFiles.clear();
-    emit(state.copyWith());
+    state.data?.clear();
+    emit(BaseState(status: BaseStatus.success, data: state.data));
   }
 }

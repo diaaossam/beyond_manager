@@ -10,18 +10,18 @@ import '../../policies_helper.dart';
 
 class CustomPolicyItem extends StatelessWidget {
   final MainPolicyModel result;
-  final VoidCallback callback;
+  final Function(MainPolicyModel) onItemTap;
 
   const CustomPolicyItem({
     super.key,
     required this.result,
-    required this.callback,
+   required this.onItemTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: callback,
+      onTap: () => onItemTap.call(result),
       child: FadeInLeft(
         child: Container(
           padding: EdgeInsets.symmetric(

@@ -241,6 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "demographicsOverview": MessageLookupByLibrary.simpleMessage(
       "Demographics Overview",
     ),
+    "dental": MessageLookupByLibrary.simpleMessage("Dental"),
     "description": MessageLookupByLibrary.simpleMessage("Description"),
     "description1": MessageLookupByLibrary.simpleMessage(
       "responsible for developing and implementing HR strategies and initiatives aligned with the overall business strategy, bridging management and employee relations, managing the recruitment and selection process, and reporting directly to the CEO.",
@@ -256,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "doctorValidation": MessageLookupByLibrary.simpleMessage(
       "Doctor Gender is required",
     ),
+    "doctor_visit": MessageLookupByLibrary.simpleMessage("Doctor Visit"),
     "done": MessageLookupByLibrary.simpleMessage("Done"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Dont have account?",
@@ -274,6 +276,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailAddressValidation": MessageLookupByLibrary.simpleMessage(
       "Email address is required",
     ),
+    "emergency": MessageLookupByLibrary.simpleMessage("Emergency"),
     "emergencyCase": MessageLookupByLibrary.simpleMessage("Emergency case"),
     "emergencyNoItem": MessageLookupByLibrary.simpleMessage(
       "There are no pending or old requests, please create a new request below",
@@ -379,6 +382,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Individual Medical Insurance",
     ),
     "information": MessageLookupByLibrary.simpleMessage("Information"),
+    "inpatient": MessageLookupByLibrary.simpleMessage("Inpatient"),
     "inquiry": MessageLookupByLibrary.simpleMessage("Inquiry"),
     "insuranceCompany": MessageLookupByLibrary.simpleMessage(
       "Insurance Company",
@@ -431,6 +435,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "item": MessageLookupByLibrary.simpleMessage("Item"),
     "jobDesciprtion": MessageLookupByLibrary.simpleMessage("job Description"),
     "jobTitle": MessageLookupByLibrary.simpleMessage("Job Title"),
+    "lab": MessageLookupByLibrary.simpleMessage("Laboratory"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "languageHint": MessageLookupByLibrary.simpleMessage(
       "Choose your preferred app language",
@@ -459,8 +464,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Are you sure you want to log out?",
     ),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
+    "maternity": MessageLookupByLibrary.simpleMessage("Maternity"),
     "medical": MessageLookupByLibrary.simpleMessage("Medical"),
     "medicalNetwork": MessageLookupByLibrary.simpleMessage("Medical Network"),
+    "medication": MessageLookupByLibrary.simpleMessage("Medication"),
     "memberId": MessageLookupByLibrary.simpleMessage("Member Id"),
     "memberStatistics": MessageLookupByLibrary.simpleMessage(
       "Member Statistics",
@@ -532,6 +539,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "offline": MessageLookupByLibrary.simpleMessage("Offline"),
     "ok": MessageLookupByLibrary.simpleMessage("Ok"),
     "online": MessageLookupByLibrary.simpleMessage("Online"),
+    "optical": MessageLookupByLibrary.simpleMessage("Optical"),
     "optional": MessageLookupByLibrary.simpleMessage("Optional"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "otherLine1": MessageLookupByLibrary.simpleMessage(
@@ -575,6 +583,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "phoneValidation1": MessageLookupByLibrary.simpleMessage(
       "Please enter valid phone number",
+    ),
+    "physical_therapy": MessageLookupByLibrary.simpleMessage(
+      "Physical Therapy",
     ),
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
@@ -678,6 +689,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "resetDetails": MessageLookupByLibrary.simpleMessage("Reset Details"),
     "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
     "riskCarrier": MessageLookupByLibrary.simpleMessage("Risk Carrier"),
+    "scan": MessageLookupByLibrary.simpleMessage("Scan"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "searchByName": MessageLookupByLibrary.simpleMessage("Search by name"),
     "searchForDoctor": MessageLookupByLibrary.simpleMessage(
@@ -729,6 +741,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "showAllResult": MessageLookupByLibrary.simpleMessage("Show All Result"),
     "showDetails": MessageLookupByLibrary.simpleMessage("Show details"),
     "showResult": MessageLookupByLibrary.simpleMessage("Show Result"),
+    "sickLeaveCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Sick Leave Created Successfully",
+    ),
     "sickLeaveService": MessageLookupByLibrary.simpleMessage(
       "Sick Leave\nService",
     ),

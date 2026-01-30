@@ -38,9 +38,7 @@ class MyApp extends StatelessWidget {
                       left: false,
                       right: false,
                       top: false,
-                      child: InternetWrapper(
-                        child: child!,
-                      ),
+                      child: InternetWrapper(child: child!),
                     );
                   },
                   debugShowCheckedModeBanner: false,
@@ -55,7 +53,7 @@ class MyApp extends StatelessWidget {
                     GlobalCupertinoLocalizations.delegate,
                   ],
                   supportedLocales: S.delegate.supportedLocales,
-                  scaffoldMessengerKey: NavigationService.navigatorKey,
+                  scaffoldMessengerKey: NavigationService.scaffoldMessengerKey,
                 ),
               );
             },

@@ -33,9 +33,7 @@ abstract class SickLeaveRemoteDataSource {
     int? attachmentId,
   });
 
-  Future<SickLeaveAnalytics> getSickLeaveAnalytics({
-    required int policyId,
-  });
+  Future<SickLeaveAnalytics> getSickLeaveAnalytics({required int policyId});
 }
 
 @Injectable(as: SickLeaveRemoteDataSource)
@@ -65,34 +63,20 @@ class SickLeaveRemoteDataSourceImpl implements SickLeaveRemoteDataSource {
     required SickLeaveParams sickLeaveParams,
     required List<File> files,
   }) async {
-    final formData = FormData();
+    Map<String, dynamic> map = {};
+    map.addAll(sickLeaveParams.toJson());
+    map['insurance_id'] = sickLeaveParams.insuredMemberId;
 
-    // Add files to form data
-    for (var file in files) {
-      formData.files.add(
-        MapEntry('attachment', await MultipartFile.fromFile(file.path)),
-      );
+    for (var element in files) {
+      map
+          .putIfAbsent('attachment', () => [])
+          .add(await MultipartFile.fromFile(element.path));
     }
-
-    // Add other parameters
-    formData.fields.addAll([
-      MapEntry('policy_id', sickLeaveParams.policyId.toString()),
-      MapEntry('insurance_id', sickLeaveParams.insuredMemberId.toString()),
-      MapEntry('diagnosis', sickLeaveParams.diagnosis ?? ''),
-      MapEntry('diagnosis_code', sickLeaveParams.diagnosisCode ?? ''),
-      MapEntry('number_of_days', sickLeaveParams.numberOfDays.toString()),
-      MapEntry('date_of_injury', sickLeaveParams.dateOfInjury ?? ''),
-      MapEntry('return_date', sickLeaveParams.returnDate ?? ''),
-      if (sickLeaveParams.other != null)
-        MapEntry('other', sickLeaveParams.other!),
-    ]);
-
-    final response = await dioConsumer
+    return await dioConsumer
         .post(EndPoints.createSickLeave)
-        .body(formData)
-        .factory((json) => json['message'] as String)
+        .body(FormData.fromMap(map))
+        .factory((json) => json['result']['message'])
         .execute();
-    return response;
   }
 
   @override
@@ -135,10 +119,7 @@ class SickLeaveRemoteDataSourceImpl implements SickLeaveRemoteDataSource {
     } else if (attachmentId != null) {
       await dioConsumer
           .put(EndPoints.updateMySickLeave)
-          .params({
-            "id": sickLeaveId,
-            "delete_attachments_ids": attachmentId,
-          })
+          .params({"id": sickLeaveId, "delete_attachments_ids": attachmentId})
           .factory((json) => json)
           .execute();
       return {"message": "Files deleted successfully."};

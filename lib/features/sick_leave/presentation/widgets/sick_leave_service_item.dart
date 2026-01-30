@@ -52,8 +52,8 @@ class SickLeaveServiceItem extends StatelessWidget {
               SizedBox(width: SizeConfig.screenWidth * .02),
               AppText(
                 text: title,
-                fontWeight: FontWeight.bold,
-                textSize: 14,
+                fontWeight: FontWeight.w600,
+                textSize: 12,
               ),
               const Spacer(),
               Icon(

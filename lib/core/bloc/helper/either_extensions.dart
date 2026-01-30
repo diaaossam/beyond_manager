@@ -21,11 +21,11 @@ mixin AsyncHandler<T> on Cubit<BaseState<T>> {
         final context= NavigationService.navigatorKey.currentContext;
         Fluttertoast.showToast(msg: failure.message.toString(),backgroundColor:Colors.red ,gravity: ToastGravity.TOP);
 
-         if(context != null){
+        /* if(context != null){
           AppConstant.showCustomSnakeBar(context, failure.message.toString(), false);
         }else{
            Fluttertoast.showToast(msg: failure.message.toString(),backgroundColor:Colors.red );
-        }
+        }*/
         emit(
           state.copyWith(status: BaseStatus.failure, identifier: identifier),
         );

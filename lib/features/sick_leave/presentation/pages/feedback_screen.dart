@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/annotations.dart';
 import 'package:bond/config/dependencies/injectable_dependencies.dart';
+import 'package:bond/config/theme/color_scheme.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/enum/status_enum.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
@@ -44,14 +45,11 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       create: (context) => sl<FeedbackCubit>(),
       child: BlocConsumer<FeedbackCubit, BaseState<Map<String, dynamic>>>(
         listener: (context, state) {
-          // Handle loading
           if (state.isLoading) {
             setState(() => _isLoading = true);
           } else {
             setState(() => _isLoading = false);
           }
-
-          // Handle success
           if (state.isSuccess) {
             final data = state.data;
             if (data != null) {
@@ -60,8 +58,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   if (widget.myRequestsModel.clientAttachments != null) {
                     if (widget.myRequestsModel.clientAttachments!.isNotEmpty) {
                       widget.myRequestsModel.clientAttachments!.removeWhere(
-                          (element) =>
-                              element.id!.toInt() == data['id']!.toInt());
+                          (element) => element.id!.toInt() == data['id']!.toInt());
                       AppConstant.showToast(
                         color: context.colorScheme.tertiary,
                         msg: 'Attachment updated successfully',
@@ -130,8 +127,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     alignment: AlignmentDirectional.topStart,
                     child: AppText(
                         color: context.colorScheme.onSurface,
-                        textSize: 18,
-                        fontWeight: FontWeight.bold,
+                        textSize: 14,
+                        fontWeight: FontWeight.w600,
                         text: context.localizations.summary),
                   ),
                   SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -141,15 +138,14 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     controller: TextEditingController(
                         text: widget.myRequestsModel.summary),
                     hintText: context.localizations.notes,
-                    onChange: (p0) {},
                   ),
                   SizedBox(height: SizeConfig.bodyHeight * .04),
                   Align(
                     alignment: AlignmentDirectional.topStart,
                     child: AppText(
                         color: context.colorScheme.onSurface,
-                        textSize: 18,
-                        fontWeight: FontWeight.bold,
+                        textSize: 14,
+                        fontWeight: FontWeight.w600,
                         text: context.localizations.feedback),
                   ),
                   SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -159,18 +155,18 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     controller: TextEditingController(
                         text: widget.myRequestsModel.feedback),
                     hintText: context.localizations.notes,
-                    onChange: (p0) {},
                   ),
                   SizedBox(height: SizeConfig.bodyHeight * .04),
                   if (widget.myRequestsModel.clientAttachments != null)
+                    if(!_isLoading)
                     Column(
                       children: [
                         Row(
                           children: [
                             AppText(
                                 color: context.colorScheme.onSurface,
-                                textSize: 18,
-                                fontWeight: FontWeight.bold,
+                                textSize: 14,
+                                fontWeight: FontWeight.w600,
                                 text: context.localizations.myAttachment),
                             SizedBox(
                               width: SizeConfig.screenWidth * .1,
@@ -178,22 +174,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                             CustomButton(
                               text: context.localizations.add,
                               press: () async {
-                                if (Platform.isIOS) {
-                                  _showIOSPicker(context, cubit);
-                                } else {
-                                  FilePickerResult? result = await FilePicker
-                                      .platform
-                                      .pickFiles(
-                                          type: FileType.any,
-                                          allowMultiple: true);
-                                  if (result != null && mounted) {
-                                    cubit.updateAttachment(
-                                        sickLeaveId: widget.myRequestsModel.id
-                                                ?.toInt() ??
-                                            0,
-                                        file: File(result.files.single.path!));
-                                  }
-                                }
+                                _showIOSPicker(context, cubit);
                               },
                               height: 30,
                               width: SizeConfig.screenWidth * .2,
@@ -210,12 +191,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     myRequestsModel: widget.myRequestsModel,
                                   )),
                       ],
-                    ),
+                    )
+                  else
+                    LoadingWidget(),
                   SizedBox(height: SizeConfig.bodyHeight * .04),
                   if (widget.myRequestsModel.state == StatusEnum.done ||
                       widget.myRequestsModel.state == StatusEnum.notApproved)
-                    _isLoading &&
-                            state.identifier == 'open_report'
+                    _isLoading && state.identifier == 'open_report'
                         ? const LoadingWidget()
                         : CustomButton(
                             textColor: context.colorScheme.primary,
@@ -281,13 +263,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                             color: Colors.grey.withOpacity(0.4))),
-                    child: const Column(
+                    child:  Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(Icons.perm_media_outlined, size: 50),
+                        Icon(Icons.perm_media_outlined, size: 50,color: AppColorScheme.light.primary,),
                         SizedBox(height: 10),
-                        AppText(text: "Media", fontWeight: FontWeight.w700),
+                        AppText(text: "Media", fontWeight: FontWeight.w600,color: AppColorScheme.light.primary,),
                       ],
                     ),
                   ),
@@ -297,8 +279,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               Expanded(
                 child: InkWell(
                   onTap: () async {
-                    FilePickerResult? result = await FilePicker.platform
-                        .pickFiles(type: FileType.any);
+                    FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.any);
                     if (result != null && mounted) {
                       Navigator.pop(bottomSheetContext);
                       cubit.updateAttachment(
@@ -313,13 +294,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                             color: Colors.grey.withOpacity(0.4))),
-                    child: const Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(Icons.file_copy, size: 50),
+                        Icon(Icons.file_copy, size: 50,color: AppColorScheme.light.primary,),
                         SizedBox(height: 10),
-                        AppText(text: "Files", fontWeight: FontWeight.w700),
+                        AppText(text: "Files", fontWeight: FontWeight.w600,color: AppColorScheme.light.primary,),
                       ],
                     ),
                   ),

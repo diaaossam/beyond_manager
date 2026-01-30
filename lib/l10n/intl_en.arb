@@ -472,5 +472,16 @@
   "noPolicyDetailsFound": "No policy details available",
   "item": "Item",
   "utilizationClaimHistory": "Utilization/Claim History",
-  "value": "Value"
+  "value": "Value",
+  "medication": "Medication",
+  "lab": "Laboratory",
+  "scan": "Scan",
+  "doctor_visit": "Doctor Visit",
+  "inpatient": "Inpatient",
+  "physical_therapy": "Physical Therapy",
+  "maternity": "Maternity",
+  "emergency": "Emergency",
+  "dental": "Dental",
+  "optical": "Optical",
+  "sickLeaveCreatedSuccessfully": "Sick Leave Created Successfully"
 }

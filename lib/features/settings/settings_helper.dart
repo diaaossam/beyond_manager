@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../config/helper/context_helper.dart';
 import '../../config/router/app_router.gr.dart';
 import '../../core/extensions/app_localizations_extension.dart';
 import '../../core/extensions/color_extensions.dart';
@@ -75,11 +76,17 @@ class SettingsHelper {
     );
   }
   Future<void> showAuthDialog() async {
+    final navigatorState = NavigationService.navigatorKey.currentState;
+    if (navigatorState == null) return;
+    
+    final context = navigatorState.context;
+    final router = AutoRouter.of(context);
+    
     return showCupertinoDialog(
       context: context,
-      builder: (context) => CupertinoAlertDialog(
+      builder: (dialogContext) => CupertinoAlertDialog(
         content: AppText(
-          text: context.localizations.sessionExpired,
+          text: dialogContext.localizations.sessionExpired,
           maxLines: 4,
         ),
         actions: <Widget>[
@@ -87,13 +94,19 @@ class SettingsHelper {
             isDefaultAction: true,
             isDestructiveAction: true,
             child: AppText(
-                text: context.localizations.logout,
+                text: dialogContext.localizations.logout,
                 textSize: 14,
                 maxLines: 4,
                 textHeight: 1.8,
                 fontWeight: FontWeight.bold,
                 color: Colors.red),
-            onPressed: () async => context.router.push(LoginRoute()),
+            onPressed: () async {
+              Navigator.of(dialogContext).pop();
+              router.pushAndPopUntil(
+                const LoginRoute(),
+                predicate: (route) => false,
+              );
+            },
           ),
         ],
       ),

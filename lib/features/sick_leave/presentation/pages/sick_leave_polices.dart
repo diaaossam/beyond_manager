@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class SickLeaveActiveListScreen extends StatelessWidget {
-  const SickLeaveActiveListScreen({super.key});
+class SickLeavePolicesScreen extends StatelessWidget {
+  const SickLeavePolicesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class SickLeaveActiveListScreen extends StatelessWidget {
       create: (context) => sl<SlActiveListCubit>(),
       child: Scaffold(
         appBar: CustomAppBar(title: context.localizations.selectPolicy),
-        body: const SlActiveListBody(),
+        body: const SickLeavePolicesBody(),
       ),
     );
   }

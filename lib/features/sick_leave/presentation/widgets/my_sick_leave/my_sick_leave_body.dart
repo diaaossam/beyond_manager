@@ -3,13 +3,10 @@ import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/sick_leave/presentation/cubit/my_sick_leave/my_sick_leave_cubit.dart';
-import 'package:bond/features/sick_leave/presentation/widgets/my_sick_leave/proccessing_sick_leave_list.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'done_sick_leave_list_design.dart';
 import 'pending_sick_leave_list.dart';
 
 class MySickLeaveBody extends StatefulWidget {
@@ -31,10 +28,7 @@ class _MySickLeaveBodyState extends State<MySickLeaveBody> {
   void initState() {
     super.initState();
     final bloc = context.read<MySickLeaveCubit>();
-    
-    // Initialize pagination
     bloc.initPagination(policyId: widget.policyId);
-    
     if (widget.sickLeaveId != null) {
       bloc.changeIndex(value: 1);
     }
@@ -89,11 +83,11 @@ class _MySickLeaveBodyState extends State<MySickLeaveBody> {
                 ),
               ),
               if (bloc.currentIndex == 0)
-                const PendingSickLeaveListDesign()
+                 SickLeaveListDesign(pagingController: bloc.pendingPagingController,)
               else if (bloc.currentIndex == 1)
-                const ProcessingSickLeaveListDesign()
+                SickLeaveListDesign(pagingController: bloc.processingPagingController,)
               else
-                const DoneSickLeaveListDesign()
+                SickLeaveListDesign(pagingController: bloc.donePagingController,)
             ],
           ),
         );
@@ -109,7 +103,7 @@ class _MySickLeaveBodyState extends State<MySickLeaveBody> {
       width: SizeConfig.screenWidth * 0.25,
       child: Center(
         child: AppText(
-          textSize: 15,
+          textSize: 12,
           color: selected ? Colors.white : context.colorScheme.onSurface,
           fontWeight: FontWeight.w500,
           text: title,

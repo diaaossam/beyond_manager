@@ -3958,6 +3958,76 @@ class S {
   String get value {
     return Intl.message('Value', name: 'value', desc: '', args: []);
   }
+
+  /// `Medication`
+  String get medication {
+    return Intl.message('Medication', name: 'medication', desc: '', args: []);
+  }
+
+  /// `Laboratory`
+  String get lab {
+    return Intl.message('Laboratory', name: 'lab', desc: '', args: []);
+  }
+
+  /// `Scan`
+  String get scan {
+    return Intl.message('Scan', name: 'scan', desc: '', args: []);
+  }
+
+  /// `Doctor Visit`
+  String get doctor_visit {
+    return Intl.message(
+      'Doctor Visit',
+      name: 'doctor_visit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inpatient`
+  String get inpatient {
+    return Intl.message('Inpatient', name: 'inpatient', desc: '', args: []);
+  }
+
+  /// `Physical Therapy`
+  String get physical_therapy {
+    return Intl.message(
+      'Physical Therapy',
+      name: 'physical_therapy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maternity`
+  String get maternity {
+    return Intl.message('Maternity', name: 'maternity', desc: '', args: []);
+  }
+
+  /// `Emergency`
+  String get emergency {
+    return Intl.message('Emergency', name: 'emergency', desc: '', args: []);
+  }
+
+  /// `Dental`
+  String get dental {
+    return Intl.message('Dental', name: 'dental', desc: '', args: []);
+  }
+
+  /// `Optical`
+  String get optical {
+    return Intl.message('Optical', name: 'optical', desc: '', args: []);
+  }
+
+  /// `Sick Leave Created Successfully`
+  String get sickLeaveCreatedSuccessfully {
+    return Intl.message(
+      'Sick Leave Created Successfully',
+      name: 'sickLeaveCreatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

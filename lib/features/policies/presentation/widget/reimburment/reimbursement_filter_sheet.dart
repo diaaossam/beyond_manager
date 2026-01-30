@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 import '../../../../../core/global_models/generic_model.dart';
 import '../../../../../core/utils/app_size.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../../widgets/main_widget/app_drop_down.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
@@ -40,17 +41,17 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
   String sortBy = "newest";
 
   final List<GenericModel> _serviceTypes = [
-    GenericModel(id: 1, name: 'medication'),
-    GenericModel(id: 2, name: 'lab'),
-    GenericModel(id: 3, name: 'scan'),
-    GenericModel(id: 4, name: 'doctor_visit'),
-    GenericModel(id: 5, name: 'inpatient'),
-    GenericModel(id: 6, name: 'physical_therapy'),
-    GenericModel(id: 7, name: 'maternity'),
-    GenericModel(id: 8, name: 'emergency'),
-    GenericModel(id: 9, name: 'dental'),
-    GenericModel(id: 10, name: 'optical'),
-    GenericModel(id: 11, name: 'other'),
+    GenericModel(id: 1, name: 'medication' ,label: S.current.medication ),
+    GenericModel(id: 2, name: 'lab',label: S.current.lab),
+    GenericModel(id: 3, name: 'scan',label: S.current.scan),
+    GenericModel(id: 4, name: 'doctor_visit',label: S.current.doctor_visit),
+    GenericModel(id: 5, name: 'inpatient',label: S.current.inpatient),
+    GenericModel(id: 6, name: 'physical_therapy',label: S.current.physical_therapy),
+    GenericModel(id: 7, name: 'maternity',label: S.current.maternity),
+    GenericModel(id: 8, name: 'emergency',label: S.current.emergency),
+    GenericModel(id: 9, name: 'dental',label: S.current.dental),
+    GenericModel(id: 10, name: 'optical',label: S.current.optical),
+    GenericModel(id: 11, name: 'other',label: S.current.other),
   ];
 
   @override
@@ -161,11 +162,7 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
                       hint: 'Service Type',
                       items: _buildDropdownItems(_serviceTypes),
                       initialValue: _selectedServiceType,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedServiceType = value;
-                        });
-                      },
+                      onChanged: (value) => setState(() => _selectedServiceType = value),
                     ),
                     SizedBox(height: SizeConfig.bodyHeight * 0.02),
                     Row(
@@ -284,15 +281,10 @@ class _ReimbursementFilterSheetState extends State<ReimbursementFilterSheet> {
     return items.map((item) {
       return DropdownMenuItem<GenericModel>(
         value: item,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.screenWidth * 0.04,
-            vertical: SizeConfig.bodyHeight * 0.01,
-          ),
-          child: AppText(
-            text: item.name,
-            textSize: 14,
-          ),
+        child: AppText(
+          text: item.label ?? item.name,
+          textSize: 12,
+          fontWeight: FontWeight.w500,
         ),
       );
     }).toList();

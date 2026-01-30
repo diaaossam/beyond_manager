@@ -20,7 +20,6 @@ class AppInterceptors extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (response.statusCode == 401) {
       SettingsHelper().showAuthDialog();
-
       return;
     }
     handler.next(response);

@@ -21,12 +21,6 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
 
   PoliciesRepositoryImpl({required this.policiesRemoteDataSource});
 
-  Future<Either<Failure, List<GenericModel>>> getReimursementStatus() async {
-    final response = await handleApi(
-      () => policiesRemoteDataSource.getReimursementStatus(),
-    );
-    return response;
-  }
 
   Future<Either<Failure, ReimbursementResponseModel>> getReimursement({
     required ReimbursementFilterModel params,
