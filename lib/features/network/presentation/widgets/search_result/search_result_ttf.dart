@@ -5,6 +5,8 @@ import 'package:bond/core/utils/app_assets.dart';
 import 'package:bond/features/network/data/models/response/hospital_model.dart';
 import 'package:bond/features/network/data/models/response/search_params.dart';
 import 'package:bond/features/network/presentation/bloc/search_result/search_result_cubit.dart';
+import 'package:bond/gen/assets.gen.dart';
+import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -58,9 +60,11 @@ class SearchResultTff extends StatelessWidget {
             fillColor: const Color(0xffF3F3F3),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: SvgPicture.asset(AppAssets.search2),
+              child: AppImage.asset(Assets.icons.search2),
             ),
-            hintStyle: ThemeHelper().hintTFFTextStyle(color: const Color(0xffCACACA)),
+            hintStyle: ThemeHelper().hintTFFTextStyle(
+              color: const Color(0xffCACACA),
+            ),
           ),
         );
       },

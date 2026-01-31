@@ -1,19 +1,16 @@
-import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
-import 'package:bond/gen/assets.gen.dart';
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/reservation/presentation/widgets/new_reservation/circle_toggle_button.dart';
+import 'package:bond/gen/assets.gen.dart';
+import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
-import 'package:bond/core/extensions/color_extensions.dart';
 
 class CustomAppointmentExpandedList extends StatefulWidget {
   final Function(String) onCallBack;
 
-  const CustomAppointmentExpandedList({
-    super.key,
-    required this.onCallBack,
-  });
+  const CustomAppointmentExpandedList({super.key, required this.onCallBack});
 
   @override
   State<CustomAppointmentExpandedList> createState() =>
@@ -33,7 +30,10 @@ class _CustomAppointmentExpandedListState
         height: SizeConfig.bodyHeight * .1,
         width: SizeConfig.bodyHeight * .1,
         padding: const EdgeInsets.all(12),
-        decoration: const BoxDecoration(shape: BoxShape.circle, color: Color(0xffFDEEE6)),
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Color(0xffFDEEE6),
+        ),
         child: AppImage.asset(
           Assets.icons.clock,
           color: context.colorScheme.primary,
@@ -49,7 +49,7 @@ class _CustomAppointmentExpandedListState
       trailing: Container(
         margin: EdgeInsetsDirectional.only(end: SizeConfig.screenWidth * .02),
         child: isExpanded
-            ? AppImage.asset(Assets.icons.arrowDown1)
+            ? AppImage.asset(Assets.icons.arrowDown)
             : AppImage.asset(Assets.icons.arrowRight1),
       ),
       children: [
@@ -65,53 +65,52 @@ class _CustomAppointmentExpandedListState
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth * .04,
-                      vertical: SizeConfig.bodyHeight * .008),
+                    horizontal: SizeConfig.screenWidth * .04,
+                    vertical: SizeConfig.bodyHeight * .008,
+                  ),
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: SizeConfig.screenWidth * .1,
-                      ),
+                      SizedBox(width: SizeConfig.screenWidth * .1),
                       CircleToggleButton(
-                        isSelected: _selectedAppointment == PartOfTimeEnum.morning,
+                        isSelected:
+                            _selectedAppointment == PartOfTimeEnum.morning,
                       ),
-                      SizedBox(
-                        width: SizeConfig.screenWidth * .015,
-                      ),
-                      const AppText(
-                        text: "Morning  (10 am - 1 pm)",
-                        color: Color(0xff898A8D),
+                      SizedBox(width: SizeConfig.screenWidth * .015),
+                      AppText(
+                        text: "${context.localizations.morning} (10 am - 1 pm)",
+                        color: const Color(0xff898A8D),
                         fontWeight: FontWeight.w500,
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
               InkWell(
                 onTap: () {
-                  setState(() => _selectedAppointment = PartOfTimeEnum.afternoon);
+                  setState(
+                    () => _selectedAppointment = PartOfTimeEnum.afternoon,
+                  );
                   widget.onCallBack(PartOfTimeEnum.afternoon.name);
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth * .04,
-                      vertical: SizeConfig.bodyHeight * .008),
+                    horizontal: SizeConfig.screenWidth * .04,
+                    vertical: SizeConfig.bodyHeight * .008,
+                  ),
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: SizeConfig.screenWidth * .1,
-                      ),
+                      SizedBox(width: SizeConfig.screenWidth * .1),
                       CircleToggleButton(
-                        isSelected: _selectedAppointment == PartOfTimeEnum.afternoon,
+                        isSelected:
+                            _selectedAppointment == PartOfTimeEnum.afternoon,
                       ),
-                      SizedBox(
-                        width: SizeConfig.screenWidth * .015,
-                      ),
-                      const AppText(
-                        text: "Afternoon (2 pm - 5 pm)",
-                        color: Color(0xff898A8D),
+                      SizedBox(width: SizeConfig.screenWidth * .015),
+                      AppText(
+                        text:
+                            "${context.localizations.afternoon} (2 pm - 5 pm)",
+                        color: const Color(0xff898A8D),
                         fontWeight: FontWeight.w500,
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -123,24 +122,22 @@ class _CustomAppointmentExpandedListState
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.screenWidth * .04,
-                      vertical: SizeConfig.bodyHeight * .008),
+                    horizontal: SizeConfig.screenWidth * .04,
+                    vertical: SizeConfig.bodyHeight * .008,
+                  ),
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: SizeConfig.screenWidth * .1,
-                      ),
+                      SizedBox(width: SizeConfig.screenWidth * .1),
                       CircleToggleButton(
-                        isSelected: _selectedAppointment == PartOfTimeEnum.evening,
+                        isSelected:
+                            _selectedAppointment == PartOfTimeEnum.evening,
                       ),
-                      SizedBox(
-                        width: SizeConfig.screenWidth * .015,
-                      ),
-                      const AppText(
-                        text: "Evening (6 pm - 12 am)",
-                        color: Color(0xff898A8D),
+                      SizedBox(width: SizeConfig.screenWidth * .015),
+                      AppText(
+                        text: "${context.localizations.evening} (6 pm - 12 am)",
+                        color: const Color(0xff898A8D),
                         fontWeight: FontWeight.w500,
-                      )
+                      ),
                     ],
                   ),
                 ),

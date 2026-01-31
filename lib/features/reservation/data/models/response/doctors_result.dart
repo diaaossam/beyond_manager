@@ -1,44 +1,46 @@
 class DoctorsResult {
-  DoctorsResult(
-      {this.bloqueReservationTel,
-      this.branche,
-      this.code,
-      this.codeCabinet,
-      this.dateAction,
-      this.dateCreate,
-      this.dateModification,
-      this.designationAr,
-      this.designationJour,
-      this.designationSpecialite,
-      this.designationSpecialiteAr,
-      this.designationbranche,
-      this.designationbrancheAr,
-      this.heureDebut,
-      this.heureDebutLocalDateTime,
-      this.heureFin,
-      this.heureFinLocalDateTime,
-      this.idBranch,
-      this.infirmier,
-      this.isDental,
-      this.jour,
-      this.jourLocalDateTime,
-      this.medecin,
-      this.medecinAbsent,
-      this.nbPlace,
-      this.nbPlaceTel,
-      this.nomInterv,
-      this.nomIntervAr,
-      this.numSeq,
-      this.numberOfReservation,
-      this.numberOfReservationAttached,
-      this.partOfDay,
-      this.custom_start_date_time,
-      this.custom_end_date_time});
+  DoctorsResult({
+    this.bloqueReservationTel,
+    this.branche,
+    this.code,
+    this.codeCabinet,
+    this.dateAction,
+    this.dateCreate,
+    this.dateModification,
+    this.designationAr,
+    this.designationJour,
+    this.designationSpecialite,
+    this.designationSpecialiteAr,
+    this.designationbranche,
+    this.designationbrancheAr,
+    this.heureDebut,
+    this.heureDebutLocalDateTime,
+    this.heureFin,
+    this.heureFinLocalDateTime,
+    this.idBranch,
+    this.infirmier,
+    this.isDental,
+    this.jour,
+    this.jourLocalDateTime,
+    this.medecin,
+    this.medecinAbsent,
+    this.nbPlace,
+    this.nbPlaceTel,
+    this.nomInterv,
+    this.nomIntervAr,
+    this.numSeq,
+    this.numberOfReservation,
+    this.numberOfReservationAttached,
+    this.partOfDay,
+    this.custom_start_date_time,
+    this.custom_end_date_time,
+  });
 
   DoctorsResult.fromJson(dynamic json) {
     bloqueReservationTel = json['bloqueReservationTel'];
-    branche =
-        json['branche'] != null ? Branche.fromJson(json['branche']) : null;
+    branche = json['branche'] != null
+        ? Branche.fromJson(json['branche'])
+        : null;
     code = json['code'];
     codeCabinet = json['codeCabinet'];
     dateAction = json['dateAction'];
@@ -61,8 +63,9 @@ class DoctorsResult {
     isDental = json['isDental'];
     jour = json['jour'];
     jourLocalDateTime = json['jourLocalDateTime'];
-    medecin =
-        json['medecin'] != null ? Medecin.fromJson(json['medecin']) : null;
+    medecin = json['medecin'] != null
+        ? Medecin.fromJson(json['medecin'])
+        : null;
     medecinAbsent = json['medecinAbsent'];
     nbPlace = json['nbPlace'];
     nbPlaceTel = json['nbPlaceTel'];
@@ -74,6 +77,12 @@ class DoctorsResult {
     partOfDay = json['partOfDay'];
     custom_start_date_time = json['custom_start_date_time'];
     custom_end_date_time = json['custom_end_date_time'];
+  }
+
+  static List<DoctorsResult> fromJsonList(dynamic json) {
+    return json
+        .map<DoctorsResult>((item) => DoctorsResult.fromJson(item))
+        .toList();
   }
 
   bool? bloqueReservationTel;
@@ -253,8 +262,9 @@ class Medecin {
     map['scientificDegree'] = scientificDegree;
     map['scientificDegreeSec'] = scientificDegreeSec;
     if (specialSkillDTOs != null) {
-      map['specialSkillDTOs'] =
-          specialSkillDTOs?.map((v) => v.toJson()).toList();
+      map['specialSkillDTOs'] = specialSkillDTOs
+          ?.map((v) => v.toJson())
+          .toList();
     }
     map['visible'] = visible;
     return map;
@@ -414,9 +424,7 @@ class CodeDegre {
 }
 
 class Infirmier {
-  Infirmier({
-    this.code,
-  });
+  Infirmier({this.code});
 
   Infirmier.fromJson(dynamic json) {
     code = json['code'];

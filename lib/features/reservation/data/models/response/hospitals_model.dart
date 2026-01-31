@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:logger/logger.dart';
 
 class HospitalsModel extends Equatable {
   const HospitalsModel({
@@ -10,6 +11,12 @@ class HospitalsModel extends Equatable {
     this.ipAdress,
     this.logo,
   });
+
+  static List<HospitalsModel> fromJsonList(dynamic response) {
+    return response
+        .map<HospitalsModel>((item) => HospitalsModel.fromJson(item))
+        .toList();
+  }
 
   factory HospitalsModel.fromJson(Map<String, dynamic> json) {
     return HospitalsModel(
@@ -45,12 +52,12 @@ class HospitalsModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        actif,
-        code,
-        dateCreate,
-        designation,
-        designationAr,
-        ipAdress,
-        logo,
-      ];
+    actif,
+    code,
+    dateCreate,
+    designation,
+    designationAr,
+    ipAdress,
+    logo,
+  ];
 }

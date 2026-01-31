@@ -1,15 +1,15 @@
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/core/utils/app_assets.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/settings/contact_helper.dart';
 import 'package:bond/features/network/data/models/response/hospital_model.dart';
+import 'package:bond/gen/assets.gen.dart';
+import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchResultBodyCard extends StatelessWidget {
   const SearchResultBodyCard({super.key, required this.hospital});
@@ -56,10 +56,9 @@ class SearchResultBodyCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        AppAssets.phone,
-                        colorFilter: const ColorFilter.mode(
-                            Colors.white, BlendMode.srcIn),
+                      AppImage.asset(
+                        Assets.icons.phone,
+                        color: Colors.white,
                       ),
                       const SizedBox(
                         width: 5,

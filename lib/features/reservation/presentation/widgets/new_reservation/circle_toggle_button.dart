@@ -6,11 +6,7 @@ class CircleToggleButton extends StatelessWidget {
   final bool isSelected;
   final double? size;
 
-  const CircleToggleButton({
-    super.key,
-    required this.isSelected,
-    this.size,
-  });
+  const CircleToggleButton({super.key, required this.isSelected, this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +16,7 @@ class CircleToggleButton extends StatelessWidget {
         height: size ?? SizeConfig.bodyHeight * .03,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(
-            color: const Color(0xff898A8D),
-            width: 2,
-          ),
+          border: Border.all(color: context.colorScheme.outline, width: 2),
         ),
         child: Center(
           child: Container(
@@ -31,7 +24,9 @@ class CircleToggleButton extends StatelessWidget {
             height: SizeConfig.bodyHeight * .015,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: isSelected ? context.colorScheme.primary : Colors.transparent,
+              color: isSelected
+                  ? context.colorScheme.primary
+                  : Colors.transparent,
             ),
           ),
         ),

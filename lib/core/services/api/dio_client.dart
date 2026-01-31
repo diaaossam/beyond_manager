@@ -117,9 +117,12 @@ class DioClient {
         data: body,
         options: Options(headers: headers),
       );
-
       if (response.statusCode == StatusCode.ok) {
-        return json.decode(response.data);
+        final data = json.decode(response.data);
+        if (data is List<dynamic>) {
+          return {"data": data};
+        }
+        return data;
       } else {
         return apiErrorHandler.handleDioErrorByStatusCode(
           response.statusCode ?? 500,

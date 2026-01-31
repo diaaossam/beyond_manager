@@ -1,4 +1,3 @@
-
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/reservation/data/models/response/doctors_result.dart';
@@ -9,8 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'data/models/request/post_reservation_param.dart';
-import 'presentation/widgets/reservation_info_body.dart';
+import '../data/models/request/post_reservation_param.dart';
+import 'widgets/reservation_info_body.dart';
 
 class ReservationHelper {
   Future<void> showReservationConfirmation(

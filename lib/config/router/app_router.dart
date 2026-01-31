@@ -44,7 +44,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: SelectInsuranceRoute.page),
     AutoRoute(page: MedicalFilterRoute.page),
     AutoRoute(page: CarServiceRoute.page),
-    AutoRoute(page: ChooseReservationRoute.page),
+    AutoRoute(page: ReservationDashboardRoute.page),
     AutoRoute(page: UniqueServiceRoute.page),
     AutoRoute(page: SearchResultRoute.page),
   ];

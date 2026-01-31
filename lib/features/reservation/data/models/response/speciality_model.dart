@@ -1,4 +1,4 @@
-import 'package:bond/features/reservation/data/models/response/hospitals_model.dart';
+import 'hospitals_model.dart';
 
 class SpecialityModel {
   SpecialityModel({
@@ -12,6 +12,12 @@ class SpecialityModel {
     this.sites,
     this.suffixe,
   });
+
+  static List<SpecialityModel> fromJsonList(dynamic response) {
+    return response
+        .map<SpecialityModel>((item) => SpecialityModel.fromJson(item))
+        .toList();
+  }
 
   SpecialityModel.fromJson(dynamic json) {
     code = json['code'];
@@ -60,5 +66,3 @@ class SpecialityModel {
     return map;
   }
 }
-
-

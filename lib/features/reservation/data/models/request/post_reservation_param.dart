@@ -1,10 +1,6 @@
-import 'package:bond/core/utils/api_config.dart';
+import '../../../../../core/utils/api_config.dart';
 
 class ReservationParams {
-  final int? policyId;
-  final String? name;
-  final String? phone;
-  final String? email;
   final int? mangerId;
   final int? idBranch;
   final String? planningCabinetCode;
@@ -15,6 +11,7 @@ class ReservationParams {
   final String? grandFatherName;
   final String? birthDate;
   final String? gender;
+  final String? email;
   final String? hospitalName;
   final String? branchName;
   final String? doctorName;
@@ -25,10 +22,6 @@ class ReservationParams {
   final String? celoptraEndDate;
 
   const ReservationParams({
-    this.policyId,
-    this.name,
-    this.phone,
-    this.email,
     this.idBranch,
     this.planningCabinetCode,
     this.firstName,
@@ -38,6 +31,7 @@ class ReservationParams {
     this.grandFatherName,
     this.birthDate,
     this.gender,
+    this.email,
     this.hospitalName,
     this.branchName,
     this.doctorName,
@@ -116,9 +110,7 @@ class ReservationParams {
       'cleopatra_start_datetime': celoptraStartDate,
       'cleopatra_end_datetime': celoptraEndDate,
     };
-    map.removeWhere(
-      (key, value) => value == null,
-    );
+    map.removeWhere((key, value) => value == null);
     return map;
   }
 }

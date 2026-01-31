@@ -4048,6 +4048,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Select Doctor`
+  String get selectDoctor {
+    return Intl.message(
+      'Select Doctor',
+      name: 'selectDoctor',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

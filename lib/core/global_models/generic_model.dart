@@ -1,3 +1,5 @@
+import 'package:logger/logger.dart';
+
 class GenericModel {
   final int id;
   final String name;
@@ -13,9 +15,8 @@ class GenericModel {
     return GenericModel(id: json['id'], name: json["name"]);
   }
 
-  static List<GenericModel> fromJsonList(Map<String, dynamic> response) {
-    final List<dynamic> dataList = (response['result']) as List<dynamic>;
-    return dataList
+  static List<GenericModel> fromJsonList(dynamic response) {
+    return response
         .map<GenericModel>((item) => GenericModel.fromJsonName(item))
         .toList();
   }

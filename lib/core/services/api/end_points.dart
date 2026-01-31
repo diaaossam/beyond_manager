@@ -25,7 +25,7 @@ class EndPoints {
   static String getSettings = "/get/Beyond/manager/configuration/data/endpoint";
 
   static String getHospitalsName = "/get/beyond/hospitals";
-  static String getHospitals = "/get/cleopatra/hospitals";
+  static String getHospitalsBranches = "/get/cleopatra/hospitals";
   static String getSpecialities = "/get/cleopatra/specialities";
   static String searchForDoctors = "/search/cleopatra/doctors";
   static String getTimeslot = "/get/cleopatra/doctors/time/slot";

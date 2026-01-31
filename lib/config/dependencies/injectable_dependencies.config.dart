@@ -102,30 +102,14 @@ import '../../features/reservation/data/datasources/reservation_remote_data_sour
     as _i86;
 import '../../features/reservation/data/repositories/reservation_repository_impl.dart'
     as _i264;
-import '../../features/reservation/domain/repositories/reservation_repository.dart'
-    as _i588;
-import '../../features/reservation/domain/usecases/book_doctor_use_case.dart'
-    as _i25;
-import '../../features/reservation/domain/usecases/get_all_branches_use_case.dart'
-    as _i607;
-import '../../features/reservation/domain/usecases/get_all_hospitals_use_case.dart'
-    as _i332;
-import '../../features/reservation/domain/usecases/get_all_specialty_use_case.dart'
-    as _i511;
-import '../../features/reservation/domain/usecases/get_my_reservation_use_case.dart'
-    as _i137;
-import '../../features/reservation/domain/usecases/get_time_slot_use_case.dart'
-    as _i291;
-import '../../features/reservation/domain/usecases/search_for_doctors_use_case.dart'
-    as _i282;
 import '../../features/reservation/presentation/cubit/booking/booking_cubit.dart'
     as _i268;
 import '../../features/reservation/presentation/cubit/doctor_result/doctor_result_cubit.dart'
     as _i438;
 import '../../features/reservation/presentation/cubit/new_reservation/new_reservation_cubit.dart'
     as _i574;
-import '../../features/reservation/presentation/cubit/reservation_cubit.dart'
-    as _i927;
+import '../../features/reservation/presentation/cubit/reservation/reservation_cubit.dart'
+    as _i747;
 import '../../features/settings/data/datasources/settings_remote_data_source.dart'
     as _i188;
 import '../../features/settings/data/repositories/settings_repo_impl.dart'
@@ -245,6 +229,12 @@ extension GetItInjectableX on _i174.GetIt {
         carServiceRemoteDataSource: gh<_i881.CarServiceRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i86.ReservationRemoteDataSource>(
+      () => _i86.ReservationRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+        authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i214.OtherLineRepositoryImpl>(
       () => _i214.OtherLineRepositoryImpl(
         otherLineRemoteDataSource: gh<_i932.OtherLineRemoteDataSource>(),
@@ -266,11 +256,6 @@ extension GetItInjectableX on _i174.GetIt {
         sharedPreferences: gh<_i460.SharedPreferences>(),
         tokenRepository: gh<_i734.TokenRepository>(),
         authRemoteDataSource: gh<_i107.AuthRemoteDataSource>(),
-      ),
-    );
-    gh.lazySingleton<_i86.ReservationRemoteDataSource>(
-      () => _i86.ReservationRemoteDataSourceImpl(
-        dioConsumer: gh<_i384.DioConsumer>(),
       ),
     );
     gh.factory<_i504.SearchCubit>(
@@ -324,6 +309,11 @@ extension GetItInjectableX on _i174.GetIt {
         settingsRemoteDataSource: gh<_i188.SettingsRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i264.ReservationRepositoryImpl>(
+      () => _i264.ReservationRepositoryImpl(
+        remoteDataSource: gh<_i86.ReservationRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i1008.EmergencyRepositoryImpl>(
       () => _i1008.EmergencyRepositoryImpl(
         emergencyRemoteDataSource: gh<_i281.EmergencyRemoteDataSource>(),
@@ -355,6 +345,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i769.RequestDemoCubit>(
       () => _i769.RequestDemoCubit(gh<_i662.AuthRepository>()),
     );
+    gh.factory<_i268.BookingCubit>(
+      () => _i268.BookingCubit(gh<_i264.ReservationRepositoryImpl>()),
+    );
+    gh.factory<_i438.DoctorResultCubit>(
+      () => _i438.DoctorResultCubit(gh<_i264.ReservationRepositoryImpl>()),
+    );
+    gh.factory<_i574.NewReservationCubit>(
+      () => _i574.NewReservationCubit(gh<_i264.ReservationRepositoryImpl>()),
+    );
+    gh.factory<_i747.ReservationCubit>(
+      () => _i747.ReservationCubit(gh<_i264.ReservationRepositoryImpl>()),
+    );
     gh.factory<_i1042.GetInsuranceCompanyUseCase>(
       () => _i1042.GetInsuranceCompanyUseCase(gh<_i41.CarServiceRepository>()),
     );
@@ -375,11 +377,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i859.OtherLineCubit(gh<_i214.OtherLineRepositoryImpl>()),
     );
     gh.factory<_i33.StartCubit>(() => _i33.StartCubit(gh<_i941.InitRepo>()));
-    gh.lazySingleton<_i588.ReservationRepository>(
-      () => _i264.ReservationRepositoryImpl(
-        remoteDataSource: gh<_i86.ReservationRemoteDataSource>(),
-      ),
-    );
     gh.factory<_i792.SettingsCubit>(
       () => _i792.SettingsCubit(gh<_i91.SettingsRepositoryImpl>()),
     );
@@ -397,44 +394,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i1042.GetInsuranceCompanyUseCase>(),
         gh<_i831.GetServiceCentersUseCase>(),
       ),
-    );
-    gh.factory<_i25.BookDoctorUseCase>(
-      () => _i25.BookDoctorUseCase(gh<_i588.ReservationRepository>()),
-    );
-    gh.factory<_i607.GetAllBranchesUseCase>(
-      () => _i607.GetAllBranchesUseCase(gh<_i588.ReservationRepository>()),
-    );
-    gh.factory<_i332.GetAllHospitalsUseCase>(
-      () => _i332.GetAllHospitalsUseCase(gh<_i588.ReservationRepository>()),
-    );
-    gh.factory<_i511.GetAllSpecialityUseCase>(
-      () => _i511.GetAllSpecialityUseCase(gh<_i588.ReservationRepository>()),
-    );
-    gh.factory<_i137.GetMyReservationUseCase>(
-      () => _i137.GetMyReservationUseCase(gh<_i588.ReservationRepository>()),
-    );
-    gh.factory<_i291.GetTimeSlotUseCase>(
-      () => _i291.GetTimeSlotUseCase(gh<_i588.ReservationRepository>()),
-    );
-    gh.factory<_i282.SearchForDoctorsUseCase>(
-      () => _i282.SearchForDoctorsUseCase(gh<_i588.ReservationRepository>()),
-    );
-    gh.factory<_i927.ReservationCubit>(
-      () => _i927.ReservationCubit(gh<_i137.GetMyReservationUseCase>()),
-    );
-    gh.factory<_i574.NewReservationCubit>(
-      () => _i574.NewReservationCubit(
-        gh<_i332.GetAllHospitalsUseCase>(),
-        gh<_i607.GetAllBranchesUseCase>(),
-        gh<_i511.GetAllSpecialityUseCase>(),
-        gh<_i291.GetTimeSlotUseCase>(),
-      ),
-    );
-    gh.factory<_i268.BookingCubit>(
-      () => _i268.BookingCubit(gh<_i25.BookDoctorUseCase>()),
-    );
-    gh.factory<_i438.DoctorResultCubit>(
-      () => _i438.DoctorResultCubit(gh<_i291.GetTimeSlotUseCase>()),
     );
     return this;
   }

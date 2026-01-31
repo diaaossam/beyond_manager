@@ -716,6 +716,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectCity": MessageLookupByLibrary.simpleMessage("Select City"),
     "selectCompany": MessageLookupByLibrary.simpleMessage("Select Company"),
     "selectDate": MessageLookupByLibrary.simpleMessage("Select Date"),
+    "selectDoctor": MessageLookupByLibrary.simpleMessage("Select Doctor"),
     "selectHospital": MessageLookupByLibrary.simpleMessage("Select Hospital"),
     "selectPolicy": MessageLookupByLibrary.simpleMessage("Select Policy"),
     "selectSpecialty": MessageLookupByLibrary.simpleMessage("Select Specialty"),

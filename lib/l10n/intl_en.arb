@@ -485,5 +485,6 @@
   "optical": "Optical",
   "sickLeaveCreatedSuccessfully": "Sick Leave Created Successfully",
   "uniqueService": "Unique services",
-  "pleaseSelectTpa": "Please select tpa first"
+  "pleaseSelectTpa": "Please select tpa first",
+  "selectDoctor": "Select Doctor"
 }

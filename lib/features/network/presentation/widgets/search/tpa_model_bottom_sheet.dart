@@ -1,9 +1,6 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/core/utils/app_assets.dart';
-import 'package:bond/config/theme/app_colors.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/network/data/models/response/tpa_model.dart';
 import 'package:bond/gen/assets.gen.dart';
@@ -11,7 +8,6 @@ import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../widgets/main_widget/custom_text_form_field.dart';
 import '../../bloc/search/search_cubit.dart';
 
@@ -76,7 +72,7 @@ class _TpaModelBottomSheetSelectionState
                 textSize: 18,
               ),
               leading: IconButton(
-                icon: SvgPicture.asset(AppAssets.arrowLeft),
+                icon: AppImage.asset(Assets.icons.arrowLeft),
                 onPressed: () => Navigator.pop(context),
               ),
             ),
@@ -129,8 +125,8 @@ class _TpaModelBottomSheetSelectionState
                                   ),
                                 ],
                               ),
-                              trailing: SvgPicture.asset(
-                                AppAssets.radio,
+                              trailing: AppImage.asset(
+                                Assets.icons.radio,
                                 colorFilter: ColorFilter.mode(
                                   selected == tpa
                                       ? Theme.of(context).primaryColor

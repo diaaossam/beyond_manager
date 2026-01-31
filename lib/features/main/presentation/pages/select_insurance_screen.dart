@@ -32,7 +32,7 @@ class SelectInsuranceScreen extends StatelessWidget {
               title: context.localizations.doctorReservations,
               buttonText: context.localizations.bookNow,
               imagePath: Assets.images.doctor.path,
-              onTap: () => context.router.push(const PoliciesRoute()),
+              onTap: () => context.router.push(ReservationDashboardRoute()),
             ),
             SizedBox(height: SizeConfig.bodyHeight * .02),
             _InsuranceCard(

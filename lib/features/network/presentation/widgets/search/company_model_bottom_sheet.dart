@@ -3,10 +3,7 @@ import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../../core/extensions/app_localizations_extension.dart';
-import '../../../../../core/utils/app_assets.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_text_form_field.dart';
@@ -69,7 +66,7 @@ class _CompanyModelBottomSheetSelectionState
                 textSize: 14,
               ),
               leading: IconButton(
-                icon: SvgPicture.asset(AppAssets.arrowLeft),
+                icon: AppImage.asset(Assets.icons.arrowLeft),
                 onPressed: () => Navigator.pop(context),
               ),
             ),
@@ -111,7 +108,7 @@ class _CompanyModelBottomSheetSelectionState
                                 textSize: 12,
                               ),
                               trailing: AppImage.asset(
-                                AppAssets.radio,
+                                Assets.icons.radio,
                                 colorFilter: ColorFilter.mode(
                                   selected == tpa
                                       ? Theme.of(context).primaryColor

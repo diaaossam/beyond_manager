@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "requestDemo": MessageLookupByLibrary.simpleMessage("طلب عرض تجريبي"),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
+    "selectDoctor": MessageLookupByLibrary.simpleMessage("اختر الطبيب"),
     "startNow": MessageLookupByLibrary.simpleMessage("إبدء الأن"),
     "termsAndConditions": MessageLookupByLibrary.simpleMessage(
       "الشروط والأحكام",

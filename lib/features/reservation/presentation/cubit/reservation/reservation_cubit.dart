@@ -2,25 +2,21 @@ import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/async_handler.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/reservation/data/models/response/my_reservation.dart';
-import 'package:bond/features/reservation/domain/usecases/get_my_reservation_use_case.dart';
+import 'package:bond/features/reservation/data/repositories/reservation_repository_impl.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class ReservationCubit extends Cubit<BaseState<List<MyReservation>>>
     with AsyncHandler<List<MyReservation>> {
-  final GetMyReservationUseCase _getMyReservationUseCase;
+  final ReservationRepositoryImpl reservationRepositoryImpl;
 
-  ReservationCubit(this._getMyReservationUseCase) : super(BaseState.initial());
-
-  List<MyReservation> myReservations = [];
+  ReservationCubit(this.reservationRepositoryImpl)
+      : super(BaseState.initial(data: []));
 
   Future<void> getMyReservations({required String status}) async {
     await handleAsync(
-      call: () => _getMyReservationUseCase(status: status),
-      onSuccess: (data) {
-        myReservations = data;
-        return data;
-      },
+      call: () => reservationRepositoryImpl.getReservation(status: status),
+      onSuccess: (reservations) => reservations,
       identifier: 'get_reservations',
     );
   }

@@ -9,95 +9,98 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i37;
+import 'package:auto_route/auto_route.dart' as _i36;
 import 'package:bond/features/auth/presentation/pages/login_screen.dart'
-    as _i12;
-import 'package:bond/features/auth/presentation/pages/otp_screen.dart' as _i20;
+    as _i11;
+import 'package:bond/features/auth/presentation/pages/otp_screen.dart' as _i18;
 import 'package:bond/features/auth/presentation/pages/profile_screen.dart'
-    as _i26;
+    as _i24;
 import 'package:bond/features/car_service/presentation/pages/car_service_screen.dart'
     as _i4;
 import 'package:bond/features/emergency/presentation/pages/create_emergancy_screen.dart'
     as _i2;
 import 'package:bond/features/emergency/presentation/pages/emergency_screen.dart'
-    as _i15;
-import 'package:bond/features/main/presentation/pages/home_screen.dart' as _i10;
-import 'package:bond/features/main/presentation/pages/main_layout.dart' as _i13;
-import 'package:bond/features/main/presentation/pages/select_insurance_screen.dart'
-    as _i29;
-import 'package:bond/features/main/presentation/pages/unique_service_screen.dart'
-    as _i35;
-import 'package:bond/features/network/data/models/response/search_params.dart'
-    as _i43;
-import 'package:bond/features/network/presentation/pages/medical_filter_screen.dart'
     as _i14;
-import 'package:bond/features/network/presentation/pages/search_result_screen.dart'
+import 'package:bond/features/main/presentation/pages/home_screen.dart' as _i9;
+import 'package:bond/features/main/presentation/pages/main_layout.dart' as _i12;
+import 'package:bond/features/main/presentation/pages/select_insurance_screen.dart'
     as _i28;
+import 'package:bond/features/main/presentation/pages/unique_service_screen.dart'
+    as _i34;
+import 'package:bond/features/network/data/models/response/search_params.dart'
+    as _i45;
+import 'package:bond/features/network/presentation/pages/medical_filter_screen.dart'
+    as _i13;
+import 'package:bond/features/network/presentation/pages/search_result_screen.dart'
+    as _i27;
 import 'package:bond/features/other_line/data/models/template_model.dart'
-    as _i41;
+    as _i43;
 import 'package:bond/features/other_line/presentation/pages/insurance_screen.dart'
-    as _i11;
+    as _i10;
 import 'package:bond/features/other_line/presentation/pages/other_line_screen.dart'
-    as _i19;
+    as _i17;
 import 'package:bond/features/policies/data/models/response/main_policy_model.dart'
-    as _i42;
+    as _i44;
 import 'package:bond/features/policies/presentation/pages/active_list_screen.dart'
     as _i1;
 import 'package:bond/features/policies/presentation/pages/policies_screen.dart'
-    as _i22;
+    as _i20;
 import 'package:bond/features/policies/presentation/pages/policy_dashboard.dart'
-    as _i23;
+    as _i21;
 import 'package:bond/features/policies/presentation/pages/policy_info_screen.dart'
-    as _i24;
+    as _i22;
 import 'package:bond/features/policies/presentation/pages/policy_payment_screen.dart'
-    as _i25;
+    as _i23;
 import 'package:bond/features/policies/presentation/pages/reimbursement_screen.dart'
-    as _i27;
+    as _i25;
 import 'package:bond/features/policies/presentation/pages/utilization_screen.dart'
-    as _i36;
+    as _i35;
+import 'package:bond/features/reservation/data/models/request/post_reservation_param.dart'
+    as _i38;
+import 'package:bond/features/reservation/data/models/request/timeslot_params.dart'
+    as _i40;
 import 'package:bond/features/reservation/data/models/response/doctors_result.dart'
     as _i39;
 import 'package:bond/features/reservation/presentation/pages/booking_doctor_screen.dart'
     as _i3;
-import 'package:bond/features/reservation/presentation/pages/chosse_reservation_screen.dart'
-    as _i5;
 import 'package:bond/features/reservation/presentation/pages/doctors_result_screen.dart'
-    as _i8;
-import 'package:bond/features/reservation/presentation/pages/my_reservation_screen.dart'
-    as _i16;
-import 'package:bond/features/reservation/presentation/pages/new_reservation_screen.dart'
-    as _i18;
-import 'package:bond/features/settings/presentation/pages/complaint_screen.dart'
-    as _i6;
-import 'package:bond/features/settings/presentation/pages/pdf_view_screen.dart'
-    as _i21;
-import 'package:bond/features/settings/presentation/pages/terms_screen.dart'
-    as _i34;
-import 'package:bond/features/sick_leave/data/models/my_sick_leave.dart'
-    as _i40;
-import 'package:bond/features/sick_leave/presentation/pages/create_sick_leave_screen.dart'
     as _i7;
-import 'package:bond/features/sick_leave/presentation/pages/feedback_screen.dart'
-    as _i9;
-import 'package:bond/features/sick_leave/presentation/pages/my_sick_leave_screen.dart'
-    as _i17;
-import 'package:bond/features/sick_leave/presentation/pages/sick_leave_analtyics.dart'
-    as _i30;
-import 'package:bond/features/sick_leave/presentation/pages/sick_leave_polices.dart'
-    as _i31;
-import 'package:bond/features/sick_leave/presentation/pages/sick_leave_service_screen.dart'
-    as _i32;
-import 'package:bond/features/start/presentation/pages/splash_screen.dart'
+import 'package:bond/features/reservation/presentation/pages/new_reservation_screen.dart'
+    as _i16;
+import 'package:bond/features/reservation/presentation/pages/reservation_dashboard_screen.dart'
+    as _i26;
+import 'package:bond/features/settings/presentation/pages/complaint_screen.dart'
+    as _i5;
+import 'package:bond/features/settings/presentation/pages/pdf_view_screen.dart'
+    as _i19;
+import 'package:bond/features/settings/presentation/pages/terms_screen.dart'
     as _i33;
-import 'package:flutter/material.dart' as _i38;
+import 'package:bond/features/sick_leave/data/models/my_sick_leave.dart'
+    as _i42;
+import 'package:bond/features/sick_leave/presentation/pages/create_sick_leave_screen.dart'
+    as _i6;
+import 'package:bond/features/sick_leave/presentation/pages/feedback_screen.dart'
+    as _i8;
+import 'package:bond/features/sick_leave/presentation/pages/my_sick_leave_screen.dart'
+    as _i15;
+import 'package:bond/features/sick_leave/presentation/pages/sick_leave_analtyics.dart'
+    as _i29;
+import 'package:bond/features/sick_leave/presentation/pages/sick_leave_polices.dart'
+    as _i30;
+import 'package:bond/features/sick_leave/presentation/pages/sick_leave_service_screen.dart'
+    as _i31;
+import 'package:bond/features/start/presentation/pages/splash_screen.dart'
+    as _i32;
+import 'package:collection/collection.dart' as _i41;
+import 'package:flutter/material.dart' as _i37;
 
 /// generated route for
 /// [_i1.ActiveListScreen]
-class ActiveListRoute extends _i37.PageRouteInfo<ActiveListRouteArgs> {
+class ActiveListRoute extends _i36.PageRouteInfo<ActiveListRouteArgs> {
   ActiveListRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          ActiveListRoute.name,
          args: ActiveListRouteArgs(key: key, policyId: policyId),
@@ -106,7 +109,7 @@ class ActiveListRoute extends _i37.PageRouteInfo<ActiveListRouteArgs> {
 
   static const String name = 'ActiveListRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ActiveListRouteArgs>();
@@ -118,7 +121,7 @@ class ActiveListRoute extends _i37.PageRouteInfo<ActiveListRouteArgs> {
 class ActiveListRouteArgs {
   const ActiveListRouteArgs({this.key, required this.policyId});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int policyId;
 
@@ -140,13 +143,13 @@ class ActiveListRouteArgs {
 
 /// generated route for
 /// [_i2.AddEmergenceScreen]
-class AddEmergenceRoute extends _i37.PageRouteInfo<void> {
-  const AddEmergenceRoute({List<_i37.PageRouteInfo>? children})
+class AddEmergenceRoute extends _i36.PageRouteInfo<void> {
+  const AddEmergenceRoute({List<_i36.PageRouteInfo>? children})
     : super(AddEmergenceRoute.name, initialChildren: children);
 
   static const String name = 'AddEmergenceRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       return const _i2.AddEmergenceScreen();
@@ -156,60 +159,78 @@ class AddEmergenceRoute extends _i37.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.BookingDoctorScreen]
-class BookingDoctorRoute extends _i37.PageRouteInfo<BookingDoctorRouteArgs> {
+class BookingDoctorRoute extends _i36.PageRouteInfo<BookingDoctorRouteArgs> {
   BookingDoctorRoute({
-    _i38.Key? key,
-    required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    _i37.Key? key,
+    required _i38.ReservationParams reservationParams,
+    required _i39.DoctorsResult doctorsResult,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          BookingDoctorRoute.name,
-         args: BookingDoctorRouteArgs(key: key, policyId: policyId),
+         args: BookingDoctorRouteArgs(
+           key: key,
+           reservationParams: reservationParams,
+           doctorsResult: doctorsResult,
+         ),
          initialChildren: children,
        );
 
   static const String name = 'BookingDoctorRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<BookingDoctorRouteArgs>();
-      return _i3.BookingDoctorScreen(key: args.key, policyId: args.policyId);
+      return _i3.BookingDoctorScreen(
+        key: args.key,
+        reservationParams: args.reservationParams,
+        doctorsResult: args.doctorsResult,
+      );
     },
   );
 }
 
 class BookingDoctorRouteArgs {
-  const BookingDoctorRouteArgs({this.key, required this.policyId});
+  const BookingDoctorRouteArgs({
+    this.key,
+    required this.reservationParams,
+    required this.doctorsResult,
+  });
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
-  final int policyId;
+  final _i38.ReservationParams reservationParams;
+
+  final _i39.DoctorsResult doctorsResult;
 
   @override
   String toString() {
-    return 'BookingDoctorRouteArgs{key: $key, policyId: $policyId}';
+    return 'BookingDoctorRouteArgs{key: $key, reservationParams: $reservationParams, doctorsResult: $doctorsResult}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! BookingDoctorRouteArgs) return false;
-    return key == other.key && policyId == other.policyId;
+    return key == other.key &&
+        reservationParams == other.reservationParams &&
+        doctorsResult == other.doctorsResult;
   }
 
   @override
-  int get hashCode => key.hashCode ^ policyId.hashCode;
+  int get hashCode =>
+      key.hashCode ^ reservationParams.hashCode ^ doctorsResult.hashCode;
 }
 
 /// generated route for
 /// [_i4.CarServiceScreen]
-class CarServiceRoute extends _i37.PageRouteInfo<void> {
-  const CarServiceRoute({List<_i37.PageRouteInfo>? children})
+class CarServiceRoute extends _i36.PageRouteInfo<void> {
+  const CarServiceRoute({List<_i36.PageRouteInfo>? children})
     : super(CarServiceRoute.name, initialChildren: children);
 
   static const String name = 'CarServiceRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       return const _i4.CarServiceScreen();
@@ -218,80 +239,29 @@ class CarServiceRoute extends _i37.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.ChooseReservationScreen]
-class ChooseReservationRoute
-    extends _i37.PageRouteInfo<ChooseReservationRouteArgs> {
-  ChooseReservationRoute({
-    _i38.Key? key,
-    required int policyId,
-    List<_i37.PageRouteInfo>? children,
-  }) : super(
-         ChooseReservationRoute.name,
-         args: ChooseReservationRouteArgs(key: key, policyId: policyId),
-         initialChildren: children,
-       );
-
-  static const String name = 'ChooseReservationRoute';
-
-  static _i37.PageInfo page = _i37.PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<ChooseReservationRouteArgs>();
-      return _i5.ChooseReservationScreen(
-        key: args.key,
-        policyId: args.policyId,
-      );
-    },
-  );
-}
-
-class ChooseReservationRouteArgs {
-  const ChooseReservationRouteArgs({this.key, required this.policyId});
-
-  final _i38.Key? key;
-
-  final int policyId;
-
-  @override
-  String toString() {
-    return 'ChooseReservationRouteArgs{key: $key, policyId: $policyId}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! ChooseReservationRouteArgs) return false;
-    return key == other.key && policyId == other.policyId;
-  }
-
-  @override
-  int get hashCode => key.hashCode ^ policyId.hashCode;
-}
-
-/// generated route for
-/// [_i6.ComplaintScreen]
-class ComplaintRoute extends _i37.PageRouteInfo<void> {
-  const ComplaintRoute({List<_i37.PageRouteInfo>? children})
+/// [_i5.ComplaintScreen]
+class ComplaintRoute extends _i36.PageRouteInfo<void> {
+  const ComplaintRoute({List<_i36.PageRouteInfo>? children})
     : super(ComplaintRoute.name, initialChildren: children);
 
   static const String name = 'ComplaintRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i6.ComplaintScreen();
+      return const _i5.ComplaintScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i7.CreateSickLeaveScreen]
+/// [_i6.CreateSickLeaveScreen]
 class CreateSickLeaveRoute
-    extends _i37.PageRouteInfo<CreateSickLeaveRouteArgs> {
+    extends _i36.PageRouteInfo<CreateSickLeaveRouteArgs> {
   CreateSickLeaveRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          CreateSickLeaveRoute.name,
          args: CreateSickLeaveRouteArgs(key: key, policyId: policyId),
@@ -300,11 +270,11 @@ class CreateSickLeaveRoute
 
   static const String name = 'CreateSickLeaveRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CreateSickLeaveRouteArgs>();
-      return _i7.CreateSickLeaveScreen(key: args.key, policyId: args.policyId);
+      return _i6.CreateSickLeaveScreen(key: args.key, policyId: args.policyId);
     },
   );
 }
@@ -312,7 +282,7 @@ class CreateSickLeaveRoute
 class CreateSickLeaveRouteArgs {
   const CreateSickLeaveRouteArgs({this.key, required this.policyId});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int policyId;
 
@@ -333,33 +303,33 @@ class CreateSickLeaveRouteArgs {
 }
 
 /// generated route for
-/// [_i8.DoctorsResultScreen]
-class DoctorsResultRoute extends _i37.PageRouteInfo<DoctorsResultRouteArgs> {
+/// [_i7.DoctorsResultScreen]
+class DoctorsResultRoute extends _i36.PageRouteInfo<DoctorsResultRouteArgs> {
   DoctorsResultRoute({
-    _i38.Key? key,
-    required int policyId,
-    required _i39.DoctorsResult doctorsResult,
-    List<_i37.PageRouteInfo>? children,
+    _i37.Key? key,
+    required List<_i39.DoctorsResult> allTimeSlot,
+    required _i40.DoctorBookingParams params,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          DoctorsResultRoute.name,
          args: DoctorsResultRouteArgs(
            key: key,
-           policyId: policyId,
-           doctorsResult: doctorsResult,
+           allTimeSlot: allTimeSlot,
+           params: params,
          ),
          initialChildren: children,
        );
 
   static const String name = 'DoctorsResultRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<DoctorsResultRouteArgs>();
-      return _i8.DoctorsResultScreen(
+      return _i7.DoctorsResultScreen(
         key: args.key,
-        policyId: args.policyId,
-        doctorsResult: args.doctorsResult,
+        allTimeSlot: args.allTimeSlot,
+        params: args.params,
       );
     },
   );
@@ -368,19 +338,19 @@ class DoctorsResultRoute extends _i37.PageRouteInfo<DoctorsResultRouteArgs> {
 class DoctorsResultRouteArgs {
   const DoctorsResultRouteArgs({
     this.key,
-    required this.policyId,
-    required this.doctorsResult,
+    required this.allTimeSlot,
+    required this.params,
   });
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
-  final int policyId;
+  final List<_i39.DoctorsResult> allTimeSlot;
 
-  final _i39.DoctorsResult doctorsResult;
+  final _i40.DoctorBookingParams params;
 
   @override
   String toString() {
-    return 'DoctorsResultRouteArgs{key: $key, policyId: $policyId, doctorsResult: $doctorsResult}';
+    return 'DoctorsResultRouteArgs{key: $key, allTimeSlot: $allTimeSlot, params: $params}';
   }
 
   @override
@@ -388,21 +358,27 @@ class DoctorsResultRouteArgs {
     if (identical(this, other)) return true;
     if (other is! DoctorsResultRouteArgs) return false;
     return key == other.key &&
-        policyId == other.policyId &&
-        doctorsResult == other.doctorsResult;
+        const _i41.ListEquality<_i39.DoctorsResult>().equals(
+          allTimeSlot,
+          other.allTimeSlot,
+        ) &&
+        params == other.params;
   }
 
   @override
-  int get hashCode => key.hashCode ^ policyId.hashCode ^ doctorsResult.hashCode;
+  int get hashCode =>
+      key.hashCode ^
+      const _i41.ListEquality<_i39.DoctorsResult>().hash(allTimeSlot) ^
+      params.hashCode;
 }
 
 /// generated route for
-/// [_i9.FeedbackScreen]
-class FeedbackRoute extends _i37.PageRouteInfo<FeedbackRouteArgs> {
+/// [_i8.FeedbackScreen]
+class FeedbackRoute extends _i36.PageRouteInfo<FeedbackRouteArgs> {
   FeedbackRoute({
-    _i38.Key? key,
-    required _i40.MySickLeave myRequestsModel,
-    List<_i37.PageRouteInfo>? children,
+    _i37.Key? key,
+    required _i42.MySickLeave myRequestsModel,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          FeedbackRoute.name,
          args: FeedbackRouteArgs(key: key, myRequestsModel: myRequestsModel),
@@ -411,11 +387,11 @@ class FeedbackRoute extends _i37.PageRouteInfo<FeedbackRouteArgs> {
 
   static const String name = 'FeedbackRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<FeedbackRouteArgs>();
-      return _i9.FeedbackScreen(
+      return _i8.FeedbackScreen(
         key: args.key,
         myRequestsModel: args.myRequestsModel,
       );
@@ -426,9 +402,9 @@ class FeedbackRoute extends _i37.PageRouteInfo<FeedbackRouteArgs> {
 class FeedbackRouteArgs {
   const FeedbackRouteArgs({this.key, required this.myRequestsModel});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
-  final _i40.MySickLeave myRequestsModel;
+  final _i42.MySickLeave myRequestsModel;
 
   @override
   String toString() {
@@ -447,29 +423,29 @@ class FeedbackRouteArgs {
 }
 
 /// generated route for
-/// [_i10.HomeScreen]
-class HomeRoute extends _i37.PageRouteInfo<void> {
-  const HomeRoute({List<_i37.PageRouteInfo>? children})
+/// [_i9.HomeScreen]
+class HomeRoute extends _i36.PageRouteInfo<void> {
+  const HomeRoute({List<_i36.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i10.HomeScreen();
+      return const _i9.HomeScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i11.InsuranceScreen]
-class InsuranceRoute extends _i37.PageRouteInfo<InsuranceRouteArgs> {
+/// [_i10.InsuranceScreen]
+class InsuranceRoute extends _i36.PageRouteInfo<InsuranceRouteArgs> {
   InsuranceRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required String title,
-    required _i41.TemplateModel templateModel,
-    List<_i37.PageRouteInfo>? children,
+    required _i43.TemplateModel templateModel,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          InsuranceRoute.name,
          args: InsuranceRouteArgs(
@@ -482,11 +458,11 @@ class InsuranceRoute extends _i37.PageRouteInfo<InsuranceRouteArgs> {
 
   static const String name = 'InsuranceRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<InsuranceRouteArgs>();
-      return _i11.InsuranceScreen(
+      return _i10.InsuranceScreen(
         key: args.key,
         title: args.title,
         templateModel: args.templateModel,
@@ -502,11 +478,11 @@ class InsuranceRouteArgs {
     required this.templateModel,
   });
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final String title;
 
-  final _i41.TemplateModel templateModel;
+  final _i43.TemplateModel templateModel;
 
   @override
   String toString() {
@@ -527,124 +503,77 @@ class InsuranceRouteArgs {
 }
 
 /// generated route for
-/// [_i12.LoginScreen]
-class LoginRoute extends _i37.PageRouteInfo<void> {
-  const LoginRoute({List<_i37.PageRouteInfo>? children})
+/// [_i11.LoginScreen]
+class LoginRoute extends _i36.PageRouteInfo<void> {
+  const LoginRoute({List<_i36.PageRouteInfo>? children})
     : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i12.LoginScreen();
+      return const _i11.LoginScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i13.MainLayoutScreen]
-class MainLayoutRoute extends _i37.PageRouteInfo<void> {
-  const MainLayoutRoute({List<_i37.PageRouteInfo>? children})
+/// [_i12.MainLayoutScreen]
+class MainLayoutRoute extends _i36.PageRouteInfo<void> {
+  const MainLayoutRoute({List<_i36.PageRouteInfo>? children})
     : super(MainLayoutRoute.name, initialChildren: children);
 
   static const String name = 'MainLayoutRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i13.MainLayoutScreen();
+      return const _i12.MainLayoutScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i14.MedicalFilterScreen]
-class MedicalFilterRoute extends _i37.PageRouteInfo<void> {
-  const MedicalFilterRoute({List<_i37.PageRouteInfo>? children})
+/// [_i13.MedicalFilterScreen]
+class MedicalFilterRoute extends _i36.PageRouteInfo<void> {
+  const MedicalFilterRoute({List<_i36.PageRouteInfo>? children})
     : super(MedicalFilterRoute.name, initialChildren: children);
 
   static const String name = 'MedicalFilterRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i14.MedicalFilterScreen();
+      return const _i13.MedicalFilterScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i15.MyEmergencyScreen]
-class MyEmergencyRoute extends _i37.PageRouteInfo<void> {
-  const MyEmergencyRoute({List<_i37.PageRouteInfo>? children})
+/// [_i14.MyEmergencyScreen]
+class MyEmergencyRoute extends _i36.PageRouteInfo<void> {
+  const MyEmergencyRoute({List<_i36.PageRouteInfo>? children})
     : super(MyEmergencyRoute.name, initialChildren: children);
 
   static const String name = 'MyEmergencyRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i15.MyEmergencyScreen();
+      return const _i14.MyEmergencyScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i16.MyReservationScreen]
-class MyReservationRoute extends _i37.PageRouteInfo<MyReservationRouteArgs> {
-  MyReservationRoute({
-    _i38.Key? key,
-    required int policyId,
-    List<_i37.PageRouteInfo>? children,
-  }) : super(
-         MyReservationRoute.name,
-         args: MyReservationRouteArgs(key: key, policyId: policyId),
-         initialChildren: children,
-       );
-
-  static const String name = 'MyReservationRoute';
-
-  static _i37.PageInfo page = _i37.PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<MyReservationRouteArgs>();
-      return _i16.MyReservationScreen(key: args.key, policyId: args.policyId);
-    },
-  );
-}
-
-class MyReservationRouteArgs {
-  const MyReservationRouteArgs({this.key, required this.policyId});
-
-  final _i38.Key? key;
-
-  final int policyId;
-
-  @override
-  String toString() {
-    return 'MyReservationRouteArgs{key: $key, policyId: $policyId}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! MyReservationRouteArgs) return false;
-    return key == other.key && policyId == other.policyId;
-  }
-
-  @override
-  int get hashCode => key.hashCode ^ policyId.hashCode;
-}
-
-/// generated route for
-/// [_i17.MySickLeaveScreen]
-class MySickLeaveRoute extends _i37.PageRouteInfo<MySickLeaveRouteArgs> {
+/// [_i15.MySickLeaveScreen]
+class MySickLeaveRoute extends _i36.PageRouteInfo<MySickLeaveRouteArgs> {
   MySickLeaveRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     int? sickLeaveId,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          MySickLeaveRoute.name,
          args: MySickLeaveRouteArgs(
@@ -657,11 +586,11 @@ class MySickLeaveRoute extends _i37.PageRouteInfo<MySickLeaveRouteArgs> {
 
   static const String name = 'MySickLeaveRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<MySickLeaveRouteArgs>();
-      return _i17.MySickLeaveScreen(
+      return _i15.MySickLeaveScreen(
         key: args.key,
         sickLeaveId: args.sickLeaveId,
         policyId: args.policyId,
@@ -677,7 +606,7 @@ class MySickLeaveRouteArgs {
     required this.policyId,
   });
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int? sickLeaveId;
 
@@ -702,75 +631,105 @@ class MySickLeaveRouteArgs {
 }
 
 /// generated route for
-/// [_i18.NewReservationScreen]
-class NewReservationRoute extends _i37.PageRouteInfo<NewReservationRouteArgs> {
+/// [_i16.NewReservationScreen]
+class NewReservationRoute extends _i36.PageRouteInfo<NewReservationRouteArgs> {
   NewReservationRoute({
-    _i38.Key? key,
-    required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    _i37.Key? key,
+    bool isFilter = false,
+    _i40.DoctorBookingParams? params,
+    List<_i39.DoctorsResult>? list,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          NewReservationRoute.name,
-         args: NewReservationRouteArgs(key: key, policyId: policyId),
+         args: NewReservationRouteArgs(
+           key: key,
+           isFilter: isFilter,
+           params: params,
+           list: list,
+         ),
          initialChildren: children,
        );
 
   static const String name = 'NewReservationRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<NewReservationRouteArgs>();
-      return _i18.NewReservationScreen(key: args.key, policyId: args.policyId);
+      final args = data.argsAs<NewReservationRouteArgs>(
+        orElse: () => const NewReservationRouteArgs(),
+      );
+      return _i16.NewReservationScreen(
+        key: args.key,
+        isFilter: args.isFilter,
+        params: args.params,
+        list: args.list,
+      );
     },
   );
 }
 
 class NewReservationRouteArgs {
-  const NewReservationRouteArgs({this.key, required this.policyId});
+  const NewReservationRouteArgs({
+    this.key,
+    this.isFilter = false,
+    this.params,
+    this.list,
+  });
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
-  final int policyId;
+  final bool isFilter;
+
+  final _i40.DoctorBookingParams? params;
+
+  final List<_i39.DoctorsResult>? list;
 
   @override
   String toString() {
-    return 'NewReservationRouteArgs{key: $key, policyId: $policyId}';
+    return 'NewReservationRouteArgs{key: $key, isFilter: $isFilter, params: $params, list: $list}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! NewReservationRouteArgs) return false;
-    return key == other.key && policyId == other.policyId;
+    return key == other.key &&
+        isFilter == other.isFilter &&
+        params == other.params &&
+        const _i41.ListEquality<_i39.DoctorsResult>().equals(list, other.list);
   }
 
   @override
-  int get hashCode => key.hashCode ^ policyId.hashCode;
+  int get hashCode =>
+      key.hashCode ^
+      isFilter.hashCode ^
+      params.hashCode ^
+      const _i41.ListEquality<_i39.DoctorsResult>().hash(list);
 }
 
 /// generated route for
-/// [_i19.OtherLineScreen]
-class OtherLineRoute extends _i37.PageRouteInfo<void> {
-  const OtherLineRoute({List<_i37.PageRouteInfo>? children})
+/// [_i17.OtherLineScreen]
+class OtherLineRoute extends _i36.PageRouteInfo<void> {
+  const OtherLineRoute({List<_i36.PageRouteInfo>? children})
     : super(OtherLineRoute.name, initialChildren: children);
 
   static const String name = 'OtherLineRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i19.OtherLineScreen();
+      return const _i17.OtherLineScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i20.OtpLoginScreen]
-class OtpLoginRoute extends _i37.PageRouteInfo<OtpLoginRouteArgs> {
+/// [_i18.OtpLoginScreen]
+class OtpLoginRoute extends _i36.PageRouteInfo<OtpLoginRouteArgs> {
   OtpLoginRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required String phone,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          OtpLoginRoute.name,
          args: OtpLoginRouteArgs(key: key, phone: phone),
@@ -779,11 +738,11 @@ class OtpLoginRoute extends _i37.PageRouteInfo<OtpLoginRouteArgs> {
 
   static const String name = 'OtpLoginRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<OtpLoginRouteArgs>();
-      return _i20.OtpLoginScreen(key: args.key, phone: args.phone);
+      return _i18.OtpLoginScreen(key: args.key, phone: args.phone);
     },
   );
 }
@@ -791,7 +750,7 @@ class OtpLoginRoute extends _i37.PageRouteInfo<OtpLoginRouteArgs> {
 class OtpLoginRouteArgs {
   const OtpLoginRouteArgs({this.key, required this.phone});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final String phone;
 
@@ -812,12 +771,12 @@ class OtpLoginRouteArgs {
 }
 
 /// generated route for
-/// [_i21.PdfViewScreen]
-class PdfViewRoute extends _i37.PageRouteInfo<PdfViewRouteArgs> {
+/// [_i19.PdfViewScreen]
+class PdfViewRoute extends _i36.PageRouteInfo<PdfViewRouteArgs> {
   PdfViewRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required String url,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          PdfViewRoute.name,
          args: PdfViewRouteArgs(key: key, url: url),
@@ -826,11 +785,11 @@ class PdfViewRoute extends _i37.PageRouteInfo<PdfViewRouteArgs> {
 
   static const String name = 'PdfViewRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PdfViewRouteArgs>();
-      return _i21.PdfViewScreen(key: args.key, url: args.url);
+      return _i19.PdfViewScreen(key: args.key, url: args.url);
     },
   );
 }
@@ -838,7 +797,7 @@ class PdfViewRoute extends _i37.PageRouteInfo<PdfViewRouteArgs> {
 class PdfViewRouteArgs {
   const PdfViewRouteArgs({this.key, required this.url});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final String url;
 
@@ -859,29 +818,29 @@ class PdfViewRouteArgs {
 }
 
 /// generated route for
-/// [_i22.PoliciesScreen]
-class PoliciesRoute extends _i37.PageRouteInfo<void> {
-  const PoliciesRoute({List<_i37.PageRouteInfo>? children})
+/// [_i20.PoliciesScreen]
+class PoliciesRoute extends _i36.PageRouteInfo<void> {
+  const PoliciesRoute({List<_i36.PageRouteInfo>? children})
     : super(PoliciesRoute.name, initialChildren: children);
 
   static const String name = 'PoliciesRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i22.PoliciesScreen();
+      return const _i20.PoliciesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i23.PolicyAccessSelectionScreen]
+/// [_i21.PolicyAccessSelectionScreen]
 class PolicyAccessSelectionRoute
-    extends _i37.PageRouteInfo<PolicyAccessSelectionRouteArgs> {
+    extends _i36.PageRouteInfo<PolicyAccessSelectionRouteArgs> {
   PolicyAccessSelectionRoute({
-    _i38.Key? key,
-    required _i42.MainPolicyModel model,
-    List<_i37.PageRouteInfo>? children,
+    _i37.Key? key,
+    required _i44.MainPolicyModel model,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          PolicyAccessSelectionRoute.name,
          args: PolicyAccessSelectionRouteArgs(key: key, model: model),
@@ -890,11 +849,11 @@ class PolicyAccessSelectionRoute
 
   static const String name = 'PolicyAccessSelectionRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PolicyAccessSelectionRouteArgs>();
-      return _i23.PolicyAccessSelectionScreen(key: args.key, model: args.model);
+      return _i21.PolicyAccessSelectionScreen(key: args.key, model: args.model);
     },
   );
 }
@@ -902,9 +861,9 @@ class PolicyAccessSelectionRoute
 class PolicyAccessSelectionRouteArgs {
   const PolicyAccessSelectionRouteArgs({this.key, required this.model});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
-  final _i42.MainPolicyModel model;
+  final _i44.MainPolicyModel model;
 
   @override
   String toString() {
@@ -923,12 +882,12 @@ class PolicyAccessSelectionRouteArgs {
 }
 
 /// generated route for
-/// [_i24.PolicyInfoScreen]
-class PolicyInfoRoute extends _i37.PageRouteInfo<PolicyInfoRouteArgs> {
+/// [_i22.PolicyInfoScreen]
+class PolicyInfoRoute extends _i36.PageRouteInfo<PolicyInfoRouteArgs> {
   PolicyInfoRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          PolicyInfoRoute.name,
          args: PolicyInfoRouteArgs(key: key, policyId: policyId),
@@ -937,11 +896,11 @@ class PolicyInfoRoute extends _i37.PageRouteInfo<PolicyInfoRouteArgs> {
 
   static const String name = 'PolicyInfoRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PolicyInfoRouteArgs>();
-      return _i24.PolicyInfoScreen(key: args.key, policyId: args.policyId);
+      return _i22.PolicyInfoScreen(key: args.key, policyId: args.policyId);
     },
   );
 }
@@ -949,7 +908,7 @@ class PolicyInfoRoute extends _i37.PageRouteInfo<PolicyInfoRouteArgs> {
 class PolicyInfoRouteArgs {
   const PolicyInfoRouteArgs({this.key, required this.policyId});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int policyId;
 
@@ -970,12 +929,12 @@ class PolicyInfoRouteArgs {
 }
 
 /// generated route for
-/// [_i25.PolicyPaymentScreen]
-class PolicyPaymentRoute extends _i37.PageRouteInfo<PolicyPaymentRouteArgs> {
+/// [_i23.PolicyPaymentScreen]
+class PolicyPaymentRoute extends _i36.PageRouteInfo<PolicyPaymentRouteArgs> {
   PolicyPaymentRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          PolicyPaymentRoute.name,
          args: PolicyPaymentRouteArgs(key: key, policyId: policyId),
@@ -984,11 +943,11 @@ class PolicyPaymentRoute extends _i37.PageRouteInfo<PolicyPaymentRouteArgs> {
 
   static const String name = 'PolicyPaymentRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PolicyPaymentRouteArgs>();
-      return _i25.PolicyPaymentScreen(key: args.key, policyId: args.policyId);
+      return _i23.PolicyPaymentScreen(key: args.key, policyId: args.policyId);
     },
   );
 }
@@ -996,7 +955,7 @@ class PolicyPaymentRoute extends _i37.PageRouteInfo<PolicyPaymentRouteArgs> {
 class PolicyPaymentRouteArgs {
   const PolicyPaymentRouteArgs({this.key, required this.policyId});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int policyId;
 
@@ -1017,28 +976,28 @@ class PolicyPaymentRouteArgs {
 }
 
 /// generated route for
-/// [_i26.ProfileScreen]
-class ProfileRoute extends _i37.PageRouteInfo<void> {
-  const ProfileRoute({List<_i37.PageRouteInfo>? children})
+/// [_i24.ProfileScreen]
+class ProfileRoute extends _i36.PageRouteInfo<void> {
+  const ProfileRoute({List<_i36.PageRouteInfo>? children})
     : super(ProfileRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i26.ProfileScreen();
+      return const _i24.ProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i27.ReimbursementScreen]
-class ReimbursementRoute extends _i37.PageRouteInfo<ReimbursementRouteArgs> {
+/// [_i25.ReimbursementScreen]
+class ReimbursementRoute extends _i36.PageRouteInfo<ReimbursementRouteArgs> {
   ReimbursementRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          ReimbursementRoute.name,
          args: ReimbursementRouteArgs(key: key, policyId: policyId),
@@ -1047,11 +1006,11 @@ class ReimbursementRoute extends _i37.PageRouteInfo<ReimbursementRouteArgs> {
 
   static const String name = 'ReimbursementRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ReimbursementRouteArgs>();
-      return _i27.ReimbursementScreen(key: args.key, policyId: args.policyId);
+      return _i25.ReimbursementScreen(key: args.key, policyId: args.policyId);
     },
   );
 }
@@ -1059,7 +1018,7 @@ class ReimbursementRoute extends _i37.PageRouteInfo<ReimbursementRouteArgs> {
 class ReimbursementRouteArgs {
   const ReimbursementRouteArgs({this.key, required this.policyId});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int policyId;
 
@@ -1080,12 +1039,28 @@ class ReimbursementRouteArgs {
 }
 
 /// generated route for
-/// [_i28.SearchResultScreen]
-class SearchResultRoute extends _i37.PageRouteInfo<SearchResultRouteArgs> {
+/// [_i26.ReservationDashboardScreen]
+class ReservationDashboardRoute extends _i36.PageRouteInfo<void> {
+  const ReservationDashboardRoute({List<_i36.PageRouteInfo>? children})
+    : super(ReservationDashboardRoute.name, initialChildren: children);
+
+  static const String name = 'ReservationDashboardRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      return const _i26.ReservationDashboardScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i27.SearchResultScreen]
+class SearchResultRoute extends _i36.PageRouteInfo<SearchResultRouteArgs> {
   SearchResultRoute({
-    _i38.Key? key,
-    required _i43.SearchParamsModel searchParamsModel,
-    List<_i37.PageRouteInfo>? children,
+    _i37.Key? key,
+    required _i45.SearchParamsModel searchParamsModel,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          SearchResultRoute.name,
          args: SearchResultRouteArgs(
@@ -1097,11 +1072,11 @@ class SearchResultRoute extends _i37.PageRouteInfo<SearchResultRouteArgs> {
 
   static const String name = 'SearchResultRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SearchResultRouteArgs>();
-      return _i28.SearchResultScreen(
+      return _i27.SearchResultScreen(
         key: args.key,
         searchParamsModel: args.searchParamsModel,
       );
@@ -1112,9 +1087,9 @@ class SearchResultRoute extends _i37.PageRouteInfo<SearchResultRouteArgs> {
 class SearchResultRouteArgs {
   const SearchResultRouteArgs({this.key, required this.searchParamsModel});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
-  final _i43.SearchParamsModel searchParamsModel;
+  final _i45.SearchParamsModel searchParamsModel;
 
   @override
   String toString() {
@@ -1133,29 +1108,29 @@ class SearchResultRouteArgs {
 }
 
 /// generated route for
-/// [_i29.SelectInsuranceScreen]
-class SelectInsuranceRoute extends _i37.PageRouteInfo<void> {
-  const SelectInsuranceRoute({List<_i37.PageRouteInfo>? children})
+/// [_i28.SelectInsuranceScreen]
+class SelectInsuranceRoute extends _i36.PageRouteInfo<void> {
+  const SelectInsuranceRoute({List<_i36.PageRouteInfo>? children})
     : super(SelectInsuranceRoute.name, initialChildren: children);
 
   static const String name = 'SelectInsuranceRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i29.SelectInsuranceScreen();
+      return const _i28.SelectInsuranceScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i30.SickLeaveAnalyticsScreen]
+/// [_i29.SickLeaveAnalyticsScreen]
 class SickLeaveAnalyticsRoute
-    extends _i37.PageRouteInfo<SickLeaveAnalyticsRouteArgs> {
+    extends _i36.PageRouteInfo<SickLeaveAnalyticsRouteArgs> {
   SickLeaveAnalyticsRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          SickLeaveAnalyticsRoute.name,
          args: SickLeaveAnalyticsRouteArgs(key: key, policyId: policyId),
@@ -1164,11 +1139,11 @@ class SickLeaveAnalyticsRoute
 
   static const String name = 'SickLeaveAnalyticsRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SickLeaveAnalyticsRouteArgs>();
-      return _i30.SickLeaveAnalyticsScreen(
+      return _i29.SickLeaveAnalyticsScreen(
         key: args.key,
         policyId: args.policyId,
       );
@@ -1179,7 +1154,7 @@ class SickLeaveAnalyticsRoute
 class SickLeaveAnalyticsRouteArgs {
   const SickLeaveAnalyticsRouteArgs({this.key, required this.policyId});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int policyId;
 
@@ -1200,29 +1175,29 @@ class SickLeaveAnalyticsRouteArgs {
 }
 
 /// generated route for
-/// [_i31.SickLeavePolicesScreen]
-class SickLeavePolicesRoute extends _i37.PageRouteInfo<void> {
-  const SickLeavePolicesRoute({List<_i37.PageRouteInfo>? children})
+/// [_i30.SickLeavePolicesScreen]
+class SickLeavePolicesRoute extends _i36.PageRouteInfo<void> {
+  const SickLeavePolicesRoute({List<_i36.PageRouteInfo>? children})
     : super(SickLeavePolicesRoute.name, initialChildren: children);
 
   static const String name = 'SickLeavePolicesRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i31.SickLeavePolicesScreen();
+      return const _i30.SickLeavePolicesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i32.SickLeaveServiceScreen]
+/// [_i31.SickLeaveServiceScreen]
 class SickLeaveServiceRoute
-    extends _i37.PageRouteInfo<SickLeaveServiceRouteArgs> {
+    extends _i36.PageRouteInfo<SickLeaveServiceRouteArgs> {
   SickLeaveServiceRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          SickLeaveServiceRoute.name,
          args: SickLeaveServiceRouteArgs(key: key, policyId: policyId),
@@ -1231,11 +1206,11 @@ class SickLeaveServiceRoute
 
   static const String name = 'SickLeaveServiceRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SickLeaveServiceRouteArgs>();
-      return _i32.SickLeaveServiceScreen(
+      return _i31.SickLeaveServiceScreen(
         key: args.key,
         policyId: args.policyId,
       );
@@ -1246,7 +1221,7 @@ class SickLeaveServiceRoute
 class SickLeaveServiceRouteArgs {
   const SickLeaveServiceRouteArgs({this.key, required this.policyId});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int policyId;
 
@@ -1267,60 +1242,60 @@ class SickLeaveServiceRouteArgs {
 }
 
 /// generated route for
-/// [_i33.SplashScreen]
-class SplashRoute extends _i37.PageRouteInfo<void> {
-  const SplashRoute({List<_i37.PageRouteInfo>? children})
+/// [_i32.SplashScreen]
+class SplashRoute extends _i36.PageRouteInfo<void> {
+  const SplashRoute({List<_i36.PageRouteInfo>? children})
     : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i33.SplashScreen();
+      return const _i32.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i34.TermsScreen]
-class TermsRoute extends _i37.PageRouteInfo<void> {
-  const TermsRoute({List<_i37.PageRouteInfo>? children})
+/// [_i33.TermsScreen]
+class TermsRoute extends _i36.PageRouteInfo<void> {
+  const TermsRoute({List<_i36.PageRouteInfo>? children})
     : super(TermsRoute.name, initialChildren: children);
 
   static const String name = 'TermsRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i34.TermsScreen();
+      return const _i33.TermsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i35.UniqueServiceScreen]
-class UniqueServiceRoute extends _i37.PageRouteInfo<void> {
-  const UniqueServiceRoute({List<_i37.PageRouteInfo>? children})
+/// [_i34.UniqueServiceScreen]
+class UniqueServiceRoute extends _i36.PageRouteInfo<void> {
+  const UniqueServiceRoute({List<_i36.PageRouteInfo>? children})
     : super(UniqueServiceRoute.name, initialChildren: children);
 
   static const String name = 'UniqueServiceRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i35.UniqueServiceScreen();
+      return const _i34.UniqueServiceScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i36.UtilizationScreen]
-class UtilizationRoute extends _i37.PageRouteInfo<UtilizationRouteArgs> {
+/// [_i35.UtilizationScreen]
+class UtilizationRoute extends _i36.PageRouteInfo<UtilizationRouteArgs> {
   UtilizationRoute({
-    _i38.Key? key,
+    _i37.Key? key,
     required int policyId,
-    List<_i37.PageRouteInfo>? children,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
          UtilizationRoute.name,
          args: UtilizationRouteArgs(key: key, policyId: policyId),
@@ -1329,11 +1304,11 @@ class UtilizationRoute extends _i37.PageRouteInfo<UtilizationRouteArgs> {
 
   static const String name = 'UtilizationRoute';
 
-  static _i37.PageInfo page = _i37.PageInfo(
+  static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<UtilizationRouteArgs>();
-      return _i36.UtilizationScreen(key: args.key, policyId: args.policyId);
+      return _i35.UtilizationScreen(key: args.key, policyId: args.policyId);
     },
   );
 }
@@ -1341,7 +1316,7 @@ class UtilizationRoute extends _i37.PageRouteInfo<UtilizationRouteArgs> {
 class UtilizationRouteArgs {
   const UtilizationRouteArgs({this.key, required this.policyId});
 
-  final _i38.Key? key;
+  final _i37.Key? key;
 
   final int policyId;
 

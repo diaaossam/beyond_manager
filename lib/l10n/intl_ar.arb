@@ -69,6 +69,8 @@
   "policy_status_draft": "مسودة",
   "policy_status_terminated_with_beyond": "منتهي من بيوند",
   "policy_status_lapsed_bupa": "منتهي بوبا",
-  "policy_status_cancel": "ملغي"
+  "policy_status_cancel": "ملغي",
+  "selectDoctor": "اختر الطبيب"
+
 
 }

@@ -2,13 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
-import 'package:bond/core/utils/app_assets.dart';
 import 'package:bond/core/utils/app_constant.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/network/data/models/response/search_params.dart';
 import 'package:bond/features/network/data/models/response/tiers_model.dart';
 import 'package:bond/features/network/data/models/response/tpa_model.dart';
 import 'package:bond/features/network/network_helper.dart';
+import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,12 +47,11 @@ class _MainExpandedFilterDesignState extends State<MainExpandedFilterDesign> {
               ExpandedTitleDesign(
                 onPressed: () => NetworkHelper().showTpaBottomSheet(
                   context: context,
-                  onPressed: (indices) {
-                  },
-                  tpaModel: state.data??[],
+                  onPressed: (indices) {},
+                  tpaModel: state.data ?? [],
                   title: context.localizations.tpa,
                 ),
-                icon: AppAssets.tpa,
+                icon: Assets.icons.tpa,
                 isChangeSubTitleColor: bloc.selectedTpa != null,
                 title: context.localizations.tpa,
                 subTitle: bloc.selectedTpa != null
@@ -76,7 +75,7 @@ class _MainExpandedFilterDesignState extends State<MainExpandedFilterDesign> {
                     company: bloc.companyList,
                   );
                 },
-                icon: AppAssets.insuranceCompany,
+                icon: Assets.icons.insurance,
                 isChangeSubTitleColor: bloc.selectedCompany != null,
                 title: context.localizations.insuranceCompany,
                 subTitle: bloc.selectedCompany != null
@@ -100,7 +99,7 @@ class _MainExpandedFilterDesignState extends State<MainExpandedFilterDesign> {
                         initTiersData: tiers,
                         tiersData: bloc.tiers,
                       ),
-                icon: AppAssets.category,
+                icon:Assets.icons.category,
                 isChangeSubTitleColor: tiers != null,
                 title: context.localizations.category,
                 subTitle: tiers != null
@@ -133,7 +132,7 @@ class _MainExpandedFilterDesignState extends State<MainExpandedFilterDesign> {
                   data: bloc.cities,
                   tiersData: [],
                 ),
-                icon: AppAssets.city,
+                icon: Assets.icons.city,
                 isChangeSubTitleColor: city.isNotEmpty,
                 title: context.localizations.city,
                 subTitle: city.isNotEmpty
@@ -165,7 +164,7 @@ class _MainExpandedFilterDesignState extends State<MainExpandedFilterDesign> {
                   data: bloc.areas,
                   tiersData: [],
                 ),
-                icon: AppAssets.area,
+                icon: Assets.icons.area,
                 isChangeSubTitleColor: area.isNotEmpty,
                 title: context.localizations.area,
                 subTitle: area.isNotEmpty
@@ -196,7 +195,7 @@ class _MainExpandedFilterDesignState extends State<MainExpandedFilterDesign> {
                   data: bloc.providerTypes,
                   tiersData: [],
                 ),
-                icon: AppAssets.providerType,
+                icon: Assets.icons.providerType,
                 title: context.localizations.providerType,
                 isChangeSubTitleColor: providerType.isNotEmpty,
                 subTitle: providerType.isNotEmpty
@@ -220,7 +219,7 @@ class _MainExpandedFilterDesignState extends State<MainExpandedFilterDesign> {
                   data: bloc.specialties,
                   tiersData: [],
                 ),
-                icon: AppAssets.specialty,
+                icon:Assets.icons.specialty,
                 isChangeSubTitleColor: speciality.isNotEmpty,
                 title: context.localizations.specialty,
                 subTitle: speciality.isNotEmpty
