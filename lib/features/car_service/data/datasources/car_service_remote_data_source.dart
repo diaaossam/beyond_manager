@@ -1,18 +1,21 @@
-import 'package:bond/core/services/api/dio_consumer.dart';
-import 'package:bond/core/services/api/end_points.dart';
-import 'package:bond/core/services/network/error/failures.dart';
-import 'package:bond/features/car_service/data/models/company_model.dart';
-import 'package:bond/features/car_service/data/models/service_center_model.dart';
-import 'package:bond/features/car_service/data/models/service_center_params.dart';
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/services/api/dio_consumer.dart';
+import '../../../../core/services/api/end_points.dart';
+import '../models/company_model.dart';
+import '../models/service_center_model.dart';
+import '../models/service_center_params.dart';
+
 abstract class CarServiceRemoteDataSource {
-  Future<Either<Failure, List<String>>> getVehicleBrand();
-  Future<Either<Failure, List<CompanyModel>>> getInsuranceCompany();
-  Future<Either<Failure, List<String>>> getServiceArea();
-  Future<Either<Failure, List<String>>> getCenterTypeArea();
-  Future<Either<Failure, List<ServiceCenterModel>>> getServiceCenters({
+  Future<List<String>> getVehicleBrand();
+
+  Future<List<CompanyModel>> getInsuranceCompany();
+
+  Future<List<String>> getServiceArea();
+
+  Future<List<String>> getCenterType();
+
+  Future<List<ServiceCenterModel>> getServiceCenters({
     required ServiceParams params,
   });
 }
@@ -24,79 +27,45 @@ class CarServiceRemoteDataSourceImpl implements CarServiceRemoteDataSource {
   CarServiceRemoteDataSourceImpl({required this.dioConsumer});
 
   @override
-  Future<Either<Failure, List<CompanyModel>>> getInsuranceCompany() async {
-    try {
-      final response = await dioConsumer.performRequest(
-        path: EndPoints.insuranceCompany,
-        method: 'GET',
-      );
-      final list = (response['options'] as List)
-          .map((e) => CompanyModel.fromJson(map: e as Map<String, dynamic>))
-          .toList();
-      return Right(list);
-    } catch (e) {
-      return Left(ServerFailure(error: e.toString(), code: 0));
-    }
+  Future<List<CompanyModel>> getInsuranceCompany() async {
+    return await dioConsumer
+        .get(EndPoints.insuranceCompany)
+        .factory((json) => CompanyModel.fromJsonList(json['options']))
+        .execute();
   }
 
   @override
-  Future<Either<Failure, List<String>>> getVehicleBrand() async {
-    try {
-      final response = await dioConsumer.performRequest(
-        path: EndPoints.vehicleBrand,
-        method: 'GET',
-      );
-      final list = (response['options'] as List).cast<String>();
-      return Right(list);
-    } catch (e) {
-      return Left(ServerFailure(error: e.toString(), code: 0));
-    }
+  Future<List<String>> getVehicleBrand() async {
+    return await dioConsumer
+        .get(EndPoints.vehicleBrand)
+        .factory((json) => (json['options'] as List).cast<String>())
+        .execute();
   }
 
   @override
-  Future<Either<Failure, List<String>>> getServiceArea() async {
-    try {
-      final response = await dioConsumer.performRequest(
-        path: EndPoints.area,
-        method: 'GET',
-      );
-      final list = (response['options'] as List).cast<String>();
-      return Right(list);
-    } catch (e) {
-      return Left(ServerFailure(error: e.toString(), code: 0));
-    }
+  Future<List<String>> getServiceArea() async {
+    return await dioConsumer
+        .get(EndPoints.area)
+        .factory((json) => (json['options'] as List).cast<String>())
+        .execute();
   }
 
   @override
-  Future<Either<Failure, List<String>>> getCenterTypeArea() async {
-    try {
-      final response = await dioConsumer.performRequest(
-        path: EndPoints.centerType,
-        method: 'GET',
-      );
-      final list = (response['options'] as List).cast<String>();
-      return Right(list);
-    } catch (e) {
-      return Left(ServerFailure(error: e.toString(), code: 0));
-    }
+  Future<List<String>> getCenterType() async {
+    return await dioConsumer
+        .get(EndPoints.centerType)
+        .factory((json) => (json['options'] as List).cast<String>())
+        .execute();
   }
 
   @override
-  Future<Either<Failure, List<ServiceCenterModel>>> getServiceCenters({
+  Future<List<ServiceCenterModel>> getServiceCenters({
     required ServiceParams params,
   }) async {
-    try {
-      final response = await dioConsumer.performRequest(
-        path: EndPoints.serviceCenters,
-        method: 'GET',
-        params: params.toJson(),
-      );
-      final list = (response['result'] as List)
-          .map((e) => ServiceCenterModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-      return Right(list);
-    } catch (e) {
-      return Left(ServerFailure(error: e.toString(), code: 0));
-    }
+    return await dioConsumer
+        .get(EndPoints.serviceCenters)
+        .params(params.toJson())
+        .factory((json) => ServiceCenterModel.fromJsonList(json['result']))
+        .execute();
   }
 }

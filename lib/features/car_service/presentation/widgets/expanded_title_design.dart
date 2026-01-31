@@ -1,8 +1,9 @@
-import 'package:bond/widgets/image_picker/app_image.dart';
+import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_size.dart';
-import 'package:bond/widgets/main_widget/app_text.dart';
+import '../../../../widgets/image_picker/app_image.dart';
+import '../../../../widgets/main_widget/app_text.dart';
 
 class ExpandedTitleDesign extends StatelessWidget {
   final String title;
@@ -11,13 +12,14 @@ class ExpandedTitleDesign extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isChangeSubTitleColor;
 
-  const ExpandedTitleDesign(
-      {super.key,
-        required this.title,
-        required this.subTitle,
-        required this.icon,
-        required this.onPressed,
-        required this.isChangeSubTitleColor});
+  const ExpandedTitleDesign({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.icon,
+    required this.onPressed,
+    required this.isChangeSubTitleColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +30,20 @@ class ExpandedTitleDesign extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 50,width: 50,
+              height: 50,
+              width: 50,
               padding: const EdgeInsets.all(15),
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Color(0xffE4F4FB)),
-              child: AppImage.asset(icon,height: 17,width: 17,),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: context.colorScheme.onPrimary,
+              ),
+              child: AppImage.asset(
+                icon,
+                height: 17,
+                width: 17,
+              ),
             ),
-            SizedBox(
-              width: SizeConfig.screenWidth * .04,
-            ),
+            SizedBox(width: SizeConfig.screenWidth * .04),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,18 +51,18 @@ class ExpandedTitleDesign extends StatelessWidget {
                 children: [
                   AppText(
                     text: title,
-                    fontWeight: FontWeight.bold,
-                    textSize: 14,
-                    color: Colors.black,
-                  ),
-                  SizedBox(
-                    height: SizeConfig.bodyHeight * .01,
-                  ),
-                  AppText(
-                    text:subTitle,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     textSize: 12,
-                    color:isChangeSubTitleColor ? Colors.blue : Colors.grey,
+                    color: context.colorScheme.onSurface,
+                  ),
+                  SizedBox(height: SizeConfig.bodyHeight * .01),
+                  AppText(
+                    text: subTitle,
+                    fontWeight: FontWeight.w500,
+                    textSize: 11,
+                    color: isChangeSubTitleColor
+                        ? context.colorScheme.primary
+                        : context.colorScheme.shadow,
                   ),
                 ],
               ),

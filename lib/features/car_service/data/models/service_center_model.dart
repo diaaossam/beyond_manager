@@ -25,6 +25,10 @@ class ServiceCenterModel {
     vehicleBrand = json['vehicle_brand'];
   }
 
+  static List<ServiceCenterModel> fromJsonList(List<dynamic> list) {
+    return list.map((e) => ServiceCenterModel.fromJson(e)).toList();
+  }
+
   String? area;
   String? centerType;
   String? city;

@@ -15,10 +15,6 @@ class InsuranceDesign extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.router.push(SelectInsuranceRoute());
-        /*AppConstant.navigateTo(
-        context: context,
-        widget: const SelectInsuranceScreen(),
-      );*/
       },
       child: Padding(
         padding: screenPadding(),

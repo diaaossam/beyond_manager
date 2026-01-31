@@ -1,37 +1,49 @@
-import 'package:bond/core/bloc/helper/async_handler.dart';
-import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/features/car_service/data/models/company_model.dart';
-import 'package:bond/features/car_service/data/models/service_center_model.dart';
-import 'package:bond/features/car_service/data/models/service_center_params.dart';
-import 'package:bond/features/car_service/domain/usecases/get_insurance_company_use_case.dart';
-import 'package:bond/features/car_service/domain/usecases/get_service_centers_use_case.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
-class CarServiceCubit extends Cubit<BaseState<List<ServiceCenterModel>>>
-    with AsyncHandler<List<ServiceCenterModel>> {
-  final GetInsuranceCompanyUseCase getInsuranceCompanyUseCase;
-  final GetServiceCentersUseCase getServiceCentersUseCase;
+import '../../../../core/bloc/helper/async_handler.dart';
+import '../../../../core/bloc/helper/base_state.dart';
+import '../../data/models/company_model.dart';
+import '../../data/models/service_center_model.dart';
+import '../../data/models/service_center_params.dart';
+import '../../data/repositories/car_service_repository_impl.dart';
 
-  CarServiceCubit(
-    this.getInsuranceCompanyUseCase,
-    this.getServiceCentersUseCase,
-  ) : super(BaseState.initial());
+class CarServiceData {
+  final List<CompanyModel> insuranceCompany;
+  final List<String> vehicleBrand;
+  final List<String> area;
+  final List<ServiceCenterModel> serviceCenterList;
 
-  List<CompanyModel> insuranceCompany = [];
-  List<String> vehicleBrand = [];
-  List<String> area = [];
-  List<ServiceCenterModel> serviceCenterList = [];
+  CarServiceData({
+    this.insuranceCompany = const [],
+    this.vehicleBrand = const [],
+    this.area = const [],
+    this.serviceCenterList = const [],
+  });
 
-  Future<void> getAllCompanies() async {
-    final response = await getInsuranceCompanyUseCase();
-    response.fold(
-      (l) {},
-      (r) {
-        insuranceCompany = r;
-      },
+  CarServiceData copyWith({
+    List<CompanyModel>? insuranceCompany,
+    List<String>? vehicleBrand,
+    List<String>? area,
+    List<ServiceCenterModel>? serviceCenterList,
+  }) {
+    return CarServiceData(
+      insuranceCompany: insuranceCompany ?? this.insuranceCompany,
+      vehicleBrand: vehicleBrand ?? this.vehicleBrand,
+      area: area ?? this.area,
+      serviceCenterList: serviceCenterList ?? this.serviceCenterList,
     );
+  }
+}
+
+@injectable
+class CarServiceCubit extends Cubit<BaseState<CarServiceData>>
+    with AsyncHandler<CarServiceData> {
+  final CarServiceRepositoryImpl repository;
+
+  CarServiceCubit(this.repository)
+      : super(BaseState.initial(data: CarServiceData())) {
+    getAllCompanies();
   }
 
   Future<void> searchForCenters({
@@ -40,17 +52,16 @@ class CarServiceCubit extends Cubit<BaseState<List<ServiceCenterModel>>>
     bool isVehicle = false,
   }) async {
     await handleAsync(
-      call: () => getServiceCentersUseCase(params: params),
-      onSuccess: (data) {
-        serviceCenterList = data;
+      call: () => repository.getServiceCenters(params: params),
+      onSuccess: (serviceCenters) {
         _fillFilteredList(
-          list: data,
+          list: serviceCenters,
           isArea: isArea,
           isVehicle: isVehicle,
         );
-        return data;
+        return state.data!.copyWith(serviceCenterList: serviceCenters);
       },
-      identifier: 'search_centers',
+      identifier: 'search_service_centers',
     );
   }
 
@@ -59,20 +70,39 @@ class CarServiceCubit extends Cubit<BaseState<List<ServiceCenterModel>>>
     bool isArea = false,
     bool isVehicle = false,
   }) {
+    List<String>? newArea;
+    List<String>? newVehicleBrand;
+
     if (!isArea) {
-      area = list.map((e) => e.city).whereType<String>().toSet().toList();
+      newArea = list.map((e) => e.city).whereType<String>().toSet().toList();
     }
     if (!isVehicle) {
-      vehicleBrand = list
-          .map((e) => e.vehicleBrand)
-          .whereType<String>()
-          .toSet()
-          .toList();
+      newVehicleBrand =
+          list.map((e) => e.vehicleBrand).whereType<String>().toSet().toList();
+    }
+
+    if (newArea != null || newVehicleBrand != null) {
+      emit(state.copyWith(
+        data: state.data!.copyWith(
+          area: newArea,
+          vehicleBrand: newVehicleBrand,
+        ),
+      ));
     }
   }
 
   void resetResultData() {
-    serviceCenterList.clear();
-    emit(BaseState.initial());
+    emit(state.copyWith(
+      data: state.data!.copyWith(serviceCenterList: []),
+    ));
+  }
+
+  Future<void> getAllCompanies() async {
+    await handleAsync(
+      call: () => repository.getInsuranceCompany(),
+      onSuccess: (companies) =>
+          state.data!.copyWith(insuranceCompany: companies),
+      identifier: 'get_companies',
+    );
   }
 }

@@ -48,12 +48,6 @@ import '../../features/car_service/data/datasources/car_service_remote_data_sour
     as _i881;
 import '../../features/car_service/data/repositories/car_service_repository_impl.dart'
     as _i136;
-import '../../features/car_service/domain/repositories/car_service_repository.dart'
-    as _i41;
-import '../../features/car_service/domain/usecases/get_insurance_company_use_case.dart'
-    as _i1042;
-import '../../features/car_service/domain/usecases/get_service_centers_use_case.dart'
-    as _i831;
 import '../../features/car_service/presentation/cubit/car_service_cubit.dart'
     as _i392;
 import '../../features/emergency/data/datasources/emergency_remote_data_source.dart'
@@ -224,11 +218,6 @@ extension GetItInjectableX on _i174.GetIt {
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
     );
-    gh.lazySingleton<_i41.CarServiceRepository>(
-      () => _i136.CarServiceRepositoryImpl(
-        carServiceRemoteDataSource: gh<_i881.CarServiceRemoteDataSource>(),
-      ),
-    );
     gh.lazySingleton<_i86.ReservationRemoteDataSource>(
       () => _i86.ReservationRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
@@ -238,6 +227,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i214.OtherLineRepositoryImpl>(
       () => _i214.OtherLineRepositoryImpl(
         otherLineRemoteDataSource: gh<_i932.OtherLineRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i136.CarServiceRepositoryImpl>(
+      () => _i136.CarServiceRepositoryImpl(
+        remoteDataSource: gh<_i881.CarServiceRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i662.AuthRepository>(
@@ -309,6 +303,9 @@ extension GetItInjectableX on _i174.GetIt {
         settingsRemoteDataSource: gh<_i188.SettingsRemoteDataSource>(),
       ),
     );
+    gh.factory<_i392.CarServiceCubit>(
+      () => _i392.CarServiceCubit(gh<_i136.CarServiceRepositoryImpl>()),
+    );
     gh.lazySingleton<_i264.ReservationRepositoryImpl>(
       () => _i264.ReservationRepositoryImpl(
         remoteDataSource: gh<_i86.ReservationRemoteDataSource>(),
@@ -357,12 +354,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i747.ReservationCubit>(
       () => _i747.ReservationCubit(gh<_i264.ReservationRepositoryImpl>()),
     );
-    gh.factory<_i1042.GetInsuranceCompanyUseCase>(
-      () => _i1042.GetInsuranceCompanyUseCase(gh<_i41.CarServiceRepository>()),
-    );
-    gh.factory<_i831.GetServiceCentersUseCase>(
-      () => _i831.GetServiceCentersUseCase(gh<_i41.CarServiceRepository>()),
-    );
     gh.factory<_i153.LoginCubit>(
       () => _i153.LoginCubit(gh<_i662.AuthRepository>()),
     );
@@ -388,12 +379,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1041.EmergencyCubit>(
       () => _i1041.EmergencyCubit(gh<_i1008.EmergencyRepositoryImpl>()),
-    );
-    gh.factory<_i392.CarServiceCubit>(
-      () => _i392.CarServiceCubit(
-        gh<_i1042.GetInsuranceCompanyUseCase>(),
-        gh<_i831.GetServiceCentersUseCase>(),
-      ),
     );
     return this;
   }

@@ -40,8 +40,13 @@ class _SearchResultBodyState extends State<SearchResultBody> {
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverSearchAppBar(
               bottom: SearchResultTff(
-                searchParamsModel: widget.searchParamsModel,
-                pagingController: pagingController,
+                onChanged: (value) {
+                  SearchParamsModel paramsModel = widget.searchParamsModel.copyWith(
+                    provider: value.isNotEmpty ? value : null,
+                    pageNumber: 1,
+                  );
+                  context.read<SearchResultCubit>().updateSearchParams(paramsModel);
+                },
               ),
             ),
           ],
