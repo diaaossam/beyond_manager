@@ -8,6 +8,7 @@ import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_text_form_field.dart';
+import 'package:bond/widgets/no_item_design.dart';
 import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,9 +91,6 @@ class _DoctorResultBodyState extends State<DoctorResultBody> {
                 ),
               ),
               SliverToBoxAdapter(
-                child: SizedBox(height: SizeConfig.bodyHeight * .02),
-              ),
-              SliverToBoxAdapter(
                 child: ChipsChoice<int>.single(
                   value: tag,
                   onChanged: (val) {
@@ -123,7 +121,7 @@ class _DoctorResultBodyState extends State<DoctorResultBody> {
                 ),
               ),
               SliverToBoxAdapter(
-                child: SizedBox(height: SizeConfig.bodyHeight * .02),
+                child: SizedBox(height: SizeConfig.bodyHeight * .01),
               ),
               if (filteredDoctors.isNotEmpty)
                 SliverList(
@@ -143,7 +141,7 @@ class _DoctorResultBodyState extends State<DoctorResultBody> {
               else
                 SliverToBoxAdapter(
                   child: Center(
-                    child: AppText(text: context.localizations.noDoctors),
+                    child: EmptyWidgetDesign(body: context.localizations.noDoctors,),
                   ),
                 ),
             ],

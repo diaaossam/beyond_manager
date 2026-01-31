@@ -101,9 +101,9 @@ class ReservationRemoteDataSourceImpl implements ReservationRemoteDataSource {
   @override
   Future<List<MyReservation>> getReservation({required String status}) async {
     return await dioConsumer
-        .get(EndPoints.timeslot)
+        .get(EndPoints.getMyAppointment)
         .params({"manager_id": ApiConfig.userId})
-        .factory((json) => MyReservation.fromJsonList)
+        .factory((json) => MyReservation.fromJsonList(json['result']))
         .execute();
   }
 }

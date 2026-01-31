@@ -13,6 +13,7 @@ import 'package:dartz/dartz.dart' show Unit;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 import '../../../../other_line/insurance_helper.dart';
 import '../../../data/models/request/post_reservation_param.dart';
 import '../../reservation_helper.dart';

@@ -57,7 +57,7 @@ class DoctorDesignItem extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: SizeConfig.screenWidth * .04,
+          horizontal: SizeConfig.screenWidth * .01,
           vertical: SizeConfig.bodyHeight * .02,
         ),
         decoration: BoxDecoration(

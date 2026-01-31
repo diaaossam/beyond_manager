@@ -9,7 +9,6 @@ import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 class ReservationConfirmBody extends StatefulWidget {
@@ -85,8 +84,8 @@ class _ReservationConfirmBodyState extends State<ReservationConfirmBody> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SvgPicture.asset(
-                            "assets/svg/calendar3.svg",
+                          AppImage.asset(
+                            Assets.icons.calendar3,
                             height: 15,
                           ),
                           const SizedBox(width: 6),
@@ -105,7 +104,7 @@ class _ReservationConfirmBodyState extends State<ReservationConfirmBody> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SvgPicture.asset("assets/svg/clock.svg", height: 15),
+                          AppImage.asset(Assets.icons.clock, height: 15),
                           const SizedBox(width: 6),
                           AppText(
                             text: DateFormat.jm().format(

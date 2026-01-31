@@ -1,30 +1,33 @@
+
 class MyReservation {
-  MyReservation(
-      {this.branchName,
-        this.dateOfBirth,
-        this.doctorName,
-        this.email,
-        this.fatherName,
-        this.firstName,
-        this.gender,
-        this.grandFatherName,
-        this.hospitalName,
-        this.id,
-        this.lastName,
-        this.manager,
-        this.name,
-        this.phone,
-        this.reservationDate,
-        this.state,
-        this.reservationTime,
-        this.specialityName,
-        this.time});
-  static List<MyReservation> fromJsonList(Map<String, dynamic> response) {
-    final List<dynamic> dataList = (response['result']) as List<dynamic>;
-    return dataList
+  MyReservation({
+    this.branchName,
+    this.dateOfBirth,
+    this.doctorName,
+    this.email,
+    this.fatherName,
+    this.firstName,
+    this.gender,
+    this.grandFatherName,
+    this.hospitalName,
+    this.id,
+    this.lastName,
+    this.manager,
+    this.name,
+    this.phone,
+    this.reservationDate,
+    this.state,
+    this.reservationTime,
+    this.specialityName,
+    this.time,
+  });
+
+  static List<MyReservation> fromJsonList(dynamic response) {
+    return response
         .map<MyReservation>((item) => MyReservation.fromJson(item))
         .toList();
   }
+
   MyReservation.fromJson(dynamic json) {
     branchName = json['branch_name'];
     dateOfBirth = json['date_of_birth'];

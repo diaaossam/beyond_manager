@@ -18,23 +18,28 @@ mixin AsyncHandler<T> on Cubit<BaseState<T>> {
     final result = await call();
     return result.fold(
       (failure) {
-        final context = NavigationService.navigatorKey.currentContext;
         Fluttertoast.showToast(
-            msg: failure.message.toString(),
-            backgroundColor: Colors.red,
-            gravity: ToastGravity.TOP);
-
+          msg: failure.message.toString(),
+          backgroundColor: Colors.red,
+          gravity: ToastGravity.TOP,
+        );
         emit(
-          state.copyWith(status: BaseStatus.failure, identifier: identifier),
+          state.copyWith(
+            status: BaseStatus.failure,
+            identifier: identifier,
+            error: failure.message,
+          ),
         );
         return null;
       },
       (data) {
-        emit(state.copyWith(
-          status: BaseStatus.success,
-          data: onSuccess(data),
-          identifier: identifier,
-        ));
+        emit(
+          state.copyWith(
+            status: BaseStatus.success,
+            data: onSuccess(data),
+            identifier: identifier,
+          ),
+        );
         return data;
       },
     );

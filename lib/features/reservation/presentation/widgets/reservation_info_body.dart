@@ -28,7 +28,7 @@ class ReservationInfoBody extends StatelessWidget {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: const Color(0xffFDEEE6),
+              color: context.colorScheme.onPrimary,
               borderRadius: BorderRadius.circular(20),
             ),
             padding: screenPadding(),
@@ -50,7 +50,7 @@ class ReservationInfoBody extends StatelessWidget {
                       "${myReservation.firstName} ${myReservation.fatherName} ${myReservation.lastName}",
                   fontWeight: FontWeight.w600,
                   maxLines: 2,
-                  textSize: 15,
+                  textSize: 13,
                 ),
                 const SizedBox(height: 10),
                 AppText(
@@ -59,6 +59,7 @@ class ReservationInfoBody extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   maxLines: 2,
                   color: context.colorScheme.shadow,
+                  textSize: 11,
                 ),
                 const SizedBox(height: 20),
               ],
@@ -75,7 +76,7 @@ class ReservationInfoBody extends StatelessWidget {
                   text: myReservation.doctorName ?? "",
                   fontWeight: FontWeight.w600,
                   maxLines: 2,
-                  textSize: 16,
+                  textSize: 12,
                 ),
                 SizedBox(height: SizeConfig.bodyHeight * .01),
                 AppText(
@@ -127,8 +128,8 @@ class ReservationInfoBody extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              SvgPicture.asset(
-                                "assets/icons/clock.svg",
+                              AppImage.asset(
+                                Assets.icons.clock,
                                 height: 15,
                               ),
                               const SizedBox(width: 6),

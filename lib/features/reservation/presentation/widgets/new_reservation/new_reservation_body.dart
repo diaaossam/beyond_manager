@@ -13,6 +13,7 @@ import 'package:bond/features/reservation/presentation/widgets/new_reservation/c
 import 'package:bond/features/reservation/presentation/widgets/new_reservation/custom_speciality_expanded_list.dart';
 import 'package:bond/features/reservation/presentation/widgets/new_reservation/gender_choose.dart';
 import 'package:bond/core/enum/gender.dart';
+import 'package:bond/widgets/loading/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
@@ -60,11 +61,10 @@ class _NewReservationBodyState extends State<NewReservationBody> {
               context: context,
               barrierDismissible: false,
               builder: (context) => const Center(
-                child: CircularProgressIndicator(),
+                child:LoadingWidget(),
               ),
             );
           } else {
-            // Dismiss loading dialog if it's showing
             if (Navigator.of(context, rootNavigator: true).canPop()) {
               Navigator.of(context, rootNavigator: true).pop();
             }

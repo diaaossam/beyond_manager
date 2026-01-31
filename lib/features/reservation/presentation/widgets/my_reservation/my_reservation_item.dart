@@ -25,7 +25,7 @@ class MyReservationItem extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: SizeConfig.bodyHeight * .01),
         decoration: BoxDecoration(
-          color: const Color(0xffFEFAF8),
+          color: context.colorScheme.secondary,
           boxShadow: [
             BoxShadow(
               color: Color(0xff000000).withValues(alpha: 0.25),
@@ -43,8 +43,8 @@ class MyReservationItem extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xffFDEEE6),
+                  decoration:  BoxDecoration(
+                    color: context.colorScheme.onPrimary,
                     shape: BoxShape.circle,
                   ),
                   child: AppImage.asset(
@@ -62,7 +62,7 @@ class MyReservationItem extends StatelessWidget {
                         maxLines: 2,
                         text: myReservation.doctorName ?? "",
                         fontWeight: FontWeight.w600,
-                        textSize: 15,
+                        textSize: 12,
                       ),
                       SizedBox(height: SizeConfig.bodyHeight * .01),
                       AppText(
@@ -84,14 +84,14 @@ class MyReservationItem extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: myReservation.state == "upcoming"
-                        ? const Color(0xff14c286)
-                        : Colors.redAccent,
+                        ? context.colorScheme.tertiary
+                        : context.colorScheme.error,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Center(
                     child: AppText(
                       text: myReservation.state ?? "",
-                      textSize: 14,
+                      textSize: 11,
                       color: Colors.white,
                     ),
                   ),
@@ -103,7 +103,7 @@ class MyReservationItem extends StatelessWidget {
                     vertical: SizeConfig.bodyHeight * .01,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xfffceae5),
+                    color: context.colorScheme.onPrimary,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Row(
@@ -112,7 +112,8 @@ class MyReservationItem extends StatelessWidget {
                     children: [
                       AppText(
                         text: context.localizations.showDetails,
-                        textSize: 14,
+                        textSize: 11,
+                        fontWeight: FontWeight.w500,
                       ),
                       SizedBox(width: SizeConfig.screenWidth * .02),
                       const Icon(Icons.arrow_forward_ios, size: 14),
