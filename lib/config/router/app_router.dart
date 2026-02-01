@@ -47,5 +47,15 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ReservationDashboardRoute.page),
     AutoRoute(page: UniqueServiceRoute.page),
     AutoRoute(page: SearchResultRoute.page),
+    AutoRoute(page: AdditionDeletionDashboard.page),
+    AutoRoute(page: SelectRequestTypeRoute.page),
+    AutoRoute(page: SelectMembersToDeleteRoute.page),
+    AutoRoute(page: ManualEntryRoute.page),
+    AutoRoute(page: TemplateUploadRoute.page),
+    AutoRoute(page: ViewTrackRequestsRoute.page),
+    AutoRoute(page: SelectPoliciesRoute.page),
+    AutoRoute(page: MethodSelectionRoute.page),
+    AutoRoute(page: GuidelinesRoute.page),
+    AutoRoute(page: DeletionGuidelinesRoute.page),
   ];
 }

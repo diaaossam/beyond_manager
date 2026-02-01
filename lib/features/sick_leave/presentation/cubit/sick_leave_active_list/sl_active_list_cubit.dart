@@ -73,12 +73,4 @@ class SlActiveListCubit extends Cubit<BaseState<PolicyStatus>> {
     return super.close();
   }
 
-  Future<void> fetchPage({
-    required int pageKey,
-    required String state,
-    required PagingController<int, MainPolicyModel> pagingController,
-  }) async {
-    // This method is kept for backward compatibility
-    // The actual fetching is handled by the PagingController internally
-  }
 }

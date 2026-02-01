@@ -4068,6 +4068,2461 @@ class S {
       args: [],
     );
   }
+
+  /// `Additions & Deletions`
+  String get additionAndDeletions {
+    return Intl.message(
+      'Additions & Deletions',
+      name: 'additionAndDeletions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage member additions and deletions for your insurance policies`
+  String get manageMemberAdditionsDeletions {
+    return Intl.message(
+      'Manage member additions and deletions for your insurance policies',
+      name: 'manageMemberAdditionsDeletions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit a new addition or deletion request for your members. Choose between manual entry or bulk template upload.`
+  String get createNewRequestDesc {
+    return Intl.message(
+      'Submit a new addition or deletion request for your members. Choose between manual entry or bulk template upload.',
+      name: 'createNewRequestDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Started`
+  String get getStarted {
+    return Intl.message('Get Started', name: 'getStarted', desc: '', args: []);
+  }
+
+  /// `View / Track Requests`
+  String get viewTrackRequests {
+    return Intl.message(
+      'View / Track Requests',
+      name: 'viewTrackRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Requests`
+  String get viewRequests {
+    return Intl.message(
+      'View Requests',
+      name: 'viewRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monitor the status of your submitted requests and view the complete history of all additions and deletions.`
+  String get viewTrackRequestsDesc {
+    return Intl.message(
+      'Monitor the status of your submitted requests and view the complete history of all additions and deletions.',
+      name: 'viewTrackRequestsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Insurance Policies`
+  String get selectInsurancePolicies {
+    return Intl.message(
+      'Select Insurance Policies',
+      name: 'selectInsurancePolicies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose which insurance policies you want to apply this action to`
+  String get chooseWhichInsurancePolicies {
+    return Intl.message(
+      'Choose which insurance policies you want to apply this action to',
+      name: 'chooseWhichInsurancePolicies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Note:`
+  String get noteLabel {
+    return Intl.message('Note:', name: 'noteLabel', desc: '', args: []);
+  }
+
+  /// `The same members will be processed for all selected policies. Select all policies you want to include in this request.`
+  String get noteSameMembersProcessed {
+    return Intl.message(
+      'The same members will be processed for all selected policies. Select all policies you want to include in this request.',
+      name: 'noteSameMembersProcessed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active Policies`
+  String get activePolicies {
+    return Intl.message(
+      'Active Policies',
+      name: 'activePolicies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select one or more policies to apply this action`
+  String get selectOneOrMorePolicies {
+    return Intl.message(
+      'Select one or more policies to apply this action',
+      name: 'selectOneOrMorePolicies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selected:`
+  String get selected {
+    return Intl.message('Selected:', name: 'selected', desc: '', args: []);
+  }
+
+  /// `Continue to Method Selection`
+  String get continueToMethodSelection {
+    return Intl.message(
+      'Continue to Method Selection',
+      name: 'continueToMethodSelection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Request Type`
+  String get selectRequestType {
+    return Intl.message(
+      'Select Request Type',
+      name: 'selectRequestType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the type of action you want to perform`
+  String get chooseTypeOfAction {
+    return Intl.message(
+      'Choose the type of action you want to perform',
+      name: 'chooseTypeOfAction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Addition Only`
+  String get additionOnly {
+    return Intl.message(
+      'Addition Only',
+      name: 'additionOnly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add new members to the selected insurance policies. Perfect for onboarding new employees or adding family members.`
+  String get additionOnlyDesc {
+    return Intl.message(
+      'Add new members to the selected insurance policies. Perfect for onboarding new employees or adding family members.',
+      name: 'additionOnlyDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Addition`
+  String get selectAddition {
+    return Intl.message(
+      'Select Addition',
+      name: 'selectAddition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Only`
+  String get deletionOnly {
+    return Intl.message(
+      'Deletion Only',
+      name: 'deletionOnly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove existing members from the selected insurance policies. Used for terminations or coverage changes.`
+  String get deletionOnlyDesc {
+    return Intl.message(
+      'Remove existing members from the selected insurance policies. Used for terminations or coverage changes.',
+      name: 'deletionOnlyDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Deletion`
+  String get selectDeletion {
+    return Intl.message(
+      'Select Deletion',
+      name: 'selectDeletion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Both`
+  String get both {
+    return Intl.message('Both', name: 'both', desc: '', args: []);
+  }
+
+  /// `Perform both additions and deletions in a single request. Efficient for bulk policy updates.`
+  String get bothDesc {
+    return Intl.message(
+      'Perform both additions and deletions in a single request. Efficient for bulk policy updates.',
+      name: 'bothDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Both`
+  String get selectBoth {
+    return Intl.message('Select Both', name: 'selectBoth', desc: '', args: []);
+  }
+
+  /// `Continue`
+  String get continueButton {
+    return Intl.message('Continue', name: 'continueButton', desc: '', args: []);
+  }
+
+  /// `Select Method`
+  String get selectMethod {
+    return Intl.message(
+      'Select Method',
+      name: 'selectMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manual Entry`
+  String get manualEntry {
+    return Intl.message(
+      'Manual Entry',
+      name: 'manualEntry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill out forms on the platform to add members one by one. Best for small numbers of members.`
+  String get manualEntryDesc {
+    return Intl.message(
+      'Fill out forms on the platform to add members one by one. Best for small numbers of members.',
+      name: 'manualEntryDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guided step-by-step process`
+  String get guidedStepByStep {
+    return Intl.message(
+      'Guided step-by-step process',
+      name: 'guidedStepByStep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instant field validation`
+  String get instantFieldValidation {
+    return Intl.message(
+      'Instant field validation',
+      name: 'instantFieldValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Perfect for 1-10 members`
+  String get perfectFor1To10Members {
+    return Intl.message(
+      'Perfect for 1-10 members',
+      name: 'perfectFor1To10Members',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proceed with Manual Entry`
+  String get proceedWithManualEntry {
+    return Intl.message(
+      'Proceed with Manual Entry',
+      name: 'proceedWithManualEntry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Template Upload`
+  String get templateUpload {
+    return Intl.message(
+      'Template Upload',
+      name: 'templateUpload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download our Excel template, fill it offline, and upload for bulk processing. Best for large numbers.`
+  String get templateUploadDesc {
+    return Intl.message(
+      'Download our Excel template, fill it offline, and upload for bulk processing. Best for large numbers.',
+      name: 'templateUploadDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Efficient bulk processing`
+  String get efficientBulkProcessing {
+    return Intl.message(
+      'Efficient bulk processing',
+      name: 'efficientBulkProcessing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comprehensive error reporting`
+  String get comprehensiveErrorReporting {
+    return Intl.message(
+      'Comprehensive error reporting',
+      name: 'comprehensiveErrorReporting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Perfect for 10+ members`
+  String get perfectFor10PlusMembers {
+    return Intl.message(
+      'Perfect for 10+ members',
+      name: 'perfectFor10PlusMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proceed with Template`
+  String get proceedWithTemplate {
+    return Intl.message(
+      'Proceed with Template',
+      name: 'proceedWithTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Members Manually`
+  String get addMembersManually {
+    return Intl.message(
+      'Add Members Manually',
+      name: 'addMembersManually',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill out member details below. You can add multiple members in one request.`
+  String get fillOutMemberDetails {
+    return Intl.message(
+      'Fill out member details below. You can add multiple members in one request.',
+      name: 'fillOutMemberDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selected Policies:`
+  String get selectedPolicies {
+    return Intl.message(
+      'Selected Policies:',
+      name: 'selectedPolicies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medical Insurance`
+  String get medicalInsurance {
+    return Intl.message(
+      'Medical Insurance',
+      name: 'medicalInsurance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tip: `
+  String get tip {
+    return Intl.message('Tip: ', name: 'tip', desc: '', args: []);
+  }
+
+  /// `All data is validated instantly. You'll see real-time feedback if there are any errors in your entries.`
+  String get allDataValidatedInstantly {
+    return Intl.message(
+      'All data is validated instantly. You\'ll see real-time feedback if there are any errors in your entries.',
+      name: 'allDataValidatedInstantly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Another Member`
+  String get addAnotherMember {
+    return Intl.message(
+      'Add Another Member',
+      name: 'addAnotherMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Request`
+  String get submitRequest {
+    return Intl.message(
+      'Submit Request',
+      name: 'submitRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member #`
+  String get member {
+    return Intl.message('Member #', name: 'member', desc: '', args: []);
+  }
+
+  /// `Relationship`
+  String get relationship {
+    return Intl.message(
+      'Relationship',
+      name: 'relationship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Relationship`
+  String get selectRelationship {
+    return Intl.message(
+      'Select Relationship',
+      name: 'selectRelationship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spouse`
+  String get spouse {
+    return Intl.message('Spouse', name: 'spouse', desc: '', args: []);
+  }
+
+  /// `Child`
+  String get child {
+    return Intl.message('Child', name: 'child', desc: '', args: []);
+  }
+
+  /// `Full Name (Arabic)`
+  String get fullNameArabic {
+    return Intl.message(
+      'Full Name (Arabic)',
+      name: 'fullNameArabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `اسم العضو الكامل`
+  String get memberFullNameArabic {
+    return Intl.message(
+      'اسم العضو الكامل',
+      name: 'memberFullNameArabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Name (English)`
+  String get fullNameEnglish {
+    return Intl.message(
+      'Full Name (English)',
+      name: 'fullNameEnglish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member Full Name`
+  String get memberFullName {
+    return Intl.message(
+      'Member Full Name',
+      name: 'memberFullName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nationality`
+  String get nationality {
+    return Intl.message('Nationality', name: 'nationality', desc: '', args: []);
+  }
+
+  /// `Egyptian`
+  String get egyptian {
+    return Intl.message('Egyptian', name: 'egyptian', desc: '', args: []);
+  }
+
+  /// `Non-Egyptian`
+  String get nonEgyptian {
+    return Intl.message(
+      'Non-Egyptian',
+      name: 'nonEgyptian',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National ID (CNID)`
+  String get nationalIdCNID {
+    return Intl.message(
+      'National ID (CNID)',
+      name: 'nationalIdCNID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `14-digit National ID`
+  String get nationalIdHint {
+    return Intl.message(
+      '14-digit National ID',
+      name: 'nationalIdHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DD/MM/YYYY`
+  String get ddMmYyyy {
+    return Intl.message('DD/MM/YYYY', name: 'ddMmYyyy', desc: '', args: []);
+  }
+
+  /// `Hiring Date`
+  String get hiringDate {
+    return Intl.message('Hiring Date', name: 'hiringDate', desc: '', args: []);
+  }
+
+  /// `Addition Date`
+  String get additionDate {
+    return Intl.message(
+      'Addition Date',
+      name: 'additionDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Marital Status`
+  String get maritalStatus {
+    return Intl.message(
+      'Marital Status',
+      name: 'maritalStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Status`
+  String get selectStatus {
+    return Intl.message(
+      'Select Status',
+      name: 'selectStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Single`
+  String get single {
+    return Intl.message('Single', name: 'single', desc: '', args: []);
+  }
+
+  /// `Married`
+  String get married {
+    return Intl.message('Married', name: 'married', desc: '', args: []);
+  }
+
+  /// `Select Gender`
+  String get selectGender {
+    return Intl.message(
+      'Select Gender',
+      name: 'selectGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `member@example.com`
+  String get emailHint {
+    return Intl.message(
+      'member@example.com',
+      name: 'emailHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Plans`
+  String get insurancePlans {
+    return Intl.message(
+      'Insurance Plans',
+      name: 'insurancePlans',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medical Insurance Plan`
+  String get medicalInsurancePlan {
+    return Intl.message(
+      'Medical Insurance Plan',
+      name: 'medicalInsurancePlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Life Insurance Plan`
+  String get lifeInsurancePlan {
+    return Intl.message(
+      'Life Insurance Plan',
+      name: 'lifeInsurancePlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dental Insurance Plan`
+  String get dentalInsurancePlan {
+    return Intl.message(
+      'Dental Insurance Plan',
+      name: 'dentalInsurancePlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vision Care Plan`
+  String get visionCarePlan {
+    return Intl.message(
+      'Vision Care Plan',
+      name: 'visionCarePlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select {plan} Insurance Plan`
+  String selectPlan(Object plan) {
+    return Intl.message(
+      'Select $plan Insurance Plan',
+      name: 'selectPlan',
+      desc: '',
+      args: [plan],
+    );
+  }
+
+  /// `Premium Plan`
+  String get premiumPlan {
+    return Intl.message(
+      'Premium Plan',
+      name: 'premiumPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Standard Plan`
+  String get standardPlan {
+    return Intl.message(
+      'Standard Plan',
+      name: 'standardPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salary (Conditional)`
+  String get salaryConditional {
+    return Intl.message(
+      'Salary (Conditional)',
+      name: 'salaryConditional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly Salary`
+  String get monthlySalary {
+    return Intl.message(
+      'Monthly Salary',
+      name: 'monthlySalary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN (Conditional)`
+  String get ibanConditional {
+    return Intl.message(
+      'IBAN (Conditional)',
+      name: 'ibanConditional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EG38...`
+  String get ibanHint {
+    return Intl.message('EG38...', name: 'ibanHint', desc: '', args: []);
+  }
+
+  /// `Full Address`
+  String get fullAddress {
+    return Intl.message(
+      'Full Address',
+      name: 'fullAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photo Upload`
+  String get photoUpload {
+    return Intl.message(
+      'Photo Upload',
+      name: 'photoUpload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Automatically renamed with Staff Number`
+  String get automaticallyRenamedWithStaffNumber {
+    return Intl.message(
+      'Automatically renamed with Staff Number',
+      name: 'automaticallyRenamedWithStaffNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Acknowledgment Statement`
+  String get acknowledgmentStatement {
+    return Intl.message(
+      'Acknowledgment Statement',
+      name: 'acknowledgmentStatement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload signed acknowledgment document (PDF, Image, or Word)`
+  String get uploadSignedAcknowledgment {
+    return Intl.message(
+      'Upload signed acknowledgment document (PDF, Image, or Word)',
+      name: 'uploadSignedAcknowledgment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Staff Number (ID)`
+  String get staffNumberId {
+    return Intl.message(
+      'Staff Number (ID)',
+      name: 'staffNumberId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee Staff Number`
+  String get employeeStaffNumber {
+    return Intl.message(
+      'Employee Staff Number',
+      name: 'employeeStaffNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose File`
+  String get chooseFile {
+    return Intl.message('Choose File', name: 'chooseFile', desc: '', args: []);
+  }
+
+  /// `No file chosen`
+  String get noFileChosen {
+    return Intl.message(
+      'No file chosen',
+      name: 'noFileChosen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload your filled template and supporting documents`
+  String get uploadYourFilledTemplate {
+    return Intl.message(
+      'Upload your filled template and supporting documents',
+      name: 'uploadYourFilledTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guidelines of Addition and Deletion for Insurance Company`
+  String get guidelinesOfAdditionAndDeletion {
+    return Intl.message(
+      'Guidelines of Addition and Deletion for Insurance Company',
+      name: 'guidelinesOfAdditionAndDeletion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step 1: Download Template`
+  String get step1DownloadTemplate {
+    return Intl.message(
+      'Step 1: Download Template',
+      name: 'step1DownloadTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download the Excel template and fill it with member information`
+  String get downloadExcelTemplate {
+    return Intl.message(
+      'Download the Excel template and fill it with member information',
+      name: 'downloadExcelTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download Template`
+  String get downloadTemplate {
+    return Intl.message(
+      'Download Template',
+      name: 'downloadTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step 2: Upload Filled Template`
+  String get step2UploadFilledTemplate {
+    return Intl.message(
+      'Step 2: Upload Filled Template',
+      name: 'step2UploadFilledTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload your completed Excel template`
+  String get uploadYourCompletedExcelTemplate {
+    return Intl.message(
+      'Upload your completed Excel template',
+      name: 'uploadYourCompletedExcelTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Excel Template`
+  String get uploadExcelTemplate {
+    return Intl.message(
+      'Upload Excel Template',
+      name: 'uploadExcelTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to select your filled template`
+  String get clickToSelectYourFilledTemplate {
+    return Intl.message(
+      'Click to select your filled template',
+      name: 'clickToSelectYourFilledTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted formats: .xlsx, .xls`
+  String get acceptedFormatsXlsx {
+    return Intl.message(
+      'Accepted formats: .xlsx, .xls',
+      name: 'acceptedFormatsXlsx',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step 3: Upload Member Photos`
+  String get step3UploadMemberPhotos {
+    return Intl.message(
+      'Step 3: Upload Member Photos',
+      name: 'step3UploadMemberPhotos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload photos for all members in the template`
+  String get uploadPhotosForAllMembers {
+    return Intl.message(
+      'Upload photos for all members in the template',
+      name: 'uploadPhotosForAllMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IMPORTANT NAMING CONVENTION:`
+  String get importantNamingConvention {
+    return Intl.message(
+      'IMPORTANT NAMING CONVENTION:',
+      name: 'importantNamingConvention',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `• Photos must be named with Staff ID`
+  String get photosMustBeNamedWithStaffId {
+    return Intl.message(
+      '• Photos must be named with Staff ID',
+      name: 'photosMustBeNamedWithStaffId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `• Format:  `
+  String get formatStaffIdJpg {
+    return Intl.message(
+      '• Format:  ',
+      name: 'formatStaffIdJpg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `[StaffID].jpg`
+  String get staffIdJpgFormat {
+    return Intl.message(
+      '[StaffID].jpg',
+      name: 'staffIdJpgFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `  or  `
+  String get orLabel {
+    return Intl.message('  or  ', name: 'orLabel', desc: '', args: []);
+  }
+
+  /// `[StaffID].png`
+  String get staffIdPngFormat {
+    return Intl.message(
+      '[StaffID].png',
+      name: 'staffIdPngFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `• Example:  `
+  String get exampleLabel {
+    return Intl.message(
+      '• Example:  ',
+      name: 'exampleLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Member Photos`
+  String get uploadMemberPhotos {
+    return Intl.message(
+      'Upload Member Photos',
+      name: 'uploadMemberPhotos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to select multiple photos or drag and drop`
+  String get clickToSelectMultiplePhotos {
+    return Intl.message(
+      'Click to select multiple photos or drag and drop',
+      name: 'clickToSelectMultiplePhotos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted formats: JPG, PNG | Max size: 5MB per photo`
+  String get acceptedFormatsJpgPng {
+    return Intl.message(
+      'Accepted formats: JPG, PNG | Max size: 5MB per photo',
+      name: 'acceptedFormatsJpgPng',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} photo(s) selected`
+  String photosSelected(Object count) {
+    return Intl.message(
+      '$count photo(s) selected',
+      name: 'photosSelected',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Step 4: Upload Supporting Documents`
+  String get step4UploadSupportingDocuments {
+    return Intl.message(
+      'Step 4: Upload Supporting Documents',
+      name: 'step4UploadSupportingDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload documents for family members (birth certificates, marriage certificates, etc.)`
+  String get uploadDocumentsForFamilyMembers {
+    return Intl.message(
+      'Upload documents for family members (birth certificates, marriage certificates, etc.)',
+      name: 'uploadDocumentsForFamilyMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `• Documents must be named with Staff ID`
+  String get documentsMustBeNamedWithStaffId {
+    return Intl.message(
+      '• Documents must be named with Staff ID',
+      name: 'documentsMustBeNamedWithStaffId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `[StaffID]_[DocumentType].pdf`
+  String get formatStaffIdDocumentType {
+    return Intl.message(
+      '[StaffID]_[DocumentType].pdf',
+      name: 'formatStaffIdDocumentType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `• Examples:`
+  String get examples {
+    return Intl.message('• Examples:', name: 'examples', desc: '', args: []);
+  }
+
+  /// `Upload Supporting Documents`
+  String get uploadSupportingDocuments {
+    return Intl.message(
+      'Upload Supporting Documents',
+      name: 'uploadSupportingDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to select multiple documents or drag and drop`
+  String get clickToSelectMultipleDocuments {
+    return Intl.message(
+      'Click to select multiple documents or drag and drop',
+      name: 'clickToSelectMultipleDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted formats: PDF, JPG, PNG | Max size: 10MB per file`
+  String get acceptedFormatsPdfJpgPng {
+    return Intl.message(
+      'Accepted formats: PDF, JPG, PNG | Max size: 10MB per file',
+      name: 'acceptedFormatsPdfJpgPng',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} document(s) selected`
+  String documentsSelected(Object count) {
+    return Intl.message(
+      '$count document(s) selected',
+      name: 'documentsSelected',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Step 5: Foreign Employee Acknowledgement`
+  String get step5ForeignEmployeeAcknowledgement {
+    return Intl.message(
+      'Step 5: Foreign Employee Acknowledgement',
+      name: 'step5ForeignEmployeeAcknowledgement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required if template includes foreign employees`
+  String get requiredIfTemplateIncludesForeignEmployees {
+    return Intl.message(
+      'Required if template includes foreign employees',
+      name: 'requiredIfTemplateIncludesForeignEmployees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required for Foreign Employees:`
+  String get requiredForForeignEmployees {
+    return Intl.message(
+      'Required for Foreign Employees:',
+      name: 'requiredForForeignEmployees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If your template includes `
+  String get ifYourTemplateIncludesForeignEmployees {
+    return Intl.message(
+      'If your template includes ',
+      name: 'ifYourTemplateIncludesForeignEmployees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `foreign employees`
+  String get foreignEmployees {
+    return Intl.message(
+      'foreign employees',
+      name: 'foreignEmployees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `, you must upload a signed acknowledgement confirming their current employment status.`
+  String get youMustUploadSignedAcknowledgement {
+    return Intl.message(
+      ', you must upload a signed acknowledgement confirming their current employment status.',
+      name: 'youMustUploadSignedAcknowledgement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download Foreign Employee Acknowledgement Template`
+  String get downloadForeignEmployeeAcknowledgementTemplate {
+    return Intl.message(
+      'Download Foreign Employee Acknowledgement Template',
+      name: 'downloadForeignEmployeeAcknowledgementTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Signed Acknowledgement`
+  String get uploadSignedAcknowledgement {
+    return Intl.message(
+      'Upload Signed Acknowledgement',
+      name: 'uploadSignedAcknowledgement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required if adding foreign employees | Click to select or drag and drop`
+  String get requiredIfAddingForeignEmployees {
+    return Intl.message(
+      'Required if adding foreign employees | Click to select or drag and drop',
+      name: 'requiredIfAddingForeignEmployees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted formats: PDF, JPG, PNG | Max size: 10MB`
+  String get acceptedFormatsPdfJpgPngMaxSize {
+    return Intl.message(
+      'Accepted formats: PDF, JPG, PNG | Max size: 10MB',
+      name: 'acceptedFormatsPdfJpgPngMaxSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Request`
+  String get sendRequest {
+    return Intl.message(
+      'Send Request',
+      name: 'sendRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload the filled Excel template`
+  String get pleaseUploadTheFilledExcelTemplate {
+    return Intl.message(
+      'Please upload the filled Excel template',
+      name: 'pleaseUploadTheFilledExcelTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monitor and track all your addition and deletion requests`
+  String get monitorAllYourAdditionDeletionRequests {
+    return Intl.message(
+      'Monitor and track all your addition and deletion requests',
+      name: 'monitorAllYourAdditionDeletionRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SUBMITTED REQUESTS`
+  String get submittedRequests {
+    return Intl.message(
+      'SUBMITTED REQUESTS',
+      name: 'submittedRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PENDING REVIEW`
+  String get pendingReview {
+    return Intl.message(
+      'PENDING REVIEW',
+      name: 'pendingReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WAITING FOR HR`
+  String get waitingForHR {
+    return Intl.message(
+      'WAITING FOR HR',
+      name: 'waitingForHR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Requests`
+  String get searchRequests {
+    return Intl.message(
+      'Search Requests',
+      name: 'searchRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Number`
+  String get requestNumber {
+    return Intl.message(
+      'Request Number',
+      name: 'requestNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member Name`
+  String get memberName {
+    return Intl.message('Member Name', name: 'memberName', desc: '', args: []);
+  }
+
+  /// `Showing: `
+  String get showingLabel {
+    return Intl.message('Showing: ', name: 'showingLabel', desc: '', args: []);
+  }
+
+  /// `{count} Submitted Requests`
+  String submittedRequestsCount(Object count) {
+    return Intl.message(
+      '$count Submitted Requests',
+      name: 'submittedRequestsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Last Updated: `
+  String get lastUpdatedLabel {
+    return Intl.message(
+      'Last Updated: ',
+      name: 'lastUpdatedLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request History`
+  String get requestHistory {
+    return Intl.message(
+      'Request History',
+      name: 'requestHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Dashboard`
+  String get backToDashboard {
+    return Intl.message(
+      'Back to Dashboard',
+      name: 'backToDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Addition Request`
+  String get additionRequest {
+    return Intl.message(
+      'Addition Request',
+      name: 'additionRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Waiting HR`
+  String get waitingHR {
+    return Intl.message('Waiting HR', name: 'waitingHR', desc: '', args: []);
+  }
+
+  /// `Action Required`
+  String get actionRequired {
+    return Intl.message(
+      'Action Required',
+      name: 'actionRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason: `
+  String get reasonLabel {
+    return Intl.message('Reason: ', name: 'reasonLabel', desc: '', args: []);
+  }
+
+  /// `What to do: `
+  String get whatToDo {
+    return Intl.message('What to do: ', name: 'whatToDo', desc: '', args: []);
+  }
+
+  /// `SUBMISSION D...`
+  String get submissionDateLabel {
+    return Intl.message(
+      'SUBMISSION D...',
+      name: 'submissionDateLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `POLICIES AFFE...`
+  String get policiesAffectedLabel {
+    return Intl.message(
+      'POLICIES AFFE...',
+      name: 'policiesAffectedLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MEMBERS COU...`
+  String get membersCountLabel {
+    return Intl.message(
+      'MEMBERS COU...',
+      name: 'membersCountLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WAITING SINCE`
+  String get waitingSince {
+    return Intl.message(
+      'WAITING SINCE',
+      name: 'waitingSince',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Details`
+  String get viewDetails {
+    return Intl.message(
+      'View Details',
+      name: 'viewDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download Excel Report`
+  String get downloadExcelReport {
+    return Intl.message(
+      'Download Excel Report',
+      name: 'downloadExcelReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Support`
+  String get contactSupport {
+    return Intl.message(
+      'Contact Support',
+      name: 'contactSupport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Members to Delete`
+  String get selectMembersToDelete {
+    return Intl.message(
+      'Select Members to Delete',
+      name: 'selectMembersToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search and select members - families will be auto-selected`
+  String get searchAndSelectMembers {
+    return Intl.message(
+      'Search and select members - families will be auto-selected',
+      name: 'searchAndSelectMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Deletion Guidelines for Selected Insurance`
+  String get viewDeletionGuidelines {
+    return Intl.message(
+      'View Deletion Guidelines for Selected Insurance',
+      name: 'viewDeletionGuidelines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Important: `
+  String get importantLabel {
+    return Intl.message(
+      'Important: ',
+      name: 'importantLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.`
+  String get selectingPrincipalMemberAutoSelects {
+    return Intl.message(
+      'Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.',
+      name: 'selectingPrincipalMemberAutoSelects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Active Members`
+  String get searchActiveMembers {
+    return Intl.message(
+      'Search Active Members',
+      name: 'searchActiveMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National ID (CNID)`
+  String get nationalIdCnid {
+    return Intl.message(
+      'National ID (CNID)',
+      name: 'nationalIdCnid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selected: {count} Members`
+  String selectedMembers(Object count) {
+    return Intl.message(
+      'Selected: $count Members',
+      name: 'selectedMembers',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Principal`
+  String get principal {
+    return Intl.message('Principal', name: 'principal', desc: '', args: []);
+  }
+
+  /// `Staff ID:`
+  String get staffIdLabel {
+    return Intl.message('Staff ID:', name: 'staffIdLabel', desc: '', args: []);
+  }
+
+  /// `National ID:`
+  String get nationalIdLabel {
+    return Intl.message(
+      'National ID:',
+      name: 'nationalIdLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nationality:`
+  String get nationalityLabel {
+    return Intl.message(
+      'Nationality:',
+      name: 'nationalityLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Number: {number}`
+  String cardNumber(Object number) {
+    return Intl.message(
+      'Card Number: $number',
+      name: 'cardNumber',
+      desc: '',
+      args: [number],
+    );
+  }
+
+  /// `Has {count} family members - will be auto-selected`
+  String hasFamilyMembersAutoSelected(Object count) {
+    return Intl.message(
+      'Has $count family members - will be auto-selected',
+      name: 'hasFamilyMembersAutoSelected',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Template Validation Guidelines`
+  String get templateValidationGuidelines {
+    return Intl.message(
+      'Template Validation Guidelines',
+      name: 'templateValidationGuidelines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Addition and Deletion for Insurance Company`
+  String get additionAndDeletionForInsuranceCompany {
+    return Intl.message(
+      'Addition and Deletion for Insurance Company',
+      name: 'additionAndDeletionForInsuranceCompany',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Important Notice`
+  String get importantNotice {
+    return Intl.message(
+      'Important Notice',
+      name: 'importantNotice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please ensure all data complies with these guidelines before submitting your template to avoid delays or rejections.`
+  String get ensureAllDataComplies {
+    return Intl.message(
+      'Please ensure all data complies with these guidelines before submitting your template to avoid delays or rejections.',
+      name: 'ensureAllDataComplies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General Requirements`
+  String get generalRequirements {
+    return Intl.message(
+      'General Requirements',
+      name: 'generalRequirements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Template Format:`
+  String get templateFormat {
+    return Intl.message(
+      'Template Format:',
+      name: 'templateFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use only the official Excel template provided (.xlsx or .xls)`
+  String get useOnlyOfficialExcelTemplate {
+    return Intl.message(
+      'Use only the official Excel template provided (.xlsx or .xls)',
+      name: 'useOnlyOfficialExcelTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required Fields:`
+  String get requiredFields {
+    return Intl.message(
+      'Required Fields:',
+      name: 'requiredFields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All fields marked with asterisk (*) must be filled`
+  String get allFieldsMarkedWithAsterisk {
+    return Intl.message(
+      'All fields marked with asterisk (*) must be filled',
+      name: 'allFieldsMarkedWithAsterisk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data Accuracy:`
+  String get dataAccuracy {
+    return Intl.message(
+      'Data Accuracy:',
+      name: 'dataAccuracy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify all information for accuracy before submission`
+  String get verifyAllInformationForAccuracy {
+    return Intl.message(
+      'Verify all information for accuracy before submission',
+      name: 'verifyAllInformationForAccuracy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `File Size:`
+  String get fileSize {
+    return Intl.message('File Size:', name: 'fileSize', desc: '', args: []);
+  }
+
+  /// `Maximum template size is 10MB`
+  String get maximumTemplateSizeIs10MB {
+    return Intl.message(
+      'Maximum template size is 10MB',
+      name: 'maximumTemplateSizeIs10MB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Character Encoding:`
+  String get characterEncoding {
+    return Intl.message(
+      'Character Encoding:',
+      name: 'characterEncoding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use UTF-8 encoding for Arabic text`
+  String get useUTF8EncodingForArabicText {
+    return Intl.message(
+      'Use UTF-8 encoding for Arabic text',
+      name: 'useUTF8EncodingForArabicText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Addition Guidelines`
+  String get additionGuidelines {
+    return Intl.message(
+      'Addition Guidelines',
+      name: 'additionGuidelines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must be unique and not exist in the system`
+  String get staffIdMustBeUnique {
+    return Intl.message(
+      'Must be unique and not exist in the system',
+      name: 'staffIdMustBeUnique',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must be 14 digits for Egyptian nationals`
+  String get nationalIdMustBe14Digits {
+    return Intl.message(
+      'Must be 14 digits for Egyptian nationals',
+      name: 'nationalIdMustBe14Digits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Format must be DD/MM/YYYY`
+  String get dateOfBirthFormatDDMMYYYY {
+    return Intl.message(
+      'Format must be DD/MM/YYYY',
+      name: 'dateOfBirthFormatDDMMYYYY',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must start with 01 and be 11 digits`
+  String get phoneNumbersMustStart01 {
+    return Intl.message(
+      'Must start with 01 and be 11 digits',
+      name: 'phoneNumbersMustStart01',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must be valid company or personal email`
+  String get emailMustBeValid {
+    return Intl.message(
+      'Must be valid company or personal email',
+      name: 'emailMustBeValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `File naming must match Staff ID (e.g., 123456.jpg)`
+  String get photosFileNaming {
+    return Intl.message(
+      'File naming must match Staff ID (e.g., 123456.jpg)',
+      name: 'photosFileNaming',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum Members:`
+  String get maximumMembers {
+    return Intl.message(
+      'Maximum Members:',
+      name: 'maximumMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Up to 100 members per template submission`
+  String get upTo100MembersPerTemplate {
+    return Intl.message(
+      'Up to 100 members per template submission',
+      name: 'upTo100MembersPerTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Guidelines`
+  String get deletionGuidelines {
+    return Intl.message(
+      'Deletion Guidelines',
+      name: 'deletionGuidelines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member Verification:`
+  String get memberVerification {
+    return Intl.message(
+      'Member Verification:',
+      name: 'memberVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members must exist in the Active List`
+  String get membersMustExistInActiveList {
+    return Intl.message(
+      'Members must exist in the Active List',
+      name: 'membersMustExistInActiveList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Reason:`
+  String get deletionReason {
+    return Intl.message(
+      'Deletion Reason:',
+      name: 'deletionReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must provide valid reason for deletion`
+  String get mustProvideValidReasonForDeletion {
+    return Intl.message(
+      'Must provide valid reason for deletion',
+      name: 'mustProvideValidReasonForDeletion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Effective Date:`
+  String get effectiveDate {
+    return Intl.message(
+      'Effective Date:',
+      name: 'effectiveDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Specify when deletion should take effect`
+  String get specifyWhenDeletionShouldTakeEffect {
+    return Intl.message(
+      'Specify when deletion should take effect',
+      name: 'specifyWhenDeletionShouldTakeEffect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dependent Warning:`
+  String get dependentWarning {
+    return Intl.message(
+      'Dependent Warning:',
+      name: 'dependentWarning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleting principal automatically removes all dependents`
+  String get deletingPrincipalAutomaticallyRemoves {
+    return Intl.message(
+      'Deleting principal automatically removes all dependents',
+      name: 'deletingPrincipalAutomaticallyRemoves',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photo Requirements`
+  String get photoRequirements {
+    return Intl.message(
+      'Photo Requirements',
+      name: 'photoRequirements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Format:`
+  String get format {
+    return Intl.message('Format:', name: 'format', desc: '', args: []);
+  }
+
+  /// `JPG or PNG only`
+  String get jpgOrPngOnly {
+    return Intl.message(
+      'JPG or PNG only',
+      name: 'jpgOrPngOnly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Size:`
+  String get size {
+    return Intl.message('Size:', name: 'size', desc: '', args: []);
+  }
+
+  /// `Maximum 5MB per photo`
+  String get maximum5MBPerPhoto {
+    return Intl.message(
+      'Maximum 5MB per photo',
+      name: 'maximum5MBPerPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resolution:`
+  String get resolution {
+    return Intl.message('Resolution:', name: 'resolution', desc: '', args: []);
+  }
+
+  /// `Minimum 300x300 pixels, recommended 600x600`
+  String get minimum300x300Pixels {
+    return Intl.message(
+      'Minimum 300x300 pixels, recommended 600x600',
+      name: 'minimum300x300Pixels',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Background:`
+  String get background {
+    return Intl.message('Background:', name: 'background', desc: '', args: []);
+  }
+
+  /// `White or light-colored background preferred`
+  String get whiteOrLightColoredBackground {
+    return Intl.message(
+      'White or light-colored background preferred',
+      name: 'whiteOrLightColoredBackground',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Naming Convention:`
+  String get namingConvention {
+    return Intl.message(
+      'Naming Convention:',
+      name: 'namingConvention',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `[StaffID].jpg or [StaffID].png`
+  String get staffIdJpgOrStaffIdPng {
+    return Intl.message(
+      '[StaffID].jpg or [StaffID].png',
+      name: 'staffIdJpgOrStaffIdPng',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photo Quality:`
+  String get photoQuality {
+    return Intl.message(
+      'Photo Quality:',
+      name: 'photoQuality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear, recent photo (not older than 6 months)`
+  String get clearRecentPhoto {
+    return Intl.message(
+      'Clear, recent photo (not older than 6 months)',
+      name: 'clearRecentPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Document Requirements`
+  String get documentRequirements {
+    return Intl.message(
+      'Document Requirements',
+      name: 'documentRequirements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PDF, JPG, or PNG accepted`
+  String get pdfJpgPngAccepted {
+    return Intl.message(
+      'PDF, JPG, or PNG accepted',
+      name: 'pdfJpgPngAccepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum 10MB per document`
+  String get maximum10MBPerDocument {
+    return Intl.message(
+      'Maximum 10MB per document',
+      name: 'maximum10MBPerDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Naming:`
+  String get naming {
+    return Intl.message('Naming:', name: 'naming', desc: '', args: []);
+  }
+
+  /// `[StaffID]_[DocumentType].pdf (e.g., 123456_BirthCertificate.pdf)`
+  String get staffIdDocumentTypePdf {
+    return Intl.message(
+      '[StaffID]_[DocumentType].pdf (e.g., 123456_BirthCertificate.pdf)',
+      name: 'staffIdDocumentTypePdf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required Documents:`
+  String get requiredDocuments {
+    return Intl.message(
+      'Required Documents:',
+      name: 'requiredDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth certificates for children, marriage certificates for spouse`
+  String get birthCertificatesForChildren {
+    return Intl.message(
+      'Birth certificates for children, marriage certificates for spouse',
+      name: 'birthCertificatesForChildren',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Legibility:`
+  String get legibility {
+    return Intl.message('Legibility:', name: 'legibility', desc: '', args: []);
+  }
+
+  /// `All documents must be clear and readable`
+  String get allDocumentsMustBeClear {
+    return Intl.message(
+      'All documents must be clear and readable',
+      name: 'allDocumentsMustBeClear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic or English documents accepted`
+  String get arabicOrEnglishDocuments {
+    return Intl.message(
+      'Arabic or English documents accepted',
+      name: 'arabicOrEnglishDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Validation Process`
+  String get validationProcess {
+    return Intl.message(
+      'Validation Process',
+      name: 'validationProcess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Once submitted, your template will be automatically validated against these guidelines. Any errors or missing information will be flagged, and you will be notified within 24 hours. Properly formatted submissions are processed faster.`
+  String get onceSubmittedYourTemplate {
+    return Intl.message(
+      'Once submitted, your template will be automatically validated against these guidelines. Any errors or missing information will be flagged, and you will be notified within 24 hours. Properly formatted submissions are processed faster.',
+      name: 'onceSubmittedYourTemplate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close Guidelines`
+  String get closeGuidelines {
+    return Intl.message(
+      'Close Guidelines',
+      name: 'closeGuidelines',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Guidelines`
+  String get deletionGuidelinesTitle {
+    return Intl.message(
+      'Deletion Guidelines',
+      name: 'deletionGuidelinesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For Selected Insurance Policies`
+  String get forSelectedInsurancePolicies {
+    return Intl.message(
+      'For Selected Insurance Policies',
+      name: 'forSelectedInsurancePolicies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleting a principal member will automatically remove all associated family members. This action cannot be undone.`
+  String get deletingPrincipalMemberWillAutomatically {
+    return Intl.message(
+      'Deleting a principal member will automatically remove all associated family members. This action cannot be undone.',
+      name: 'deletingPrincipalMemberWillAutomatically',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Requirements`
+  String get deletionRequirements {
+    return Intl.message(
+      'Deletion Requirements',
+      name: 'deletionRequirements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members must exist in the Active List and have a valid active status`
+  String get membersMustExistInActiveListAndValid {
+    return Intl.message(
+      'Members must exist in the Active List and have a valid active status',
+      name: 'membersMustExistInActiveListAndValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must provide a valid reason for deletion (e.g., termination, retirement, voluntary withdrawal)`
+  String get mustProvideValidReasonForDeletionDesc {
+    return Intl.message(
+      'Must provide a valid reason for deletion (e.g., termination, retirement, voluntary withdrawal)',
+      name: 'mustProvideValidReasonForDeletionDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Specify when deletion should take effect. Cannot be in the past`
+  String get specifyWhenDeletionShouldTakeEffectDesc {
+    return Intl.message(
+      'Specify when deletion should take effect. Cannot be in the past',
+      name: 'specifyWhenDeletionShouldTakeEffectDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Family Unit Warning:`
+  String get familyUnitWarning {
+    return Intl.message(
+      'Family Unit Warning:',
+      name: 'familyUnitWarning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleting principal automatically removes all dependents (spouse, children)`
+  String get deletingPrincipalAutomaticallyRemovesDesc {
+    return Intl.message(
+      'Deleting principal automatically removes all dependents (spouse, children)',
+      name: 'deletingPrincipalAutomaticallyRemovesDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Policy Coverage:`
+  String get policyCoverage {
+    return Intl.message(
+      'Policy Coverage:',
+      name: 'policyCoverage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Member must have completed the minimum coverage period as per policy terms`
+  String get memberMustHaveCompletedMinimumCoverage {
+    return Intl.message(
+      'Member must have completed the minimum coverage period as per policy terms',
+      name: 'memberMustHaveCompletedMinimumCoverage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Process`
+  String get deletionProcess {
+    return Intl.message(
+      'Deletion Process',
+      name: 'deletionProcess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search and select members from Active List`
+  String get step1SearchAndSelectMembers {
+    return Intl.message(
+      'Search and select members from Active List',
+      name: 'step1SearchAndSelectMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System auto-selects all family members for principal`
+  String get step2SystemAutoSelectsFamilyMembers {
+    return Intl.message(
+      'System auto-selects all family members for principal',
+      name: 'step2SystemAutoSelectsFamilyMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Provide deletion reason and effective date`
+  String get step3ProvideDeletionReason {
+    return Intl.message(
+      'Provide deletion reason and effective date',
+      name: 'step3ProvideDeletionReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit deletion request for approval`
+  String get step4SubmitDeletionRequest {
+    return Intl.message(
+      'Submit deletion request for approval',
+      name: 'step4SubmitDeletionRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance company processes and confirms deletion`
+  String get step5InsuranceCompanyProcesses {
+    return Intl.message(
+      'Insurance company processes and confirms deletion',
+      name: 'step5InsuranceCompanyProcesses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Important Notes`
+  String get importantNotes {
+    return Intl.message(
+      'Important Notes',
+      name: 'importantNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Batch Deletion:`
+  String get batchDeletion {
+    return Intl.message(
+      'Batch Deletion:',
+      name: 'batchDeletion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can select multiple members for deletion in one request`
+  String get youCanSelectMultipleMembers {
+    return Intl.message(
+      'You can select multiple members for deletion in one request',
+      name: 'youCanSelectMultipleMembers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coverage End:`
+  String get coverageEnd {
+    return Intl.message(
+      'Coverage End:',
+      name: 'coverageEnd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance coverage ends on the specified effective date`
+  String get insuranceCoverageEndsOnSpecifiedDate {
+    return Intl.message(
+      'Insurance coverage ends on the specified effective date',
+      name: 'insuranceCoverageEndsOnSpecifiedDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refunds:`
+  String get refunds {
+    return Intl.message('Refunds:', name: 'refunds', desc: '', args: []);
+  }
+
+  /// `Refund eligibility depends on policy terms and effective date`
+  String get refundEligibilityDependsOnPolicyTerms {
+    return Intl.message(
+      'Refund eligibility depends on policy terms and effective date',
+      name: 'refundEligibilityDependsOnPolicyTerms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Re-enrollment:`
+  String get reEnrollment {
+    return Intl.message(
+      'Re-enrollment:',
+      name: 'reEnrollment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleted members may be re-enrolled following standard addition procedures`
+  String get deletedMembersMayBeReEnrolled {
+    return Intl.message(
+      'Deleted members may be re-enrolled following standard addition procedures',
+      name: 'deletedMembersMayBeReEnrolled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification:`
+  String get notification {
+    return Intl.message(
+      'Notification:',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Affected members will be notified of deletion via email/SMS`
+  String get affectedMembersWillBeNotified {
+    return Intl.message(
+      'Affected members will be notified of deletion via email/SMS',
+      name: 'affectedMembersWillBeNotified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Validation & Approval`
+  String get validationAndApproval {
+    return Intl.message(
+      'Validation & Approval',
+      name: 'validationAndApproval',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All deletion requests are validated against policy rules and require approval from the insurance company. You will be notified of the status within 24-48 hours.`
+  String get allDeletionRequestsAreValidated {
+    return Intl.message(
+      'All deletion requests are validated against policy rules and require approval from the insurance company. You will be notified of the status within 24-48 hours.',
+      name: 'allDeletionRequestsAreValidated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
