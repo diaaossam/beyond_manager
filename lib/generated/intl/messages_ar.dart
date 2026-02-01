@@ -108,6 +108,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "policy_status_under_issuance": MessageLookupByLibrary.simpleMessage(
       "قيد الإصدار",
     ),
+    "press_back_again_to_exit": MessageLookupByLibrary.simpleMessage(
+      "اضغط مرة أخرى للخروج من التطبيق",
+    ),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "requestDemo": MessageLookupByLibrary.simpleMessage("طلب عرض تجريبي"),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة تعيين"),

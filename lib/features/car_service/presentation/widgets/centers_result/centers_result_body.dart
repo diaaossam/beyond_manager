@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/app_size.dart';
 import '../../../../network/presentation/widgets/search_result/search_result_ttf.dart';
 import '../../../../network/presentation/widgets/sliver_app_bar.dart';
@@ -32,17 +31,17 @@ class _CentersResultBodyState extends State<CentersResultBody> {
 
   void filterData(String query) {
     list = widget.list
-        .where((value) => value.serviceCenterName
-            .toString()
-            .toLowerCase()
-            .contains(query.toLowerCase()))
+        .where(
+          (value) => value.serviceCenterName.toString().toLowerCase().contains(
+            query.toLowerCase(),
+          ),
+        )
         .toList();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    print(list);
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) => [
         SliverSearchAppBar(
@@ -60,14 +59,9 @@ class _CentersResultBodyState extends State<CentersResultBody> {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: SizedBox(
-              height: SizeConfig.bodyHeight * .023,
-            ),
+            child: SizedBox(height: SizeConfig.bodyHeight * .023),
           ),
-          CenterServiceList(
-            list: list,
-            companyModel: widget.companyModel,
-          ),
+          CenterServiceList(list: list, companyModel: widget.companyModel),
         ],
       ),
     );

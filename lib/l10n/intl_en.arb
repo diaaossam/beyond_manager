@@ -486,5 +486,6 @@
   "sickLeaveCreatedSuccessfully": "Sick Leave Created Successfully",
   "uniqueService": "Unique services",
   "pleaseSelectTpa": "Please select tpa first",
-  "selectDoctor": "Select Doctor"
+  "selectDoctor": "Select Doctor",
+  "press_back_again_to_exit": "Press back again to exit"
 }

@@ -635,6 +635,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "policy_status_under_issuance": MessageLookupByLibrary.simpleMessage(
       "Under Issuance",
     ),
+    "press_back_again_to_exit": MessageLookupByLibrary.simpleMessage(
+      "Press back again to exit",
+    ),
     "principalInsuranceID": MessageLookupByLibrary.simpleMessage(
       "Principal Insurance ID: ",
     ),

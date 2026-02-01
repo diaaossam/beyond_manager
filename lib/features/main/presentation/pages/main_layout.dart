@@ -17,6 +17,8 @@ class MainLayoutScreen extends StatefulWidget {
 }
 
 class _MainLayoutScreenState extends State<MainLayoutScreen> {
+  DateTime? currentBackPressTime;
+
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
@@ -69,5 +71,32 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
     );
   }
 
-  DateTime? currentBackPressTime;
+/*  void _handleBackPress(BuildContext context) {
+    final tabsRouter = AutoTabsRouter.of(context);
+    final currentIndex = tabsRouter.activeIndex;
+    if (currentIndex != 0) {
+      tabsRouter.setActiveIndex(0);
+      return;
+    }
+    final now = DateTime.now();
+    final isSecondPress =
+        currentBackPressTime != null &&
+        now.difference(currentBackPressTime!) < const Duration(seconds: 2);
+
+    if (isSecondPress) {
+      Navigator.of(context).pop();
+      return;
+    }
+
+    // أول ضغطة - عرض رسالة تحذيرية
+    currentBackPressTime = now;
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(context.localizations.press_back_again_to_exit),
+        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }*/
 }
