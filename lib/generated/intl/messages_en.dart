@@ -20,7 +20,7 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m7(count) => "Add ${count}th Child";
+  static String m6(count) => "Add ${count}th Child";
 
   static String m0(number) => "Card Number: ${number}";
 
@@ -31,11 +31,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m3(count) => "${count} photo(s) selected";
 
-  static String m4(plan) => "Select ${plan} Insurance Plan";
+  static String m4(count) => "Selected: ${count} Members";
 
-  static String m5(count) => "Selected: ${count} Members";
-
-  static String m6(count) => "${count} Submitted Requests";
+  static String m5(count) => "${count} Submitted Requests";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -83,7 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Add Members Manually",
     ),
     "addNewRequest": MessageLookupByLibrary.simpleMessage("Add new Request"),
-    "addNthChild": m7,
+    "addNthChild": m6,
     "addWife": MessageLookupByLibrary.simpleMessage("Add Wife"),
     "added": MessageLookupByLibrary.simpleMessage("Added"),
     "addition": MessageLookupByLibrary.simpleMessage("Addition"),
@@ -1165,7 +1163,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectOneOrMorePolicies": MessageLookupByLibrary.simpleMessage(
       "Select one or more policies to apply this action",
     ),
-    "selectPlan": m4,
+    "selectPlan": MessageLookupByLibrary.simpleMessage(
+      "Select Medical Insurance Plan",
+    ),
     "selectPolicy": MessageLookupByLibrary.simpleMessage("Select Policy"),
     "selectRelationship": MessageLookupByLibrary.simpleMessage(
       "Select Relationship",
@@ -1177,7 +1177,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectStatus": MessageLookupByLibrary.simpleMessage("Select Status"),
     "selectType": MessageLookupByLibrary.simpleMessage("Select Type"),
     "selected": MessageLookupByLibrary.simpleMessage("Selected:"),
-    "selectedMembers": m5,
+    "selectedMembers": m4,
     "selectedPolicies": MessageLookupByLibrary.simpleMessage(
       "Selected Policies:",
     ),
@@ -1298,7 +1298,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "submittedRequests": MessageLookupByLibrary.simpleMessage(
       "SUBMITTED REQUESTS",
     ),
-    "submittedRequestsCount": m6,
+    "submittedRequestsCount": m5,
     "success": MessageLookupByLibrary.simpleMessage(
       "Your emergency support sent successfully",
     ),

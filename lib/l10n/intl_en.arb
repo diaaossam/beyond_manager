@@ -564,7 +564,7 @@
   "lifeInsurancePlan": "Life Insurance Plan",
   "dentalInsurancePlan": "Dental Insurance Plan",
   "visionCarePlan": "Vision Care Plan",
-  "selectPlan": "Select {plan} Insurance Plan",
+  "selectPlan": "Select Medical Insurance Plan",
   "premiumPlan": "Premium Plan",
   "standardPlan": "Standard Plan",
   "salaryConditional": "Salary (Conditional)",

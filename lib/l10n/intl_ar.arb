@@ -152,7 +152,7 @@
   "lifeInsurancePlan": "خطة التأمين على الحياة",
   "dentalInsurancePlan": "خطة تأمين الأسنان",
   "visionCarePlan": "خطة العناية بالبصر",
-  "selectPlan": "اختر خطة تأمين {plan}",
+  "selectPlan": "اختر خطة تأمين",
   "premiumPlan": "الخطة المميزة",
   "standardPlan": "الخطة القياسية",
   "salaryConditional": "الراتب (مشروط)",

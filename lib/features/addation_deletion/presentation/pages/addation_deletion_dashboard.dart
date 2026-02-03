@@ -104,7 +104,7 @@ class AdditionDeletionDashboard extends StatelessWidget {
               ),
               SizedBox(height: SizeConfig.bodyHeight * .02),
               AbsorbPointer(
-                  absorbing: false,
+                  absorbing: true,
                   child: CustomButton(text: buttonText, press: (){},height: 30.h,)),
             ],
           ),

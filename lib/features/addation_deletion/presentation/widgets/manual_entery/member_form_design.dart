@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bond/config/helper/secure_file_picker.dart';
 import 'package:bond/features/settings/settings_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../../../../../core/enum/gender.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
@@ -20,12 +21,14 @@ class MemberFormDesign extends StatelessWidget {
   final int index;
   final MemberFormData member;
   final VoidCallback? onRemove;
+  final GlobalKey<FormBuilderState> formKey;
 
   const MemberFormDesign({
     super.key,
     required this.index,
     required this.member,
     this.onRemove,
+    required this.formKey,
   });
 
   @override
@@ -156,6 +159,9 @@ class MemberFormDesign extends StatelessWidget {
                       lastDate: DateTime.now(),
                     );
                     member.dateOfBirth = date?.formattedDate;
+                    formKey.currentState?.patchValue({
+                      "dateOfBirth_$index": member.dateOfBirth
+                    });
                   },
                 ),
               ),
@@ -177,6 +183,9 @@ class MemberFormDesign extends StatelessWidget {
                       lastDate: DateTime.now(),
                     );
                     member.hiringDate = date?.formattedDate;
+                    formKey.currentState?.patchValue({
+                      "hiringDate_$index": member.dateOfBirth
+                    });
                   },
                 ),
               ),
@@ -195,6 +204,9 @@ class MemberFormDesign extends StatelessWidget {
                       lastDate: DateTime.now(),
                     );
                     member.additionDate = date?.formattedDate;
+                    formKey.currentState?.patchValue({
+                      "additionDate_$index": member.dateOfBirth
+                    });
                   },
                 ),
               ),
@@ -289,10 +301,7 @@ class MemberFormDesign extends StatelessWidget {
           AppDropDown<InsurancePlanEnum>(
             name: 'medicalInsurancePlan_$index',
             label: context.localizations.medicalInsurancePlan,
-            hint: (context.localizations.selectPlan.toString()).replaceAll(
-              '{plan}',
-              context.localizations.medicalInsurancePlan.split(' ')[0],
-            ),
+            hint: context.localizations.selectPlan,
             items: InsurancePlanEnum.values
                 .map<DropdownMenuItem<InsurancePlanEnum>>(
                   (e) => DropdownMenuItem<InsurancePlanEnum>(
@@ -313,6 +322,7 @@ class MemberFormDesign extends StatelessWidget {
           CustomTextFormField(
             name: 'salary_$index',
             label: context.localizations.salaryConditional,
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
             hintText: context.localizations.monthlySalary,
             onChanged: (value) {
               member.salary = value;
@@ -341,8 +351,7 @@ class MemberFormDesign extends StatelessWidget {
             context: context,
             label: context.localizations.photoUpload,
             required: true,
-            helperText:
-                context.localizations.automaticallyRenamedWithStaffNumber,
+            helperText: context.localizations.automaticallyRenamedWithStaffNumber,
             fileName: member.photoFileName,
             onTap: () async {
               File file = await SecureFilePicker.pickFile();
@@ -436,7 +445,7 @@ class MemberFormDesign extends StatelessWidget {
                   child: AppText(
                     text: fileName ?? context.localizations.noFileChosen,
                     fontWeight: FontWeight.w400,
-                    textSize: 13,
+                    textSize: 11,
                     color: fileName != null
                         ? context.colorScheme.onSurface
                         : context.colorScheme.shadow,

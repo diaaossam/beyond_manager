@@ -1,27 +1,14 @@
-enum InsurancePlanEnum {
-  premium,
-  standard;
+enum InsurancePlanEnum { basic, premium, standard }
 
-  String toArabic() {
+extension InsurancePlanEnumExtension on InsurancePlanEnum {
+  String get name {
     switch (this) {
+      case InsurancePlanEnum.basic:
+        return 'Basic';
       case InsurancePlanEnum.premium:
-        return "خطة مميزة";
+        return 'Premium';
       case InsurancePlanEnum.standard:
-        return "خطة قياسية";
+        return 'Standard';
     }
-  }
-}
-
-InsurancePlanEnum? insurancePlanFromString(String? value) {
-  if (value == null) return null;
-  switch (value.toLowerCase()) {
-    case 'premium':
-    case 'premium plan':
-      return InsurancePlanEnum.premium;
-    case 'standard':
-    case 'standard plan':
-      return InsurancePlanEnum.standard;
-    default:
-      return null;
   }
 }

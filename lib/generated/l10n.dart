@@ -4749,13 +4749,13 @@ class S {
     );
   }
 
-  /// `Select {plan} Insurance Plan`
-  String selectPlan(Object plan) {
+  /// `Select Medical Insurance Plan`
+  String get selectPlan {
     return Intl.message(
-      'Select $plan Insurance Plan',
+      'Select Medical Insurance Plan',
       name: 'selectPlan',
       desc: '',
-      args: [plan],
+      args: [],
     );
   }
 

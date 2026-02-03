@@ -150,6 +150,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                       int index = entry.key;
                       MemberFormData member = entry.value;
                       return MemberFormDesign(
+                        formKey: _formKey,
                         index: index,
                         member: member,
                         onRemove: members.length > 1

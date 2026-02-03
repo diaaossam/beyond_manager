@@ -29,11 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m3(count) => "${count} صورة محددة";
 
-  static String m4(plan) => "اختر خطة تأمين ${plan}";
+  static String m4(count) => "المحدد: ${count} عضو";
 
-  static String m5(count) => "المحدد: ${count} عضو";
-
-  static String m6(count) => "${count} طلب مقدم";
+  static String m5(count) => "${count} طلب مقدم";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -542,12 +540,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectOneOrMorePolicies": MessageLookupByLibrary.simpleMessage(
       "حدد وثيقة واحدة أو أكثر لتطبيق هذا الإجراء",
     ),
-    "selectPlan": m4,
+    "selectPlan": MessageLookupByLibrary.simpleMessage("اختر خطة تأمين"),
     "selectRelationship": MessageLookupByLibrary.simpleMessage("اختر العلاقة"),
     "selectRequestType": MessageLookupByLibrary.simpleMessage("اختر نوع الطلب"),
     "selectStatus": MessageLookupByLibrary.simpleMessage("اختر الحالة"),
     "selected": MessageLookupByLibrary.simpleMessage("المحدد:"),
-    "selectedMembers": m5,
+    "selectedMembers": m4,
     "selectedPolicies": MessageLookupByLibrary.simpleMessage(
       "الوثائق المحددة:",
     ),
@@ -625,7 +623,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "submittedRequests": MessageLookupByLibrary.simpleMessage(
       "الطلبات المقدمة",
     ),
-    "submittedRequestsCount": m6,
+    "submittedRequestsCount": m5,
     "templateFormat": MessageLookupByLibrary.simpleMessage("تنسيق القالب:"),
     "templateUpload": MessageLookupByLibrary.simpleMessage("تحميل القالب"),
     "templateUploadDesc": MessageLookupByLibrary.simpleMessage(
