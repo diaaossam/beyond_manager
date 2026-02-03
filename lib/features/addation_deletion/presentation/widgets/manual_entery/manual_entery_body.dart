@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
@@ -154,22 +155,14 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                         index: index,
                         member: member,
                         onRemove: members.length > 1
-                            ? () {
-                                setState(() {
-                                  members.removeAt(index);
-                                });
-                              }
+                            ? () => setState(() => members.removeAt(index))
                             : null,
                       );
                     }),
                     Center(
                       child: CustomButton.outline(
                         text: context.localizations.addAnotherMember,
-                        press: () {
-                          setState(() {
-                            members.add(MemberFormData());
-                          });
-                        },
+                        press: () => setState(() => members.add(MemberFormData())),
                         iconData: Icons.add,
                         width: SizeConfig.screenWidth * 0.6,
                         borderColor: context.colorScheme.outline,
@@ -203,13 +196,8 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                     text: context.localizations.submitRequest,
                     iconData: Icons.check,
                     press: () {
-                      // TODO: Validate and submit
-                      if (_formKey.currentState?.saveAndValidate() ??
-                          false) {
-                        print(
-                          "Submit request with ${members.length} members",
-                        );
-                        print(_formKey.currentState?.value);
+                      if (_formKey.currentState?.saveAndValidate() ?? false) {
+                        Logger().w(_formKey.currentState?.value);
                       } else {
                         print("Validation failed");
                       }

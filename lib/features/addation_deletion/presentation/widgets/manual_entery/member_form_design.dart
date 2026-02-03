@@ -17,7 +17,7 @@ import '../../../data/models/enums/nationality_enum.dart';
 import '../../../data/models/enums/relationship_enum.dart';
 import '../../../data/models/manual_entry_params.dart';
 
-class MemberFormDesign extends StatelessWidget {
+class MemberFormDesign extends StatefulWidget {
   final int index;
   final MemberFormData member;
   final VoidCallback? onRemove;
@@ -31,6 +31,11 @@ class MemberFormDesign extends StatelessWidget {
     required this.formKey,
   });
 
+  @override
+  State<MemberFormDesign> createState() => _MemberFormDesignState();
+}
+
+class _MemberFormDesignState extends State<MemberFormDesign> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,14 +60,14 @@ class MemberFormDesign extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(
-                text: "${context.localizations.member} ${index + 1}",
+                text: "${context.localizations.member} ${widget.index + 1}",
                 fontWeight: FontWeight.w700,
                 textSize: 14,
                 color: context.colorScheme.onSurface,
               ),
-              if (onRemove != null)
+              if (widget.onRemove != null)
                 InkWell(
-                  onTap: onRemove,
+                  onTap: widget.onRemove,
                   child: const Icon(Icons.close, color: Colors.red, size: 24),
                 ),
             ],
@@ -72,7 +77,7 @@ class MemberFormDesign extends StatelessWidget {
             children: [
               Expanded(
                 child: AppDropDown<RelationshipEnum>(
-                  name: 'relationship_$index',
+                  name: 'relationship_${widget.index}',
                   hint: context.localizations.selectRelationship,
                   label: context.localizations.relationship,
                   items: RelationshipEnum.values
@@ -83,17 +88,17 @@ class MemberFormDesign extends StatelessWidget {
                         ),
                       )
                       .toList(),
-                  onChanged: (value) => member.relationship = value,
+                  onChanged: (value) => widget.member.relationship = value,
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
               Expanded(
                 child: CustomTextFormField(
-                  name: 'fullNameArabic_$index',
+                  name: 'fullNameArabic_${widget.index}',
                   label: context.localizations.fullNameArabic,
                   hintText: context.localizations.memberFullNameArabic,
                   textAlign: TextAlign.right,
-                  onChanged: (value) => member.fullNameArabic = value,
+                  onChanged: (value) => widget.member.fullNameArabic = value,
                 ),
               ),
             ],
@@ -103,16 +108,16 @@ class MemberFormDesign extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomTextFormField(
-                  name: 'fullNameEnglish_$index',
+                  name: 'fullNameEnglish_${widget.index}',
                   label: context.localizations.fullNameEnglish,
                   hintText: context.localizations.memberFullName,
-                  onChanged: (value) => member.fullNameEnglish = value,
+                  onChanged: (value) => widget.member.fullNameEnglish = value,
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
               Expanded(
                 child: AppDropDown<NationalityEnum>(
-                  name: 'nationality_$index',
+                  name: 'nationality_${widget.index}',
                   label: context.localizations.nationality,
                   hint: context.localizations.egyptian,
                   items: NationalityEnum.values
@@ -128,7 +133,7 @@ class MemberFormDesign extends StatelessWidget {
                       )
                       .toList(),
                   onChanged: (value) {
-                    member.nationality = value;
+                    widget.member.nationality = value;
                   },
                 ),
               ),
@@ -139,16 +144,16 @@ class MemberFormDesign extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomTextFormField(
-                  name: 'nationalId_$index',
+                  name: 'nationalId_${widget.index}',
                   label: context.localizations.nationalIdCNID,
                   hintText: context.localizations.nationalIdHint,
-                  onChanged: (value) => member.nationalId = value,
+                  onChanged: (value) => widget.member.nationalId = value,
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
               Expanded(
                 child: CustomTextFormField(
-                  name: 'dateOfBirth_$index',
+                  name: 'dateOfBirth_${widget.index}',
                   label: context.localizations.dateOfBirth,
                   hintText: context.localizations.ddMmYyyy,
                   readOnly: true,
@@ -158,9 +163,9 @@ class MemberFormDesign extends StatelessWidget {
                       firstDate: DateTime(1960),
                       lastDate: DateTime.now(),
                     );
-                    member.dateOfBirth = date?.formattedDate;
-                    formKey.currentState?.patchValue({
-                      "dateOfBirth_$index": member.dateOfBirth
+                    widget.member.dateOfBirth = date?.formattedDate;
+                    widget.formKey.currentState?.patchValue({
+                      "dateOfBirth_${widget.index}": widget.member.dateOfBirth
                     });
                   },
                 ),
@@ -172,7 +177,7 @@ class MemberFormDesign extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomTextFormField(
-                  name: 'hiringDate_$index',
+                  name: 'hiringDate_${widget.index}',
                   label: context.localizations.hiringDate,
                   hintText: context.localizations.ddMmYyyy,
                   suffixIcon: const Icon(Icons.calendar_today, size: 18),
@@ -182,9 +187,9 @@ class MemberFormDesign extends StatelessWidget {
                       firstDate: DateTime(1960),
                       lastDate: DateTime.now(),
                     );
-                    member.hiringDate = date?.formattedDate;
-                    formKey.currentState?.patchValue({
-                      "hiringDate_$index": member.dateOfBirth
+                    widget.member.hiringDate = date?.formattedDate;
+                    widget.formKey.currentState?.patchValue({
+                      "hiringDate_${widget.index}": widget.member.dateOfBirth
                     });
                   },
                 ),
@@ -192,7 +197,7 @@ class MemberFormDesign extends StatelessWidget {
               SizedBox(width: SizeConfig.screenWidth * .03),
               Expanded(
                 child: CustomTextFormField(
-                  name: 'additionDate_$index',
+                  name: 'additionDate_${widget.index}',
                   label: context.localizations.additionDate,
                   hintText: context.localizations.ddMmYyyy,
                   suffixIcon: const Icon(Icons.calendar_today, size: 18),
@@ -203,9 +208,9 @@ class MemberFormDesign extends StatelessWidget {
                       firstDate: DateTime(1960),
                       lastDate: DateTime.now(),
                     );
-                    member.additionDate = date?.formattedDate;
-                    formKey.currentState?.patchValue({
-                      "additionDate_$index": member.dateOfBirth
+                    widget.member.additionDate = date?.formattedDate;
+                    widget.formKey.currentState?.patchValue({
+                      "additionDate_${widget.index}": widget.member.dateOfBirth
                     });
                   },
                 ),
@@ -217,7 +222,7 @@ class MemberFormDesign extends StatelessWidget {
             children: [
               Expanded(
                 child: AppDropDown<MaritalStatusEnum>(
-                  name: 'maritalStatus_$index',
+                  name: 'maritalStatus_${widget.index}',
                   label: context.localizations.maritalStatus,
                   hint: context.localizations.selectStatus,
                   items: MaritalStatusEnum.values
@@ -233,14 +238,14 @@ class MemberFormDesign extends StatelessWidget {
                       )
                       .toList(),
                   onChanged: (value) {
-                    member.maritalStatus = value;
+                    widget.member.maritalStatus = value;
                   },
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
               Expanded(
                 child: AppDropDown<GenderEnum>(
-                  name: 'gender_$index',
+                  name: 'gender_${widget.index}',
                   label: context.localizations.gender,
                   hint: context.localizations.selectGender,
                   items: GenderEnum.values
@@ -256,7 +261,7 @@ class MemberFormDesign extends StatelessWidget {
                       )
                       .toList(),
                   onChanged: (value) {
-                    member.gender = value;
+                    widget.member.gender = value;
                   },
                 ),
               ),
@@ -267,22 +272,22 @@ class MemberFormDesign extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomTextFormField(
-                  name: 'phoneNumber_$index',
+                  name: 'phoneNumber_${widget.index}',
                   label: context.localizations.phoneNumber,
                   hintText: context.localizations.phoneNumberHint,
                   onChanged: (value) {
-                    member.phoneNumber = value;
+                    widget.member.phoneNumber = value;
                   },
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
               Expanded(
                 child: CustomTextFormField(
-                  name: 'emailAddress_$index',
+                  name: 'emailAddress_${widget.index}',
                   label: context.localizations.emailAddress,
                   hintText: context.localizations.emailHint,
                   onChanged: (value) {
-                    member.emailAddress = value;
+                    widget.member.emailAddress = value;
                   },
                 ),
               ),
@@ -299,7 +304,7 @@ class MemberFormDesign extends StatelessWidget {
           SizedBox(height: SizeConfig.bodyHeight * .01),
 
           AppDropDown<InsurancePlanEnum>(
-            name: 'medicalInsurancePlan_$index',
+            name: 'medicalInsurancePlan_${widget.index}',
             label: context.localizations.medicalInsurancePlan,
             hint: context.localizations.selectPlan,
             items: InsurancePlanEnum.values
@@ -315,69 +320,83 @@ class MemberFormDesign extends StatelessWidget {
                 )
                 .toList(),
             onChanged: (value) {
-              member.medicalInsurancePlan = value;
+              widget.member.medicalInsurancePlan = value;
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomTextFormField(
-            name: 'salary_$index',
+            name: 'salary_${widget.index}',
             label: context.localizations.salaryConditional,
             keyboardType: TextInputType.numberWithOptions(decimal: true),
             hintText: context.localizations.monthlySalary,
             onChanged: (value) {
-              member.salary = value;
+              widget.member.salary = value;
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomTextFormField(
-            name: 'iban_$index',
+            name: 'iban_${widget.index}',
             label: context.localizations.ibanConditional,
             hintText: context.localizations.ibanHint,
             onChanged: (value) {
-              member.iban = value;
+              widget.member.iban = value;
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomTextFormField(
-            name: 'address_$index',
+            name: 'address_${widget.index}',
             label: context.localizations.address,
             hintText: context.localizations.fullAddress,
             onChanged: (value) {
-              member.address = value;
+              widget.member.address = value;
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
-          _buildFileUpload(
-            context: context,
-            label: context.localizations.photoUpload,
-            required: true,
-            helperText: context.localizations.automaticallyRenamedWithStaffNumber,
-            fileName: member.photoFileName,
-            onTap: () async {
-              File file = await SecureFilePicker.pickFile();
-              member.photoFileName = file.path;
+          FormBuilderField<String>(
+            name: 'photoFileName_${widget.index}',
+            builder: (FormFieldState<String> field) {
+              return _buildFileUpload(
+                context: context,
+                label: context.localizations.photoUpload,
+                required: true,
+                helperText: context.localizations.automaticallyRenamedWithStaffNumber,
+                fileName: widget.member.photoFileName,
+                onTap: () async {
+                  File file = await SecureFilePicker.pickFile();
+                  widget.member.photoFileName = file.path;
+                  field.didChange(file.path);
+                  setState(() {});
+                },
+              );
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
-          _buildFileUpload(
-            context: context,
-            label: context.localizations.acknowledgmentStatement,
-            required: true,
-            helperText: context.localizations.uploadSignedAcknowledgment,
-            fileName: member.acknowledgmentFileName,
-            onTap: () async {
-              File file = await SecureFilePicker.pickFile();
-              member.acknowledgmentFileName = file.path;
+          FormBuilderField<String>(
+            name: 'acknowledgmentFileName_${widget.index}',
+            builder: (FormFieldState<String> field) {
+              return _buildFileUpload(
+                context: context,
+                label: context.localizations.acknowledgmentStatement,
+                required: true,
+                helperText: context.localizations.uploadSignedAcknowledgment,
+                fileName: widget.member.acknowledgmentFileName,
+                onTap: () async {
+                  File file = await SecureFilePicker.pickFile();
+                  widget.member.acknowledgmentFileName = file.path;
+                  field.didChange(file.path);
+                  setState(() {});
+                },
+              );
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
           // Staff Number
           CustomTextFormField(
-            name: 'staffNumber_$index',
+            name: 'staffNumber_${widget.index}',
             label: context.localizations.staffNumberId,
             hintText: context.localizations.employeeStaffNumber,
             onChanged: (value) {
-              member.staffNumber = value;
+              widget.member.staffNumber = value;
             },
           ),
         ],
@@ -443,7 +462,9 @@ class MemberFormDesign extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: AppText(
-                    text: fileName ?? context.localizations.noFileChosen,
+                    text: fileName != null 
+                        ? fileName.split('/').last 
+                        : context.localizations.noFileChosen,
                     fontWeight: FontWeight.w400,
                     textSize: 11,
                     color: fileName != null
