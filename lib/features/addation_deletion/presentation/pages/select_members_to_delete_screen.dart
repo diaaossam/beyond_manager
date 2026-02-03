@@ -8,14 +8,15 @@ import '../../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../../widgets/custom_search_text_form_field.dart';
 import '../../../../widgets/main_widget/app_text.dart';
 import '../../../../widgets/main_widget/custom_button.dart';
+import '../../../policies/data/models/response/main_policy_model.dart';
 
 @RoutePage()
 class SelectMembersToDeleteScreen extends StatefulWidget {
-  final List<String> selectedPolicyIds;
+  final List<MainPolicyModel> selectedPolicies;
 
   const SelectMembersToDeleteScreen({
     super.key,
-    required this.selectedPolicyIds,
+    required this.selectedPolicies,
   });
 
   @override
@@ -56,8 +57,9 @@ class _SelectMembersToDeleteScreenState
 
   @override
   Widget build(BuildContext context) {
-    List<MemberData> selectedMembers =
-        members.where((m) => selectedMemberIds.contains(m.id)).toList();
+    List<MemberData> selectedMembers = members
+        .where((m) => selectedMemberIds.contains(m.id))
+        .toList();
 
     return Scaffold(
       appBar: const CustomAppBar(title: "Select Members to Delete"),
@@ -115,8 +117,11 @@ class _SelectMembersToDeleteScreenState
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.folder_outlined,
-                                color: Color(0xFF4A90E2), size: 20),
+                            const Icon(
+                              Icons.folder_outlined,
+                              color: Color(0xFF4A90E2),
+                              size: 20,
+                            ),
                             const SizedBox(width: 12),
                             const AppText(
                               text: "Selected Policies:",
@@ -127,12 +132,16 @@ class _SelectMembersToDeleteScreenState
                             const SizedBox(width: 8),
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 6),
+                                horizontal: 12,
+                                vertical: 6,
+                              ),
                               decoration: BoxDecoration(
                                 color: context.colorScheme.surface,
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
-                                    color: const Color(0xFF4A90E2), width: 1),
+                                  color: const Color(0xFF4A90E2),
+                                  width: 1,
+                                ),
                               ),
                               child: const AppText(
                                 text: "Medical Insurance",
@@ -161,8 +170,11 @@ class _SelectMembersToDeleteScreenState
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.warning_amber,
-                                color: Color(0xFFF59E0B), size: 20),
+                            const Icon(
+                              Icons.warning_amber,
+                              color: Color(0xFFF59E0B),
+                              size: 20,
+                            ),
                             const SizedBox(width: 12),
                             Expanded(
                               child: RichText(
@@ -176,13 +188,15 @@ class _SelectMembersToDeleteScreenState
                                     TextSpan(
                                       text: "Important: ",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w700),
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
                                     TextSpan(
                                       text:
                                           "Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w500),
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -293,7 +307,8 @@ class _SelectMembersToDeleteScreenState
                         press: () {
                           // TODO: Continue to next step
                           print(
-                              "Continue with ${selectedMembers.length} members");
+                            "Continue with ${selectedMembers.length} members",
+                          );
                         },
                       ),
                     ),
@@ -354,11 +369,7 @@ class _SelectMembersToDeleteScreenState
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: isSelected
-                      ? const Icon(
-                          Icons.check,
-                          size: 14,
-                          color: Colors.white,
-                        )
+                      ? const Icon(Icons.check, size: 14, color: Colors.white)
                       : null,
                 ),
               ),
@@ -394,9 +405,7 @@ class _SelectMembersToDeleteScreenState
           // Member Details
           Row(
             children: [
-              Expanded(
-                child: _buildDetailRow("Staff ID:", member.staffId),
-              ),
+              Expanded(child: _buildDetailRow("Staff ID:", member.staffId)),
               Expanded(
                 child: _buildDetailRow("National ID:", member.nationalId),
               ),
@@ -412,8 +421,11 @@ class _SelectMembersToDeleteScreenState
                 Expanded(
                   child: Row(
                     children: [
-                      Icon(Icons.credit_card,
-                          size: 14, color: context.colorScheme.shadow),
+                      Icon(
+                        Icons.credit_card,
+                        size: 14,
+                        color: context.colorScheme.shadow,
+                      ),
                       const SizedBox(width: 4),
                       AppText(
                         text: "Card Number: ${member.cardNumber}",
@@ -437,13 +449,15 @@ class _SelectMembersToDeleteScreenState
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.family_restroom,
-                      size: 16, color: Color(0xFF4A90E2)),
+                  const Icon(
+                    Icons.family_restroom,
+                    size: 16,
+                    color: Color(0xFF4A90E2),
+                  ),
                   const SizedBox(width: 8),
                   const Expanded(
                     child: AppText(
-                      text:
-                          "Has 3 family members - will be auto-selected",
+                      text: "Has 3 family members - will be auto-selected",
                       fontWeight: FontWeight.w600,
                       textSize: 12,
                       color: Color(0xFF4A90E2),

@@ -6523,6 +6523,21 @@ class S {
       args: [],
     );
   }
+
+  /// `E-Card`
+  String get eCard {
+    return Intl.message('E-Card', name: 'eCard', desc: '', args: []);
+  }
+
+  /// `Physical Card`
+  String get physicalCard {
+    return Intl.message(
+      'Physical Card',
+      name: 'physicalCard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

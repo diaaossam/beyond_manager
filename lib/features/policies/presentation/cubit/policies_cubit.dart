@@ -15,7 +15,7 @@ class PoliciesCubit extends Cubit<BaseState<PolicyStatus>> {
   final PoliciesRepositoryImpl policiesRepositoryImpl;
 
   late final PagingController<int, MainPolicyModel> pagingController;
-  PolicyStatus currentStatus = PolicyStatus.all;
+  PolicyStatus currentStatus = PolicyStatus.active;
   int tag = 0;
 
   PoliciesCubit(this.policiesRepositoryImpl) : super(BaseState()) {

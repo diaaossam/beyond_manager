@@ -3,12 +3,12 @@ import 'dart:io';
 
 // 🌎 Project imports:
 // 🐦 Flutter imports:
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mime/mime.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -25,24 +25,8 @@ class SecureFilePicker {
     final pickedFile = await picker.pickImage(source: source);
     if (pickedFile == null) return null;
     final file = File(pickedFile.path);
-
     final File compressedFile = await _compressImage(file);
-
-    if (!validateFile(compressedFile)) return null;
-
     return compressedFile;
-  }
-
-  static bool validateFile(File file) {
-    if (file.lengthSync() > imageFileSizeLimit) return false;
-    final mimeType = lookupMimeType(file.path);
-
-    if (mimeType == null) return false;
-
-    if (!mimeType.startsWith('image/') && !mimeType.startsWith('video/'))
-      return false;
-
-    return true;
   }
 
   static Future<File> _compressImage(File sourceFile, {int? targetSize}) async {
@@ -63,5 +47,15 @@ class SecureFilePicker {
       if (file.lengthSync() < targetSize) return file;
     }
     throw Exception("Image is too large, cannot compress below target size");
+  }
+
+  static Future<File> pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      return file;
+    } else {
+      throw Exception("No file selected");
+    }
   }
 }

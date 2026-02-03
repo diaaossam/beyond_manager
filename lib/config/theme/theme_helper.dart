@@ -49,7 +49,7 @@ class ThemeHelper {
 
   TextStyle hintTFFTextStyle({Color? color}) => TextStyle(
     color: color ?? const Color(0xffB0B0B0),
-    fontSize: 12.sp,
+    fontSize: 10.sp,
     fontWeight: FontWeight.w400,
   );
 

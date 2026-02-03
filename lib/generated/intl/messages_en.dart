@@ -453,6 +453,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Download Template",
     ),
     "dueDate": MessageLookupByLibrary.simpleMessage("Due date"),
+    "eCard": MessageLookupByLibrary.simpleMessage("E-Card"),
     "effectiveDate": MessageLookupByLibrary.simpleMessage("Effective Date:"),
     "efficientBulkProcessing": MessageLookupByLibrary.simpleMessage(
       "Efficient bulk processing",
@@ -962,6 +963,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "• Photos must be named with Staff ID",
     ),
     "photosSelected": m3,
+    "physicalCard": MessageLookupByLibrary.simpleMessage("Physical Card"),
     "physical_therapy": MessageLookupByLibrary.simpleMessage(
       "Physical Therapy",
     ),

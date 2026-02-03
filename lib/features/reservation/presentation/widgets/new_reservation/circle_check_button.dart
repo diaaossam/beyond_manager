@@ -1,4 +1,3 @@
-import 'package:bond/config/theme/app_colors.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:flutter/material.dart';

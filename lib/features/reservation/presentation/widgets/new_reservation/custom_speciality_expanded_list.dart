@@ -1,7 +1,6 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/core/utils/app_assets.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/reservation/data/models/response/speciality_model.dart';
 import 'package:bond/features/reservation/presentation/cubit/new_reservation/new_reservation_cubit.dart';
@@ -10,10 +9,6 @@ import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:bond/config/theme/app_colors.dart';
-
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/image_picker/app_image.dart';
 

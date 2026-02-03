@@ -1,19 +1,36 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/bloc/helper/base_state.dart';
 import '../../../../../core/enum/policy_status.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
+import '../../../../../widgets/main_widget/custom_button.dart';
 import '../../../../policies/data/models/response/main_policy_model.dart';
+import '../../../../policies/presentation/cubit/policies_cubit.dart';
 import '../../../../policies/presentation/widget/select_policy/policies_grid_design.dart';
-import '../../../../sick_leave/presentation/cubit/sick_leave_active_list/sl_active_list_cubit.dart';
 import '../step_indicator.dart';
 
-class SelectPolicyBody extends StatelessWidget {
+class SelectPolicyBody extends StatefulWidget {
   const SelectPolicyBody({super.key});
+
+  @override
+  State<SelectPolicyBody> createState() => _SelectPolicyBodyState();
+}
+
+class _SelectPolicyBodyState extends State<SelectPolicyBody> {
+  List<MainPolicyModel> selectedPolicies = [];
+  List<num> selectedPolicyIds = [];
+
+  void _onSelectionChanged(List<MainPolicyModel> policies) {
+    setState(() {
+      selectedPolicies = policies;
+      selectedPolicyIds = policies.map((p) => p.policyId ?? 0).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +49,14 @@ class SelectPolicyBody extends StatelessWidget {
                   AppText(
                     text: context.localizations.selectInsurancePolicies,
                     fontWeight: FontWeight.w700,
-                    textSize: 20,
+                    textSize: 16,
                     color: context.colorScheme.onSurface,
                   ),
                   SizedBox(height: SizeConfig.bodyHeight * .015),
                   AppText(
                     text: context.localizations.chooseWhichInsurancePolicies,
                     fontWeight: FontWeight.w400,
-                    textSize: 13,
+                    textSize: 12,
                     color: context.colorScheme.shadow,
                     maxLines: 2,
                   ),
@@ -47,10 +64,10 @@ class SelectPolicyBody extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE8F4FD),
+                      color: context.colorScheme.scrim.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: const Color(0xFF4A90E2).withOpacity(0.3),
+                        color: context.colorScheme.scrim.withValues(alpha: 0.3),
                         width: 1,
                       ),
                     ),
@@ -89,7 +106,7 @@ class SelectPolicyBody extends StatelessWidget {
                       AppText(
                         text: context.localizations.activePolicies,
                         fontWeight: FontWeight.w700,
-                        textSize: 16,
+                        textSize: 14,
                         color: context.colorScheme.onSurface,
                       ),
                     ],
@@ -98,113 +115,126 @@ class SelectPolicyBody extends StatelessWidget {
                   AppText(
                     text: context.localizations.selectOneOrMorePolicies,
                     fontWeight: FontWeight.w400,
-                    textSize: 12,
+                    textSize: 11,
                     color: context.colorScheme.shadow,
                   ),
-                  SizedBox(height: SizeConfig.bodyHeight * .02),
-                  BlocBuilder<SlActiveListCubit, BaseState<PolicyStatus>>(
+                  SizedBox(height: SizeConfig.bodyHeight * .01),
+                  BlocBuilder<PoliciesCubit, BaseState<PolicyStatus>>(
                     builder: (context, state) {
-                      final bloc = context.read<SlActiveListCubit>();
-                      return CustomScrollView(
-                        slivers: [
-                          PolicyGridDesign(pagingController: bloc.activePagingController,
-                            onItemTap: (MainPolicyModel p1) {  },),
-                        ],
+                      final bloc = context.read<PoliciesCubit>();
+                      return SizedBox(
+                        height: SizeConfig.bodyHeight * .6,
+                        child: CustomScrollView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          slivers: [
+                            PolicyGridDesign(
+                              pagingController: bloc.pagingController,
+                              onItemTap: (MainPolicyModel p1) {},
+                              enableMultiSelect: true,
+                              selectedPolicyIds: selectedPolicyIds,
+                              onSelectionChanged: _onSelectionChanged,
+                            ),
+                          ],
+                        ),
                       );
                     },
-                  )
-
-                /*  ...policies.map((policy) => _buildPolicyCard(policy)),
-                  SizedBox(height: SizeConfig.bodyHeight * .02),
-                  // Selected count
-                  if (selectedPolicyIds.isNotEmpty)
-                    Container(
-                      padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFE8F4FD),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.check_circle,
-                            color: Color(0xFF4A90E2),
-                            size: 20,
-                          ),
-                          const SizedBox(width: 8),
-                          AppText(
-                            text: "${context.localizations.selected}  ",
-                            fontWeight: FontWeight.w600,
-                            textSize: 13,
-                            color: const Color(0xFF2C3E50),
-                          ),
-                          AppText(
-                            text: "(${selectedPolicyIds.length})",
-                            fontWeight: FontWeight.w600,
-                            textSize: 13,
-                            color: const Color(0xFF2C3E50),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: AppText(
-                              text: selectedPolicies
-                                  .map((p) => p.name)
-                                  .join(", "),
-                              fontWeight: FontWeight.w500,
-                              textSize: 13,
-                              color: const Color(0xFF2C3E50),
-                              maxLines: 2,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  SizedBox(height: SizeConfig.bodyHeight * .02),*/
+                  ),
                 ],
               ),
             ),
           ),
         ),
-        /*Container(
+        Container(
           padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
           decoration: BoxDecoration(
             color: context.colorScheme.surface,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: context.colorScheme.onSurface.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, -2),
               ),
             ],
           ),
-          child: Row(
+          child: Column(
             children: [
-              Expanded(
-                child: CustomButton.outline(
-                  text: context.localizations.back,
-                  press: () {
-                    context.router.back();
-                  },
-                  borderColor: context.colorScheme.outline,
-                  textColor: context.colorScheme.onSurface,
+              if (selectedPolicies.isNotEmpty) ...[
+                SizedBox(height: SizeConfig.bodyHeight * .02),
+                Container(
+                  padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFE8F4FD),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color:context.colorScheme.scrim.withOpacity(0.3),
+                      width: 1,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.check_circle,
+                        color: Color(0xFF4A90E2),
+                        size: 20,
+                      ),
+                      const SizedBox(width: 8),
+                      AppText(
+                        text: "${context.localizations.selected}",
+                        fontWeight: FontWeight.w600,
+                        textSize: 13,
+                        color: const Color(0xFF2C3E50),
+                      ),
+                      AppText(
+                        text: "(${selectedPolicies.length})",
+                        fontWeight: FontWeight.w600,
+                        textSize: 13,
+                        color:context.colorScheme.scrim,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: AppText(
+                          text: selectedPolicies
+                              .map((p) => p.policyNumber ?? "")
+                              .join(", "),
+                          fontWeight: FontWeight.w500,
+                          textSize: 12,
+                          color: const Color(0xFF2C3E50),
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                flex: 2,
-                child: CustomButton(
-                  text: context.localizations.continueToMethodSelection,
-                  isActive: selectedPolicyIds.isNotEmpty,
-                  press: () {
-                    if (selectedPolicyIds.isNotEmpty) {
-                      context.router.push(const MethodSelectionRoute());
-                    }
-                  },
-                ),
+              ],
+              SizedBox(height: SizeConfig.bodyHeight * .02),
+              Row(
+                children: [
+                  Expanded(
+                    child: CustomButton.outline(
+                      text: context.localizations.back,
+                      press: () => context.router.back(),
+                      borderColor: context.colorScheme.outline,
+                      textColor: context.colorScheme.onSurface,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    flex: 2,
+                    child: CustomButton(
+                      text: context.localizations.continueToMethodSelection,
+                      isActive: selectedPolicyIds.isNotEmpty,
+                      press: () {
+                        if (selectedPolicyIds.isNotEmpty) {
+                          context.router.push(MethodSelectionRoute(selectedPolicies: selectedPolicies));
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ),*/
+        ),
       ],
     );
   }

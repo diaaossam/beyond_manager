@@ -1,7 +1,6 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/core/utils/app_assets.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/features/reservation/presentation/cubit/new_reservation/new_reservation_cubit.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
@@ -11,9 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
-import 'package:bond/config/theme/app_colors.dart';
-
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../widgets/image_picker/app_image.dart';
 

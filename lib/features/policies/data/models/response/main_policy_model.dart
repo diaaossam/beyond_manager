@@ -8,6 +8,7 @@ class MainPolicyModel {
     this.lineOfBusiness,
     this.policyEndDate,
     this.policyStartDate,
+    this.eCards,
   });
 
   MainPolicyModel.fromJson(dynamic json) {
@@ -17,6 +18,7 @@ class MainPolicyModel {
     lineOfBusiness = json['line_of_business'] ?? "";
     policyEndDate = json['policy_end_date'];
     policyStartDate = json['policy_start_date'];
+    eCards = json['e_cards'] == "yes";
   }
 
   num? policyId;
@@ -25,6 +27,7 @@ class MainPolicyModel {
   String? lineOfBusiness;
   String? policyStartDate;
   String? policyEndDate;
+  bool? eCards;
 
   static List<MainPolicyModel> fromJsonList(Map<String, dynamic> response) {
     final List<dynamic> dataList = response['result'] as List<dynamic>;

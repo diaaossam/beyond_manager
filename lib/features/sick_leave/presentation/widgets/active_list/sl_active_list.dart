@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/enum/policy_status.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
@@ -27,8 +26,7 @@ class _SickLeavePolicesBodyState extends State<SickLeavePolicesBody> {
 
   @override
   Widget build(BuildContext context) {
-
-    return BlocBuilder<SlActiveListCubit, BaseState<PolicyStatus>>(
+    return BlocBuilder<SlActiveListCubit, BaseState<String>>(
       builder: (context, state) {
         final bloc = context.read<SlActiveListCubit>();
         return CustomScrollView(

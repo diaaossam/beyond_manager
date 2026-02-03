@@ -8,13 +8,14 @@ import '../../../../core/utils/app_size.dart';
 import '../../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../../widgets/main_widget/app_text.dart';
 import '../../../../widgets/main_widget/custom_button.dart';
+import '../../../policies/data/models/response/main_policy_model.dart';
 import '../widgets/step_indicator.dart';
 
 @RoutePage()
 class MethodSelectionScreen extends StatelessWidget {
-  const MethodSelectionScreen({
-    super.key,
-  });
+  final List<MainPolicyModel> selectedPolicies;
+
+  const MethodSelectionScreen({super.key, required this.selectedPolicies});
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +28,8 @@ class MethodSelectionScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: SizeConfig.bodyHeight * .03),
-                // Step Indicator
                 const StepIndicator(currentStep: 2),
-                SizedBox(height: SizeConfig.bodyHeight * .04),
-                SizedBox(height: SizeConfig.bodyHeight * .04),
+                SizedBox(height: SizeConfig.bodyHeight * .02),
                 // Method cards
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,9 +46,9 @@ class MethodSelectionScreen extends StatelessWidget {
                       ],
                       buttonText: context.localizations.proceedWithManualEntry,
                       onTap: () {
-                        context.router.push(SelectRequestTypeRoute(
-                          selectedPolicyIds: [],
-                        ));
+                        context.router.push(
+                          SelectRequestTypeRoute(selectedPolicies: selectedPolicies),
+                        );
                       },
                     ),
                     SizedBox(width: SizeConfig.screenWidth * .03),
@@ -75,9 +73,7 @@ class MethodSelectionScreen extends StatelessWidget {
                 // Back button
                 CustomButton.outline(
                   text: context.localizations.back,
-                  press: () {
-                    context.router.back();
-                  },
+                  press: () => context.router.back(),
                   borderColor: context.colorScheme.outline,
                   textColor: context.colorScheme.onSurface,
                 ),
@@ -100,7 +96,7 @@ class MethodSelectionScreen extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return Container(
-      padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
+      padding: EdgeInsets.all(SizeConfig.screenWidth * .02),
       decoration: BoxDecoration(
         color: context.colorScheme.surface,
         border: Border.all(color: context.colorScheme.outline),
@@ -109,16 +105,13 @@ class MethodSelectionScreen extends StatelessWidget {
       child: Column(
         children: [
           // Emoji icon
-          Text(
-            emoji,
-            style: const TextStyle(fontSize: 50),
-          ),
+          Text(emoji, style: const TextStyle(fontSize: 50)),
           SizedBox(height: SizeConfig.bodyHeight * .02),
           // Title
           AppText(
             text: title,
             fontWeight: FontWeight.w700,
-            textSize: 18,
+            textSize: 14,
             color: context.colorScheme.onSurface,
             align: TextAlign.center,
           ),
@@ -127,46 +120,43 @@ class MethodSelectionScreen extends StatelessWidget {
           AppText(
             text: description,
             fontWeight: FontWeight.w400,
-            textSize: 12,
+            textSize: 11,
             color: context.colorScheme.shadow,
             align: TextAlign.center,
             maxLines: 5,
           ),
           SizedBox(height: SizeConfig.bodyHeight * .025),
-          // Features list
-          ...features.map((feature) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(top: 4),
-                      child: const Icon(
-                        Icons.check,
-                        color: Color(0xFF5CB85C),
-                        size: 16,
-                      ),
+          ...features.map(
+            (feature) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 4),
+                    child: Icon(
+                      Icons.check,
+                      color: context.colorScheme.tertiary,
+                      size: 16,
                     ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: AppText(
-                        text: feature,
-                        fontWeight: FontWeight.w500,
-                        textSize: 12,
-                        color: context.colorScheme.onSurface,
-                        maxLines: 2,
-                      ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: AppText(
+                      text: feature,
+                      fontWeight: FontWeight.w500,
+                      textSize: 11,
+                      color: context.colorScheme.onSurface,
+                      maxLines: 2,
                     ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
           SizedBox(height: SizeConfig.bodyHeight * .025),
           // Button
-          CustomButton(
-            text: buttonText,
-            press: onTap,
-            textSize: 13,
-          ),
+          CustomButton(text: buttonText, press: onTap, textSize: 13),
         ],
       ),
     );

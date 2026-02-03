@@ -46,9 +46,7 @@ class AdditionDeletionDashboard extends StatelessWidget {
                   title: context.localizations.createNewRequest,
                   body: context.localizations.createNewRequestDesc,
                   buttonText: context.localizations.getStarted,
-                  press: () {
-                    context.router.push(const SelectPoliciesRoute());
-                  },
+                  press: () => context.router.push(const SelectPoliciesRoute()),
                 ),
                 const SizedBox(width: 10),
                 buildSelectionCard(

@@ -1,16 +1,20 @@
 import '../../generated/l10n.dart';
 
 enum PolicyStatus {
-  all,
-  active,
-  expired,
-  suspended,
-  terminatedWithInsuranceCompany,
-  underIssuance,
-  draft,
-  terminatedWithBeyond,
-  lapsedBupa,
-  cancel,
+  all("All"),
+  active("Active Policy"),
+  expired("Expired"),
+  suspended("Suspended"),
+  terminatedWithInsuranceCompany("Terminated With Insurance Company"),
+  underIssuance("Under Issuance"),
+  draft("Draft"),
+  terminatedWithBeyond("Terminated With Beyond"),
+  lapsedBupa("Lapsed Bupa"),
+  cancel("Cancel");
+
+  final String name;
+
+  const PolicyStatus(this.name);
 }
 extension PolicyStatusX on PolicyStatus {
   String get label {
@@ -20,13 +24,13 @@ extension PolicyStatusX on PolicyStatus {
       case PolicyStatus.active:
         return S.current.policy_status_active;
       case PolicyStatus.expired:
-        return  S.current.policy_status_expired;
+        return S.current.policy_status_expired;
       case PolicyStatus.suspended:
-        return  S.current.policy_status_suspended;
+        return S.current.policy_status_suspended;
       case PolicyStatus.terminatedWithInsuranceCompany:
-        return  S.current.policy_status_terminated_with_insurance_company;
+        return S.current.policy_status_terminated_with_insurance_company;
       case PolicyStatus.underIssuance:
-        return  S.current.policy_status_under_issuance;
+        return S.current.policy_status_under_issuance;
       case PolicyStatus.draft:
         return S.current.policy_status_draft;
       case PolicyStatus.terminatedWithBeyond:

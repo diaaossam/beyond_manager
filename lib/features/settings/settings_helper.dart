@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 import '../../config/helper/context_helper.dart';
 import '../../config/router/app_router.gr.dart';
 import '../../core/extensions/app_localizations_extension.dart';
 import '../../core/extensions/color_extensions.dart';
+import '../../core/global_models/date_response.dart';
 import '../../core/utils/app_size.dart';
 import '../../widgets/main_widget/app_text.dart';
 import '../../widgets/main_widget/custom_button.dart';
@@ -49,7 +53,10 @@ class SettingsHelper {
                         height: SizeConfig.bodyHeight * .06,
                         text: context.localizations.login,
                         press: () async {
-                          context.router.pushAndPopUntil(const LoginRoute(), predicate: (route) => false,);
+                          context.router.pushAndPopUntil(
+                            const LoginRoute(),
+                            predicate: (route) => false,
+                          );
                         },
                       ),
                     ),
@@ -75,13 +82,14 @@ class SettingsHelper {
       ),
     );
   }
+
   Future<void> showAuthDialog() async {
     final navigatorState = NavigationService.navigatorKey.currentState;
     if (navigatorState == null) return;
-    
+
     final context = navigatorState.context;
     final router = AutoRouter.of(context);
-    
+
     return showCupertinoDialog(
       context: context,
       builder: (dialogContext) => CupertinoAlertDialog(
@@ -94,12 +102,13 @@ class SettingsHelper {
             isDefaultAction: true,
             isDestructiveAction: true,
             child: AppText(
-                text: dialogContext.localizations.logout,
-                textSize: 14,
-                maxLines: 4,
-                textHeight: 1.8,
-                fontWeight: FontWeight.bold,
-                color: Colors.red),
+              text: dialogContext.localizations.logout,
+              textSize: 14,
+              maxLines: 4,
+              textHeight: 1.8,
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+            ),
             onPressed: () async {
               Navigator.of(dialogContext).pop();
               router.pushAndPopUntil(
@@ -113,4 +122,66 @@ class SettingsHelper {
     );
   }
 
+  Future<DateResponse?> showCustomDatePicker({
+    required BuildContext context,
+    DateTime? initialDate,
+    required DateTime firstDate,
+    required DateTime lastDate,
+  }) async {
+    if (Platform.isAndroid) {
+      final dateTime = await showDatePicker(
+        initialEntryMode: DatePickerEntryMode.calendarOnly,
+        context: context,
+        initialDate: initialDate,
+        firstDate: firstDate,
+        lastDate: lastDate,
+      );
+      if (dateTime != null) {
+        String formattedDateTime = DateFormat(
+          'yyyy-MM-dd',
+          "en",
+        ).format(dateTime);
+        return DateResponse(formattedDate: formattedDateTime, dateTime: dateTime);
+      }
+    }
+    else {
+      DateTime selectedDate = initialDate ??DateTime.now();
+      await showCupertinoModalPopup(
+        context: context,
+        builder: (BuildContext context) {
+          return Column(
+            children: [
+              Expanded(
+                child: CupertinoDatePicker(
+                  mode: CupertinoDatePickerMode.date,
+                  initialDateTime: selectedDate,
+                  minimumDate: firstDate,
+                  maximumDate: lastDate,
+                  onDateTimeChanged: (DateTime dateTime) {
+                    selectedDate = dateTime;
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: SizeConfig.screenWidth * .15,
+                ),
+                child: CustomButton(
+                  text: context.localizations.done,
+                  press: () => Navigator.pop(context),
+                ),
+              ),
+              30.verticalSpace,
+            ],
+          );
+        },
+      );
+      String formattedDateTime = DateFormat(
+        'yyyy-MM-dd',
+        "en",
+      ).format(selectedDate);
+      return DateResponse(formattedDate: formattedDateTime, dateTime: selectedDate);
+    }
+    return null;
+  }
 }

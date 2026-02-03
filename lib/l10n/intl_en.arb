@@ -750,5 +750,7 @@
   "notification": "Notification:",
   "affectedMembersWillBeNotified": "Affected members will be notified of deletion via email/SMS",
   "validationAndApproval": "Validation & Approval",
-  "allDeletionRequestsAreValidated": "All deletion requests are validated against policy rules and require approval from the insurance company. You will be notified of the status within 24-48 hours."
+  "allDeletionRequestsAreValidated": "All deletion requests are validated against policy rules and require approval from the insurance company. You will be notified of the status within 24-48 hours.",
+  "eCard": "E-Card",
+  "physicalCard": "Physical Card"
 }

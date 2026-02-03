@@ -684,14 +684,14 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
   ManualEntryRoute({
     _i48.Key? key,
     required String requestType,
-    required List<String> selectedPolicyIds,
+    required List<_i57.MainPolicyModel> selectedPolicies,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          ManualEntryRoute.name,
          args: ManualEntryRouteArgs(
            key: key,
            requestType: requestType,
-           selectedPolicyIds: selectedPolicyIds,
+           selectedPolicies: selectedPolicies,
          ),
          initialChildren: children,
        );
@@ -705,7 +705,7 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
       return _i17.ManualEntryScreen(
         key: args.key,
         requestType: args.requestType,
-        selectedPolicyIds: args.selectedPolicyIds,
+        selectedPolicies: args.selectedPolicies,
       );
     },
   );
@@ -715,18 +715,18 @@ class ManualEntryRouteArgs {
   const ManualEntryRouteArgs({
     this.key,
     required this.requestType,
-    required this.selectedPolicyIds,
+    required this.selectedPolicies,
   });
 
   final _i48.Key? key;
 
   final String requestType;
 
-  final List<String> selectedPolicyIds;
+  final List<_i57.MainPolicyModel> selectedPolicies;
 
   @override
   String toString() {
-    return 'ManualEntryRouteArgs{key: $key, requestType: $requestType, selectedPolicyIds: $selectedPolicyIds}';
+    return 'ManualEntryRouteArgs{key: $key, requestType: $requestType, selectedPolicies: $selectedPolicies}';
   }
 
   @override
@@ -735,9 +735,9 @@ class ManualEntryRouteArgs {
     if (other is! ManualEntryRouteArgs) return false;
     return key == other.key &&
         requestType == other.requestType &&
-        const _i53.ListEquality<String>().equals(
-          selectedPolicyIds,
-          other.selectedPolicyIds,
+        const _i53.ListEquality<_i57.MainPolicyModel>().equals(
+          selectedPolicies,
+          other.selectedPolicies,
         );
   }
 
@@ -745,7 +745,7 @@ class ManualEntryRouteArgs {
   int get hashCode =>
       key.hashCode ^
       requestType.hashCode ^
-      const _i53.ListEquality<String>().hash(selectedPolicyIds);
+      const _i53.ListEquality<_i57.MainPolicyModel>().hash(selectedPolicies);
 }
 
 /// generated route for
@@ -766,18 +766,62 @@ class MedicalFilterRoute extends _i47.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i19.MethodSelectionScreen]
-class MethodSelectionRoute extends _i47.PageRouteInfo<void> {
-  const MethodSelectionRoute({List<_i47.PageRouteInfo>? children})
-    : super(MethodSelectionRoute.name, initialChildren: children);
+class MethodSelectionRoute
+    extends _i47.PageRouteInfo<MethodSelectionRouteArgs> {
+  MethodSelectionRoute({
+    _i48.Key? key,
+    required List<_i57.MainPolicyModel> selectedPolicies,
+    List<_i47.PageRouteInfo>? children,
+  }) : super(
+         MethodSelectionRoute.name,
+         args: MethodSelectionRouteArgs(
+           key: key,
+           selectedPolicies: selectedPolicies,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'MethodSelectionRoute';
 
   static _i47.PageInfo page = _i47.PageInfo(
     name,
     builder: (data) {
-      return const _i19.MethodSelectionScreen();
+      final args = data.argsAs<MethodSelectionRouteArgs>();
+      return _i19.MethodSelectionScreen(
+        key: args.key,
+        selectedPolicies: args.selectedPolicies,
+      );
     },
   );
+}
+
+class MethodSelectionRouteArgs {
+  const MethodSelectionRouteArgs({this.key, required this.selectedPolicies});
+
+  final _i48.Key? key;
+
+  final List<_i57.MainPolicyModel> selectedPolicies;
+
+  @override
+  String toString() {
+    return 'MethodSelectionRouteArgs{key: $key, selectedPolicies: $selectedPolicies}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MethodSelectionRouteArgs) return false;
+    return key == other.key &&
+        const _i53.ListEquality<_i57.MainPolicyModel>().equals(
+          selectedPolicies,
+          other.selectedPolicies,
+        );
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      const _i53.ListEquality<_i57.MainPolicyModel>().hash(selectedPolicies);
 }
 
 /// generated route for
@@ -1359,13 +1403,13 @@ class SelectMembersToDeleteRoute
     extends _i47.PageRouteInfo<SelectMembersToDeleteRouteArgs> {
   SelectMembersToDeleteRoute({
     _i48.Key? key,
-    required List<String> selectedPolicyIds,
+    required List<_i57.MainPolicyModel> selectedPolicies,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          SelectMembersToDeleteRoute.name,
          args: SelectMembersToDeleteRouteArgs(
            key: key,
-           selectedPolicyIds: selectedPolicyIds,
+           selectedPolicies: selectedPolicies,
          ),
          initialChildren: children,
        );
@@ -1378,7 +1422,7 @@ class SelectMembersToDeleteRoute
       final args = data.argsAs<SelectMembersToDeleteRouteArgs>();
       return _i35.SelectMembersToDeleteScreen(
         key: args.key,
-        selectedPolicyIds: args.selectedPolicyIds,
+        selectedPolicies: args.selectedPolicies,
       );
     },
   );
@@ -1387,16 +1431,16 @@ class SelectMembersToDeleteRoute
 class SelectMembersToDeleteRouteArgs {
   const SelectMembersToDeleteRouteArgs({
     this.key,
-    required this.selectedPolicyIds,
+    required this.selectedPolicies,
   });
 
   final _i48.Key? key;
 
-  final List<String> selectedPolicyIds;
+  final List<_i57.MainPolicyModel> selectedPolicies;
 
   @override
   String toString() {
-    return 'SelectMembersToDeleteRouteArgs{key: $key, selectedPolicyIds: $selectedPolicyIds}';
+    return 'SelectMembersToDeleteRouteArgs{key: $key, selectedPolicies: $selectedPolicies}';
   }
 
   @override
@@ -1404,15 +1448,16 @@ class SelectMembersToDeleteRouteArgs {
     if (identical(this, other)) return true;
     if (other is! SelectMembersToDeleteRouteArgs) return false;
     return key == other.key &&
-        const _i53.ListEquality<String>().equals(
-          selectedPolicyIds,
-          other.selectedPolicyIds,
+        const _i53.ListEquality<_i57.MainPolicyModel>().equals(
+          selectedPolicies,
+          other.selectedPolicies,
         );
   }
 
   @override
   int get hashCode =>
-      key.hashCode ^ const _i53.ListEquality<String>().hash(selectedPolicyIds);
+      key.hashCode ^
+      const _i53.ListEquality<_i57.MainPolicyModel>().hash(selectedPolicies);
 }
 
 /// generated route for
@@ -1437,13 +1482,13 @@ class SelectRequestTypeRoute
     extends _i47.PageRouteInfo<SelectRequestTypeRouteArgs> {
   SelectRequestTypeRoute({
     _i48.Key? key,
-    required List<String> selectedPolicyIds,
+    required List<_i57.MainPolicyModel> selectedPolicies,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          SelectRequestTypeRoute.name,
          args: SelectRequestTypeRouteArgs(
            key: key,
-           selectedPolicyIds: selectedPolicyIds,
+           selectedPolicies: selectedPolicies,
          ),
          initialChildren: children,
        );
@@ -1456,22 +1501,22 @@ class SelectRequestTypeRoute
       final args = data.argsAs<SelectRequestTypeRouteArgs>();
       return _i37.SelectRequestTypeScreen(
         key: args.key,
-        selectedPolicyIds: args.selectedPolicyIds,
+        selectedPolicies: args.selectedPolicies,
       );
     },
   );
 }
 
 class SelectRequestTypeRouteArgs {
-  const SelectRequestTypeRouteArgs({this.key, required this.selectedPolicyIds});
+  const SelectRequestTypeRouteArgs({this.key, required this.selectedPolicies});
 
   final _i48.Key? key;
 
-  final List<String> selectedPolicyIds;
+  final List<_i57.MainPolicyModel> selectedPolicies;
 
   @override
   String toString() {
-    return 'SelectRequestTypeRouteArgs{key: $key, selectedPolicyIds: $selectedPolicyIds}';
+    return 'SelectRequestTypeRouteArgs{key: $key, selectedPolicies: $selectedPolicies}';
   }
 
   @override
@@ -1479,15 +1524,16 @@ class SelectRequestTypeRouteArgs {
     if (identical(this, other)) return true;
     if (other is! SelectRequestTypeRouteArgs) return false;
     return key == other.key &&
-        const _i53.ListEquality<String>().equals(
-          selectedPolicyIds,
-          other.selectedPolicyIds,
+        const _i53.ListEquality<_i57.MainPolicyModel>().equals(
+          selectedPolicies,
+          other.selectedPolicies,
         );
   }
 
   @override
   int get hashCode =>
-      key.hashCode ^ const _i53.ListEquality<String>().hash(selectedPolicyIds);
+      key.hashCode ^
+      const _i53.ListEquality<_i57.MainPolicyModel>().hash(selectedPolicies);
 }
 
 /// generated route for

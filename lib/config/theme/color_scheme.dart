@@ -8,7 +8,7 @@ class AppColorScheme {
     surface: Color(0xFFf7f8fa),
     onSurface: Color(0xFF000000),
     shadow: Color(0xFF6B7280),
-    scrim: Color(0xff707070),
+    scrim: Color(0xFF4A90E2),
     outline: Color(0xffE0E0E0),
     surfaceContainer: Color(0xffffffff),
     error: Color(0xFFFF6B6B),
