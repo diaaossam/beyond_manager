@@ -1,15 +1,10 @@
 enum MaritalStatusEnum {
-  single,
-  married;
+  single("single"),
+  married("married");
 
-  String toArabic() {
-    switch (this) {
-      case MaritalStatusEnum.single:
-        return "أعزب";
-      case MaritalStatusEnum.married:
-        return "متزوج";
-    }
-  }
+  final String name;
+
+  const MaritalStatusEnum(this.name);
 }
 
 MaritalStatusEnum? maritalStatusFromString(String? value) {

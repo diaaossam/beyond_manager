@@ -127,7 +127,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           })
           .factory((json) => "$code")
           .execute();
-    } else {
+    }
+    else {
       await dioConsumer
           .post(EndPoints.sendOtp)
           .query({

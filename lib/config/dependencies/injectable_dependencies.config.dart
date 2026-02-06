@@ -32,6 +32,14 @@ import '../../core/services/network/internet_checker/connectivity_helper.dart'
     as _i305;
 import '../../core/services/network/internet_checker/netwok_info.dart'
     as _i1035;
+import '../../features/addation_deletion/data/datasources/addation_deletion_remote_data_source.dart'
+    as _i536;
+import '../../features/addation_deletion/data/repositories/addation_deletion_repository.dart'
+    as _i198;
+import '../../features/addation_deletion/presentation/cubit/addation/addation.dart'
+    as _i90;
+import '../../features/addation_deletion/presentation/cubit/deletion/deletion_cubit.dart'
+    as _i856;
 import '../../features/auth/data/datasources/auth_remote_data_source.dart'
     as _i107;
 import '../../features/auth/data/repositories/auth_repo_impl.dart' as _i662;
@@ -200,6 +208,11 @@ extension GetItInjectableX on _i174.GetIt {
         networkRemoteDataSource: gh<_i98.NetworkRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i536.AddationDeletionRemoteDataSource>(
+      () => _i536.AddationDeletionRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
     gh.factory<_i107.AuthRemoteDataSource>(
       () => _i107.AuthRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
@@ -217,6 +230,14 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i881.CarServiceRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
+    );
+    gh.lazySingleton<_i198.AddationDeletionRepository>(
+      () => _i198.AddationDeletionRepository(
+        remoteDataSource: gh<_i536.AddationDeletionRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i90.AddationCubit>(
+      () => _i90.AddationCubit(gh<_i198.AddationDeletionRepository>()),
     );
     gh.lazySingleton<_i86.ReservationRemoteDataSource>(
       () => _i86.ReservationRemoteDataSourceImpl(
@@ -243,6 +264,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i188.SettingsRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
       ),
+    );
+    gh.factory<_i856.DeletionCubit>(
+      () => _i856.DeletionCubit(gh<_i198.AddationDeletionRepository>()),
     );
     gh.factory<_i95.InitRemoteDataSource>(
       () => _i95.RegisterRemoteDataSourceImpl(

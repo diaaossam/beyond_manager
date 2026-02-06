@@ -752,5 +752,14 @@
   "validationAndApproval": "Validation & Approval",
   "allDeletionRequestsAreValidated": "All deletion requests are validated against policy rules and require approval from the insurance company. You will be notified of the status within 24-48 hours.",
   "eCard": "E-Card",
-  "physicalCard": "Physical Card"
+  "physicalCard": "Physical Card",
+  "sentRequestSuccessTitle": "Successful",
+  "sentRequestSuccessBody": "Your Request sent successfully",
+  "selectMemberToDelete": "Select Members to Delete",
+  "selectMemberToDeleteBody": "Search and select members - families will be auto-selected",
+  "viewDeletionGuide": "View Deletion Guidelines for Selected Insurance",
+  "important": "Important: ",
+  "importantBody":"Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.",
+  "skip": "Skip"
+
 }

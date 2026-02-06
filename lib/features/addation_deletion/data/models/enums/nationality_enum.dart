@@ -1,15 +1,10 @@
 enum NationalityEnum {
-  egyptian,
-  nonEgyptian;
+  egyptian("Egyptian"),
+  nonEgyptian("Non-Egyptian");
 
-  String toArabic() {
-    switch (this) {
-      case NationalityEnum.egyptian:
-        return "مصري";
-      case NationalityEnum.nonEgyptian:
-        return "غير مصري";
-    }
-  }
+  final String name;
+
+  const NationalityEnum(this.name);
 }
 
 NationalityEnum? nationalityFromString(String? value) {

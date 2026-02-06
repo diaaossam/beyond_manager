@@ -6538,6 +6538,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Successful`
+  String get sentRequestSuccessTitle {
+    return Intl.message(
+      'Successful',
+      name: 'sentRequestSuccessTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Request sent successfully`
+  String get sentRequestSuccessBody {
+    return Intl.message(
+      'Your Request sent successfully',
+      name: 'sentRequestSuccessBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Members to Delete`
+  String get selectMemberToDelete {
+    return Intl.message(
+      'Select Members to Delete',
+      name: 'selectMemberToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search and select members - families will be auto-selected`
+  String get selectMemberToDeleteBody {
+    return Intl.message(
+      'Search and select members - families will be auto-selected',
+      name: 'selectMemberToDeleteBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Deletion Guidelines for Selected Insurance`
+  String get viewDeletionGuide {
+    return Intl.message(
+      'View Deletion Guidelines for Selected Insurance',
+      name: 'viewDeletionGuide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Important: `
+  String get important {
+    return Intl.message('Important: ', name: 'important', desc: '', args: []);
+  }
+
+  /// `Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.`
+  String get importantBody {
+    return Intl.message(
+      'Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.',
+      name: 'importantBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message('Skip', name: 'skip', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

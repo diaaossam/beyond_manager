@@ -1,4 +1,12 @@
-enum InsurancePlanEnum { basic, premium, standard }
+enum InsurancePlanEnum {
+  basic("basic"),
+  premium("premium"),
+  standard("standard");
+
+  final String name;
+
+  const InsurancePlanEnum(this.name);
+}
 
 extension InsurancePlanEnumExtension on InsurancePlanEnum {
   String get name {

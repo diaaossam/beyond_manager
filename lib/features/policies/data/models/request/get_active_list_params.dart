@@ -36,6 +36,7 @@ class ActiveListParams {
   final int? deletionDateMonth;
   final int? dobYear;
   final int? dobMonth;
+  final List<num>? polices;
 
   ActiveListParams({
     this.pageKey = 1,
@@ -72,6 +73,7 @@ class ActiveListParams {
     this.deletionDateMonth,
     this.dobYear,
     this.dobMonth,
+    this.polices,
   });
 
   Map<String, dynamic> toJson() {
@@ -221,4 +223,3 @@ class ActiveListParams {
     );
   }
 }
-

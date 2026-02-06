@@ -6,16 +6,24 @@ import 'main_widget/app_text.dart';
 
 class InfoRow extends StatelessWidget {
   final String keyData, value;
+  final double? width;
+  final CrossAxisAlignment? crossAxisAlignment;
 
-  const InfoRow({super.key, required this.keyData, required this.value});
+  const InfoRow({
+    super.key,
+    required this.keyData,
+    required this.value,
+    this.width,
+    this.crossAxisAlignment,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: SizeConfig.screenWidth * 0.3,
+          width: width ?? SizeConfig.screenWidth * 0.3,
           child: AppText(
             text: keyData,
             textSize: 11,

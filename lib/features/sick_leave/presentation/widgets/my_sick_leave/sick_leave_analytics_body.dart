@@ -5,6 +5,8 @@ import 'charts/company_analytics_chart.dart';
 import 'charts/employee_analytics_chart.dart';
 import 'charts/trends_chart.dart';
 import 'charts/diagnosis_chart.dart';
+import 'charts/diagnosis_by_days_chart.dart';
+import 'charts/employees_by_days_chart.dart';
 
 class SickLeaveAnalyticsBody extends StatefulWidget {
   final SickLeaveAnalytics analytics;
@@ -86,6 +88,28 @@ class _SickLeaveAnalyticsBodyState extends State<SickLeaveAnalyticsBody>
           )
               .animate()
               .fadeIn(duration: 600.ms, delay: 400.ms)
+              .slideY(begin: 0.2, end: 0, curve: Curves.easeOutCubic),
+
+          const SizedBox(height: 24),
+
+          // Diagnosis By Days Chart
+          DiagnosisByDaysChart(
+            animation: _animation,
+            data: widget.analytics.top5DiagnosisByDays ?? [],
+          )
+              .animate()
+              .fadeIn(duration: 600.ms, delay: 500.ms)
+              .slideY(begin: 0.2, end: 0, curve: Curves.easeOutCubic),
+
+          const SizedBox(height: 24),
+
+          // Employees By Days Chart
+          EmployeesByDaysChart(
+            animation: _animation,
+            data: widget.analytics.top5EmployeesByDays ?? [],
+          )
+              .animate()
+              .fadeIn(duration: 600.ms, delay: 600.ms)
               .slideY(begin: 0.2, end: 0, curve: Curves.easeOutCubic),
         ],
       ),

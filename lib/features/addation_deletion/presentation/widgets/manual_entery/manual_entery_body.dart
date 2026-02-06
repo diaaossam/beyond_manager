@@ -1,18 +1,30 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/core/enum/gender.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:logger/logger.dart';
-
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../core/utils/app_size.dart';
+import '../../../../../widgets/loading/loading_widget.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
+import '../../../../policies/data/models/response/main_policy_model.dart';
+import '../../../../settings/presentation/settings_helper.dart';
+import '../../../data/models/enums/insurance_plan_enum.dart';
+import '../../../data/models/enums/marital_status_enum.dart';
+import '../../../data/models/enums/nationality_enum.dart';
 import '../../../data/models/manual_entry_params.dart';
+import '../../../data/models/relationship_model.dart';
+import '../../cubit/addation/addation.dart';
+import '../../cubit/addation/addation_data.dart';
 import 'member_form_design.dart';
 
 class ManualEntryBody extends StatefulWidget {
-  const ManualEntryBody({super.key});
+  final List<MainPolicyModel> selectedPolicies;
+
+  const ManualEntryBody({super.key, required this.selectedPolicies});
 
   @override
   State<ManualEntryBody> createState() => _ManualEntryBodyState();
@@ -50,7 +62,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                       decoration: BoxDecoration(
                         color: context.colorScheme.scrim.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
-                        border:  BorderDirectional(
+                        border: BorderDirectional(
                           start: BorderSide(
                             color: context.colorScheme.scrim,
                             width: 4,
@@ -59,7 +71,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                       ),
                       child: Row(
                         children: [
-                           Icon(
+                          Icon(
                             Icons.folder_outlined,
                             color: context.colorScheme.scrim,
                             size: 20,
@@ -81,7 +93,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                               color: context.colorScheme.surface,
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                color:  context.colorScheme.scrim,
+                                color: context.colorScheme.scrim,
                                 width: 1,
                               ),
                             ),
@@ -102,10 +114,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                         color: const Color(0xFFFFFBEB),
                         borderRadius: BorderRadius.circular(8),
                         border: const Border(
-                          left: BorderSide(
-                            color: Color(0xFFF59E0B),
-                            width: 4,
-                          ),
+                          left: BorderSide(color: Color(0xFFF59E0B), width: 4),
                         ),
                       ),
                       child: Row(
@@ -162,7 +171,8 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                     Center(
                       child: CustomButton.outline(
                         text: context.localizations.addAnotherMember,
-                        press: () => setState(() => members.add(MemberFormData())),
+                        press: () =>
+                            setState(() => members.add(MemberFormData())),
                         iconData: Icons.add,
                         width: SizeConfig.screenWidth * 0.6,
                         borderColor: context.colorScheme.outline,
@@ -177,38 +187,93 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
           ),
           Container(
             padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
-            child: Row(
-              children: [
-                Expanded(
-                  child: CustomButton.outline(
-                    text: context.localizations.back,
-                    press: () {
-                      context.router.back();
-                    },
-                    borderColor: context.colorScheme.outline,
-                    textColor: context.colorScheme.onSurface,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  flex: 2,
-                  child: CustomButton(
-                    text: context.localizations.submitRequest,
-                    iconData: Icons.check,
-                    press: () {
-                      if (_formKey.currentState?.saveAndValidate() ?? false) {
-                        Logger().w(_formKey.currentState?.value);
-                      } else {
-                        print("Validation failed");
-                      }
-                    },
-                  ),
-                ),
-              ],
+            child: BlocConsumer<AddationCubit, BaseState<AddationData>>(
+              listener: (context, state) {
+                if (state.isSuccess && state.identifier == "submit_members") {
+                  SettingsHelper.showAlertDialog(
+                    context: context,
+                    title: context.localizations.sentRequestSuccessTitle,
+                    body: context.localizations.sentRequestSuccessBody,
+                  );
+                }
+              },
+              builder: (context, state) {
+                if (state.isLoading && state.identifier == "submit_members") {
+                  return LoadingWidget();
+                }
+                return Row(
+                  children: [
+                    Expanded(
+                      child: CustomButton.outline(
+                        text: context.localizations.back,
+                        press: () {
+                          context.router.back();
+                        },
+                        borderColor: context.colorScheme.outline,
+                        textColor: context.colorScheme.onSurface,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      flex: 2,
+                      child: CustomButton(
+                        text: context.localizations.submitRequest,
+                        press: () {
+                          if (!_formKey.currentState!.saveAndValidate()) {
+                            return;
+                          }
+                          final List<MemberFormData> extractedMembers =
+                              _extractMembersFromForm();
+                          context.read<AddationCubit>().submitMembers(
+                            extractedMembers,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ],
       ),
     );
+  }
+
+  List<MemberFormData> _extractMembersFromForm() {
+    final formData = _formKey.currentState?.value ?? {};
+    final List<MemberFormData> extractedMembers = [];
+
+    for (int i = 0; i < members.length; i++) {
+      extractedMembers.add(
+        MemberFormData(
+          relationship: formData['relationship_$i'] as RelationshipModel?,
+          fullNameArabic: formData['fullNameArabic_$i'] as String?,
+          fullNameEnglish: formData['fullNameEnglish_$i'] as String?,
+          nationality: formData['nationality_$i'] as NationalityEnum?,
+          nationalId: formData['nationalId_$i'] as String?,
+          dateOfBirth: formData['dateOfBirth_$i'] as String?,
+          hiringDate: formData['hiringDate_$i'] as String?,
+          additionDate: formData['additionDate_$i'] as String?,
+          maritalStatus: formData['maritalStatus_$i'] as MaritalStatusEnum?,
+          gender: formData['gender_$i'] as GenderEnum?,
+          phoneNumber: formData['phoneNumber_$i'] as String?,
+          emailAddress: formData['emailAddress_$i'] as String?,
+          medicalInsurancePlan:
+              formData['medicalInsurancePlan_$i'] as InsurancePlanEnum?,
+          salary: formData['salary_$i'] as String?,
+          iban: formData['iban_$i'] as String?,
+          address: formData['address_$i'] as String?,
+          photoFileName: formData['photoFileName_$i'] as String?,
+          acknowledgmentFileName:
+              formData['acknowledgmentFileName_$i'] as String?,
+          staffNumber: formData['staffNumber_$i'] as String?,
+          memberStatus: 'under_addition',
+          policies: widget.selectedPolicies,
+        ),
+      );
+    }
+
+    return extractedMembers;
   }
 }

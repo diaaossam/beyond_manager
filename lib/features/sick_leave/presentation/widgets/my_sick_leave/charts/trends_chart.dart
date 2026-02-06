@@ -5,7 +5,7 @@ import 'dart:math' as math;
 
 class TrendsChart extends StatelessWidget {
   final Animation<double> animation;
-  final List<SickLeaveAnalytic> data;
+  final List<KeyMetricsOverviewAnalytic> data;
 
   const TrendsChart({
     super.key,
@@ -15,13 +15,11 @@ class TrendsChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use the same data as company analytics for the trends chart
     final monthsData = data;
     final double maxY = monthsData.isEmpty
         ? 0
         : (monthsData.map((d) => (d.numOfRequests ?? 0).toDouble()).reduce(math.max).toDouble()) + 1;
     
-    // Calculate a proper interval to avoid overlapping labels
     final double interval = maxY > 10 ? (maxY / 5).ceilToDouble() : (maxY > 5 ? 2 : 1);
     return Container(
       padding: const EdgeInsets.all(20),

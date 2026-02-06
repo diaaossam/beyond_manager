@@ -50,4 +50,8 @@ class EndPoints {
   static const String sickLeaveAnalytics = "/get/All/Sick/leave/analytics";
   static const String sendWhatsApp = "/Send/WhatsApp/Message/To/User";
   static const String sendOtp = "/beyond/plus/send/otp";
+
+  static const String getRelation = "/get/active/list/member/relation";
+  static const String submitMembers = "/post/ticket/create/addition";
+  static const String deletionMember = "/get/members/deletion";
 }

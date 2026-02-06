@@ -622,6 +622,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "icdCode": MessageLookupByLibrary.simpleMessage("Icd Code"),
     "ifYourTemplateIncludesForeignEmployees":
         MessageLookupByLibrary.simpleMessage("If your template includes "),
+    "important": MessageLookupByLibrary.simpleMessage("Important: "),
+    "importantBody": MessageLookupByLibrary.simpleMessage(
+      "Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.",
+    ),
     "importantLabel": MessageLookupByLibrary.simpleMessage("Important: "),
     "importantNamingConvention": MessageLookupByLibrary.simpleMessage(
       "IMPORTANT NAMING CONVENTION:",
@@ -1156,6 +1160,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectInsurancePolicies": MessageLookupByLibrary.simpleMessage(
       "Select Insurance Policies",
     ),
+    "selectMemberToDelete": MessageLookupByLibrary.simpleMessage(
+      "Select Members to Delete",
+    ),
+    "selectMemberToDeleteBody": MessageLookupByLibrary.simpleMessage(
+      "Search and select members - families will be auto-selected",
+    ),
     "selectMembersToDelete": MessageLookupByLibrary.simpleMessage(
       "Select Members to Delete",
     ),
@@ -1192,6 +1202,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "sendSmsViaWhatsAppBody": MessageLookupByLibrary.simpleMessage(
       "You can request new sms code after: ",
     ),
+    "sentRequestSuccessBody": MessageLookupByLibrary.simpleMessage(
+      "Your Request sent successfully",
+    ),
+    "sentRequestSuccessTitle": MessageLookupByLibrary.simpleMessage(
+      "Successful",
+    ),
     "sentSuccess": MessageLookupByLibrary.simpleMessage(
       "Emergency sent successfully",
     ),
@@ -1221,6 +1237,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "single": MessageLookupByLibrary.simpleMessage("Single"),
     "size": MessageLookupByLibrary.simpleMessage("Size:"),
+    "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "someThingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Something went wrong",
     ),
@@ -1429,6 +1446,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "vehicleBrand": MessageLookupByLibrary.simpleMessage("Vehicle Brand"),
     "verifyAllInformationForAccuracy": MessageLookupByLibrary.simpleMessage(
       "Verify all information for accuracy before submission",
+    ),
+    "viewDeletionGuide": MessageLookupByLibrary.simpleMessage(
+      "View Deletion Guidelines for Selected Insurance",
     ),
     "viewDeletionGuidelines": MessageLookupByLibrary.simpleMessage(
       "View Deletion Guidelines for Selected Insurance",

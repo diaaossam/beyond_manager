@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/core/extensions/app_localizations_extension.dart';
+import 'package:bond/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../widgets/main_widget/app_text.dart';
@@ -12,236 +15,227 @@ class DeletionGuidelinesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                vertical: SizeConfig.bodyHeight * .04,
-                horizontal: SizeConfig.screenWidth * .04,
-              ),
-              decoration: BoxDecoration(color: context.colorScheme.primary),
-              child: Column(
-                children: [
-                  const Text("📋", style: TextStyle(fontSize: 60)),
-                  SizedBox(height: SizeConfig.bodyHeight * .02),
-                  const AppText(
-                    text: "Deletion Guidelines",
-                    fontWeight: FontWeight.w700,
-                    textSize: 24,
-                    color: Colors.white,
-                    align: TextAlign.center,
-                  ),
-                  SizedBox(height: SizeConfig.bodyHeight * .01),
-                  const AppText(
-                    text: "For Selected Insurance Policies",
-                    fontWeight: FontWeight.w400,
-                    textSize: 14,
-                    color: Colors.white,
-                    align: TextAlign.center,
-                  ),
-                ],
-              ),
+      appBar: CustomAppBar(title: "Deletion Guidelines",backgroundColor: context.colorScheme.primary,),
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(
+              vertical: SizeConfig.bodyHeight * .04,
+              horizontal: SizeConfig.screenWidth * .04,
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: screenPadding(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: SizeConfig.bodyHeight * .03),
-                      // Important Notice
-                      Container(
-                        padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFBEB),
-                          border: Border(
-                            left: BorderSide(
-                              color: const Color(0xFFF59E0B),
-                              width: 4,
-                            ),
+            decoration: BoxDecoration(color: context.colorScheme.primary),
+            child: Column(
+              children: [
+                const Text("📋", style: TextStyle(fontSize: 60)),
+                SizedBox(height: SizeConfig.bodyHeight * .01),
+                const AppText(
+                  text: "For Selected Insurance Policies",
+                  fontWeight: FontWeight.w400,
+                  textSize: 12,
+                  color: Colors.white,
+                  align: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: screenPadding(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: SizeConfig.bodyHeight * .03),
+                    // Important Notice
+                    Container(
+                      padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFFBEB),
+                        border: Border(
+                          left: BorderSide(
+                            color: const Color(0xFFF59E0B),
+                            width: 4,
                           ),
-                          borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Row(
-                              children: [
-                                Icon(
-                                  Icons.warning_amber,
-                                  color: Color(0xFFF59E0B),
-                                  size: 20,
-                                ),
-                                SizedBox(width: 8),
-                                AppText(
-                                  text: "Important Notice",
-                                  fontWeight: FontWeight.w700,
-                                  textSize: 16,
-                                  color: Color(0xFF78350F),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: SizeConfig.bodyHeight * .015),
-                            const AppText(
-                              text:
-                                  "Deleting a principal member will automatically remove all associated family members. This action cannot be undone.",
-                              fontWeight: FontWeight.w500,
-                              textSize: 13,
-                              color: Color(0xFF78350F),
-                              maxLines: 3,
-                            ),
-                          ],
-                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      SizedBox(height: SizeConfig.bodyHeight * .03),
-                      // Deletion Requirements
-                      _buildSectionHeader(
-                        icon: "➖",
-                        title: "Deletion Requirements",
-                        color: const Color(0xFFDC3545),
-                      ),
-                      SizedBox(height: SizeConfig.bodyHeight * .02),
-                      _buildBulletPoint(
-                        "Member Verification:",
-                        "Members must exist in the Active List and have a valid active status",
-                      ),
-                      _buildBulletPoint(
-                        "Deletion Reason:",
-                        "Must provide a valid reason for deletion (e.g., termination, retirement, voluntary withdrawal)",
-                      ),
-                      _buildBulletPoint(
-                        "Effective Date:",
-                        "Specify when deletion should take effect. Cannot be in the past",
-                      ),
-                      _buildBulletPoint(
-                        "Family Unit Warning:",
-                        "Deleting principal automatically removes all dependents (spouse, children)",
-                      ),
-                      _buildBulletPoint(
-                        "Policy Coverage:",
-                        "Member must have completed the minimum coverage period as per policy terms",
-                      ),
-                      SizedBox(height: SizeConfig.bodyHeight * .03),
-                      // Process
-                      _buildSectionHeader(
-                        icon: "🔄",
-                        title: "Deletion Process",
-                        color: const Color(0xFF4A90E2),
-                      ),
-                      SizedBox(height: SizeConfig.bodyHeight * .02),
-                      _buildBulletPoint(
-                        "Step 1:",
-                        "Search and select members from Active List",
-                      ),
-                      _buildBulletPoint(
-                        "Step 2:",
-                        "System auto-selects all family members for principal",
-                      ),
-                      _buildBulletPoint(
-                        "Step 3:",
-                        "Provide deletion reason and effective date",
-                      ),
-                      _buildBulletPoint(
-                        "Step 4:",
-                        "Submit deletion request for approval",
-                      ),
-                      _buildBulletPoint(
-                        "Step 5:",
-                        "Insurance company processes and confirms deletion",
-                      ),
-                      SizedBox(height: SizeConfig.bodyHeight * .03),
-                      // Important Notes
-                      _buildSectionHeader(
-                        icon: "📌",
-                        title: "Important Notes",
-                        color: context.colorScheme.primary,
-                      ),
-                      SizedBox(height: SizeConfig.bodyHeight * .02),
-                      _buildBulletPoint(
-                        "Batch Deletion:",
-                        "You can select multiple members for deletion in one request",
-                      ),
-                      _buildBulletPoint(
-                        "Coverage End:",
-                        "Insurance coverage ends on the specified effective date",
-                      ),
-                      _buildBulletPoint(
-                        "Refunds:",
-                        "Refund eligibility depends on policy terms and effective date",
-                      ),
-                      _buildBulletPoint(
-                        "Re-enrollment:",
-                        "Deleted members may be re-enrolled following standard addition procedures",
-                      ),
-                      _buildBulletPoint(
-                        "Notification:",
-                        "Affected members will be notified of deletion via email/SMS",
-                      ),
-                      SizedBox(height: SizeConfig.bodyHeight * .03),
-                      // Validation
-                      Container(
-                        padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF0FFF4),
-                          border: Border(
-                            left: BorderSide(
-                              color: const Color(0xFF5CB85C),
-                              width: 4,
-                            ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            children: [
+                              Icon(
+                                Icons.warning_amber,
+                                color: Color(0xFFF59E0B),
+                                size: 20,
+                              ),
+                              SizedBox(width: 8),
+                              AppText(
+                                text: "Important Notice",
+                                fontWeight: FontWeight.w600,
+                                textSize: 12,
+                                color: Color(0xFF78350F),
+                              ),
+                            ],
                           ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Row(
-                              children: [
-                                Icon(
-                                  Icons.check_circle,
-                                  color: Color(0xFF5CB85C),
-                                  size: 20,
-                                ),
-                                SizedBox(width: 8),
-                                AppText(
-                                  text: "Validation & Approval",
-                                  fontWeight: FontWeight.w700,
-                                  textSize: 16,
-                                  color: Color(0xFF166534),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: SizeConfig.bodyHeight * .015),
-                            const AppText(
-                              text:
-                                  "All deletion requests are validated against policy rules and require approval from the insurance company. You will be notified of the status within 24-48 hours.",
-                              fontWeight: FontWeight.w500,
-                              textSize: 13,
-                              color: Color(0xFF166534),
-                              maxLines: 4,
-                            ),
-                          ],
-                        ),
+                          SizedBox(height: SizeConfig.bodyHeight * .015),
+                          const AppText(
+                            text:
+                                "Deleting a principal member will automatically remove all associated family members. This action cannot be undone.",
+                            fontWeight: FontWeight.w500,
+                            textSize: 11,
+                            color: Color(0xFF78350F),
+                            maxLines: 3,
+                          ),
+                        ],
                       ),
-                      SizedBox(height: SizeConfig.bodyHeight * .03),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * .03),
+                    // Deletion Requirements
+                    _buildSectionHeader(
+                      icon: "➖",
+                      title: "Deletion Requirements",
+                      color: const Color(0xFFDC3545),
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * .02),
+                    _buildBulletPoint(
+                      "Member Verification:",
+                      "Members must exist in the Active List and have a valid active status",
+                    ),
+                    _buildBulletPoint(
+                      "Deletion Reason:",
+                      "Must provide a valid reason for deletion (e.g., termination, retirement, voluntary withdrawal)",
+                    ),
+                    _buildBulletPoint(
+                      "Effective Date:",
+                      "Specify when deletion should take effect. Cannot be in the past",
+                    ),
+                    _buildBulletPoint(
+                      "Family Unit Warning:",
+                      "Deleting principal automatically removes all dependents (spouse, children)",
+                    ),
+                    _buildBulletPoint(
+                      "Policy Coverage:",
+                      "Member must have completed the minimum coverage period as per policy terms",
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * .03),
+                    // Process
+                    _buildSectionHeader(
+                      icon: "🔄",
+                      title: "Deletion Process",
+                      color: const Color(0xFF4A90E2),
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * .02),
+                    _buildBulletPoint(
+                      "Step 1:",
+                      "Search and select members from Active List",
+                    ),
+                    _buildBulletPoint(
+                      "Step 2:",
+                      "System auto-selects all family members for principal",
+                    ),
+                    _buildBulletPoint(
+                      "Step 3:",
+                      "Provide deletion reason and effective date",
+                    ),
+                    _buildBulletPoint(
+                      "Step 4:",
+                      "Submit deletion request for approval",
+                    ),
+                    _buildBulletPoint(
+                      "Step 5:",
+                      "Insurance company processes and confirms deletion",
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * .03),
+                    // Important Notes
+                    _buildSectionHeader(
+                      icon: "📌",
+                      title: "Important Notes",
+                      color: context.colorScheme.primary,
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * .02),
+                    _buildBulletPoint(
+                      "Batch Deletion:",
+                      "You can select multiple members for deletion in one request",
+                    ),
+                    _buildBulletPoint(
+                      "Coverage End:",
+                      "Insurance coverage ends on the specified effective date",
+                    ),
+                    _buildBulletPoint(
+                      "Refunds:",
+                      "Refund eligibility depends on policy terms and effective date",
+                    ),
+                    _buildBulletPoint(
+                      "Re-enrollment:",
+                      "Deleted members may be re-enrolled following standard addition procedures",
+                    ),
+                    _buildBulletPoint(
+                      "Notification:",
+                      "Affected members will be notified of deletion via email/SMS",
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * .03),
+                    // Validation
+                    Container(
+                      padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF0FFF4),
+                        border: Border(
+                          left: BorderSide(
+                            color: const Color(0xFF5CB85C),
+                            width: 4,
+                          ),
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            children: [
+                              Icon(
+                                Icons.check_circle,
+                                color: Color(0xFF5CB85C),
+                                size: 20,
+                              ),
+                              SizedBox(width: 8),
+                              AppText(
+                                text: "Validation & Approval",
+                                fontWeight: FontWeight.w600,
+                                textSize: 13,
+                                color: Color(0xFF166534),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: SizeConfig.bodyHeight * .015),
+                           AppText(
+                            text:
+                                "All deletion requests are validated against policy rules and require approval from the insurance company. You will be notified of the status within 24-48 hours.",
+                            fontWeight: FontWeight.w400,
+                            textSize: 11,
+                            color: Color(0xFF166534),
+                            maxLines: 4,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: SizeConfig.bodyHeight * .03),
+                  ],
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
-              child: CustomButton(
-                text: "Close Guidelines",
-                press: () {
-                  context.router.back();
-                },
-              ),
+          ),
+          Container(
+            padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
+            child: CustomButton(
+              text: "Close Guidelines",
+              press: () {
+                context.router.back();
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -259,8 +253,8 @@ class DeletionGuidelinesScreen extends StatelessWidget {
             const SizedBox(width: 12),
             AppText(
               text: title,
-              fontWeight: FontWeight.w700,
-              textSize: 18,
+              fontWeight: FontWeight.w600,
+              textSize: 13,
               color: color,
             ),
           ],
@@ -296,19 +290,23 @@ class DeletionGuidelinesScreen extends StatelessWidget {
           Expanded(
             child: RichText(
               text: TextSpan(
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Color(0xFF374151),
-                  height: 1.5,
-                ),
                 children: [
                   TextSpan(
                     text: "$title ",
-                    style: const TextStyle(fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Color(0xFF374151),
+                      fontWeight: FontWeight.w500,
+                      height: 1.5,
+                    ),
                   ),
                   TextSpan(
                     text: description,
-                    style: const TextStyle(fontWeight: FontWeight.w400),
+                    style: TextStyle(
+                      fontSize: 11.sp,
+                      color: Color(0xFF374151),
+                      height: 1.5,
+                    ),
                   ),
                 ],
               ),

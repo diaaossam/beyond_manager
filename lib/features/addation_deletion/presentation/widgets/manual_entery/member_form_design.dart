@@ -1,8 +1,10 @@
 import 'dart:io';
-
 import 'package:bond/config/helper/secure_file_picker.dart';
+import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/features/addation_deletion/data/models/relationship_model.dart';
 import 'package:bond/features/settings/settings_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../../../../../core/enum/gender.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
@@ -14,8 +16,9 @@ import '../../../../../widgets/main_widget/custom_text_form_field.dart';
 import '../../../data/models/enums/insurance_plan_enum.dart';
 import '../../../data/models/enums/marital_status_enum.dart';
 import '../../../data/models/enums/nationality_enum.dart';
-import '../../../data/models/enums/relationship_enum.dart';
 import '../../../data/models/manual_entry_params.dart';
+import '../../cubit/addation/addation.dart';
+import '../../cubit/addation/addation_data.dart';
 
 class MemberFormDesign extends StatefulWidget {
   final int index;
@@ -76,19 +79,27 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
           Row(
             children: [
               Expanded(
-                child: AppDropDown<RelationshipEnum>(
-                  name: 'relationship_${widget.index}',
-                  hint: context.localizations.selectRelationship,
-                  label: context.localizations.relationship,
-                  items: RelationshipEnum.values
-                      .map<DropdownMenuItem<RelationshipEnum>>(
-                        (e) => DropdownMenuItem<RelationshipEnum>(
-                          value: e,
-                          child: AppText(text: e.toString()),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) => widget.member.relationship = value,
+                child: BlocBuilder<AddationCubit, BaseState<AddationData>>(
+                  builder: (context, state) {
+                    return AppDropDown<RelationshipModel>(
+                      name: 'relationship_${widget.index}',
+                      isLoading:
+                          state.isLoading && state.identifier == "relationship",
+                      hint: context.localizations.selectRelationship,
+                      label: context.localizations.relationship,
+                      items: (state.data?.relationships ?? [])
+                          .map<DropdownMenuItem<RelationshipModel>>(
+                            (e) => DropdownMenuItem<RelationshipModel>(
+                              value: e,
+                              child: AppText(text: e.name.toString()),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        // Data will be retrieved from form state
+                      },
+                    );
+                  },
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
@@ -98,7 +109,9 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                   label: context.localizations.fullNameArabic,
                   hintText: context.localizations.memberFullNameArabic,
                   textAlign: TextAlign.right,
-                  onChanged: (value) => widget.member.fullNameArabic = value,
+                  onChanged: (value) {
+                    // Data will be retrieved from form state
+                  },
                 ),
               ),
             ],
@@ -111,7 +124,9 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                   name: 'fullNameEnglish_${widget.index}',
                   label: context.localizations.fullNameEnglish,
                   hintText: context.localizations.memberFullName,
-                  onChanged: (value) => widget.member.fullNameEnglish = value,
+                  onChanged: (value) {
+                    // Data will be retrieved from form state
+                  },
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
@@ -133,7 +148,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       )
                       .toList(),
                   onChanged: (value) {
-                    widget.member.nationality = value;
+                    // Data will be retrieved from form state
                   },
                 ),
               ),
@@ -147,7 +162,9 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                   name: 'nationalId_${widget.index}',
                   label: context.localizations.nationalIdCNID,
                   hintText: context.localizations.nationalIdHint,
-                  onChanged: (value) => widget.member.nationalId = value,
+                  onChanged: (value) {
+                    // Data will be retrieved from form state
+                  },
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
@@ -163,10 +180,11 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       firstDate: DateTime(1960),
                       lastDate: DateTime.now(),
                     );
-                    widget.member.dateOfBirth = date?.formattedDate;
-                    widget.formKey.currentState?.patchValue({
-                      "dateOfBirth_${widget.index}": widget.member.dateOfBirth
-                    });
+                    if (date != null) {
+                      widget.formKey.currentState?.patchValue({
+                        "dateOfBirth_${widget.index}": date.formattedDate,
+                      });
+                    }
                   },
                 ),
               ),
@@ -187,10 +205,11 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       firstDate: DateTime(1960),
                       lastDate: DateTime.now(),
                     );
-                    widget.member.hiringDate = date?.formattedDate;
-                    widget.formKey.currentState?.patchValue({
-                      "hiringDate_${widget.index}": widget.member.dateOfBirth
-                    });
+                    if (date != null) {
+                      widget.formKey.currentState?.patchValue({
+                        "hiringDate_${widget.index}": date.formattedDate,
+                      });
+                    }
                   },
                 ),
               ),
@@ -208,10 +227,11 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       firstDate: DateTime(1960),
                       lastDate: DateTime.now(),
                     );
-                    widget.member.additionDate = date?.formattedDate;
-                    widget.formKey.currentState?.patchValue({
-                      "additionDate_${widget.index}": widget.member.dateOfBirth
-                    });
+                    if (date != null) {
+                      widget.formKey.currentState?.patchValue({
+                        "additionDate_${widget.index}": date.formattedDate,
+                      });
+                    }
                   },
                 ),
               ),
@@ -238,7 +258,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       )
                       .toList(),
                   onChanged: (value) {
-                    widget.member.maritalStatus = value;
+                    // Data will be retrieved from form state
                   },
                 ),
               ),
@@ -261,7 +281,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       )
                       .toList(),
                   onChanged: (value) {
-                    widget.member.gender = value;
+                    // Data will be retrieved from form state
                   },
                 ),
               ),
@@ -276,7 +296,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                   label: context.localizations.phoneNumber,
                   hintText: context.localizations.phoneNumberHint,
                   onChanged: (value) {
-                    widget.member.phoneNumber = value;
+                    // Data will be retrieved from form state
                   },
                 ),
               ),
@@ -287,7 +307,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                   label: context.localizations.emailAddress,
                   hintText: context.localizations.emailHint,
                   onChanged: (value) {
-                    widget.member.emailAddress = value;
+                    // Data will be retrieved from form state
                   },
                 ),
               ),
@@ -320,7 +340,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                 )
                 .toList(),
             onChanged: (value) {
-              widget.member.medicalInsurancePlan = value;
+              // Data will be retrieved from form state
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -330,7 +350,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
             keyboardType: TextInputType.numberWithOptions(decimal: true),
             hintText: context.localizations.monthlySalary,
             onChanged: (value) {
-              widget.member.salary = value;
+              // Data will be retrieved from form state
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -339,7 +359,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
             label: context.localizations.ibanConditional,
             hintText: context.localizations.ibanHint,
             onChanged: (value) {
-              widget.member.iban = value;
+              // Data will be retrieved from form state
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -348,7 +368,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
             label: context.localizations.address,
             hintText: context.localizations.fullAddress,
             onChanged: (value) {
-              widget.member.address = value;
+              // Data will be retrieved from form state
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -359,11 +379,11 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                 context: context,
                 label: context.localizations.photoUpload,
                 required: true,
-                helperText: context.localizations.automaticallyRenamedWithStaffNumber,
-                fileName: widget.member.photoFileName,
+                helperText:
+                    context.localizations.automaticallyRenamedWithStaffNumber,
+                fileName: field.value,
                 onTap: () async {
                   File file = await SecureFilePicker.pickFile();
-                  widget.member.photoFileName = file.path;
                   field.didChange(file.path);
                   setState(() {});
                 },
@@ -379,10 +399,9 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                 label: context.localizations.acknowledgmentStatement,
                 required: true,
                 helperText: context.localizations.uploadSignedAcknowledgment,
-                fileName: widget.member.acknowledgmentFileName,
+                fileName: field.value,
                 onTap: () async {
                   File file = await SecureFilePicker.pickFile();
-                  widget.member.acknowledgmentFileName = file.path;
                   field.didChange(file.path);
                   setState(() {});
                 },
@@ -396,7 +415,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
             label: context.localizations.staffNumberId,
             hintText: context.localizations.employeeStaffNumber,
             onChanged: (value) {
-              widget.member.staffNumber = value;
+              // Data will be retrieved from form state
             },
           ),
         ],
@@ -462,8 +481,8 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: AppText(
-                    text: fileName != null 
-                        ? fileName.split('/').last 
+                    text: fileName != null
+                        ? fileName.split('/').last
                         : context.localizations.noFileChosen,
                     fontWeight: FontWeight.w400,
                     textSize: 11,
