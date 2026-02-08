@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bond/features/addation_deletion/data/models/relationship_model.dart';
+import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart';
+import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
 
-import '../../../../core/enum/gender.dart';
-import '../../../policies/data/models/response/main_policy_model.dart';
-import 'enums/insurance_plan_enum.dart';
-import 'enums/marital_status_enum.dart';
-import 'enums/nationality_enum.dart';
+import '../../../../../core/enum/gender.dart';
+import '../../../../policies/data/models/response/main_policy_model.dart';
+import '../enums/insurance_plan_enum.dart';
+import '../enums/marital_status_enum.dart';
+import '../enums/nationality_enum.dart';
 
 class MemberFormData {
   RelationshipModel? relationship;
@@ -30,7 +31,7 @@ class MemberFormData {
   String? acknowledgmentFileName;
   String? staffNumber;
   String? memberStatus;
-   List<MainPolicyModel> ? policies;
+  List<PoliciesDataModel> ? policies;
 
   MemberFormData({
     this.relationship,

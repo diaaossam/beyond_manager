@@ -1,10 +1,14 @@
-import 'package:bond/features/addation_deletion/data/models/relationship_model.dart';
+import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/services/api/dio_consumer.dart';
 import '../../../../core/services/api/end_points.dart';
 import '../../../policies/data/models/request/get_active_list_params.dart';
-import '../models/deletion_response_model.dart';
-import '../models/manual_entry_params.dart';
+import '../models/request/policies_branches_params.dart';
+import '../models/request/policies_data_params.dart';
+import '../models/response/branch_response.dart';
+import '../models/response/deletion_response_model.dart';
+import '../models/response/manual_entry_params.dart';
+import '../models/response/policies_data_addation.dart';
 
 abstract class AddationDeletionRemoteDataSource {
   Future<List<RelationshipModel>> getRelationships();
@@ -13,6 +17,14 @@ abstract class AddationDeletionRemoteDataSource {
 
   Future<DeletionResponseModel> fetchDeletionMembers({
     required ActiveListParams params,
+  });
+
+  Future<PoliciesDataAddation> fetchPoliciesData({
+    required PoliciesDataParams policies,
+  });
+
+  Future<BranchesResponse> fetchPoliciesBranches({
+    required PoliciesBranchesParams policies,
   });
 }
 
@@ -63,6 +75,28 @@ class AddationDeletionRemoteDataSourceImpl
         .get(EndPoints.deletionMember)
         .params(params.toJson())
         .factory((json) async => DeletionResponseModel.fromJson(json))
+        .execute();
+  }
+
+  @override
+  Future<PoliciesDataAddation> fetchPoliciesData({
+    required PoliciesDataParams policies,
+  }) async {
+    return await dioConsumer
+        .get(EndPoints.getPoliciesTicketData)
+        .params(policies.toJson())
+        .factory((json) async => PoliciesDataAddation.fromJson(json))
+        .execute();
+  }
+
+  @override
+  Future<BranchesResponse> fetchPoliciesBranches({
+    required PoliciesBranchesParams policies,
+  }) async {
+    return await dioConsumer
+        .get(EndPoints.getPoliciesBranches)
+        .params(policies.toJson())
+        .factory((json) async => BranchesResponse.fromJson(json))
         .execute();
   }
 }

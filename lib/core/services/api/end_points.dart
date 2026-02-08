@@ -54,4 +54,7 @@ class EndPoints {
   static const String getRelation = "/get/active/list/member/relation";
   static const String submitMembers = "/post/ticket/create/addition";
   static const String deletionMember = "/get/members/deletion";
+
+  static const String getPoliciesTicketData = "/get/ticket/policy/for/addition/data";
+  static const String getPoliciesBranches = "/get/ticket/policy/branches";
 }

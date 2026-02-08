@@ -1,5 +1,5 @@
 import 'package:bond/core/extensions/color_extensions.dart';
-import 'package:bond/features/addation_deletion/data/models/deletion_response_model.dart';
+import 'package:bond/features/addation_deletion/data/models/response/deletion_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:bond/core/utils/app_size.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';

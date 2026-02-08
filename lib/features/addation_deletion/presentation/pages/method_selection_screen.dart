@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../config/router/app_router.gr.dart';
 import '../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../core/extensions/color_extensions.dart';
@@ -8,13 +8,11 @@ import '../../../../core/utils/app_size.dart';
 import '../../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../../widgets/main_widget/app_text.dart';
 import '../../../../widgets/main_widget/custom_button.dart';
-import '../../../policies/data/models/response/main_policy_model.dart';
 import '../widgets/step_indicator.dart';
 
 @RoutePage()
 class MethodSelectionScreen extends StatelessWidget {
-  final List<MainPolicyModel> selectedPolicies;
-
+  final List<PoliciesDataModel> selectedPolicies;
   const MethodSelectionScreen({super.key, required this.selectedPolicies});
 
   @override

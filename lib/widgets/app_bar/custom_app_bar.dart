@@ -48,11 +48,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             fontWeight: FontWeight.w600,
             textSize: 14,
           ),
-      leading:
-          leadingWidget ??
+      leading: leadingWidget ??
           Visibility(
             visible: showBackButton,
             child: BackArrowWidget(
+              pressIcon: pressIcon,
               padding: const EdgeInsets.all(10),
               margin: const EdgeInsetsDirectional.only(start: 10),
             ),

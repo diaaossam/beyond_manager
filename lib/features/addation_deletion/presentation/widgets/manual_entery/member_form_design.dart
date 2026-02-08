@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:bond/config/helper/secure_file_picker.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/features/addation_deletion/data/models/relationship_model.dart';
+import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
 import 'package:bond/features/settings/settings_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ import '../../../../../widgets/main_widget/custom_text_form_field.dart';
 import '../../../data/models/enums/insurance_plan_enum.dart';
 import '../../../data/models/enums/marital_status_enum.dart';
 import '../../../data/models/enums/nationality_enum.dart';
-import '../../../data/models/manual_entry_params.dart';
+import '../../../data/models/response/manual_entry_params.dart';
 import '../../cubit/addation/addation.dart';
 import '../../cubit/addation/addation_data.dart';
 

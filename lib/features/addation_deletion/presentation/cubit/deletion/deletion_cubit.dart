@@ -5,7 +5,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/bloc/helper/async_handler.dart';
 import '../../../../policies/data/models/request/get_active_list_params.dart';
-import '../../../data/models/deletion_response_model.dart';
+import '../../../data/models/response/deletion_response_model.dart';
 
 @injectable
 class DeletionCubit extends Cubit<BaseState<DeletionResponseModel>>

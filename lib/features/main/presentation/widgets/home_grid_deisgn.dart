@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/config/router/app_router.gr.dart';
-import 'package:bond/features/sick_leave/presentation/pages/sick_leave_polices.dart';
+import 'package:bond/core/tutorial_coach/tutorial_enum.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/extensions/app_localizations_extension.dart';
@@ -9,7 +9,12 @@ import '../../data/models/generic_home_items.dart';
 import 'hom_grid_item.dart';
 
 class HomeGridDesign extends StatefulWidget {
-  const HomeGridDesign({super.key});
+  final Map<TutorialKeys, GlobalKey>? tutorialKeys;
+  
+  const HomeGridDesign({
+    super.key,
+    this.tutorialKeys,
+  });
 
   @override
   State<HomeGridDesign> createState() => _HomeGridDesignState();
@@ -30,11 +35,17 @@ class _HomeGridDesignState extends State<HomeGridDesign> {
           crossAxisSpacing: SizeConfig.screenWidth * .02,
           mainAxisSpacing: SizeConfig.bodyHeight * .03,
         ),
-        itemBuilder: (context, index) => CustomItemHome(
-          title: homeEntityList(context)[index].title,
-          icon: homeEntityList(context)[index].icon,
-          onPress: homeEntityList(context)[index].press,
-        ),
+        itemBuilder: (context, index) {
+          final item = homeEntityList(context)[index];
+          return CustomItemHome(
+            key: item.tutorialKey != null && widget.tutorialKeys != null
+                ? widget.tutorialKeys![item.tutorialKey]
+                : null,
+            title: item.title,
+            icon: item.icon,
+            onPress: item.press,
+          );
+        },
       ),
     );
   }
@@ -46,21 +57,25 @@ class _HomeGridDesignState extends State<HomeGridDesign> {
         title: context.localizations.emergencySupport2,
         press: () => context.tabsRouter.setActiveIndex(1),
         icon: Assets.icons.emergencySupport,
+        tutorialKey: TutorialKeys.emergencySupport,
       ),
       GenericHomeItems(
         title: context.localizations.insurancePolicies2,
         press: () => context.tabsRouter.setActiveIndex(2),
         icon: Assets.icons.policies,
+        tutorialKey: TutorialKeys.insurancePolicies,
       ),
       GenericHomeItems(
         title: context.localizations.sickLeaveService,
         press: () => context.router.push(SickLeavePolicesRoute()),
         icon: Assets.icons.sick,
+        tutorialKey: TutorialKeys.sickLeave,
       ),
       GenericHomeItems(
         title: context.localizations.getCovered,
         press: ()  => context.router.push(OtherLineRoute()),
         icon: Assets.icons.other,
+        tutorialKey: TutorialKeys.getCovered,
       ),
     ];
     return homeEntityList;

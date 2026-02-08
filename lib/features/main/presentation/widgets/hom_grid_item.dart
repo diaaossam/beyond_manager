@@ -13,7 +13,6 @@ class CustomItemHome extends StatelessWidget {
 
   const CustomItemHome({
     super.key,
-    l,
     required this.title,
     required this.icon,
     required this.onPress,

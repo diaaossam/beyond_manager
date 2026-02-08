@@ -6,6 +6,7 @@ class PolicyAccessModel {
     this.accessUtilization,
     this.companyId,
     this.policyId,
+    this.accessAdditionAndDeletions,
   });
 
   PolicyAccessModel.fromJson(dynamic json) {
@@ -15,30 +16,16 @@ class PolicyAccessModel {
     accessUtilization = json['access_utilization'];
     companyId = json['company_id'];
     policyId = json['policy_id'];
+    accessAdditionAndDeletions = json['access_addition_and_deletions'];
   }
 
   bool? accessActiveList;
   bool? accessPayments;
   bool? accessPolicyDetails;
   bool? accessUtilization;
+  bool? accessAdditionAndDeletions;
   num? companyId;
   num? policyId;
-
-  PolicyAccessModel copyWith({
-    bool? accessActiveList,
-    bool? accessPayments,
-    bool? accessPolicyDetails,
-    bool? accessUtilization,
-    num? companyId,
-    num? policyId,
-  }) => PolicyAccessModel(
-    accessActiveList: accessActiveList ?? this.accessActiveList,
-    accessPayments: accessPayments ?? this.accessPayments,
-    accessPolicyDetails: accessPolicyDetails ?? this.accessPolicyDetails,
-    accessUtilization: accessUtilization ?? this.accessUtilization,
-    companyId: companyId ?? this.companyId,
-    policyId: policyId ?? this.policyId,
-  );
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

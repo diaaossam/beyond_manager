@@ -1,4 +1,4 @@
-import 'package:bond/features/addation_deletion/data/models/relationship_model.dart';
+import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
 
 class AddationData {
   final List<RelationshipModel>? relationships;

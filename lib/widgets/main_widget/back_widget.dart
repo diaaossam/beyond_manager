@@ -11,21 +11,28 @@ class BackArrowWidget extends StatelessWidget {
   final EdgeInsets? padding;
   final EdgeInsetsGeometry? margin;
   final Color? color;
+  final VoidCallback? pressIcon;
 
-  const BackArrowWidget({super.key, this.padding, this.margin, this.color});
+  const BackArrowWidget({
+    super.key,
+    this.padding,
+    this.margin,
+    this.color,
+    this.pressIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Visibility(
       visible: context.router.canPop(),
       child: InkWell(
-        onTap: () {
-          context.router.canPop() ? Navigator.pop(context) : null;
-        },
+        onTap:
+            pressIcon ??
+            () {
+              context.router.canPop() ? Navigator.pop(context) : null;
+            },
         child: Container(
-          decoration: BoxDecoration(
-            color: context.colorScheme.surface,
-          ),
+          decoration: BoxDecoration(color: context.colorScheme.surface),
           padding: padding ?? const EdgeInsets.all(12),
           margin:
               margin ??

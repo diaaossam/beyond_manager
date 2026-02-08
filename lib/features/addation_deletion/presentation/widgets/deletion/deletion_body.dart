@@ -5,7 +5,6 @@ import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/widget_extensions.dart';
 import 'package:bond/features/addation_deletion/presentation/cubit/deletion/deletion_cubit.dart';
-import 'package:bond/features/policies/data/models/response/main_policy_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,11 +22,12 @@ import '../../../../../widgets/main_widget/custom_button.dart';
 import '../../../../../widgets/custom_search_text_form_field.dart';
 import '../../../../../widgets/no_item_design.dart';
 import '../../../../policies/data/models/request/get_active_list_params.dart';
-import '../../../data/models/deletion_response_model.dart';
+import '../../../data/models/response/deletion_response_model.dart';
+import '../../../data/models/response/policies_data_addation.dart';
 import 'deletion_member_card.dart';
 
 class DeletionBody extends StatefulWidget {
-  final List<MainPolicyModel> policies;
+  final List<PoliciesDataModel> policies;
 
   const DeletionBody({super.key, required this.policies});
 

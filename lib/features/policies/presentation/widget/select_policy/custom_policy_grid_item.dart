@@ -1,17 +1,15 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
-import '../../../data/models/response/main_policy_model.dart';
-import '../../policies_helper.dart';
 
 class CustomPolicyGridItem extends StatelessWidget {
-  final MainPolicyModel result;
-  final Function(MainPolicyModel) onItemTap;
+  final PoliciesDataModel result;
+  final Function(PoliciesDataModel) onItemTap;
   final bool isSelected;
   final bool showCheckbox;
 
@@ -35,7 +33,7 @@ class CustomPolicyGridItem extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             color: isSelected
-                ? context.colorScheme.primary.withOpacity(0.1)
+                ? context.colorScheme.primary.withValues(alpha: 0.1)
                 : context.colorScheme.secondary,
             border: Border.all(
               color: isSelected

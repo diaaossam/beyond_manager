@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'dart:ui';
 import 'package:bond/core/tutorial_coach/tutorial_coach_item.dart';
-import 'package:collection/collection.dart';
+import 'package:bond/core/tutorial_coach/tutorial_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 import '../extensions/color_extensions.dart';
-import '../../generated/l10n.dart';
+import '../extensions/app_localizations_extension.dart';
 
 class TutorialCouch {
   late TutorialCoachMark tutorialCoachMark;
@@ -56,7 +56,7 @@ class TutorialCouch {
     tutorialCoachMark = TutorialCoachMark(
       targets: targets,
       colorShadow: context.colorScheme.primary,
-      textSkip: S.current.skip,
+      textSkip: context.localizations.skip,
       alignSkip: AlignmentDirectional.topStart,
       useSafeArea: true,
       paddingFocus: 10,
@@ -90,180 +90,71 @@ class TutorialCouch {
 }
 
 class TutorialManagement {
-  static void showMainUserTutorial(
-    ValueChanged<List<GlobalKey>> onKeys,
-    BuildContext context,
-  ) {
-    final List<GlobalKey> globalKeys = List.generate(
-      UserNavItem.values.length,
-      (index) => GlobalKey(),
-    );
-    onKeys(globalKeys);
-    if (getIt<SharedPreferences>().containsKey(PrefsKeys.showTutorialMain)) {
-      return;
-    }
-    getIt<SharedPreferences>().setBool(PrefsKeys.showTutorialMain, true);
-    final tutorialCouch = TutorialCouch();
-    tutorialCouch.createTutorial(
-      context: context,
-      items: UserNavItem.values
-          .mapIndexed(
-            (index, e) => TutorialCouchItem(
-              identify: e.name,
-              keyTarget: globalKeys[index],
-              title: e.title,
-              description: e.description,
-              align: switch (e) {
-                UserNavItem.home =>
-                  AppVariables.language == "ar"
-                      ? ContentAlign.left
-                      : ContentAlign.right,
-                UserNavItem.services =>
-                  AppVariables.language == "ar"
-                      ? ContentAlign.left
-                      : ContentAlign.right,
-                UserNavItem.ai =>
-                  AppVariables.language == "ar"
-                      ? ContentAlign.left
-                      : ContentAlign.right,
-                UserNavItem.bookings =>
-                  AppVariables.language == "ar"
-                      ? ContentAlign.right
-                      : ContentAlign.left,
-                UserNavItem.account =>
-                  AppVariables.language == "ar"
-                      ? ContentAlign.right
-                      : ContentAlign.left,
-              },
-            ),
-          )
-          .toList(),
-    );
-    Future.delayed(Duration.zero, () {
-      if (context.mounted) tutorialCouch.show(context);
-    });
-  }
-
-  static void showServiceDetailsTutorial(
-    BuildContext context,
-    ValueChanged<Map<String, GlobalKey>> onKeys,
-  ) {
-    final tutorialCouch = TutorialCouch();
-    final globalKeys = {
-      "filter": GlobalKey(),
-      "location": GlobalKey(),
-      "date": GlobalKey(),
-    };
-    onKeys(globalKeys);
-    if (getIt<SharedPreferences>().containsKey(PrefsKeys.showTutorialService)) {
-      return;
-    }
-    getIt<SharedPreferences>().setBool(PrefsKeys.showTutorialService, true);
-
-    tutorialCouch.createTutorial(
-      items: [
-        TutorialCouchItem(
-          identify: "filter",
-          keyTarget: AppVariables.language == "ar"
-              ? null
-              : globalKeys["filter"]!,
-          targetPosition: AppVariables.language == "ar"
-              ? TargetPosition(Size(50, 50), Offset(15, 120))
-              : null,
-          title: S.current.filter,
-          description: S.current.filterDescription,
-          align: AppVariables.language == "ar"
-              ? ContentAlign.right
-              : ContentAlign.left,
-        ),
-        TutorialCouchItem(
-          identify: "location",
-          keyTarget: globalKeys["location"]!,
-          title: S.current.location,
-          description: S.current.locationDescription,
-          align: AppVariables.language == "ar"
-              ? ContentAlign.left
-              : ContentAlign.right,
-        ),
-        TutorialCouchItem(
-          identify: "date",
-          keyTarget: globalKeys["date"]!,
-          title: S.current.date,
-          description: S.current.dateDescription,
-          align: AppVariables.language == "ar"
-              ? ContentAlign.right
-              : ContentAlign.left,
-        ),
-      ],
-      context: context,
-    );
-    Future.delayed(Duration.zero, () {
-      if (context.mounted) tutorialCouch.show(context);
-    });
-  }
-
-  static void showServiceProviderDetailsutorial({
+  /// Show home screen tutorial
+  static Future<void> showHomeTutorial({
     required BuildContext context,
-    required ValueChanged<Map<TutorialKeys, GlobalKey>> onKeys,
-  }) {
-    final tutorialCouch = TutorialCouch();
-    final globalKeys = {
-      TutorialKeys.ourWorks: GlobalKey(),
-      TutorialKeys.services: GlobalKey(),
-      TutorialKeys.rates: GlobalKey(),
-      TutorialKeys.details: GlobalKey(),
-    };
-    onKeys(globalKeys);
-    if (getIt<SharedPreferences>().containsKey(
-      PrefsKeys.showTutorialProvider,
-    )) {
+    required Map<TutorialKeys, GlobalKey> globalKeys,
+  }) async {
+    // Check if tutorial was already shown
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey(PrefsKeys.showTutorialHome)) {
       return;
     }
-    getIt<SharedPreferences>().setBool(PrefsKeys.showTutorialProvider, true);
+
+    // Mark tutorial as shown
+    await prefs.setBool(PrefsKeys.showTutorialHome, true);
+
+    // Check if widgets are mounted and keys are attached
+    await Future.delayed(const Duration(milliseconds: 500));
+    
+    if (!context.mounted) return;
+
+    final tutorialCouch = TutorialCouch();
+    final localizations = context.localizations;
+    final isRTL = Directionality.of(context) == TextDirection.rtl;
 
     tutorialCouch.createTutorial(
       context: context,
       items: [
         TutorialCouchItem(
-          identify: TutorialKeys.ourWorks.name,
-          keyTarget: globalKeys[TutorialKeys.ourWorks]!,
-          title: S.current.ourWorks,
-          description: S.current.showOldWorks,
-          align: AppVariables.language == "ar"
-              ? ContentAlign.left
-              : ContentAlign.right,
+          identify: TutorialKeys.emergencySupport.name,
+          keyTarget: globalKeys[TutorialKeys.emergencySupport],
+          title: localizations.emergencySupport2,
+          description: localizations.emergencySupport2,
+          align: isRTL ? ContentAlign.left : ContentAlign.right,
         ),
         TutorialCouchItem(
-          identify: TutorialKeys.services.name,
-          keyTarget: globalKeys[TutorialKeys.services]!,
-          title: S.current.services,
-          description: S.current.showAvailableService,
-          align: AppVariables.language == "ar"
-              ? ContentAlign.left
-              : ContentAlign.right,
+          identify: TutorialKeys.insurancePolicies.name,
+          keyTarget: globalKeys[TutorialKeys.insurancePolicies],
+          title: localizations.insurancePolicies2,
+          description: localizations.insurancePolicies2,
+          align: isRTL ? ContentAlign.right : ContentAlign.left,
         ),
         TutorialCouchItem(
-          identify: TutorialKeys.rates.name,
-          keyTarget: globalKeys[TutorialKeys.rates]!,
-          title: S.current.rate,
-          description: S.current.showProviderRate,
-          align: AppVariables.language == "ar"
-              ? ContentAlign.left
-              : ContentAlign.right,
+          identify: TutorialKeys.sickLeave.name,
+          keyTarget: globalKeys[TutorialKeys.sickLeave],
+          title: localizations.sickLeaveService,
+          description: localizations.sickLeaveService,
+          align: isRTL ? ContentAlign.left : ContentAlign.right,
         ),
         TutorialCouchItem(
-          identify: TutorialKeys.details.name,
-          keyTarget: globalKeys[TutorialKeys.details]!,
-          title: S.current.details,
-          description: S.current.showDetailsAndEmployee,
-          align: AppVariables.language == "ar"
-              ? ContentAlign.right
-              : ContentAlign.left,
+          identify: TutorialKeys.getCovered.name,
+          keyTarget: globalKeys[TutorialKeys.getCovered],
+          title: localizations.getCovered,
+          description: localizations.getCovered,
+          align: isRTL ? ContentAlign.right : ContentAlign.left,
         ),
       ],
     );
-    Future.delayed(Duration.zero, () {
-      if (context.mounted) tutorialCouch.show(context);
-    });
+
+    if (context.mounted) {
+      tutorialCouch.show(context);
+    }
+  }
+
+  /// Reset tutorial (useful for testing or user request)
+  static Future<void> resetHomeTutorial() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(PrefsKeys.showTutorialHome);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/enum/gender.dart';
+import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -10,19 +11,18 @@ import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/loading/loading_widget.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
-import '../../../../policies/data/models/response/main_policy_model.dart';
 import '../../../../settings/presentation/settings_helper.dart';
 import '../../../data/models/enums/insurance_plan_enum.dart';
 import '../../../data/models/enums/marital_status_enum.dart';
 import '../../../data/models/enums/nationality_enum.dart';
-import '../../../data/models/manual_entry_params.dart';
-import '../../../data/models/relationship_model.dart';
+import '../../../data/models/response/manual_entry_params.dart';
+import '../../../data/models/response/relationship_model.dart';
 import '../../cubit/addation/addation.dart';
 import '../../cubit/addation/addation_data.dart';
 import 'member_form_design.dart';
 
 class ManualEntryBody extends StatefulWidget {
-  final List<MainPolicyModel> selectedPolicies;
+  final List<PoliciesDataModel> selectedPolicies;
 
   const ManualEntryBody({super.key, required this.selectedPolicies});
 
@@ -56,57 +56,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                       align: TextAlign.center,
                       maxLines: 2,
                     ),
-                    SizedBox(height: SizeConfig.bodyHeight * .03),
-                    Container(
-                      padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
-                      decoration: BoxDecoration(
-                        color: context.colorScheme.scrim.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8),
-                        border: BorderDirectional(
-                          start: BorderSide(
-                            color: context.colorScheme.scrim,
-                            width: 4,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.folder_outlined,
-                            color: context.colorScheme.scrim,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 12),
-                          AppText(
-                            text: context.localizations.selectedPolicies,
-                            fontWeight: FontWeight.w600,
-                            textSize: 12,
-                            color: context.colorScheme.shadow,
-                          ),
-                          const SizedBox(width: 8),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: context.colorScheme.surface,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: context.colorScheme.scrim,
-                                width: 1,
-                              ),
-                            ),
-                            child: AppText(
-                              text: context.localizations.medicalInsurance,
-                              fontWeight: FontWeight.w600,
-                              textSize: 11,
-                              color: context.colorScheme.scrim,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+
                     SizedBox(height: SizeConfig.bodyHeight * .02),
                     Container(
                       padding: EdgeInsets.all(SizeConfig.screenWidth * .04),

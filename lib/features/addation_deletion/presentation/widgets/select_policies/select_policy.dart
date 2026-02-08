@@ -1,16 +1,15 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart';
+import 'package:bond/features/addation_deletion/presentation/cubit/policies_data/policies_data_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/bloc/helper/base_state.dart';
-import '../../../../../core/enum/policy_status.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
-import '../../../../policies/data/models/response/main_policy_model.dart';
-import '../../../../policies/presentation/cubit/policies_cubit.dart';
 import '../../../../policies/presentation/widget/select_policy/policies_grid_design.dart';
 import '../step_indicator.dart';
 
@@ -22,10 +21,10 @@ class SelectPolicyBody extends StatefulWidget {
 }
 
 class _SelectPolicyBodyState extends State<SelectPolicyBody> {
-  List<MainPolicyModel> selectedPolicies = [];
+  List<PoliciesDataModel> selectedPolicies = [];
   List<num> selectedPolicyIds = [];
 
-  void _onSelectionChanged(List<MainPolicyModel> policies) {
+  void _onSelectionChanged(List<PoliciesDataModel> policies) {
     setState(() {
       selectedPolicies = policies;
       selectedPolicyIds = policies.map((p) => p.policyId ?? 0).toList();
@@ -119,9 +118,9 @@ class _SelectPolicyBodyState extends State<SelectPolicyBody> {
                     color: context.colorScheme.shadow,
                   ),
                   SizedBox(height: SizeConfig.bodyHeight * .01),
-                  BlocBuilder<PoliciesCubit, BaseState<PolicyStatus>>(
+                  BlocBuilder<PoliciesDataCubit, BaseState<PoliciesDataAddation>>(
                     builder: (context, state) {
-                      final bloc = context.read<PoliciesCubit>();
+                      final bloc = context.read<PoliciesDataCubit>();
                       return SizedBox(
                         height: SizeConfig.bodyHeight * .6,
                         child: CustomScrollView(
@@ -129,7 +128,7 @@ class _SelectPolicyBodyState extends State<SelectPolicyBody> {
                           slivers: [
                             PolicyGridDesign(
                               pagingController: bloc.pagingController,
-                              onItemTap: (MainPolicyModel p1) {},
+                              onItemTap: (PoliciesDataModel p1) {},
                               enableMultiSelect: true,
                               selectedPolicyIds: selectedPolicyIds,
                               onSelectionChanged: _onSelectionChanged,

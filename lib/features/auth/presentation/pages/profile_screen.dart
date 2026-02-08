@@ -21,11 +21,12 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: context.localizations.profile,),
+      appBar: CustomAppBar(
+        title: context.localizations.profile,
+        pressIcon: () => context.tabsRouter.setActiveIndex(0),
+      ),
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: SizeConfig.screenWidth * .04,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: SizeConfig.screenWidth * .04),
         child: ListView(
           children: [
             Container(
@@ -44,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   AppText(
                     maxLines: 2,
-                    text: UserDataService().getUserData()?.name??"",
+                    text: UserDataService().getUserData()?.name ?? "",
                     fontWeight: FontWeight.w600,
                     textSize: 12,
                   ),
@@ -119,46 +120,45 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: SizeConfig.bodyHeight * .02),
             CustomButton(
-            borderColor: context.colorScheme.primary,
-            backgroundColor: Colors.transparent,
-            textColor: context.colorScheme.primary,
-            text: context.localizations.complaint,
-            press: () => context.router.push(ComplaintRoute()),
-          ),
-          TextButton(
-            onPressed: () => context.router.push(TermsRoute()),
-            child: AppText(
-              maxLines: 2,
-              text: context.localizations.termsAndConditions,
-              color: context.colorScheme.primary,
-              textDecoration: TextDecoration.underline,
-              textSize: 14,
+              borderColor: context.colorScheme.primary,
+              backgroundColor: Colors.transparent,
+              textColor: context.colorScheme.primary,
+              text: context.localizations.complaint,
+              press: () => context.router.push(ComplaintRoute()),
             ),
-          ),
+            TextButton(
+              onPressed: () => context.router.push(TermsRoute()),
+              child: AppText(
+                maxLines: 2,
+                text: context.localizations.termsAndConditions,
+                color: context.colorScheme.primary,
+                textDecoration: TextDecoration.underline,
+                textSize: 14,
+              ),
+            ),
             SizedBox(height: SizeConfig.bodyHeight * .02),
 
             CustomButton(
               text: context.localizations.logOut,
               press: () async => LogoutDialog.show(context),
             ),
-          SizedBox(height: SizeConfig.bodyHeight * .02),
-          CustomButton(
-            backgroundColor: Colors.transparent,
-            textColor: context.colorScheme.primary,
-            borderColor: context.colorScheme.primary,
-            text: context.localizations.deleteAccount,
-            press: () async {
-
-            },
-          ),
-          SizedBox(height: SizeConfig.bodyHeight * .02),
-           Center(
-            child: AppText(
-              text: "${context.localizations.appVersion} ${ApiConfig.appVersion}",
-              fontWeight: FontWeight.w600,
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            CustomButton(
+              backgroundColor: Colors.transparent,
+              textColor: context.colorScheme.primary,
+              borderColor: context.colorScheme.primary,
+              text: context.localizations.deleteAccount,
+              press: () async {},
             ),
-          ),
-          SizedBox(height: SizeConfig.bodyHeight * .04),
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            Center(
+              child: AppText(
+                text:
+                    "${context.localizations.appVersion} ${ApiConfig.appVersion}",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: SizeConfig.bodyHeight * .04),
           ],
         ),
       ),

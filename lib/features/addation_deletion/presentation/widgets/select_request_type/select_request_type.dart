@@ -8,10 +8,11 @@ import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
-import '../../../../policies/data/models/response/main_policy_model.dart';
+import '../../../data/models/response/policies_data_addation.dart';
 
 class SelectRequestTypeBody extends StatefulWidget {
-  final List<MainPolicyModel> selectedPolicies;
+  final List<PoliciesDataModel> selectedPolicies;
+
   const SelectRequestTypeBody({super.key, required this.selectedPolicies});
 
   @override
@@ -49,8 +50,7 @@ class _SelectRequestTypeBodyState extends State<SelectRequestTypeBody> {
                     description: context.localizations.additionOnlyDesc,
                     buttonText: context.localizations.selectAddition,
                     requestType: addition,
-                    onSelect: () =>
-                        setState(() => selectedType = addition),
+                    onSelect: () => setState(() => selectedType = addition),
                     isSelected: selectedType == addition,
                   ),
                   SizedBox(height: SizeConfig.screenWidth * .03),
@@ -60,8 +60,7 @@ class _SelectRequestTypeBodyState extends State<SelectRequestTypeBody> {
                     description: context.localizations.deletionOnlyDesc,
                     buttonText: context.localizations.selectDeletion,
                     requestType: deletion,
-                    onSelect: () =>
-                        setState(() => selectedType = deletion),
+                    onSelect: () => setState(() => selectedType = deletion),
                     isSelected: selectedType == deletion,
                   ),
                   SizedBox(height: SizeConfig.screenWidth * .03),

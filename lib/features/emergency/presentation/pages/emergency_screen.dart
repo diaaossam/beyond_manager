@@ -22,7 +22,10 @@ class MyEmergencyScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<EmergencyCubit>(),
       child: Scaffold(
-        appBar: CustomAppBar(title: context.localizations.emergencySupport1),
+        appBar: CustomAppBar(
+          title: context.localizations.emergencySupport1,
+          pressIcon: () => context.tabsRouter.setActiveIndex(0),
+        ),
         body: const MyEmergencyBody(),
         bottomNavigationBar: Padding(
           padding: EdgeInsets.symmetric(

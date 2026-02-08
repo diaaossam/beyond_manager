@@ -1,18 +1,17 @@
 import 'package:bond/core/utils/app_size.dart';
-import 'package:bond/features/policies/data/models/response/main_policy_model.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-
 import '../../../../../widgets/app_failure.dart';
 import '../../../../../widgets/loading/loading_widget.dart';
 import '../../../../../widgets/no_item_design.dart';
+import '../../../../addation_deletion/data/models/response/policies_data_addation.dart';
 import 'custom_policy_grid_item.dart';
 
 class PolicyGridDesign extends StatelessWidget {
-  final PagingController<int, MainPolicyModel> pagingController;
-  final Function(MainPolicyModel) onItemTap;
+  final PagingController<int, PoliciesDataModel> pagingController;
+  final Function(PoliciesDataModel) onItemTap;
   final List<num>? selectedPolicyIds;
-  final Function(List<MainPolicyModel>)? onSelectionChanged;
+  final Function(List<PoliciesDataModel>)? onSelectionChanged;
   final bool enableMultiSelect;
 
   const PolicyGridDesign({
@@ -26,11 +25,11 @@ class PolicyGridDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PagingListener<int, MainPolicyModel>(
+    return PagingListener<int, PoliciesDataModel>(
       controller: pagingController,
       builder: (context, state, fetchNextPage) {
         final allItems = state.items ?? [];
-        return PagedSliverGrid<int, MainPolicyModel>(
+        return PagedSliverGrid<int, PoliciesDataModel>(
           state: state,
           fetchNextPage: fetchNextPage,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -39,22 +38,29 @@ class PolicyGridDesign extends StatelessWidget {
           ),
           builderDelegate: PagedChildBuilderDelegate(
             itemBuilder: (context, item, index) {
-              final isSelected = selectedPolicyIds?.contains(item.policyId) ?? false;
+              final isSelected =
+                  selectedPolicyIds?.contains(item.policyId) ?? false;
               return Container(
                 margin: EdgeInsets.all(SizeConfig.bodyHeight * .01),
                 child: CustomPolicyGridItem(
                   onItemTap: (policy) {
                     if (enableMultiSelect && onSelectionChanged != null) {
                       final currentSelected = allItems
-                              .where((p) => selectedPolicyIds?.contains(p.policyId) ?? false)
-                              .toList();
-                      
+                          .where(
+                            (p) =>
+                                selectedPolicyIds?.contains(p.policyId) ??
+                                false,
+                          )
+                          .toList();
+
                       if (isSelected) {
-                        currentSelected.removeWhere((p) => p.policyId == policy.policyId);
+                        currentSelected.removeWhere(
+                          (p) => p.policyId == policy.policyId,
+                        );
                       } else {
                         currentSelected.add(policy);
                       }
-                      
+
                       onSelectionChanged!(currentSelected);
                     } else {
                       onItemTap(policy);

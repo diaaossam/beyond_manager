@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/dependencies/injectable_dependencies.dart';
 import '../../../../widgets/app_bar/custom_app_bar.dart';
-import '../../../policies/data/models/response/main_policy_model.dart';
+import '../../data/models/response/policies_data_addation.dart';
 import '../widgets/deletion/deletion_body.dart';
 
 @RoutePage()
 class SelectMembersToDeleteScreen extends StatelessWidget {
-  final List<MainPolicyModel> selectedPolicies;
+  final List<PoliciesDataModel> selectedPolicies;
 
   const SelectMembersToDeleteScreen({
     super.key,

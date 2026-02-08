@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/dependencies/injectable_dependencies.dart';
 import '../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../widgets/app_bar/custom_app_bar.dart';
-import '../../../policies/data/models/response/main_policy_model.dart';
+import '../../data/models/response/policies_data_addation.dart';
 import '../cubit/addation/addation.dart';
 
 @RoutePage()
 class ManualEntryScreen extends StatelessWidget {
   final String requestType;
-  final List<MainPolicyModel> selectedPolicies;
+  final List<PoliciesDataModel> selectedPolicies;
 
   const ManualEntryScreen({
     super.key,

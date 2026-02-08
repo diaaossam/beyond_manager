@@ -3,7 +3,7 @@ import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/addation_deletion/data/repositories/addation_deletion_repository.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/bloc/helper/async_handler.dart';
-import '../../../data/models/manual_entry_params.dart';
+import '../../../data/models/response/manual_entry_params.dart';
 import 'addation_data.dart';
 
 @injectable

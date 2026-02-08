@@ -40,6 +40,8 @@ import '../../features/addation_deletion/presentation/cubit/addation/addation.da
     as _i90;
 import '../../features/addation_deletion/presentation/cubit/deletion/deletion_cubit.dart'
     as _i856;
+import '../../features/addation_deletion/presentation/cubit/policies_data/policies_data_cubit.dart'
+    as _i612;
 import '../../features/auth/data/datasources/auth_remote_data_source.dart'
     as _i107;
 import '../../features/auth/data/repositories/auth_repo_impl.dart' as _i662;
@@ -329,6 +331,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i392.CarServiceCubit>(
       () => _i392.CarServiceCubit(gh<_i136.CarServiceRepositoryImpl>()),
+    );
+    gh.factory<_i612.PoliciesDataCubit>(
+      () => _i612.PoliciesDataCubit(gh<_i198.AddationDeletionRepository>()),
     );
     gh.lazySingleton<_i264.ReservationRepositoryImpl>(
       () => _i264.ReservationRepositoryImpl(

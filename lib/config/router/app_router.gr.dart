@@ -10,6 +10,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i47;
+import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart'
+    as _i57;
 import 'package:bond/features/addation_deletion/presentation/pages/addation_deletion_dashboard.dart'
     as _i3;
 import 'package:bond/features/addation_deletion/presentation/pages/deletion_guidelines_screen.dart'
@@ -54,7 +56,7 @@ import 'package:bond/features/main/presentation/pages/select_insurance_screen.da
 import 'package:bond/features/main/presentation/pages/unique_service_screen.dart'
     as _i44;
 import 'package:bond/features/network/data/models/response/search_params.dart'
-    as _i58;
+    as _i59;
 import 'package:bond/features/network/presentation/pages/medical_filter_screen.dart'
     as _i18;
 import 'package:bond/features/network/presentation/pages/search_result_screen.dart'
@@ -66,7 +68,7 @@ import 'package:bond/features/other_line/presentation/pages/insurance_screen.dar
 import 'package:bond/features/other_line/presentation/pages/other_line_screen.dart'
     as _i23;
 import 'package:bond/features/policies/data/models/response/main_policy_model.dart'
-    as _i57;
+    as _i58;
 import 'package:bond/features/policies/presentation/pages/active_list_screen.dart'
     as _i1;
 import 'package:bond/features/policies/presentation/pages/policies_screen.dart'
@@ -684,7 +686,7 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
   ManualEntryRoute({
     _i48.Key? key,
     required String requestType,
-    required List<_i57.MainPolicyModel> selectedPolicies,
+    required List<_i57.PoliciesDataModel> selectedPolicies,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          ManualEntryRoute.name,
@@ -722,7 +724,7 @@ class ManualEntryRouteArgs {
 
   final String requestType;
 
-  final List<_i57.MainPolicyModel> selectedPolicies;
+  final List<_i57.PoliciesDataModel> selectedPolicies;
 
   @override
   String toString() {
@@ -735,7 +737,7 @@ class ManualEntryRouteArgs {
     if (other is! ManualEntryRouteArgs) return false;
     return key == other.key &&
         requestType == other.requestType &&
-        const _i53.ListEquality<_i57.MainPolicyModel>().equals(
+        const _i53.ListEquality<_i57.PoliciesDataModel>().equals(
           selectedPolicies,
           other.selectedPolicies,
         );
@@ -745,7 +747,7 @@ class ManualEntryRouteArgs {
   int get hashCode =>
       key.hashCode ^
       requestType.hashCode ^
-      const _i53.ListEquality<_i57.MainPolicyModel>().hash(selectedPolicies);
+      const _i53.ListEquality<_i57.PoliciesDataModel>().hash(selectedPolicies);
 }
 
 /// generated route for
@@ -770,7 +772,7 @@ class MethodSelectionRoute
     extends _i47.PageRouteInfo<MethodSelectionRouteArgs> {
   MethodSelectionRoute({
     _i48.Key? key,
-    required List<_i57.MainPolicyModel> selectedPolicies,
+    required List<_i57.PoliciesDataModel> selectedPolicies,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          MethodSelectionRoute.name,
@@ -800,7 +802,7 @@ class MethodSelectionRouteArgs {
 
   final _i48.Key? key;
 
-  final List<_i57.MainPolicyModel> selectedPolicies;
+  final List<_i57.PoliciesDataModel> selectedPolicies;
 
   @override
   String toString() {
@@ -812,7 +814,7 @@ class MethodSelectionRouteArgs {
     if (identical(this, other)) return true;
     if (other is! MethodSelectionRouteArgs) return false;
     return key == other.key &&
-        const _i53.ListEquality<_i57.MainPolicyModel>().equals(
+        const _i53.ListEquality<_i57.PoliciesDataModel>().equals(
           selectedPolicies,
           other.selectedPolicies,
         );
@@ -821,7 +823,7 @@ class MethodSelectionRouteArgs {
   @override
   int get hashCode =>
       key.hashCode ^
-      const _i53.ListEquality<_i57.MainPolicyModel>().hash(selectedPolicies);
+      const _i53.ListEquality<_i57.PoliciesDataModel>().hash(selectedPolicies);
 }
 
 /// generated route for
@@ -1113,7 +1115,7 @@ class PolicyAccessSelectionRoute
     extends _i47.PageRouteInfo<PolicyAccessSelectionRouteArgs> {
   PolicyAccessSelectionRoute({
     _i48.Key? key,
-    required _i57.MainPolicyModel model,
+    required _i58.MainPolicyModel model,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          PolicyAccessSelectionRoute.name,
@@ -1137,7 +1139,7 @@ class PolicyAccessSelectionRouteArgs {
 
   final _i48.Key? key;
 
-  final _i57.MainPolicyModel model;
+  final _i58.MainPolicyModel model;
 
   @override
   String toString() {
@@ -1333,7 +1335,7 @@ class ReservationDashboardRoute extends _i47.PageRouteInfo<void> {
 class SearchResultRoute extends _i47.PageRouteInfo<SearchResultRouteArgs> {
   SearchResultRoute({
     _i48.Key? key,
-    required _i58.SearchParamsModel searchParamsModel,
+    required _i59.SearchParamsModel searchParamsModel,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          SearchResultRoute.name,
@@ -1363,7 +1365,7 @@ class SearchResultRouteArgs {
 
   final _i48.Key? key;
 
-  final _i58.SearchParamsModel searchParamsModel;
+  final _i59.SearchParamsModel searchParamsModel;
 
   @override
   String toString() {
@@ -1403,7 +1405,7 @@ class SelectMembersToDeleteRoute
     extends _i47.PageRouteInfo<SelectMembersToDeleteRouteArgs> {
   SelectMembersToDeleteRoute({
     _i48.Key? key,
-    required List<_i57.MainPolicyModel> selectedPolicies,
+    required List<_i57.PoliciesDataModel> selectedPolicies,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          SelectMembersToDeleteRoute.name,
@@ -1436,7 +1438,7 @@ class SelectMembersToDeleteRouteArgs {
 
   final _i48.Key? key;
 
-  final List<_i57.MainPolicyModel> selectedPolicies;
+  final List<_i57.PoliciesDataModel> selectedPolicies;
 
   @override
   String toString() {
@@ -1448,7 +1450,7 @@ class SelectMembersToDeleteRouteArgs {
     if (identical(this, other)) return true;
     if (other is! SelectMembersToDeleteRouteArgs) return false;
     return key == other.key &&
-        const _i53.ListEquality<_i57.MainPolicyModel>().equals(
+        const _i53.ListEquality<_i57.PoliciesDataModel>().equals(
           selectedPolicies,
           other.selectedPolicies,
         );
@@ -1457,7 +1459,7 @@ class SelectMembersToDeleteRouteArgs {
   @override
   int get hashCode =>
       key.hashCode ^
-      const _i53.ListEquality<_i57.MainPolicyModel>().hash(selectedPolicies);
+      const _i53.ListEquality<_i57.PoliciesDataModel>().hash(selectedPolicies);
 }
 
 /// generated route for
@@ -1482,7 +1484,7 @@ class SelectRequestTypeRoute
     extends _i47.PageRouteInfo<SelectRequestTypeRouteArgs> {
   SelectRequestTypeRoute({
     _i48.Key? key,
-    required List<_i57.MainPolicyModel> selectedPolicies,
+    required List<_i57.PoliciesDataModel> selectedPolicies,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          SelectRequestTypeRoute.name,
@@ -1512,7 +1514,7 @@ class SelectRequestTypeRouteArgs {
 
   final _i48.Key? key;
 
-  final List<_i57.MainPolicyModel> selectedPolicies;
+  final List<_i57.PoliciesDataModel> selectedPolicies;
 
   @override
   String toString() {
@@ -1524,7 +1526,7 @@ class SelectRequestTypeRouteArgs {
     if (identical(this, other)) return true;
     if (other is! SelectRequestTypeRouteArgs) return false;
     return key == other.key &&
-        const _i53.ListEquality<_i57.MainPolicyModel>().equals(
+        const _i53.ListEquality<_i57.PoliciesDataModel>().equals(
           selectedPolicies,
           other.selectedPolicies,
         );
@@ -1533,7 +1535,7 @@ class SelectRequestTypeRouteArgs {
   @override
   int get hashCode =>
       key.hashCode ^
-      const _i53.ListEquality<_i57.MainPolicyModel>().hash(selectedPolicies);
+      const _i53.ListEquality<_i57.PoliciesDataModel>().hash(selectedPolicies);
 }
 
 /// generated route for

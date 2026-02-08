@@ -61,9 +61,3 @@ class OtpBody extends StatelessWidget {
     );
   }
 }
-
-String convertToEnglishNumbers(String input) {
-  return input.replaceAllMapped(RegExp(r'[۰-۹]'), (match) {
-    return (int.parse(match.group(0)!) - 0x0660).toString();
-  });
-}

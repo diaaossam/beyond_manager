@@ -21,53 +21,59 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
-      routes: [
-        HomeRoute(),
-        MyEmergencyRoute(),
-        PoliciesRoute(),
-        ProfileRoute(),
-      ],
-      bottomNavigationBuilder: (context, tabsRouter) {
-        return BottomNavigationBar(
-          onTap: (value) => tabsRouter.setActiveIndex(value),
-          currentIndex: tabsRouter.activeIndex,
-          elevation: 10,
-          unselectedItemColor: context.colorScheme.shadow,
-          showUnselectedLabels: true,
-          showSelectedLabels: true,
-          items: UserNavItem.values.asMap().entries.map((entry) {
-            final e = entry.value;
-            return BottomNavigationBarItem(
-              label: e.title,
-              activeIcon: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 20.w,
-                    height: 3.h,
-                    color: context.colorScheme.primary,
-                  ),
-                  SizedBox(height: 4.h),
-                  AppImage.asset(e.icons, color: context.colorScheme.primary),
-                ],
-              ),
-              icon: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 20.w,
-                    height: 1.h,
-                    color: Colors.transparent,
-                  ),
-                  SizedBox(height: 4.h),
-                  AppImage.asset(e.icons, color: context.colorScheme.shadow),
-                ],
-              ),
-            );
-          }).toList(),
-        );
-      },
+    return WillPopScope(
+     onWillPop: () async{
+       print('--------------');
+       return false;
+     },
+      child: AutoTabsScaffold(
+        routes: [
+          HomeRoute(),
+          MyEmergencyRoute(),
+          PoliciesRoute(),
+          ProfileRoute(),
+        ],
+        bottomNavigationBuilder: (context, tabsRouter) {
+          return BottomNavigationBar(
+            onTap: (value) => tabsRouter.setActiveIndex(value),
+            currentIndex: tabsRouter.activeIndex,
+            elevation: 10,
+            unselectedItemColor: context.colorScheme.shadow,
+            showUnselectedLabels: true,
+            showSelectedLabels: true,
+            items: UserNavItem.values.asMap().entries.map((entry) {
+              final e = entry.value;
+              return BottomNavigationBarItem(
+                label: e.title,
+                activeIcon: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 20.w,
+                      height: 3.h,
+                      color: context.colorScheme.primary,
+                    ),
+                    SizedBox(height: 4.h),
+                    AppImage.asset(e.icons, color: context.colorScheme.primary),
+                  ],
+                ),
+                icon: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 20.w,
+                      height: 1.h,
+                      color: Colors.transparent,
+                    ),
+                    SizedBox(height: 4.h),
+                    AppImage.asset(e.icons, color: context.colorScheme.shadow),
+                  ],
+                ),
+              );
+            }).toList(),
+          );
+        },
+      ),
     );
   }
 
