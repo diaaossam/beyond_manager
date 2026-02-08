@@ -104,10 +104,9 @@ class AddationDeletionRemoteDataSourceImpl
   @override
   Future<BranchesResponse> fetchPoliciesPlans({required List<num> ids}) async {
     String idsString = ids.join(",");
-
     return await dioConsumer
-        .get(EndPoints.getPoliciesBranches)
-        .params({"policies": idsString})
+        .get(EndPoints.getPoliciesPlans)
+        .params({"policy_ids": idsString})
         .factory((json) async => BranchesResponse.fromJson(json))
         .execute();
   }

@@ -122,25 +122,49 @@ class BaseState<T> extends Equatable {
     Widget? failedWidget,
     VoidCallback? onTapRetry,
     required Widget Function(T data) onSuccess,
+    bool showLoadingOnSuccess = false,
+
+    /// اسمع للتغيرات دي بس
+    Set<String>? listenTo,
+
+    /// تجاهل التغيرات دي
+    Set<String>? ignore,
   }) {
     if (failedWidget == null && onTapRetry == null) {
       throw ArgumentError(
         'Either failed widget or onTapRetry must be provided.',
       );
     }
+
+    final shouldReact = () {
+      if (listenTo != null) {
+        return listenTo.contains(identifier);
+      }
+      if (ignore != null) {
+        return !ignore.contains(identifier);
+      }
+      return true;
+    }();
+
+    if (!shouldReact) {
+      return onSuccess(data!);
+    }
+
     if (isSuccess) {
       return onSuccess(data!);
     }
+
     if (isLoading) {
       return loadingWidget ?? const LoadingWidget();
-    } else {
-      return failedWidget ??
-          AppFailureWidget(
-            body: error.toString(),
-            callback: onTapRetry ?? () {},
-          );
     }
+
+    return failedWidget ??
+        AppFailureWidget(
+          body: error.toString(),
+          callback: onTapRetry ?? () {},
+        );
   }
+
 
   @override
   List<Object?> get props => [status, data, error, identifier];

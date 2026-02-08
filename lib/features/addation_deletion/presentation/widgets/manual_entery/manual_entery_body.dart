@@ -12,7 +12,6 @@ import '../../../../../widgets/loading/loading_widget.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
 import '../../../../settings/presentation/settings_helper.dart';
-import '../../../data/models/enums/insurance_plan_enum.dart';
 import '../../../data/models/enums/marital_status_enum.dart';
 import '../../../data/models/enums/nationality_enum.dart';
 import '../../../data/models/response/manual_entry_params.dart';
@@ -111,6 +110,8 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                       MemberFormData member = entry.value;
                       return MemberFormDesign(
                         formKey: _formKey,
+                        policyList: widget.selectedPolicies,
+                        isSinglePolicy: widget.selectedPolicies.length ==1,
                         index: index,
                         member: member,
                         onRemove: members.length > 1
@@ -168,7 +169,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                       flex: 2,
                       child: CustomButton(
                         text: context.localizations.submitRequest,
-                        press: () {
+                        press: () async{
                           if (!_formKey.currentState!.saveAndValidate()) {
                             return;
                           }
@@ -193,7 +194,6 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
   List<MemberFormData> _extractMembersFromForm() {
     final formData = _formKey.currentState?.value ?? {};
     final List<MemberFormData> extractedMembers = [];
-
     for (int i = 0; i < members.length; i++) {
       extractedMembers.add(
         MemberFormData(
@@ -209,8 +209,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
           gender: formData['gender_$i'] as GenderEnum?,
           phoneNumber: formData['phoneNumber_$i'] as String?,
           emailAddress: formData['emailAddress_$i'] as String?,
-          medicalInsurancePlan:
-              formData['medicalInsurancePlan_$i'] as InsurancePlanEnum?,
+          medicalInsurancePlan: formData['medicalInsurancePlan_$i'],
           salary: formData['salary_$i'] as String?,
           iban: formData['iban_$i'] as String?,
           address: formData['address_$i'] as String?,

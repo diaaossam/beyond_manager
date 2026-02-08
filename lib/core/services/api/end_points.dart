@@ -57,4 +57,5 @@ class EndPoints {
 
   static const String getPoliciesTicketData = "/get/ticket/policy/for/addition/data";
   static const String getPoliciesBranches = "/get/ticket/policy/branches";
+  static const String getPoliciesPlans = "/get/policies/plans";
 }

@@ -1,12 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart';
 import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
-
 import '../../../../../core/enum/gender.dart';
-import '../../../../policies/data/models/response/main_policy_model.dart';
-import '../enums/insurance_plan_enum.dart';
 import '../enums/marital_status_enum.dart';
 import '../enums/nationality_enum.dart';
 
@@ -23,7 +19,7 @@ class MemberFormData {
   GenderEnum? gender;
   String? phoneNumber;
   String? emailAddress;
-  InsurancePlanEnum? medicalInsurancePlan;
+  String? medicalInsurancePlan;
   String? salary;
   String? iban;
   String? address;
@@ -84,7 +80,7 @@ class MemberFormData {
       'staffid': staffNumber,
       'nationalnumber': nationalId,
       'mobilenumber': phoneNumber,
-      "plan_id": medicalInsurancePlan?.name,
+      "plan_id": medicalInsurancePlan,
       "gender": gender == GenderEnum.male ? "male" : "female",
       "marital_status": maritalStatus?.name,
       'relation2_id': relationship?.id,

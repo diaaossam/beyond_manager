@@ -2,10 +2,12 @@ import 'dart:io';
 import 'package:bond/config/helper/secure_file_picker.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
+import 'package:bond/features/policies/data/models/response/main_policy_model.dart';
 import 'package:bond/features/settings/settings_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/enum/gender.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
@@ -13,10 +15,10 @@ import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_drop_down.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_text_form_field.dart';
-import '../../../data/models/enums/insurance_plan_enum.dart';
 import '../../../data/models/enums/marital_status_enum.dart';
 import '../../../data/models/enums/nationality_enum.dart';
 import '../../../data/models/response/manual_entry_params.dart';
+import '../../../data/models/response/policies_data_addation.dart';
 import '../../cubit/addation/addation.dart';
 import '../../cubit/addation/addation_data.dart';
 
@@ -25,6 +27,8 @@ class MemberFormDesign extends StatefulWidget {
   final MemberFormData member;
   final VoidCallback? onRemove;
   final GlobalKey<FormBuilderState> formKey;
+  final bool isSinglePolicy;
+  final List<PoliciesDataModel> policyList;
 
   const MemberFormDesign({
     super.key,
@@ -32,6 +36,7 @@ class MemberFormDesign extends StatefulWidget {
     required this.member,
     this.onRemove,
     required this.formKey,
+    required this.isSinglePolicy, required this.policyList,
   });
 
   @override
@@ -213,28 +218,33 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                   },
                 ),
               ),
-              SizedBox(width: SizeConfig.screenWidth * .03),
-              Expanded(
-                child: CustomTextFormField(
-                  name: 'additionDate_${widget.index}',
-                  label: context.localizations.additionDate,
-                  hintText: context.localizations.ddMmYyyy,
-                  suffixIcon: const Icon(Icons.calendar_today, size: 18),
-
-                  onTap: () async {
-                    final date = await SettingsHelper().showCustomDatePicker(
-                      context: context,
-                      firstDate: DateTime(1960),
-                      lastDate: DateTime.now(),
-                    );
-                    if (date != null) {
-                      widget.formKey.currentState?.patchValue({
-                        "additionDate_${widget.index}": date.formattedDate,
-                      });
-                    }
-                  },
+              if(widget.isSinglePolicy)...[
+                SizedBox(width: SizeConfig.screenWidth * .03),
+                Expanded(
+                  child: CustomTextFormField(
+                    name: 'additionDate_${widget.index}',
+                    label: context.localizations.additionDate,
+                    hintText: context.localizations.ddMmYyyy,
+                    suffixIcon: const Icon(Icons.calendar_today, size: 18),
+                    onTap: () async {
+                      final now = DateTime.now();
+                      final backDays = (widget.policyList.first.backAdditionDate ?? 0).toInt();
+                      final forwardDays = (widget.policyList.first.forwardAdditionDate ?? 0).toInt();
+                      final date = await SettingsHelper().showCustomDatePicker(
+                        context: context,
+                        firstDate: now.subtract(Duration(days: backDays)),
+                        lastDate: now.add(Duration(days: forwardDays)),
+                      );
+                      if (date != null) {
+                        widget.formKey.currentState?.patchValue({
+                          "additionDate_${widget.index}": date.formattedDate,
+                        });
+                      }
+                    },
+                  ),
                 ),
-              ),
+              ],
+
             ],
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -313,36 +323,61 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
               ),
             ],
           ),
-          SizedBox(height: SizeConfig.bodyHeight * .02),
-          // Insurance Plans
-          AppText(
-            text: context.localizations.insurancePlans,
-            fontWeight: FontWeight.w700,
-            textSize: 14,
-            color: context.colorScheme.onSurface,
-          ),
-          SizedBox(height: SizeConfig.bodyHeight * .01),
+          if (widget.isSinglePolicy) ...[
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            BlocBuilder<AddationCubit, BaseState<AddationData>>(
+              builder: (context, state) {
+                return state.builder(
+                  onTapRetry: () {},
+                  listenTo: {"policyPlans", "policyBranches"},
+                  onSuccess: (data) {
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: AppDropDown(
+                            name: 'medicalInsurancePlan_${widget.index}',
+                            label: context.localizations.medicalInsurancePlan,
+                            isLoading: state.isLoading && state.identifier == "policyPlans",
+                            hint: context.localizations.selectPlan,
+                            items: ((state.data?.policyPlans?.result.entries.toList() ?? [])
+                                    .map(
+                                  (entry) => DropdownMenuItem(
+                                        value: entry,
+                                        child: AppText(
+                                          text: entry.value.isNotEmpty ? entry.value.first.branchName.toString(): "",
+                                        ),
+                                      ),
+                                    )
+                                    .toList()),
+                          ),
+                        ),
+                        10.horizontalSpace,
+                        Expanded(
+                          child: AppDropDown(
+                            name: 'branch_${widget.index}',
+                            label: context.localizations.branch,
+                            hint: context.localizations.selectBranch,
+                            isLoading: state.isLoading && state.identifier == "policyBranches",
+                            items: ((state.data?.branches?.result.entries.toList() ?? [])
+                                .map(
+                                  (entry) => DropdownMenuItem(
+                                value: entry,
+                                child: AppText(
+                                  text: entry.value.isNotEmpty ? entry.value.first.branchName.toString() : "",
+                                ),
+                              ),
+                            )
+                                .toList()),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          ],
 
-          AppDropDown<InsurancePlanEnum>(
-            name: 'medicalInsurancePlan_${widget.index}',
-            label: context.localizations.medicalInsurancePlan,
-            hint: context.localizations.selectPlan,
-            items: InsurancePlanEnum.values
-                .map<DropdownMenuItem<InsurancePlanEnum>>(
-                  (e) => DropdownMenuItem<InsurancePlanEnum>(
-                    value: e,
-                    child: Text(
-                      e == InsurancePlanEnum.premium
-                          ? context.localizations.premiumPlan
-                          : context.localizations.standardPlan,
-                    ),
-                  ),
-                )
-                .toList(),
-            onChanged: (value) {
-              // Data will be retrieved from form state
-            },
-          ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomTextFormField(
             name: 'salary_${widget.index}',
@@ -409,7 +444,6 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
             },
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
-          // Staff Number
           CustomTextFormField(
             name: 'staffNumber_${widget.index}',
             label: context.localizations.staffNumberId,
