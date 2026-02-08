@@ -687,6 +687,7 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
     _i48.Key? key,
     required String requestType,
     required List<_i57.PoliciesDataModel> selectedPolicies,
+    required List<num> policyIds,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          ManualEntryRoute.name,
@@ -694,6 +695,7 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
            key: key,
            requestType: requestType,
            selectedPolicies: selectedPolicies,
+           policyIds: policyIds,
          ),
          initialChildren: children,
        );
@@ -708,6 +710,7 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
         key: args.key,
         requestType: args.requestType,
         selectedPolicies: args.selectedPolicies,
+        policyIds: args.policyIds,
       );
     },
   );
@@ -718,6 +721,7 @@ class ManualEntryRouteArgs {
     this.key,
     required this.requestType,
     required this.selectedPolicies,
+    required this.policyIds,
   });
 
   final _i48.Key? key;
@@ -726,9 +730,11 @@ class ManualEntryRouteArgs {
 
   final List<_i57.PoliciesDataModel> selectedPolicies;
 
+  final List<num> policyIds;
+
   @override
   String toString() {
-    return 'ManualEntryRouteArgs{key: $key, requestType: $requestType, selectedPolicies: $selectedPolicies}';
+    return 'ManualEntryRouteArgs{key: $key, requestType: $requestType, selectedPolicies: $selectedPolicies, policyIds: $policyIds}';
   }
 
   @override
@@ -740,14 +746,16 @@ class ManualEntryRouteArgs {
         const _i53.ListEquality<_i57.PoliciesDataModel>().equals(
           selectedPolicies,
           other.selectedPolicies,
-        );
+        ) &&
+        const _i53.ListEquality<num>().equals(policyIds, other.policyIds);
   }
 
   @override
   int get hashCode =>
       key.hashCode ^
       requestType.hashCode ^
-      const _i53.ListEquality<_i57.PoliciesDataModel>().hash(selectedPolicies);
+      const _i53.ListEquality<_i57.PoliciesDataModel>().hash(selectedPolicies) ^
+      const _i53.ListEquality<num>().hash(policyIds);
 }
 
 /// generated route for

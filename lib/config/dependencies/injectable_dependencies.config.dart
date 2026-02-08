@@ -68,6 +68,10 @@ import '../../features/emergency/presentation/cubit/create_emergency_cubit.dart'
     as _i1050;
 import '../../features/emergency/presentation/cubit/emergency_cubit.dart'
     as _i1041;
+import '../../features/hr_access/data/datasources/hr_access_remote_data_source.dart'
+    as _i883;
+import '../../features/hr_access/data/repositories/hr_access_repository.dart'
+    as _i48;
 import '../../features/network/data/datasources/network_remote_data_source.dart'
     as _i98;
 import '../../features/network/data/repositories/network_repository.dart'
@@ -210,9 +214,19 @@ extension GetItInjectableX on _i174.GetIt {
         networkRemoteDataSource: gh<_i98.NetworkRemoteDataSource>(),
       ),
     );
+    gh.lazySingleton<_i883.HrAccessRemoteDataSource>(
+      () => _i883.HrAccessRemoteDataSourceImpl(
+        dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
     gh.lazySingleton<_i536.AddationDeletionRemoteDataSource>(
       () => _i536.AddationDeletionRemoteDataSourceImpl(
         dioConsumer: gh<_i384.DioConsumer>(),
+      ),
+    );
+    gh.lazySingleton<_i48.HrAccessRepository>(
+      () => _i48.HrAccessRepository(
+        remoteDataSource: gh<_i883.HrAccessRemoteDataSource>(),
       ),
     );
     gh.factory<_i107.AuthRemoteDataSource>(

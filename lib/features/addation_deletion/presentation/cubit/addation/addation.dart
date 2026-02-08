@@ -38,4 +38,29 @@ class AddationCubit extends Cubit<BaseState<AddationData>>
       },
     );
   }
+
+  Future<void> fetchPolicyPlans({required List<num> policyIds}) async {
+    await handleAsync(
+      identifier: "policyPlans",
+      call: () => addationRepository.fetchPoliciesPlans(ids: policyIds),
+      onSuccess: (data) {
+        final currentData = state.data ?? AddationData();
+        final updatedData = currentData.copyWith(policyPlans: data);
+        return updatedData;
+      },
+    );
+  }
+
+  Future<void> fetchPolicyBranches({required List<num> policyIds}) async {
+    await handleAsync(
+      identifier: "policyBranches",
+      call: () =>
+          addationRepository.fetchPoliciesBranches(policyIds: policyIds),
+      onSuccess: (data) {
+        final currentData = state.data ?? AddationData();
+        final updatedData = currentData.copyWith(branches: data);
+        return updatedData;
+      },
+    );
+  }
 }

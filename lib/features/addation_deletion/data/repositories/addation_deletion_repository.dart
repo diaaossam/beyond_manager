@@ -46,11 +46,18 @@ class AddationDeletionRepository with ApiHandlerMixin {
   }
 
   Future<Either<Failure, BranchesResponse>> fetchPoliciesBranches({
-    required PoliciesBranchesParams policies,
+    required List<num> policyIds,
   }) async {
     return handleApi(
-      () async =>
-          await remoteDataSource.fetchPoliciesBranches(policies: policies),
+      () async => await remoteDataSource.fetchPoliciesBranches(ids: policyIds),
+    );
+  }
+
+  Future<Either<Failure, BranchesResponse>> fetchPoliciesPlans({
+    required List<num> ids,
+  }) async {
+    return handleApi(
+      () async => await remoteDataSource.fetchPoliciesPlans(ids: ids),
     );
   }
 }

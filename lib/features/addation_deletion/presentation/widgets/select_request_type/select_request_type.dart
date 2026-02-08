@@ -115,10 +115,14 @@ class _SelectRequestTypeBodyState extends State<SelectRequestTypeBody> {
                           ),
                         );
                       } else {
+                        List<num> policyIds = widget.selectedPolicies
+                            .map((policy) => policy.policyId!)
+                            .toList();
                         context.router.push(
                           ManualEntryRoute(
                             requestType: selectedType!,
                             selectedPolicies: widget.selectedPolicies,
+                            policyIds: policyIds
                           ),
                         );
                       }

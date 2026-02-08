@@ -23,9 +23,9 @@ abstract class AddationDeletionRemoteDataSource {
     required PoliciesDataParams policies,
   });
 
-  Future<BranchesResponse> fetchPoliciesBranches({
-    required PoliciesBranchesParams policies,
-  });
+  Future<BranchesResponse> fetchPoliciesBranches({required List<num> ids});
+
+  Future<BranchesResponse> fetchPoliciesPlans({required List<num> ids});
 }
 
 @LazySingleton(as: AddationDeletionRemoteDataSource)
@@ -91,11 +91,23 @@ class AddationDeletionRemoteDataSourceImpl
 
   @override
   Future<BranchesResponse> fetchPoliciesBranches({
-    required PoliciesBranchesParams policies,
+    required List<num> ids,
   }) async {
+    String idsString = ids.join(",");
     return await dioConsumer
         .get(EndPoints.getPoliciesBranches)
-        .params(policies.toJson())
+        .params({"policies": idsString})
+        .factory((json) async => BranchesResponse.fromJson(json))
+        .execute();
+  }
+
+  @override
+  Future<BranchesResponse> fetchPoliciesPlans({required List<num> ids}) async {
+    String idsString = ids.join(",");
+
+    return await dioConsumer
+        .get(EndPoints.getPoliciesBranches)
+        .params({"policies": idsString})
         .factory((json) async => BranchesResponse.fromJson(json))
         .execute();
   }

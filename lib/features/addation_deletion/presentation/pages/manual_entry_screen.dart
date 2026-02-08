@@ -12,17 +12,21 @@ import '../cubit/addation/addation.dart';
 class ManualEntryScreen extends StatelessWidget {
   final String requestType;
   final List<PoliciesDataModel> selectedPolicies;
+  final List<num> policyIds;
 
   const ManualEntryScreen({
     super.key,
     required this.requestType,
     required this.selectedPolicies,
+    required this.policyIds,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<AddationCubit>(),
+      create: (context) => sl<AddationCubit>()
+        ..fetchPolicyBranches(policyIds: policyIds)
+        ..fetchPolicyPlans(policyIds: policyIds),
       child: Scaffold(
         appBar: CustomAppBar(title: context.localizations.addMembersManually),
         body: ManualEntryBody(selectedPolicies: selectedPolicies),
