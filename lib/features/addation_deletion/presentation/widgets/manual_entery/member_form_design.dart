@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:bond/config/helper/secure_file_picker.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/features/addation_deletion/data/models/response/branch_response.dart';
 import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
-import 'package:bond/features/policies/data/models/response/main_policy_model.dart';
 import 'package:bond/features/settings/settings_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -452,8 +452,219 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
               // Data will be retrieved from form state
             },
           ),
+          if (!widget.isSinglePolicy) ...[
+            SizedBox(height: SizeConfig.bodyHeight * .03),
+            _buildPoliciesTable(context),
+          ],
         ],
       ),
+    );
+  }
+
+  Widget _buildPoliciesTable(BuildContext context) {
+    return BlocBuilder<AddationCubit, BaseState<AddationData>>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppText(
+              text: context.localizations.policyDetails,
+              fontWeight: FontWeight.w700,
+              textSize: 13,
+              color: context.colorScheme.onSurface,
+            ),
+            SizedBox(height: SizeConfig.bodyHeight * .01),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: context.colorScheme.outline),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                children: [
+                  // Header Row
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 12,
+                    ),
+                    decoration: BoxDecoration(
+                      color: context.colorScheme.primary.withValues(alpha: 0.08),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: _tableHeaderCell(context, context.localizations.policyNumber),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          flex: 3,
+                          child: _tableHeaderCell(context, context.localizations.additionDate),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          flex: 3,
+                          child: _tableHeaderCell(context, context.localizations.medicalInsurancePlan),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          flex: 3,
+                          child: _tableHeaderCell(context, context.localizations.branch),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Data Rows
+                  ...widget.policyList.asMap().entries.map((entry) {
+                    final pIdx = entry.key;
+                    final policy = entry.value;
+                    final isLast = pIdx == widget.policyList.length - 1;
+                    final policyKey = policy.policyId?.toString() ?? '';
+
+                    final plans =
+                        state.data?.policyPlans?.result[policyKey] ?? [];
+                    final branches =
+                        state.data?.branches?.result[policyKey] ?? [];
+
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 12,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            color: context.colorScheme.outline
+                                .withValues(alpha: 0.5),
+                          ),
+                        ),
+                        borderRadius: isLast
+                            ? const BorderRadius.only(
+                                bottomLeft: Radius.circular(8),
+                                bottomRight: Radius.circular(8),
+                              )
+                            : null,
+                      ),
+                      child: Row(
+                        children: [
+                          // Policy Number
+                          Expanded(
+                            flex: 2,
+                            child: AppText(
+                              text: policy.policyNumber ?? '',
+                              textSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: context.colorScheme.onSurface,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          // Addition Date
+                          Expanded(
+                            flex: 3,
+                            child: CustomTextFormField(
+                              name:
+                                  'policyDate_${widget.index}_$pIdx',
+                              hintText: context.localizations.ddMmYyyy,
+                              suffixIcon: const Icon(
+                                Icons.calendar_today,
+                                size: 16,
+                              ),
+                              readOnly: true,
+                              onTap: () async {
+                                final now = DateTime.now();
+                                final backDays =
+                                    (policy.backAdditionDate ?? 0).toInt();
+                                final forwardDays =
+                                    (policy.forwardAdditionDate ?? 0).toInt();
+                                final date = await SettingsHelper()
+                                    .showCustomDatePicker(
+                                  context: context,
+                                  firstDate:
+                                      now.subtract(Duration(days: backDays)),
+                                  lastDate:
+                                      now.add(Duration(days: forwardDays)),
+                                );
+                                if (date != null) {
+                                  widget.formKey.currentState?.patchValue({
+                                    'policyDate_${widget.index}_$pIdx':
+                                        date.formattedDate,
+                                  });
+                                }
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          // Policy Plan
+                          Expanded(
+                            flex: 3,
+                            child: AppDropDown<AddationBranchModel>(
+                              name:
+                                  'policyPlan_${widget.index}_$pIdx',
+                              hint: context.localizations.selectPlan,
+                              isLoading: state.isLoading &&
+                                  state.identifier == "policyPlans",
+                              items: plans
+                                  .map(
+                                    (p) =>
+                                        DropdownMenuItem<AddationBranchModel>(
+                                      value: p,
+                                      child: AppText(
+                                        text: p.branchName,
+                                        textSize: 11,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          // Branch
+                          Expanded(
+                            flex: 3,
+                            child: AppDropDown<AddationBranchModel>(
+                              name:
+                                  'policyBranch_${widget.index}_$pIdx',
+                              hint: context.localizations.selectBranch,
+                              isLoading: state.isLoading &&
+                                  state.identifier == "policyBranches",
+                              items: branches
+                                  .map(
+                                    (b) =>
+                                        DropdownMenuItem<AddationBranchModel>(
+                                      value: b,
+                                      child: AppText(
+                                        text: b.branchName,
+                                        textSize: 11,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _tableHeaderCell(BuildContext context, String text) {
+    return AppText(
+      text: text,
+      fontWeight: FontWeight.w600,
+      textSize: 12,
+      color: context.colorScheme.onSurface,
+      align: TextAlign.center,
     );
   }
 

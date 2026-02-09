@@ -28,6 +28,7 @@ class MemberFormData {
   String? staffNumber;
   String? memberStatus;
   List<PoliciesDataModel> ? policies;
+  List<Map<String, dynamic>>? policyData;
 
   MemberFormData({
     this.relationship,
@@ -51,6 +52,7 @@ class MemberFormData {
     this.staffNumber,
     this.memberStatus,
     this.policies,
+    this.policyData,
   });
 
   Future<Map<String, dynamic>> toJson() async {
@@ -95,6 +97,9 @@ class MemberFormData {
       "member_photo": photoBase64,
       "acknowledgment_statement": acknowledgmentBase64,
     };
+    if (policyData != null && policyData!.isNotEmpty) {
+      map['policy_data'] = policyData;
+    }
     map.removeWhere((key, value) => value == null || value.toString().isEmpty);
     return map;
   }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/enum/gender.dart';
+import 'package:bond/features/addation_deletion/data/models/response/branch_response.dart';
 import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -194,7 +195,28 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
   List<MemberFormData> _extractMembersFromForm() {
     final formData = _formKey.currentState?.value ?? {};
     final List<MemberFormData> extractedMembers = [];
+    final bool isMultiPolicy = widget.selectedPolicies.length > 1;
+
     for (int i = 0; i < members.length; i++) {
+      // Extract per-policy data when multiple policies are selected
+      List<Map<String, dynamic>>? policyData;
+      if (isMultiPolicy) {
+        policyData = [];
+        for (int p = 0; p < widget.selectedPolicies.length; p++) {
+          final policy = widget.selectedPolicies[p];
+          final plan =
+              formData['policyPlan_${i}_$p'] as AddationBranchModel?;
+          final branch =
+              formData['policyBranch_${i}_$p'] as AddationBranchModel?;
+          policyData.add({
+            'number': policy.policyNumber,
+            'branch_id': branch?.branchId,
+            'plan_id': plan?.branchId,
+            'date': formData['policyDate_${i}_$p'],
+          });
+        }
+      }
+
       extractedMembers.add(
         MemberFormData(
           relationship: formData['relationship_$i'] as RelationshipModel?,
@@ -219,6 +241,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
           staffNumber: formData['staffNumber_$i'] as String?,
           memberStatus: 'under_addition',
           policies: widget.selectedPolicies,
+          policyData: policyData,
         ),
       );
     }
