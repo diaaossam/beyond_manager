@@ -24,6 +24,9 @@ class UtilizationScreen extends StatelessWidget {
           return Scaffold(
             appBar: CustomAppBar(
               title: context.localizations.utilization,
+              actions: [
+                IconButton(onPressed: (){}, icon:Icon( Icons.notification_add))
+              ],
             ),
             body: UtilitzationBody(
               policyId: policyId,

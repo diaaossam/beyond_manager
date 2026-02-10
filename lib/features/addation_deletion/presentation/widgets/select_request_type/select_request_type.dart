@@ -9,6 +9,7 @@ import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
 import '../../../data/models/response/policies_data_addation.dart';
+import '../../addation_helper.dart';
 
 class SelectRequestTypeBody extends StatefulWidget {
   final List<PoliciesDataModel> selectedPolicies;
@@ -118,11 +119,18 @@ class _SelectRequestTypeBodyState extends State<SelectRequestTypeBody> {
                         List<num> policyIds = widget.selectedPolicies
                             .map((policy) => policy.policyId!)
                             .toList();
+
+                        final PoliciesDataModel policiesPermission =
+                            AddationHelper.getPoliciesDataPermission(
+                              list: widget.selectedPolicies,
+                            );
+
                         context.router.push(
                           ManualEntryRoute(
                             requestType: selectedType!,
                             selectedPolicies: widget.selectedPolicies,
-                            policyIds: policyIds
+                            policyIds: policyIds,
+                            policiesPermission: policiesPermission,
                           ),
                         );
                       }

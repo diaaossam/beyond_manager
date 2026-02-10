@@ -13,12 +13,14 @@ class ManualEntryScreen extends StatelessWidget {
   final String requestType;
   final List<PoliciesDataModel> selectedPolicies;
   final List<num> policyIds;
+  final PoliciesDataModel policiesPermission;
 
   const ManualEntryScreen({
     super.key,
     required this.requestType,
     required this.selectedPolicies,
     required this.policyIds,
+    required this.policiesPermission,
   });
 
   @override
@@ -29,7 +31,10 @@ class ManualEntryScreen extends StatelessWidget {
         ..fetchPolicyPlans(policyIds: policyIds),
       child: Scaffold(
         appBar: CustomAppBar(title: context.localizations.addMembersManually),
-        body: ManualEntryBody(selectedPolicies: selectedPolicies),
+        body: ManualEntryBody(
+          selectedPolicies: selectedPolicies,
+          policiesPermission: policiesPermission,
+        ),
       ),
     );
   }

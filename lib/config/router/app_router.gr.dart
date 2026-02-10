@@ -688,6 +688,7 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
     required String requestType,
     required List<_i57.PoliciesDataModel> selectedPolicies,
     required List<num> policyIds,
+    required _i57.PoliciesDataModel policiesPermission,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          ManualEntryRoute.name,
@@ -696,6 +697,7 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
            requestType: requestType,
            selectedPolicies: selectedPolicies,
            policyIds: policyIds,
+           policiesPermission: policiesPermission,
          ),
          initialChildren: children,
        );
@@ -711,6 +713,7 @@ class ManualEntryRoute extends _i47.PageRouteInfo<ManualEntryRouteArgs> {
         requestType: args.requestType,
         selectedPolicies: args.selectedPolicies,
         policyIds: args.policyIds,
+        policiesPermission: args.policiesPermission,
       );
     },
   );
@@ -722,6 +725,7 @@ class ManualEntryRouteArgs {
     required this.requestType,
     required this.selectedPolicies,
     required this.policyIds,
+    required this.policiesPermission,
   });
 
   final _i48.Key? key;
@@ -732,9 +736,11 @@ class ManualEntryRouteArgs {
 
   final List<num> policyIds;
 
+  final _i57.PoliciesDataModel policiesPermission;
+
   @override
   String toString() {
-    return 'ManualEntryRouteArgs{key: $key, requestType: $requestType, selectedPolicies: $selectedPolicies, policyIds: $policyIds}';
+    return 'ManualEntryRouteArgs{key: $key, requestType: $requestType, selectedPolicies: $selectedPolicies, policyIds: $policyIds, policiesPermission: $policiesPermission}';
   }
 
   @override
@@ -747,7 +753,8 @@ class ManualEntryRouteArgs {
           selectedPolicies,
           other.selectedPolicies,
         ) &&
-        const _i53.ListEquality<num>().equals(policyIds, other.policyIds);
+        const _i53.ListEquality<num>().equals(policyIds, other.policyIds) &&
+        policiesPermission == other.policiesPermission;
   }
 
   @override
@@ -755,7 +762,8 @@ class ManualEntryRouteArgs {
       key.hashCode ^
       requestType.hashCode ^
       const _i53.ListEquality<_i57.PoliciesDataModel>().hash(selectedPolicies) ^
-      const _i53.ListEquality<num>().hash(policyIds);
+      const _i53.ListEquality<num>().hash(policyIds) ^
+      policiesPermission.hashCode;
 }
 
 /// generated route for

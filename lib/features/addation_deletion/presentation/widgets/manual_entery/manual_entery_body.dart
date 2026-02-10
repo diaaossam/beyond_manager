@@ -23,8 +23,9 @@ import 'member_form_design.dart';
 
 class ManualEntryBody extends StatefulWidget {
   final List<PoliciesDataModel> selectedPolicies;
+  final PoliciesDataModel policiesPermission;
 
-  const ManualEntryBody({super.key, required this.selectedPolicies});
+  const ManualEntryBody({super.key, required this.selectedPolicies, required this.policiesPermission});
 
   @override
   State<ManualEntryBody> createState() => _ManualEntryBodyState();
@@ -33,6 +34,7 @@ class ManualEntryBody extends StatefulWidget {
 class _ManualEntryBodyState extends State<ManualEntryBody> {
   List<MemberFormData> members = [MemberFormData()];
   final _formKey = GlobalKey<FormBuilderState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,9 +112,9 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                       int index = entry.key;
                       MemberFormData member = entry.value;
                       return MemberFormDesign(
+                        policiesPermission: widget.policiesPermission,
                         formKey: _formKey,
                         policyList: widget.selectedPolicies,
-                        isSinglePolicy: widget.selectedPolicies.length ==1,
                         index: index,
                         member: member,
                         onRemove: members.length > 1
@@ -198,7 +200,6 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
     final bool isMultiPolicy = widget.selectedPolicies.length > 1;
 
     for (int i = 0; i < members.length; i++) {
-      // Extract per-policy data when multiple policies are selected
       List<Map<String, dynamic>>? policyData;
       if (isMultiPolicy) {
         policyData = [];

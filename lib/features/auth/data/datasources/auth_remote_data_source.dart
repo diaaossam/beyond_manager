@@ -116,6 +116,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     var code = Random().nextInt(900000) + 100000;
 
+/*
     if (isWhatsApp) {
       await dioConsumer
           .post(EndPoints.sendWhatsApp)
@@ -139,6 +140,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           .factory((json) => "$code")
           .execute();
     }
+*/
 
     return code.toString();
   }

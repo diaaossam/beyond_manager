@@ -5,9 +5,11 @@ import 'package:bond/features/addation_deletion/data/models/response/branch_resp
 import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
 import 'package:bond/features/settings/settings_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import '../../../../../core/enum/gender.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
@@ -27,8 +29,8 @@ class MemberFormDesign extends StatefulWidget {
   final MemberFormData member;
   final VoidCallback? onRemove;
   final GlobalKey<FormBuilderState> formKey;
-  final bool isSinglePolicy;
   final List<PoliciesDataModel> policyList;
+  final PoliciesDataModel policiesPermission;
 
   const MemberFormDesign({
     super.key,
@@ -36,7 +38,8 @@ class MemberFormDesign extends StatefulWidget {
     required this.member,
     this.onRemove,
     required this.formKey,
-    required this.isSinglePolicy, required this.policyList,
+    required this.policyList,
+    required this.policiesPermission,
   });
 
   @override
@@ -46,6 +49,7 @@ class MemberFormDesign extends StatefulWidget {
 class _MemberFormDesignState extends State<MemberFormDesign> {
   @override
   Widget build(BuildContext context) {
+    bool isSinglePolicy = widget.policyList.length == 1;
     return Container(
       margin: EdgeInsets.only(bottom: SizeConfig.bodyHeight * .03),
       padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
@@ -100,25 +104,31 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                             ),
                           )
                           .toList(),
-                      onChanged: (value) {
-                        // Data will be retrieved from form state
-                      },
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                          errorText: context.localizations.validation,
+                        ),
+                      ]),
                     );
                   },
                 ),
               ),
-              SizedBox(width: SizeConfig.screenWidth * .03),
-              Expanded(
-                child: CustomTextFormField(
-                  name: 'fullNameArabic_${widget.index}',
-                  label: context.localizations.fullNameArabic,
-                  hintText: context.localizations.memberFullNameArabic,
-                  textAlign: TextAlign.right,
-                  onChanged: (value) {
-                    // Data will be retrieved from form state
-                  },
+              if (widget.policiesPermission.reqArabicName == true) ...[
+                SizedBox(width: SizeConfig.screenWidth * .03),
+                Expanded(
+                  child: CustomTextFormField(
+                    name: 'fullNameArabic_${widget.index}',
+                    label: context.localizations.fullNameArabic,
+                    hintText: context.localizations.memberFullNameArabic,
+                    textAlign: TextAlign.right,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: context.localizations.validation,
+                      ),
+                    ]),
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -129,34 +139,38 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                   name: 'fullNameEnglish_${widget.index}',
                   label: context.localizations.fullNameEnglish,
                   hintText: context.localizations.memberFullName,
-                  onChanged: (value) {
-                    // Data will be retrieved from form state
-                  },
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: context.localizations.validation,
+                    ),
+                  ]),
                 ),
               ),
-              SizedBox(width: SizeConfig.screenWidth * .03),
-              Expanded(
-                child: AppDropDown<NationalityEnum>(
-                  name: 'nationality_${widget.index}',
-                  label: context.localizations.nationality,
-                  hint: context.localizations.egyptian,
-                  items: NationalityEnum.values
-                      .map<DropdownMenuItem<NationalityEnum>>(
-                        (e) => DropdownMenuItem<NationalityEnum>(
-                          value: e,
-                          child: AppText(
-                            text: e == NationalityEnum.egyptian
-                                ? context.localizations.egyptian
-                                : context.localizations.nonEgyptian,
+              if (widget.policiesPermission.reqNationality == true) ...[
+                SizedBox(width: SizeConfig.screenWidth * .03),
+                Expanded(
+                  child: AppDropDown<NationalityEnum>(
+                    name: 'nationality_${widget.index}',
+                    label: context.localizations.nationality,
+                    hint: context.localizations.egyptian,
+                    items: NationalityEnum.values
+                        .map<DropdownMenuItem<NationalityEnum>>(
+                          (e) => DropdownMenuItem<NationalityEnum>(
+                            value: e,
+                            child: AppText(
+                              text: e == NationalityEnum.egyptian
+                                  ? context.localizations.egyptian
+                                  : context.localizations.nonEgyptian,
+                            ),
                           ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    // Data will be retrieved from form state
-                  },
+                        )
+                        .toList(),
+                    validator: FormBuilderValidators.required(
+                      errorText: context.localizations.validation,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -166,10 +180,20 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                 child: CustomTextFormField(
                   name: 'nationalId_${widget.index}',
                   label: context.localizations.nationalIdCNID,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(14),
+                  ],
                   hintText: context.localizations.nationalIdHint,
-                  onChanged: (value) {
-                    // Data will be retrieved from form state
-                  },
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: context.localizations.validation,
+                    ),
+
+                    FormBuilderValidators.min(
+                      14,
+                    ),
+
+                  ]),
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
@@ -191,6 +215,11 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       });
                     }
                   },
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: context.localizations.validation,
+                    ),
+                  ]),
                 ),
               ),
             ],
@@ -198,28 +227,36 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
           SizedBox(height: SizeConfig.bodyHeight * .02),
           Row(
             children: [
-              Expanded(
-                child: CustomTextFormField(
-                  name: 'hiringDate_${widget.index}',
-                  label: context.localizations.hiringDate,
-                  hintText: context.localizations.ddMmYyyy,
-                  suffixIcon: const Icon(Icons.calendar_today, size: 18),
-                  onTap: () async {
-                    final date = await SettingsHelper().showCustomDatePicker(
-                      context: context,
-                      firstDate: DateTime(1960),
-                      lastDate: DateTime.now(),
-                    );
-                    if (date != null) {
-                      widget.formKey.currentState?.patchValue({
-                        "hiringDate_${widget.index}": date.formattedDate,
-                      });
-                    }
-                  },
+              if (widget.policiesPermission.reqHiringDate == true) ...[
+                Expanded(
+                  child: CustomTextFormField(
+                    name: 'hiringDate_${widget.index}',
+                    label: context.localizations.hiringDate,
+                    hintText: context.localizations.ddMmYyyy,
+                    suffixIcon: const Icon(Icons.calendar_today, size: 18),
+                    onTap: () async {
+                      final date = await SettingsHelper().showCustomDatePicker(
+                        context: context,
+                        firstDate: DateTime(1960),
+                        lastDate: DateTime.now(),
+                      );
+                      if (date != null) {
+                        widget.formKey.currentState?.patchValue({
+                          "hiringDate_${widget.index}": date.formattedDate,
+                        });
+                      }
+                    },
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: context.localizations.validation,
+                      ),
+                    ]),
+                  ),
                 ),
-              ),
-              if(widget.isSinglePolicy)...[
+                if(isSinglePolicy)
                 SizedBox(width: SizeConfig.screenWidth * .03),
+              ],
+              if (isSinglePolicy) ...[
                 Expanded(
                   child: CustomTextFormField(
                     name: 'additionDate_${widget.index}',
@@ -228,8 +265,12 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                     suffixIcon: const Icon(Icons.calendar_today, size: 18),
                     onTap: () async {
                       final now = DateTime.now();
-                      final backDays = (widget.policyList.first.backAdditionDate ?? 0).toInt();
-                      final forwardDays = (widget.policyList.first.forwardAdditionDate ?? 0).toInt();
+                      final backDays =
+                          (widget.policyList.first.backAdditionDate ?? 0)
+                              .toInt();
+                      final forwardDays =
+                          (widget.policyList.first.forwardAdditionDate ?? 0)
+                              .toInt();
                       final date = await SettingsHelper().showCustomDatePicker(
                         context: context,
                         firstDate: now.subtract(Duration(days: backDays)),
@@ -241,10 +282,14 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                         });
                       }
                     },
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: context.localizations.validation,
+                      ),
+                    ]),
                   ),
                 ),
               ],
-
             ],
           ),
           SizedBox(height: SizeConfig.bodyHeight * .02),
@@ -267,9 +312,11 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                         ),
                       )
                       .toList(),
-                  onChanged: (value) {
-                    // Data will be retrieved from form state
-                  },
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: context.localizations.validation,
+                    ),
+                  ]),
                 ),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
@@ -290,9 +337,11 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                         ),
                       )
                       .toList(),
-                  onChanged: (value) {
-                    // Data will be retrieved from form state
-                  },
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: context.localizations.validation,
+                    ),
+                  ]),
                 ),
               ),
             ],
@@ -304,26 +353,45 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                 child: CustomTextFormField(
                   name: 'phoneNumber_${widget.index}',
                   label: context.localizations.phoneNumber,
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(11),
+                  ],
                   hintText: context.localizations.phoneNumberHint,
-                  onChanged: (value) {
-                    // Data will be retrieved from form state
-                  },
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: context.localizations.validation,
+                    ),
+                    FormBuilderValidators.phoneNumber(
+                    ),
+                    FormBuilderValidators.min(
+                      11,
+                    ),
+                  ]),
                 ),
               ),
-              SizedBox(width: SizeConfig.screenWidth * .03),
-              Expanded(
-                child: CustomTextFormField(
-                  name: 'emailAddress_${widget.index}',
-                  label: context.localizations.emailAddress,
-                  hintText: context.localizations.emailHint,
-                  onChanged: (value) {
-                    // Data will be retrieved from form state
-                  },
+              if (widget.policiesPermission.reqEmail == true) ...[
+                SizedBox(width: SizeConfig.screenWidth * .03),
+                Expanded(
+                  child: CustomTextFormField(
+                    name: 'emailAddress_${widget.index}',
+                    label: context.localizations.emailAddress,
+                    keyboardType: TextInputType.emailAddress,
+                    hintText: context.localizations.emailHint,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.email(
+                        errorText: context.localizations.invalidEmail,
+                      ),
+                      FormBuilderValidators.required(
+                        errorText: context.localizations.validation,
+                      ),
+                    ]),
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
-          if (widget.isSinglePolicy) ...[
+          if (isSinglePolicy) ...[
             SizedBox(height: SizeConfig.bodyHeight * .02),
             BlocBuilder<AddationCubit, BaseState<AddationData>>(
               builder: (context, state) {
@@ -336,15 +404,28 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                         Expanded(
                           child: AppDropDown(
                             name: 'medicalInsurancePlan_${widget.index}',
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(
+                                errorText: context.localizations.validation,
+                              ),
+                            ]),
                             label: context.localizations.medicalInsurancePlan,
-                            isLoading: state.isLoading && state.identifier == "policyPlans",
+                            isLoading:
+                                state.isLoading &&
+                                state.identifier == "policyPlans",
                             hint: context.localizations.selectPlan,
-                            items: ((state.data?.policyPlans?.result.entries.toList() ?? [])
+                            items:
+                                ((state.data?.policyPlans?.result.entries
+                                            .toList() ??
+                                        [])
                                     .map(
-                                  (entry) => DropdownMenuItem(
+                                      (entry) => DropdownMenuItem(
                                         value: entry,
                                         child: AppText(
-                                          text: entry.value.isNotEmpty ? entry.value.first.branchName.toString(): "",
+                                          text: entry.value.isNotEmpty
+                                              ? entry.value.first.branchName
+                                                    .toString()
+                                              : "",
                                         ),
                                       ),
                                     )
@@ -355,19 +436,32 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                         Expanded(
                           child: AppDropDown(
                             name: 'branch_${widget.index}',
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(
+                                errorText: context.localizations.validation,
+                              ),
+                            ]),
                             label: context.localizations.branch,
                             hint: context.localizations.selectBranch,
-                            isLoading: state.isLoading && state.identifier == "policyBranches",
-                            items: ((state.data?.branches?.result.entries.toList() ?? [])
-                                .map(
-                                  (entry) => DropdownMenuItem(
-                                value: entry,
-                                child: AppText(
-                                  text: entry.value.isNotEmpty ? entry.value.first.branchName.toString() : "",
-                                ),
-                              ),
-                            )
-                                .toList()),
+                            isLoading:
+                                state.isLoading &&
+                                state.identifier == "policyBranches",
+                            items:
+                                ((state.data?.branches?.result.entries
+                                            .toList() ??
+                                        [])
+                                    .map(
+                                      (entry) => DropdownMenuItem(
+                                        value: entry,
+                                        child: AppText(
+                                          text: entry.value.isNotEmpty
+                                              ? entry.value.first.branchName
+                                                    .toString()
+                                              : "",
+                                        ),
+                                      ),
+                                    )
+                                    .toList()),
                           ),
                         ),
                       ],
@@ -377,82 +471,107 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
               },
             ),
           ],
-
-          SizedBox(height: SizeConfig.bodyHeight * .02),
-          CustomTextFormField(
-            name: 'salary_${widget.index}',
-            label: context.localizations.salaryConditional,
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
-            hintText: context.localizations.monthlySalary,
-            onChanged: (value) {
-              // Data will be retrieved from form state
-            },
-          ),
-          SizedBox(height: SizeConfig.bodyHeight * .02),
-          CustomTextFormField(
-            name: 'iban_${widget.index}',
-            label: context.localizations.ibanConditional,
-            hintText: context.localizations.ibanHint,
-            onChanged: (value) {
-              // Data will be retrieved from form state
-            },
-          ),
+          if (widget.policiesPermission.isSalaryInAdditionRequired == true) ...[
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            CustomTextFormField(
+              name: 'salary_${widget.index}',
+              label: context.localizations.salaryConditional,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              hintText: context.localizations.monthlySalary,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(
+                  errorText: context.localizations.validation,
+                ),
+              ]),
+            ),
+          ],
+          if (widget.policiesPermission.isIbanInAdditionRequired == true) ...[
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            CustomTextFormField(
+              name: 'iban_${widget.index}',
+              label: context.localizations.ibanConditional,
+              hintText: context.localizations.ibanHint,
+              validator: FormBuilderValidators.required(
+                errorText: context.localizations.validation,
+              ),
+            ),
+          ],
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomTextFormField(
             name: 'address_${widget.index}',
             label: context.localizations.address,
+            keyboardType: TextInputType.streetAddress,
             hintText: context.localizations.fullAddress,
-            onChanged: (value) {
-              // Data will be retrieved from form state
-            },
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(
+                errorText: context.localizations.validation,
+              ),
+            ]),
           ),
-          SizedBox(height: SizeConfig.bodyHeight * .02),
-          FormBuilderField<String>(
-            name: 'photoFileName_${widget.index}',
-            builder: (FormFieldState<String> field) {
-              return _buildFileUpload(
-                context: context,
-                label: context.localizations.photoUpload,
-                required: true,
-                helperText:
-                    context.localizations.automaticallyRenamedWithStaffNumber,
-                fileName: field.value,
-                onTap: () async {
-                  File file = await SecureFilePicker.pickFile();
-                  field.didChange(file.path);
-                  setState(() {});
-                },
-              );
-            },
-          ),
-          SizedBox(height: SizeConfig.bodyHeight * .02),
-          FormBuilderField<String>(
-            name: 'acknowledgmentFileName_${widget.index}',
-            builder: (FormFieldState<String> field) {
-              return _buildFileUpload(
-                context: context,
-                label: context.localizations.acknowledgmentStatement,
-                required: true,
-                helperText: context.localizations.uploadSignedAcknowledgment,
-                fileName: field.value,
-                onTap: () async {
-                  File file = await SecureFilePicker.pickFile();
-                  field.didChange(file.path);
-                  setState(() {});
-                },
-              );
-            },
-          ),
+          if (widget.policiesPermission.reqPhoto == true) ...[
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            FormBuilderField<String>(
+              name: 'photoFileName_${widget.index}',
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(
+                  errorText: context.localizations.validation,
+                ),
+              ]),
+              builder: (FormFieldState<String> field) {
+                return _buildFileUpload(
+                  context: context,
+                  hasError: field.hasError,
+                  label: context.localizations.photoUpload,
+                  required: true,
+                  helperText: context.localizations.automaticallyRenamedWithStaffNumber,
+                  fileName: field.value,
+                  onTap: () async {
+                    File file = await SecureFilePicker.pickFile();
+                    field.didChange(file.path);
+                    setState(() {});
+                  },
+                );
+              },
+            ),
+          ],
+          if (widget.policiesPermission.reqAcknowledgement == true) ...[
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            FormBuilderField<String>(
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(
+                  errorText: context.localizations.validation,
+                ),
+              ]),
+              name: 'acknowledgmentFileName_${widget.index}',
+              builder: (FormFieldState<String> field) {
+                return _buildFileUpload(
+                  context: context,
+                  hasError: field.hasError,
+                  label: context.localizations.acknowledgmentStatement,
+                  required: true,
+                  helperText: context.localizations.uploadSignedAcknowledgment,
+                  fileName: field.value,
+                  onTap: () async {
+                    File file = await SecureFilePicker.pickFile();
+                    field.didChange(file.path);
+                    setState(() {});
+                  },
+                );
+              },
+            ),
+          ],
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomTextFormField(
             name: 'staffNumber_${widget.index}',
             label: context.localizations.staffNumberId,
             hintText: context.localizations.employeeStaffNumber,
-            onChanged: (value) {
-              // Data will be retrieved from form state
-            },
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(
+                errorText: context.localizations.validation,
+              ),
+            ]),
           ),
-          if (!widget.isSinglePolicy) ...[
+          if (!isSinglePolicy) ...[
             SizedBox(height: SizeConfig.bodyHeight * .03),
             _buildPoliciesTable(context),
           ],
@@ -488,7 +607,9 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       horizontal: 12,
                     ),
                     decoration: BoxDecoration(
-                      color: context.colorScheme.primary.withValues(alpha: 0.08),
+                      color: context.colorScheme.primary.withValues(
+                        alpha: 0.08,
+                      ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(8),
                         topRight: Radius.circular(8),
@@ -498,22 +619,34 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       children: [
                         Expanded(
                           flex: 2,
-                          child: _tableHeaderCell(context, context.localizations.policyNumber),
+                          child: _tableHeaderCell(
+                            context,
+                            context.localizations.policyNumber,
+                          ),
                         ),
                         const SizedBox(width: 8),
                         Expanded(
                           flex: 3,
-                          child: _tableHeaderCell(context, context.localizations.additionDate),
+                          child: _tableHeaderCell(
+                            context,
+                            context.localizations.additionDate,
+                          ),
                         ),
                         const SizedBox(width: 8),
                         Expanded(
                           flex: 3,
-                          child: _tableHeaderCell(context, context.localizations.medicalInsurancePlan),
+                          child: _tableHeaderCell(
+                            context,
+                            context.localizations.medicalInsurancePlan,
+                          ),
                         ),
                         const SizedBox(width: 8),
                         Expanded(
                           flex: 3,
-                          child: _tableHeaderCell(context, context.localizations.branch),
+                          child: _tableHeaderCell(
+                            context,
+                            context.localizations.branch,
+                          ),
                         ),
                       ],
                     ),
@@ -538,8 +671,9 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       decoration: BoxDecoration(
                         border: Border(
                           top: BorderSide(
-                            color: context.colorScheme.outline
-                                .withValues(alpha: 0.5),
+                            color: context.colorScheme.outline.withValues(
+                              alpha: 0.5,
+                            ),
                           ),
                         ),
                         borderRadius: isLast
@@ -551,7 +685,6 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       ),
                       child: Row(
                         children: [
-                          // Policy Number
                           Expanded(
                             flex: 2,
                             child: AppText(
@@ -562,12 +695,10 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          // Addition Date
                           Expanded(
                             flex: 3,
                             child: CustomTextFormField(
-                              name:
-                                  'policyDate_${widget.index}_$pIdx',
+                              name: 'policyDate_${widget.index}_$pIdx',
                               hintText: context.localizations.ddMmYyyy,
                               suffixIcon: const Icon(
                                 Icons.calendar_today,
@@ -576,18 +707,20 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                               readOnly: true,
                               onTap: () async {
                                 final now = DateTime.now();
-                                final backDays =
-                                    (policy.backAdditionDate ?? 0).toInt();
+                                final backDays = (policy.backAdditionDate ?? 0)
+                                    .toInt();
                                 final forwardDays =
                                     (policy.forwardAdditionDate ?? 0).toInt();
                                 final date = await SettingsHelper()
                                     .showCustomDatePicker(
-                                  context: context,
-                                  firstDate:
-                                      now.subtract(Duration(days: backDays)),
-                                  lastDate:
-                                      now.add(Duration(days: forwardDays)),
-                                );
+                                      context: context,
+                                      firstDate: now.subtract(
+                                        Duration(days: backDays),
+                                      ),
+                                      lastDate: now.add(
+                                        Duration(days: forwardDays),
+                                      ),
+                                    );
                                 if (date != null) {
                                   widget.formKey.currentState?.patchValue({
                                     'policyDate_${widget.index}_$pIdx':
@@ -598,49 +731,47 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          // Policy Plan
                           Expanded(
                             flex: 3,
                             child: AppDropDown<AddationBranchModel>(
-                              name:
-                                  'policyPlan_${widget.index}_$pIdx',
+                              name: 'policyPlan_${widget.index}_$pIdx',
                               hint: context.localizations.selectPlan,
-                              isLoading: state.isLoading &&
+                              isLoading:
+                                  state.isLoading &&
                                   state.identifier == "policyPlans",
                               items: plans
                                   .map(
                                     (p) =>
                                         DropdownMenuItem<AddationBranchModel>(
-                                      value: p,
-                                      child: AppText(
-                                        text: p.branchName,
-                                        textSize: 11,
-                                      ),
-                                    ),
+                                          value: p,
+                                          child: AppText(
+                                            text: p.branchName,
+                                            textSize: 11,
+                                          ),
+                                        ),
                                   )
                                   .toList(),
                             ),
                           ),
                           const SizedBox(width: 8),
-                          // Branch
                           Expanded(
                             flex: 3,
                             child: AppDropDown<AddationBranchModel>(
-                              name:
-                                  'policyBranch_${widget.index}_$pIdx',
+                              name: 'policyBranch_${widget.index}_$pIdx',
                               hint: context.localizations.selectBranch,
-                              isLoading: state.isLoading &&
+                              isLoading:
+                                  state.isLoading &&
                                   state.identifier == "policyBranches",
                               items: branches
                                   .map(
                                     (b) =>
                                         DropdownMenuItem<AddationBranchModel>(
-                                      value: b,
-                                      child: AppText(
-                                        text: b.branchName,
-                                        textSize: 11,
-                                      ),
-                                    ),
+                                          value: b,
+                                          child: AppText(
+                                            text: b.branchName,
+                                            textSize: 11,
+                                          ),
+                                        ),
                                   )
                                   .toList(),
                             ),
@@ -662,7 +793,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
     return AppText(
       text: text,
       fontWeight: FontWeight.w600,
-      textSize: 12,
+      textSize: 10,
       color: context.colorScheme.onSurface,
       align: TextAlign.center,
     );
@@ -675,82 +806,93 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
     String? helperText,
     String? fileName,
     required VoidCallback onTap,
+    required bool hasError,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            AppText(
-              text: label,
-              fontWeight: FontWeight.w600,
-              textSize: 12,
-              color: context.colorScheme.onSurface,
-            ),
-            if (required)
-              const AppText(
-                text: " *",
-                fontWeight: FontWeight.w700,
-                textSize: 13,
-                color: Colors.red,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: hasError
+              ? context.colorScheme.error
+              : context.colorScheme.outline,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              AppText(
+                text: label,
+                fontWeight: FontWeight.w600,
+                textSize: 12,
+                color: context.colorScheme.onSurface,
               ),
+              if (required)
+                const AppText(
+                  text: " *",
+                  fontWeight: FontWeight.w700,
+                  textSize: 13,
+                  color: Colors.red,
+                ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          InkWell(
+            onTap: onTap,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+              decoration: BoxDecoration(
+                border: Border.all(color: context.colorScheme.outline),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: context.colorScheme.outline,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: AppText(
+                      text: context.localizations.chooseFile,
+                      fontWeight: FontWeight.w600,
+                      textSize: 12,
+                      color: context.colorScheme.onSurface,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: AppText(
+                      text: fileName != null
+                          ? fileName.split('/').last
+                          : context.localizations.noFileChosen,
+                      fontWeight: FontWeight.w400,
+                      textSize: 11,
+                      color: fileName != null
+                          ? context.colorScheme.onSurface
+                          : context.colorScheme.shadow,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          if (helperText != null) ...[
+            const SizedBox(height: 4),
+            AppText(
+              text: helperText,
+              fontWeight: FontWeight.w400,
+              textSize: 11,
+              color: context.colorScheme.shadow,
+              maxLines: 2,
+            ),
           ],
-        ),
-        const SizedBox(height: 6),
-        InkWell(
-          onTap: onTap,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-            decoration: BoxDecoration(
-              border: Border.all(color: context.colorScheme.outline),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.outline,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: AppText(
-                    text: context.localizations.chooseFile,
-                    fontWeight: FontWeight.w600,
-                    textSize: 12,
-                    color: context.colorScheme.onSurface,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: AppText(
-                    text: fileName != null
-                        ? fileName.split('/').last
-                        : context.localizations.noFileChosen,
-                    fontWeight: FontWeight.w400,
-                    textSize: 11,
-                    color: fileName != null
-                        ? context.colorScheme.onSurface
-                        : context.colorScheme.shadow,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        if (helperText != null) ...[
-          const SizedBox(height: 4),
-          AppText(
-            text: helperText,
-            fontWeight: FontWeight.w400,
-            textSize: 11,
-            color: context.colorScheme.shadow,
-            maxLines: 2,
-          ),
         ],
-      ],
+      ),
     );
   }
 }
