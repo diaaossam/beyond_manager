@@ -64,4 +64,6 @@ class EndPoints {
   static const String getUtilizationNotifications = "/get/utilization/notifications";
   static const String sendDeepDive = "/post/deep/dive/study";
   static const String getDeepDive = "/get/all/deep/dive/studies";
+
+  static const String createHrAccess = "/post/hr/access";
 }

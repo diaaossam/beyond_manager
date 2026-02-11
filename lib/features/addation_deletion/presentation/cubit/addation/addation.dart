@@ -7,7 +7,7 @@ import '../../../data/models/response/manual_entry_params.dart';
 import 'addation_data.dart';
 
 @injectable
-class AddationCubit extends Cubit<BaseState<AddationData>>
+  class AddationCubit extends Cubit<BaseState<AddationData>>
     with AsyncHandler<AddationData> {
   final AddationDeletionRepository addationRepository;
 

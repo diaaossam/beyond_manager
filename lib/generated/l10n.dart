@@ -4504,6 +4504,106 @@ class S {
     );
   }
 
+  /// `Create HR Access`
+  String get createHrAccess {
+    return Intl.message(
+      'Create HR Access',
+      name: 'createHrAccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manager Full Name`
+  String get managerFullName {
+    return Intl.message(
+      'Manager Full Name',
+      name: 'managerFullName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Access Permissions`
+  String get accessPermissions {
+    return Intl.message(
+      'Access Permissions',
+      name: 'accessPermissions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Access Payment`
+  String get accessPayment {
+    return Intl.message(
+      'Access Payment',
+      name: 'accessPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Access Policy Details`
+  String get accessPolicyDetails {
+    return Intl.message(
+      'Access Policy Details',
+      name: 'accessPolicyDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Access Utilization`
+  String get accessUtilization {
+    return Intl.message(
+      'Access Utilization',
+      name: 'accessUtilization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Access Active List`
+  String get accessActiveList {
+    return Intl.message(
+      'Access Active List',
+      name: 'accessActiveList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Access Addition and Deletions`
+  String get accessAdditionAndDeletions {
+    return Intl.message(
+      'Access Addition and Deletions',
+      name: 'accessAdditionAndDeletions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Another Manager`
+  String get addAnotherManager {
+    return Intl.message(
+      'Add Another Manager',
+      name: 'addAnotherManager',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All data is validated before submission. Make sure to select a policy and fill in all required fields.`
+  String get hrAccessTip {
+    return Intl.message(
+      'All data is validated before submission. Make sure to select a policy and fill in all required fields.',
+      name: 'hrAccessTip',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Submit Request`
   String get submitRequest {
     return Intl.message(
@@ -6794,6 +6894,26 @@ class S {
     return Intl.message(
       'Study Results: Once the deep dive study is completed, recommendations will appear in the "Recommendations Based on Deep Dive" tab.',
       name: 'studyResultsInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create New Manager`
+  String get createNewManager {
+    return Intl.message(
+      'Create New Manager',
+      name: 'createNewManager',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Existing Manager`
+  String get updateExistingManager {
+    return Intl.message(
+      'Update Existing Manager',
+      name: 'updateExistingManager',
       desc: '',
       args: [],
     );

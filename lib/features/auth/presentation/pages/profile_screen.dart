@@ -6,6 +6,7 @@ import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
 import 'package:bond/gen/assets.gen.dart';
 import 'package:bond/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../core/utils/app_size.dart';
 import '../../../../widgets/main_widget/app_text.dart';
@@ -61,6 +62,26 @@ class ProfileScreen extends StatelessWidget {
                   const CompanyDropDown(),
                 ],
               ),
+            ),
+            SizedBox(height: SizeConfig.bodyHeight * .02),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                    text: context.localizations.createNewManager,
+                    press: () => context.router.push(CreateHrAccessRoute()),
+                    textSize: 9,
+                  ),
+                ),
+                10.horizontalSpace,
+                Expanded(
+                  child: CustomButton.outline(
+                    text: context.localizations.updateExistingManager,
+                    press: () {},
+                    textSize: 9,
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: SizeConfig.bodyHeight * .02),
             Align(
@@ -137,7 +158,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: SizeConfig.bodyHeight * .02),
-
             CustomButton(
               text: context.localizations.logOut,
               press: () async => LogoutDialog.show(context),

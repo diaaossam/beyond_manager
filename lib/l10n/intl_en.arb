@@ -535,6 +535,17 @@
   "tip": "Tip: ",
   "allDataValidatedInstantly": "All data is validated instantly. You'll see real-time feedback if there are any errors in your entries.",
   "addAnotherMember": "Add Another Member",
+  "createHrAccess": "Create HR Access",
+  "managerFullName": "Manager Full Name",
+  "accessPermissions": "Access Permissions",
+  "accessPayment": "Access Payment",
+  "accessPolicyDetails": "Access Policy Details",
+  "accessUtilization": "Access Utilization",
+  "accessActiveList": "Access Active List",
+  "accessAdditionAndDeletions": "Access Addition and Deletions",
+  "reimbursement": "Reimbursement",
+  "addAnotherManager": "Add Another Manager",
+  "hrAccessTip": "All data is validated before submission. Make sure to select a policy and fill in all required fields.",
   "submitRequest": "Submit Request",
   "member": "Member #",
   "relationship": "Relationship",
@@ -780,6 +791,8 @@
   "requestDeepDiveSubtitle": "Request deep dive study → Receive actionable recommendations.",
   "whatWouldYouLikeToAnalyze": "What would you like to analyze?",
   "whatWouldYouLikeToAnalyzePlaceholder": "Example: \"Why are our dental service costs 30% higher than average?\"",
-  "studyResultsInfo": "Study Results: Once the deep dive study is completed, recommendations will appear in the \"Recommendations Based on Deep Dive\" tab."
+  "studyResultsInfo": "Study Results: Once the deep dive study is completed, recommendations will appear in the \"Recommendations Based on Deep Dive\" tab.",
+  "createNewManager": "Create New Manager",
+  "updateExistingManager": "Update Existing Manager"
 
 }

@@ -72,6 +72,8 @@ import '../../features/hr_access/data/datasources/hr_access_remote_data_source.d
     as _i883;
 import '../../features/hr_access/data/repositories/hr_access_repository.dart'
     as _i48;
+import '../../features/hr_access/presentation/cubit/create_hr_access/create_hr_access_cubit.dart'
+    as _i395;
 import '../../features/network/data/datasources/network_remote_data_source.dart'
     as _i98;
 import '../../features/network/data/repositories/network_repository.dart'
@@ -347,6 +349,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i392.CarServiceCubit>(
       () => _i392.CarServiceCubit(gh<_i136.CarServiceRepositoryImpl>()),
+    );
+    gh.factory<_i395.CreateHrAccessCubit>(
+      () => _i395.CreateHrAccessCubit(
+        gh<_i48.HrAccessRepository>(),
+        gh<_i998.PoliciesRepositoryImpl>(),
+      ),
     );
     gh.factory<_i612.PoliciesDataCubit>(
       () => _i612.PoliciesDataCubit(gh<_i198.AddationDeletionRepository>()),

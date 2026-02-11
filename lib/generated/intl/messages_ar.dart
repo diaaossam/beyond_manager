@@ -47,11 +47,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "acceptedFormatsXlsx": MessageLookupByLibrary.simpleMessage(
       "التنسيقات المقبولة: .xlsx, .xls",
     ),
+    "accessActiveList": MessageLookupByLibrary.simpleMessage("القائمة النشطة"),
+    "accessAdditionAndDeletions": MessageLookupByLibrary.simpleMessage(
+      "الإضافات والحذف",
+    ),
+    "accessPayment": MessageLookupByLibrary.simpleMessage("الوصول للدفع"),
+    "accessPermissions": MessageLookupByLibrary.simpleMessage("صلاحيات الوصول"),
+    "accessPolicyDetails": MessageLookupByLibrary.simpleMessage(
+      "تفاصيل الوثيقة",
+    ),
+    "accessUtilization": MessageLookupByLibrary.simpleMessage("الاستخدام"),
     "acknowledgmentStatement": MessageLookupByLibrary.simpleMessage(
       "بيان الإقرار",
     ),
     "actionRequired": MessageLookupByLibrary.simpleMessage("مطلوب إجراء"),
     "activePolicies": MessageLookupByLibrary.simpleMessage("الوثائق النشطة"),
+    "addAnotherManager": MessageLookupByLibrary.simpleMessage("إضافة مدير آخر"),
     "addAnotherMember": MessageLookupByLibrary.simpleMessage("إضافة عضو آخر"),
     "addMembersManually": MessageLookupByLibrary.simpleMessage(
       "إضافة الأعضاء يدويًا",
@@ -165,6 +176,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "المتابعة لاختيار الطريقة",
     ),
     "coverageEnd": MessageLookupByLibrary.simpleMessage("نهاية التغطية:"),
+    "createHrAccess": MessageLookupByLibrary.simpleMessage(
+      "إنشاء صلاحية موارد بشرية",
+    ),
     "createNewRequest": MessageLookupByLibrary.simpleMessage("إنشاء طلب جديد"),
     "createNewRequestDesc": MessageLookupByLibrary.simpleMessage(
       "تقديم طلب إضافة أو حذف جديد لأعضائك. اختر بين الإدخال اليدوي أو تحميل القالب المجمع.",
@@ -316,6 +330,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "hasFamilyMembersAutoSelected": m2,
     "hiringDate": MessageLookupByLibrary.simpleMessage("تاريخ التوظيف"),
+    "hrAccessTip": MessageLookupByLibrary.simpleMessage(
+      "يتم التحقق من جميع البيانات قبل الإرسال. تأكد من اختيار وثيقة وتعبئة جميع الحقول المطلوبة.",
+    ),
     "iAgreeWith": MessageLookupByLibrary.simpleMessage(
       "بالضغط على \"إنشاء حساب\"، فإنك توافق على",
     ),
@@ -352,6 +369,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "manageMemberAdditionsDeletions": MessageLookupByLibrary.simpleMessage(
       "إدارة إضافات وحذف الأعضاء لوثائق التأمين الخاصة بك",
+    ),
+    "managerFullName": MessageLookupByLibrary.simpleMessage(
+      "الاسم الكامل للمدير",
     ),
     "manualEntry": MessageLookupByLibrary.simpleMessage("الإدخال اليدوي"),
     "manualEntryDesc": MessageLookupByLibrary.simpleMessage(
@@ -520,6 +540,7 @@ class MessageLookup extends MessageLookupByLibrary {
           "أهلية الاسترداد تعتمد على شروط الوثيقة وتاريخ السريان",
         ),
     "refunds": MessageLookupByLibrary.simpleMessage("المبالغ المستردة:"),
+    "reimbursement": MessageLookupByLibrary.simpleMessage("المستردات"),
     "relationship": MessageLookupByLibrary.simpleMessage("العلاقة"),
     "requestDeepDiveSubtitle": MessageLookupByLibrary.simpleMessage(
       "اطلب دراسة تعمق ← احصل على توصيات قابلة للتطبيق.",

@@ -49,6 +49,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "acceptedFormatsXlsx": MessageLookupByLibrary.simpleMessage(
       "Accepted formats: .xlsx, .xls",
     ),
+    "accessActiveList": MessageLookupByLibrary.simpleMessage(
+      "Access Active List",
+    ),
+    "accessAdditionAndDeletions": MessageLookupByLibrary.simpleMessage(
+      "Access Addition and Deletions",
+    ),
+    "accessPayment": MessageLookupByLibrary.simpleMessage("Access Payment"),
+    "accessPermissions": MessageLookupByLibrary.simpleMessage(
+      "Access Permissions",
+    ),
+    "accessPolicyDetails": MessageLookupByLibrary.simpleMessage(
+      "Access Policy Details",
+    ),
+    "accessUtilization": MessageLookupByLibrary.simpleMessage(
+      "Access Utilization",
+    ),
     "account": MessageLookupByLibrary.simpleMessage("Account"),
     "acknowledgmentStatement": MessageLookupByLibrary.simpleMessage(
       "Acknowledgment Statement",
@@ -72,6 +88,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "add3rdChild": MessageLookupByLibrary.simpleMessage("Add 3rd Child"),
     "add4thChild": MessageLookupByLibrary.simpleMessage("Add 4th Child"),
     "add5thChild": MessageLookupByLibrary.simpleMessage("Add 5th Child"),
+    "addAnotherManager": MessageLookupByLibrary.simpleMessage(
+      "Add Another Manager",
+    ),
     "addAnotherMember": MessageLookupByLibrary.simpleMessage(
       "Add Another Member",
     ),
@@ -339,7 +358,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "count": MessageLookupByLibrary.simpleMessage("Count"),
     "coverageEnd": MessageLookupByLibrary.simpleMessage("Coverage End:"),
+    "createHrAccess": MessageLookupByLibrary.simpleMessage("Create HR Access"),
     "createNewAccount": MessageLookupByLibrary.simpleMessage("Create account"),
+    "createNewManager": MessageLookupByLibrary.simpleMessage(
+      "Create New Manager",
+    ),
     "createNewRequest": MessageLookupByLibrary.simpleMessage(
       "Create New Request",
     ),
@@ -635,6 +658,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "hospitalValidation": MessageLookupByLibrary.simpleMessage(
       "Hospital is required",
     ),
+    "hrAccessTip": MessageLookupByLibrary.simpleMessage(
+      "All data is validated before submission. Make sure to select a policy and fill in all required fields.",
+    ),
     "husbandAdded": MessageLookupByLibrary.simpleMessage("Husband Added"),
     "iAgreeWith": MessageLookupByLibrary.simpleMessage(
       "By clicking \"Create Account\", you agree to",
@@ -758,6 +784,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "manageMemberAdditionsDeletions": MessageLookupByLibrary.simpleMessage(
       "Manage member additions and deletions for your insurance policies",
+    ),
+    "managerFullName": MessageLookupByLibrary.simpleMessage(
+      "Manager Full Name",
     ),
     "manualEntry": MessageLookupByLibrary.simpleMessage("Manual Entry"),
     "manualEntryDesc": MessageLookupByLibrary.simpleMessage(
@@ -1434,6 +1463,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "updateBody2": MessageLookupByLibrary.simpleMessage("Bug fixes."),
     "updateBody3": MessageLookupByLibrary.simpleMessage("Update Now"),
+    "updateExistingManager": MessageLookupByLibrary.simpleMessage(
+      "Update Existing Manager",
+    ),
     "updateTitle": MessageLookupByLibrary.simpleMessage("Update Available"),
     "uploadAttachments": MessageLookupByLibrary.simpleMessage(
       "Upload Attachments",
