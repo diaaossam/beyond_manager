@@ -73,6 +73,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "affectedMembersWillBeNotified": MessageLookupByLibrary.simpleMessage(
       "سيتم إخطار الأعضاء المتأثرين بالحذف عبر البريد الإلكتروني/الرسائل النصية القصيرة",
     ),
+    "alertConfiguration": MessageLookupByLibrary.simpleMessage(
+      "إعداد التنبيهات",
+    ),
     "allDataValidatedInstantly": MessageLookupByLibrary.simpleMessage(
       "يتم التحقق من جميع البيانات على الفور. سترى ملاحظات فورية إذا كانت هناك أي أخطاء في إدخالاتك.",
     ),
@@ -172,6 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "يجب أن يكون التنسيق يوم/شهر/سنة",
     ),
     "ddMmYyyy": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
+    "deepDiveStudy": MessageLookupByLibrary.simpleMessage("دراسة التعمق"),
     "deletedMembersMayBeReEnrolled": MessageLookupByLibrary.simpleMessage(
       "يمكن إعادة تسجيل الأعضاء المحذوفين باتباع إجراءات الإضافة القياسية",
     ),
@@ -230,9 +234,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailMustBeValid": MessageLookupByLibrary.simpleMessage(
       "يجب أن يكون بريدًا إلكترونيًا صالحًا للشركة أو شخصيًا",
     ),
+    "employeeAmountThreshold": MessageLookupByLibrary.simpleMessage(
+      "حد مبلغ الموظف",
+    ),
+    "employeeAmountThresholdDescription": MessageLookupByLibrary.simpleMessage(
+      "تنبيه عند وصول إجمالي استهلاك أي موظف إلى هذا المبلغ.",
+    ),
     "employeeStaffNumber": MessageLookupByLibrary.simpleMessage(
       "رقم موظف الموظف",
     ),
+    "employeeTransactionCountThreshold": MessageLookupByLibrary.simpleMessage(
+      "حد عدد معاملات الموظف",
+    ),
+    "employeeTransactionCountThresholdDescription":
+        MessageLookupByLibrary.simpleMessage(
+          "تنبيه عند وصول عدد معاملات أي موظف إلى هذا العدد.",
+        ),
     "english": MessageLookupByLibrary.simpleMessage("إنجليزى"),
     "ensureAllDataComplies": MessageLookupByLibrary.simpleMessage(
       "يرجى التأكد من أن جميع البيانات تتوافق مع هذه الإرشادات قبل تقديم القالب الخاص بك لتجنب التأخير أو الرفض.",
@@ -385,6 +402,13 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "راقب وتتبع جميع طلبات الإضافة والحذف الخاصة بك",
         ),
+    "monthlyConsumptionThreshold": MessageLookupByLibrary.simpleMessage(
+      "حد الاستهلاك الشهري",
+    ),
+    "monthlyConsumptionThresholdDescription":
+        MessageLookupByLibrary.simpleMessage(
+          "تنبيه عند وصول الاستهلاك في شهر معين إلى هذا المبلغ.",
+        ),
     "monthlySalary": MessageLookupByLibrary.simpleMessage("الراتب الشهري"),
     "mustProvideValidReasonForDeletion": MessageLookupByLibrary.simpleMessage(
       "يجب تقديم سبب صالح للحذف",
@@ -499,6 +523,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "relationship": MessageLookupByLibrary.simpleMessage("العلاقة"),
     "requestDemo": MessageLookupByLibrary.simpleMessage("طلب عرض تجريبي"),
     "requestHistory": MessageLookupByLibrary.simpleMessage("سجل الطلبات"),
+    "requestNewDeepDiveStudy": MessageLookupByLibrary.simpleMessage(
+      "طلب دراسة تعمق جديدة",
+    ),
     "requestNumber": MessageLookupByLibrary.simpleMessage("رقم الطلب"),
     "requiredDocuments": MessageLookupByLibrary.simpleMessage(
       "المستندات المطلوبة:",
@@ -637,6 +664,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "thereIsError": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
     "tip": MessageLookupByLibrary.simpleMessage("نصيحة: "),
+    "totalConsumptionThreshold": MessageLookupByLibrary.simpleMessage(
+      "حد الاستهلاك الإجمالي",
+    ),
+    "totalConsumptionThresholdDescription":
+        MessageLookupByLibrary.simpleMessage(
+          "تنبيه عند وصول استهلاك الشركة الإجمالي إلى هذا المبلغ.",
+        ),
+    "unitCount": MessageLookupByLibrary.simpleMessage("عدد"),
+    "unitEg": MessageLookupByLibrary.simpleMessage("ج.م"),
     "upTo100MembersPerTemplate": MessageLookupByLibrary.simpleMessage(
       "ما يصل إلى 100 عضو لكل قالب مقدم",
     ),
@@ -683,6 +719,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "useUTF8EncodingForArabicText": MessageLookupByLibrary.simpleMessage(
       "استخدم ترميز UTF-8 للنص العربي",
+    ),
+    "utilizationNotifications": MessageLookupByLibrary.simpleMessage(
+      "إشعارات الاستخدام",
     ),
     "validation": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
     "validationAndApproval": MessageLookupByLibrary.simpleMessage(

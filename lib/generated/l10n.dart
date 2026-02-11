@@ -6608,6 +6608,156 @@ class S {
   String get skip {
     return Intl.message('Skip', name: 'skip', desc: '', args: []);
   }
+
+  /// `Configure Utilization Notifications`
+  String get configureUtilizationNotification {
+    return Intl.message(
+      'Configure Utilization Notifications',
+      name: 'configureUtilizationNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set thresholds for automatic alerts and reminders.`
+  String get configureUtilizationNotificationBody {
+    return Intl.message(
+      'Set thresholds for automatic alerts and reminders.',
+      name: 'configureUtilizationNotificationBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alert Configuration`
+  String get alertConfiguration {
+    return Intl.message(
+      'Alert Configuration',
+      name: 'alertConfiguration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Consumption Threshold`
+  String get totalConsumptionThreshold {
+    return Intl.message(
+      'Total Consumption Threshold',
+      name: 'totalConsumptionThreshold',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alert when total company consumption reaches this amount.`
+  String get totalConsumptionThresholdDescription {
+    return Intl.message(
+      'Alert when total company consumption reaches this amount.',
+      name: 'totalConsumptionThresholdDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly Consumption Threshold`
+  String get monthlyConsumptionThreshold {
+    return Intl.message(
+      'Monthly Consumption Threshold',
+      name: 'monthlyConsumptionThreshold',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alert when consumption in a specific month reaches this amount.`
+  String get monthlyConsumptionThresholdDescription {
+    return Intl.message(
+      'Alert when consumption in a specific month reaches this amount.',
+      name: 'monthlyConsumptionThresholdDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee Amount Threshold`
+  String get employeeAmountThreshold {
+    return Intl.message(
+      'Employee Amount Threshold',
+      name: 'employeeAmountThreshold',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alert when any employee's total consumption reaches this amount.`
+  String get employeeAmountThresholdDescription {
+    return Intl.message(
+      'Alert when any employee\'s total consumption reaches this amount.',
+      name: 'employeeAmountThresholdDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee Transaction Count Threshold`
+  String get employeeTransactionCountThreshold {
+    return Intl.message(
+      'Employee Transaction Count Threshold',
+      name: 'employeeTransactionCountThreshold',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alert when any employee's number of transactions reaches this count.`
+  String get employeeTransactionCountThresholdDescription {
+    return Intl.message(
+      'Alert when any employee\'s number of transactions reaches this count.',
+      name: 'employeeTransactionCountThresholdDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EG`
+  String get unitEg {
+    return Intl.message('EG', name: 'unitEg', desc: '', args: []);
+  }
+
+  /// `Count`
+  String get unitCount {
+    return Intl.message('Count', name: 'unitCount', desc: '', args: []);
+  }
+
+  /// `Utilization Notifications`
+  String get utilizationNotifications {
+    return Intl.message(
+      'Utilization Notifications',
+      name: 'utilizationNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deep Dive Study`
+  String get deepDiveStudy {
+    return Intl.message(
+      'Deep Dive Study',
+      name: 'deepDiveStudy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request new deep dive study`
+  String get requestNewDeepDiveStudy {
+    return Intl.message(
+      'Request new deep dive study',
+      name: 'requestNewDeepDiveStudy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

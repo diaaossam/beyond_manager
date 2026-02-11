@@ -1,9 +1,10 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/policies/data/models/response/utilization_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/dependencies/injectable_dependencies.dart';
+import '../../../../config/router/app_router.gr.dart';
 import '../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../widgets/app_bar/custom_app_bar.dart';
 import '../cubit/utilization/utilization_bloc.dart';
@@ -25,7 +26,12 @@ class UtilizationScreen extends StatelessWidget {
             appBar: CustomAppBar(
               title: context.localizations.utilization,
               actions: [
-                IconButton(onPressed: (){}, icon:Icon( Icons.notification_add))
+                IconButton(
+                  onPressed: () => context.router.push(
+                    UtilizationNotificationsRoute(policyId: policyId),
+                  ),
+                  icon: const Icon(Icons.notification_add),
+                )
               ],
             ),
             body: UtilitzationBody(

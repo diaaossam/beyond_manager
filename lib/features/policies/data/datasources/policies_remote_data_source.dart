@@ -1,10 +1,14 @@
 import 'package:bond/core/services/api/dio_consumer.dart';
 import 'package:bond/core/services/api/end_points.dart';
 import 'package:bond/core/utils/app_strings.dart';
+import 'package:bond/features/auth/data/models/response/user_model_helper.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/global_models/generic_model.dart';
+import '../../../../core/utils/api_config.dart';
 import '../models/request/reimbursement_filter_model.dart';
+import '../models/request/utilization_notification_values.dart';
 import '../models/response/active_list_model.dart';
+import '../models/response/deep_study_model.dart';
 import '../models/response/main_policy_model.dart';
 import '../models/response/policy_access_model.dart';
 import '../models/response/policy_details.dart';
@@ -12,6 +16,7 @@ import '../models/request/get_active_list_params.dart';
 import '../models/response/policy_payment.dart';
 import '../models/response/reimbursement_model.dart';
 import '../models/response/utilization_model.dart';
+import '../models/response/utilization_notification_item_model.dart';
 
 abstract class PoliciesRemoteDataSource {
   Future<List<MainPolicyModel>> getCompanyPolicies({
@@ -38,6 +43,18 @@ abstract class PoliciesRemoteDataSource {
   Future<ReimbursementResponseModel> getReimursement({
     required ReimbursementFilterModel params,
   });
+
+  Future<String> setUtilizationNotification({
+    required UtilizationNotificationValues utilizationNotificationValues,
+  });
+
+  Future<List<UtilizationNotificationItemModel>> getUtilizationNotifications({
+    required num policyId,
+  });
+
+  Future<String> sendDeepDive({required num policyId, required String message});
+
+  Future<List<DeepStudyModel>> getDeepStudy();
 }
 
 @Injectable(as: PoliciesRemoteDataSource)
@@ -138,6 +155,57 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
             return ReimbursementResponseModel.fromJson(json);
           }
         })
+        .execute();
+  }
+
+  @override
+  Future<String> setUtilizationNotification({
+    required UtilizationNotificationValues utilizationNotificationValues,
+  }) async {
+    return await dioConsumer
+        .post(EndPoints.setNotificationUtilization)
+        .params(utilizationNotificationValues.toJson())
+        .factory((json) async {
+          return json['result']['message'];
+        })
+        .execute();
+  }
+
+  @override
+  Future<List<UtilizationNotificationItemModel>> getUtilizationNotifications({
+    required num policyId,
+  }) async {
+    return await dioConsumer
+        .get(EndPoints.getUtilizationNotifications)
+        .params({"policy_id": policyId})
+        .factory(UtilizationNotificationItemModel.fromJsonList)
+        .execute();
+  }
+
+  @override
+  Future<String> sendDeepDive({
+    required num policyId,
+    required String message,
+  }) async {
+    return await dioConsumer
+        .post(EndPoints.sendDeepDive)
+        .params({
+          "policy_id": policyId,
+          "hr_email": UserDataService().getUserData()?.email,
+          "message": message,
+        })
+        .factory((json) async {
+          return json['result']['message'];
+        })
+        .execute();
+  }
+
+  @override
+  Future<List<DeepStudyModel>> getDeepStudy() async {
+    return await dioConsumer
+        .get(EndPoints.getDeepDive)
+        .params({"client_id": ApiConfig.userId})
+        .factory(DeepStudyModel.fromJsonList)
         .execute();
   }
 }

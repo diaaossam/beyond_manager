@@ -111,6 +111,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "age18To59": MessageLookupByLibrary.simpleMessage(
       "Age (18 to 59 years old)",
     ),
+    "alertConfiguration": MessageLookupByLibrary.simpleMessage(
+      "Alert Configuration",
+    ),
     "all": MessageLookupByLibrary.simpleMessage("all"),
     "allDataValidatedInstantly": MessageLookupByLibrary.simpleMessage(
       "All data is validated instantly. You\'ll see real-time feedback if there are any errors in your entries.",
@@ -321,6 +324,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "comprehensiveErrorReporting": MessageLookupByLibrary.simpleMessage(
       "Comprehensive error reporting",
     ),
+    "configureUtilizationNotification": MessageLookupByLibrary.simpleMessage(
+      "Configure Utilization Notifications",
+    ),
+    "configureUtilizationNotificationBody":
+        MessageLookupByLibrary.simpleMessage(
+          "Set thresholds for automatic alerts and reminders.",
+        ),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "contactSupport": MessageLookupByLibrary.simpleMessage("Contact Support"),
     "continueButton": MessageLookupByLibrary.simpleMessage("Continue"),
@@ -353,6 +363,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "day": MessageLookupByLibrary.simpleMessage("Day"),
     "ddMmYyyy": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
+    "deepDiveStudy": MessageLookupByLibrary.simpleMessage("Deep Dive Study"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete My Account"),
     "deleteAccountBody": MessageLookupByLibrary.simpleMessage(
@@ -487,9 +498,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "emergencySupport4": MessageLookupByLibrary.simpleMessage(
       "Expect a call back from our team in 10 minutes.",
     ),
+    "employeeAmountThreshold": MessageLookupByLibrary.simpleMessage(
+      "Employee Amount Threshold",
+    ),
+    "employeeAmountThresholdDescription": MessageLookupByLibrary.simpleMessage(
+      "Alert when any employee\'s total consumption reaches this amount.",
+    ),
     "employeeStaffNumber": MessageLookupByLibrary.simpleMessage(
       "Employee Staff Number",
     ),
+    "employeeTransactionCountThreshold": MessageLookupByLibrary.simpleMessage(
+      "Employee Transaction Count Threshold",
+    ),
+    "employeeTransactionCountThresholdDescription":
+        MessageLookupByLibrary.simpleMessage(
+          "Alert when any employee\'s number of transactions reaches this count.",
+        ),
     "employees": MessageLookupByLibrary.simpleMessage("Employees"),
     "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -797,6 +821,13 @@ class MessageLookup extends MessageLookupByLibrary {
           "Monitor and track all your addition and deletion requests",
         ),
     "month": MessageLookupByLibrary.simpleMessage("Month"),
+    "monthlyConsumptionThreshold": MessageLookupByLibrary.simpleMessage(
+      "Monthly Consumption Threshold",
+    ),
+    "monthlyConsumptionThresholdDescription":
+        MessageLookupByLibrary.simpleMessage(
+          "Alert when consumption in a specific month reaches this amount.",
+        ),
     "monthlySalary": MessageLookupByLibrary.simpleMessage("Monthly Salary"),
     "monthlyTrend": MessageLookupByLibrary.simpleMessage("Monthly Trend"),
     "morning": MessageLookupByLibrary.simpleMessage("Morning"),
@@ -1086,6 +1117,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "requestDialog2Title": MessageLookupByLibrary.simpleMessage("Thank You"),
     "requestHistory": MessageLookupByLibrary.simpleMessage("Request History"),
+    "requestNewDeepDiveStudy": MessageLookupByLibrary.simpleMessage(
+      "Request new deep dive study",
+    ),
     "requestNumber": MessageLookupByLibrary.simpleMessage("Request Number"),
     "requests": MessageLookupByLibrary.simpleMessage("Requests"),
     "requestsValidation": MessageLookupByLibrary.simpleMessage(
@@ -1357,6 +1391,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "tip": MessageLookupByLibrary.simpleMessage("Tip: "),
     "to": MessageLookupByLibrary.simpleMessage("To"),
     "toDate": MessageLookupByLibrary.simpleMessage("To date"),
+    "totalConsumptionThreshold": MessageLookupByLibrary.simpleMessage(
+      "Total Consumption Threshold",
+    ),
+    "totalConsumptionThresholdDescription":
+        MessageLookupByLibrary.simpleMessage(
+          "Alert when total company consumption reaches this amount.",
+        ),
     "totalMembers": MessageLookupByLibrary.simpleMessage("Total Members"),
     "totalPayment": MessageLookupByLibrary.simpleMessage("Total Payment"),
     "tpa": MessageLookupByLibrary.simpleMessage("TPA"),
@@ -1370,6 +1411,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "underAddition": MessageLookupByLibrary.simpleMessage("Under Addition"),
     "underDeletion": MessageLookupByLibrary.simpleMessage("Under Deletions"),
     "uniqueService": MessageLookupByLibrary.simpleMessage("Unique services"),
+    "unitCount": MessageLookupByLibrary.simpleMessage("Count"),
+    "unitEg": MessageLookupByLibrary.simpleMessage("EG"),
     "unpaid": MessageLookupByLibrary.simpleMessage("Unpaid"),
     "upTo100MembersPerTemplate": MessageLookupByLibrary.simpleMessage(
       "Up to 100 members per template submission",
@@ -1431,6 +1474,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "utilization": MessageLookupByLibrary.simpleMessage("Utilization"),
     "utilizationClaimHistory": MessageLookupByLibrary.simpleMessage(
       "Utilization/Claim History",
+    ),
+    "utilizationNotifications": MessageLookupByLibrary.simpleMessage(
+      "Utilization Notifications",
     ),
     "validated": MessageLookupByLibrary.simpleMessage("Validated"),
     "validation": MessageLookupByLibrary.simpleMessage(

@@ -157,7 +157,9 @@ class BaseState<T> extends Equatable {
     if (isLoading) {
       return loadingWidget ?? const LoadingWidget();
     }
-
+    if(isInitial){
+      return Container();
+    }
     return failedWidget ??
         AppFailureWidget(
           body: error.toString(),

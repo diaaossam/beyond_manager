@@ -106,6 +106,8 @@ import '../../features/policies/presentation/cubit/reimbursement/reimbursement_c
     as _i892;
 import '../../features/policies/presentation/cubit/utilization/utilization_bloc.dart'
     as _i797;
+import '../../features/policies/presentation/cubit/utilization/utilization_notification_cubit.dart'
+    as _i190;
 import '../../features/reservation/data/datasources/reservation_remote_data_source.dart'
     as _i86;
 import '../../features/reservation/data/repositories/reservation_repository_impl.dart'
@@ -396,6 +398,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i747.ReservationCubit>(
       () => _i747.ReservationCubit(gh<_i264.ReservationRepositoryImpl>()),
+    );
+    gh.factory<_i190.UtilizationNotificationCubit>(
+      () => _i190.UtilizationNotificationCubit(
+        gh<_i998.PoliciesRepositoryImpl>(),
+      ),
     );
     gh.factory<_i153.LoginCubit>(
       () => _i153.LoginCubit(gh<_i662.AuthRepository>()),

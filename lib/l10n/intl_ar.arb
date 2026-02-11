@@ -341,6 +341,20 @@
   "notification": "الإشعار:",
   "affectedMembersWillBeNotified": "سيتم إخطار الأعضاء المتأثرين بالحذف عبر البريد الإلكتروني/الرسائل النصية القصيرة",
   "validationAndApproval": "التحقق والموافقة",
-  "allDeletionRequestsAreValidated": "يتم التحقق من جميع طلبات الحذف وفقًا لقواعد الوثيقة وتتطلب الموافقة من شركة التأمين. سيتم إخطارك بالحالة خلال 24-48 ساعة."
+  "allDeletionRequestsAreValidated": "يتم التحقق من جميع طلبات الحذف وفقًا لقواعد الوثيقة وتتطلب الموافقة من شركة التأمين. سيتم إخطارك بالحالة خلال 24-48 ساعة.",
+  "alertConfiguration": "إعداد التنبيهات",
+  "totalConsumptionThreshold": "حد الاستهلاك الإجمالي",
+  "totalConsumptionThresholdDescription": "تنبيه عند وصول استهلاك الشركة الإجمالي إلى هذا المبلغ.",
+  "monthlyConsumptionThreshold": "حد الاستهلاك الشهري",
+  "monthlyConsumptionThresholdDescription": "تنبيه عند وصول الاستهلاك في شهر معين إلى هذا المبلغ.",
+  "employeeAmountThreshold": "حد مبلغ الموظف",
+  "employeeAmountThresholdDescription": "تنبيه عند وصول إجمالي استهلاك أي موظف إلى هذا المبلغ.",
+  "employeeTransactionCountThreshold": "حد عدد معاملات الموظف",
+  "employeeTransactionCountThresholdDescription": "تنبيه عند وصول عدد معاملات أي موظف إلى هذا العدد.",
+  "unitEg": "ج.م",
+  "unitCount": "عدد",
+  "utilizationNotifications": "إشعارات الاستخدام",
+  "deepDiveStudy": "دراسة التعمق",
+  "requestNewDeepDiveStudy": "طلب دراسة تعمق جديدة"
 
 }

@@ -760,6 +760,22 @@
   "viewDeletionGuide": "View Deletion Guidelines for Selected Insurance",
   "important": "Important: ",
   "importantBody":"Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.",
-  "skip": "Skip"
+  "skip": "Skip",
+  "configureUtilizationNotification": "Configure Utilization Notifications",
+  "configureUtilizationNotificationBody": "Set thresholds for automatic alerts and reminders.",
+  "alertConfiguration": "Alert Configuration",
+  "totalConsumptionThreshold": "Total Consumption Threshold",
+  "totalConsumptionThresholdDescription": "Alert when total company consumption reaches this amount.",
+  "monthlyConsumptionThreshold": "Monthly Consumption Threshold",
+  "monthlyConsumptionThresholdDescription": "Alert when consumption in a specific month reaches this amount.",
+  "employeeAmountThreshold": "Employee Amount Threshold",
+  "employeeAmountThresholdDescription": "Alert when any employee's total consumption reaches this amount.",
+  "employeeTransactionCountThreshold": "Employee Transaction Count Threshold",
+  "employeeTransactionCountThresholdDescription": "Alert when any employee's number of transactions reaches this count.",
+  "unitEg": "EG",
+  "unitCount": "Count",
+  "utilizationNotifications": "Utilization Notifications",
+  "deepDiveStudy": "Deep Dive Study",
+  "requestNewDeepDiveStudy": "Request new deep dive study"
 
 }

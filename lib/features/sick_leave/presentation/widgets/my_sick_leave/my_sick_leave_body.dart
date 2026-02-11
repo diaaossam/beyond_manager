@@ -7,17 +7,14 @@ import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../segment_item.dart';
 import 'pending_sick_leave_list.dart';
 
 class MySickLeaveBody extends StatefulWidget {
   final int? sickLeaveId;
   final int policyId;
 
-  const MySickLeaveBody({
-    super.key,
-    this.sickLeaveId,
-    required this.policyId,
-  });
+  const MySickLeaveBody({super.key, this.sickLeaveId, required this.policyId});
 
   @override
   State<MySickLeaveBody> createState() => _MySickLeaveBodyState();
@@ -61,20 +58,17 @@ class _MySickLeaveBodyState extends State<MySickLeaveBody> {
                     thumbColor: context.colorScheme.primary,
                     padding: const EdgeInsets.all(8),
                     children: {
-                      0: _segmentItem(
-                        context,
-                        context.localizations.pending,
-                        bloc.currentIndex == 0,
+                      0: SegmentItem(
+                        title: context.localizations.pending,
+                        selected: bloc.currentIndex == 0,
                       ),
-                      1: _segmentItem(
-                        context,
-                        context.localizations.processing,
-                        bloc.currentIndex == 1,
+                      1: SegmentItem(
+                        title: context.localizations.processing,
+                        selected: bloc.currentIndex == 1,
                       ),
-                      2: _segmentItem(
-                        context,
-                        context.localizations.done,
-                        bloc.currentIndex == 2,
+                      2: SegmentItem(
+                        title: context.localizations.done,
+                        selected: bloc.currentIndex == 2,
                       ),
                     },
                     groupValue: bloc.currentIndex,
@@ -83,32 +77,21 @@ class _MySickLeaveBodyState extends State<MySickLeaveBody> {
                 ),
               ),
               if (bloc.currentIndex == 0)
-                 SickLeaveListDesign(pagingController: bloc.pendingPagingController,)
+                SickLeaveListDesign(
+                  pagingController: bloc.pendingPagingController,
+                )
               else if (bloc.currentIndex == 1)
-                SickLeaveListDesign(pagingController: bloc.processingPagingController,)
+                SickLeaveListDesign(
+                  pagingController: bloc.processingPagingController,
+                )
               else
-                SickLeaveListDesign(pagingController: bloc.donePagingController,)
+                SickLeaveListDesign(
+                  pagingController: bloc.donePagingController,
+                ),
             ],
           ),
         );
       },
-    );
-  }
-
-  Widget _segmentItem(BuildContext context, String title, bool selected) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: SizeConfig.bodyHeight * .015,
-      ),
-      width: SizeConfig.screenWidth * 0.25,
-      child: Center(
-        child: AppText(
-          textSize: 12,
-          color: selected ? Colors.white : context.colorScheme.onSurface,
-          fontWeight: FontWeight.w500,
-          text: title,
-        ),
-      ),
     );
   }
 }
