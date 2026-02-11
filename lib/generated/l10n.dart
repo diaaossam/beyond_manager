@@ -6758,6 +6758,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Request deep dive study → Receive actionable recommendations.`
+  String get requestDeepDiveSubtitle {
+    return Intl.message(
+      'Request deep dive study → Receive actionable recommendations.',
+      name: 'requestDeepDiveSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What would you like to analyze?`
+  String get whatWouldYouLikeToAnalyze {
+    return Intl.message(
+      'What would you like to analyze?',
+      name: 'whatWouldYouLikeToAnalyze',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Example: "Why are our dental service costs 30% higher than average?"`
+  String get whatWouldYouLikeToAnalyzePlaceholder {
+    return Intl.message(
+      'Example: "Why are our dental service costs 30% higher than average?"',
+      name: 'whatWouldYouLikeToAnalyzePlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Study Results: Once the deep dive study is completed, recommendations will appear in the "Recommendations Based on Deep Dive" tab.`
+  String get studyResultsInfo {
+    return Intl.message(
+      'Study Results: Once the deep dive study is completed, recommendations will appear in the "Recommendations Based on Deep Dive" tab.',
+      name: 'studyResultsInfo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

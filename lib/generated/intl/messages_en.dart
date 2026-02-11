@@ -1107,6 +1107,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "relationship": MessageLookupByLibrary.simpleMessage("Relationship"),
     "requestCall": MessageLookupByLibrary.simpleMessage("Request Call"),
     "requestDate": MessageLookupByLibrary.simpleMessage("Request Date"),
+    "requestDeepDiveSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Request deep dive study → Receive actionable recommendations.",
+    ),
     "requestDemo": MessageLookupByLibrary.simpleMessage("Request Demo"),
     "requestDialog1Body": MessageLookupByLibrary.simpleMessage(
       "attachments have been uploaded \nsuccessfully",
@@ -1340,6 +1343,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "step5InsuranceCompanyProcesses": MessageLookupByLibrary.simpleMessage(
       "Insurance company processes and confirms deletion",
     ),
+    "studyResultsInfo": MessageLookupByLibrary.simpleMessage(
+      "Study Results: Once the deep dive study is completed, recommendations will appear in the \"Recommendations Based on Deep Dive\" tab.",
+    ),
     "subCompany": MessageLookupByLibrary.simpleMessage("Sub Company: "),
     "submissionDateLabel": MessageLookupByLibrary.simpleMessage(
       "SUBMISSION D...",
@@ -1521,6 +1527,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Wellness Programs",
     ),
     "whatToDo": MessageLookupByLibrary.simpleMessage("What to do: "),
+    "whatWouldYouLikeToAnalyze": MessageLookupByLibrary.simpleMessage(
+      "What would you like to analyze?",
+    ),
+    "whatWouldYouLikeToAnalyzePlaceholder": MessageLookupByLibrary.simpleMessage(
+      "Example: \"Why are our dental service costs 30% higher than average?\"",
+    ),
     "whats1": MessageLookupByLibrary.simpleMessage(
       "Or reach out to us on WhatsApp at ",
     ),

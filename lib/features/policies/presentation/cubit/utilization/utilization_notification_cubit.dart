@@ -47,4 +47,18 @@ class UtilizationNotificationCubit
           (state.data ?? UtilizationNotificationData()).copyWith(deepStudy: deepStudy),
     );
   }
+
+  Future<void> sendDeepDive({
+    required num policyId,
+    required String message,
+  }) async {
+    handleAsync(
+      identifier: "sendDeepDive",
+      call: () => _policiesRepositoryImpl.sendDeepDive(
+        policyId: policyId,
+        message: message,
+      ),
+      onSuccess: (_) => state.data ?? UtilizationNotificationData(),
+    );
+  }
 }

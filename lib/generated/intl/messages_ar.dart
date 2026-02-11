@@ -521,6 +521,9 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "refunds": MessageLookupByLibrary.simpleMessage("المبالغ المستردة:"),
     "relationship": MessageLookupByLibrary.simpleMessage("العلاقة"),
+    "requestDeepDiveSubtitle": MessageLookupByLibrary.simpleMessage(
+      "اطلب دراسة تعمق ← احصل على توصيات قابلة للتطبيق.",
+    ),
     "requestDemo": MessageLookupByLibrary.simpleMessage("طلب عرض تجريبي"),
     "requestHistory": MessageLookupByLibrary.simpleMessage("سجل الطلبات"),
     "requestNewDeepDiveStudy": MessageLookupByLibrary.simpleMessage(
@@ -643,6 +646,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "step5InsuranceCompanyProcesses": MessageLookupByLibrary.simpleMessage(
       "شركة التأمين تعالج وتؤكد الحذف",
     ),
+    "studyResultsInfo": MessageLookupByLibrary.simpleMessage(
+      "نتائج الدراسة: عند اكتمال دراسة التعمق، ستظهر التوصيات في تاب \"التوصيات بناءً على التعمق\".",
+    ),
     "submissionDateLabel": MessageLookupByLibrary.simpleMessage(
       "تاريخ التقديم...",
     ),
@@ -758,6 +764,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "قم بتسجيل الدخول إلى حسابك",
     ),
     "whatToDo": MessageLookupByLibrary.simpleMessage("ماذا تفعل: "),
+    "whatWouldYouLikeToAnalyze": MessageLookupByLibrary.simpleMessage(
+      "ماذا تريد أن نحلل؟",
+    ),
+    "whatWouldYouLikeToAnalyzePlaceholder":
+        MessageLookupByLibrary.simpleMessage(
+          "مثال: \"لماذا تكاليف خدمات الأسنان أعلى بـ 30% من المتوسط؟\"",
+        ),
     "whiteOrLightColoredBackground": MessageLookupByLibrary.simpleMessage(
       "الخلفية البيضاء أو ذات الألوان الفاتحة مفضلة",
     ),

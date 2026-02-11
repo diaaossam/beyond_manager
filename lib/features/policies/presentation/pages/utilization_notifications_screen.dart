@@ -5,6 +5,7 @@ import '../../../../config/dependencies/injectable_dependencies.dart';
 import '../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../widgets/app_bar/custom_app_bar.dart';
 import '../cubit/utilization/utilization_notification_cubit.dart';
+import '../widget/utilization/request_deep_dive_dialog.dart';
 import '../widget/utilization/utilization_notifications_body.dart';
 
 @RoutePage()
@@ -18,8 +19,7 @@ class UtilizationNotificationsScreen extends StatefulWidget {
       _UtilizationNotificationsScreenState();
 }
 
-class _UtilizationNotificationsScreenState
-    extends State<UtilizationNotificationsScreen> {
+class _UtilizationNotificationsScreenState extends State<UtilizationNotificationsScreen> {
   int _selectedTabIndex = 0;
 
   void _onTabIndexChanged(int index) {
@@ -42,7 +42,7 @@ class _UtilizationNotificationsScreenState
         floatingActionButton: _selectedTabIndex == 1
             ? FloatingActionButton.extended(
                 onPressed: () {
-                  // TODO: open request new deep dive study dialog/bottom sheet
+                  RequestDeepDiveDialog.show(context, widget.policyId);
                 },
                 icon: const Icon(Icons.add),
                 label: Text(

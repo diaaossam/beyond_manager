@@ -776,6 +776,10 @@
   "unitCount": "Count",
   "utilizationNotifications": "Utilization Notifications",
   "deepDiveStudy": "Deep Dive Study",
-  "requestNewDeepDiveStudy": "Request new deep dive study"
+  "requestNewDeepDiveStudy": "Request new deep dive study",
+  "requestDeepDiveSubtitle": "Request deep dive study → Receive actionable recommendations.",
+  "whatWouldYouLikeToAnalyze": "What would you like to analyze?",
+  "whatWouldYouLikeToAnalyzePlaceholder": "Example: \"Why are our dental service costs 30% higher than average?\"",
+  "studyResultsInfo": "Study Results: Once the deep dive study is completed, recommendations will appear in the \"Recommendations Based on Deep Dive\" tab."
 
 }

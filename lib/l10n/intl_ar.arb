@@ -355,6 +355,10 @@
   "unitCount": "عدد",
   "utilizationNotifications": "إشعارات الاستخدام",
   "deepDiveStudy": "دراسة التعمق",
-  "requestNewDeepDiveStudy": "طلب دراسة تعمق جديدة"
+  "requestNewDeepDiveStudy": "طلب دراسة تعمق جديدة",
+  "requestDeepDiveSubtitle": "اطلب دراسة تعمق ← احصل على توصيات قابلة للتطبيق.",
+  "whatWouldYouLikeToAnalyze": "ماذا تريد أن نحلل؟",
+  "whatWouldYouLikeToAnalyzePlaceholder": "مثال: \"لماذا تكاليف خدمات الأسنان أعلى بـ 30% من المتوسط؟\"",
+  "studyResultsInfo": "نتائج الدراسة: عند اكتمال دراسة التعمق، ستظهر التوصيات في تاب \"التوصيات بناءً على التعمق\"."
 
 }
