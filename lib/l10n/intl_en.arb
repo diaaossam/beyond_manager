@@ -800,5 +800,22 @@
   "selectAManager": "Select a Manager",
   "globalAccessRights": "Global Access Rights",
   "policiesAndAccessPermissions": "Policies & Access Permissions",
-  "submitChanges": "Submit Changes"
+  "submitChanges": "Submit Changes",
+  "recommendedForYou": "Recommended for You by Beyond Team",
+  "recommendedForYouBody": "Based on your industry profile, this is your most relevant and recommended insurance line for your company",
+  "property": "Property All Risk",
+  "showAllRecommendations": "Show all recommendations",
+  "highMatch": "High Match",
+  "yourIndustry": "Your Industry",
+  "productsAvailable": "Products Available",
+  "highMatch70": "High Match (70%+)",
+  "mediumMatch40": "Medium Match (40-69%)",
+  "lowMatchBelow40": "Low Match (Below 40%)",
+  "allProducts": "All Products",
+  "mediumMatch": "Medium Match",
+  "lowMatch": "Low Match",
+  "insuranceProducts": "Insurance Products",
+  "showProductBenefits": "Show Product benefits >",
+  "getPersonalizedQuote": "Get Personalized Quote"
+
 }

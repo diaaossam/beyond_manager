@@ -178,7 +178,7 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
     return await dioConsumer
         .get(EndPoints.getUtilizationNotifications)
         .params({"policy_id": policyId})
-        .factory(UtilizationNotificationItemModel.fromJsonList)
+        .factory(UtilizationNotificationItemModel.fromJson)
         .execute();
   }
 

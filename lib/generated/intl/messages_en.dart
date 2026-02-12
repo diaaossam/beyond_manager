@@ -148,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "All fields marked with asterisk (*) must be filled",
     ),
     "allMembers": MessageLookupByLibrary.simpleMessage("All members"),
+    "allProducts": MessageLookupByLibrary.simpleMessage("All Products"),
     "allStatus": MessageLookupByLibrary.simpleMessage("All Status"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have account?",
@@ -636,6 +637,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "getAQuote": MessageLookupByLibrary.simpleMessage("Get A Quote"),
     "getCovered": MessageLookupByLibrary.simpleMessage("Get 100%\nCovered"),
+    "getPersonalizedQuote": MessageLookupByLibrary.simpleMessage(
+      "Get Personalized Quote",
+    ),
     "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
     "globalAccessRights": MessageLookupByLibrary.simpleMessage(
       "Global Access Rights",
@@ -649,6 +653,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Guidelines of Addition and Deletion for Insurance Company",
     ),
     "hasFamilyMembersAutoSelected": m2,
+    "highMatch": MessageLookupByLibrary.simpleMessage("High Match"),
+    "highMatch70": MessageLookupByLibrary.simpleMessage("High Match (70%+)"),
     "hiringDate": MessageLookupByLibrary.simpleMessage("Hiring Date"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "home1": MessageLookupByLibrary.simpleMessage(
@@ -732,6 +738,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "insurancePolicyNumber": MessageLookupByLibrary.simpleMessage(
       "Insurance Policy Number",
     ),
+    "insuranceProducts": MessageLookupByLibrary.simpleMessage(
+      "Insurance Products",
+    ),
     "insuranceState": MessageLookupByLibrary.simpleMessage("Insurance State"),
     "insured": MessageLookupByLibrary.simpleMessage("Insured"),
     "invalidEmail": MessageLookupByLibrary.simpleMessage(
@@ -784,6 +793,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "logoutBody": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to log out?",
     ),
+    "lowMatch": MessageLookupByLibrary.simpleMessage("Low Match"),
+    "lowMatchBelow40": MessageLookupByLibrary.simpleMessage(
+      "Low Match (Below 40%)",
+    ),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "manageMemberAdditionsDeletions": MessageLookupByLibrary.simpleMessage(
       "Manage member additions and deletions for your insurance policies",
@@ -817,6 +830,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "medicalNetwork": MessageLookupByLibrary.simpleMessage("Medical Network"),
     "medication": MessageLookupByLibrary.simpleMessage("Medication"),
+    "mediumMatch": MessageLookupByLibrary.simpleMessage("Medium Match"),
+    "mediumMatch40": MessageLookupByLibrary.simpleMessage(
+      "Medium Match (40-69%)",
+    ),
     "member": MessageLookupByLibrary.simpleMessage("Member #"),
     "memberFullName": MessageLookupByLibrary.simpleMessage("Member Full Name"),
     "memberFullNameArabic": MessageLookupByLibrary.simpleMessage(
@@ -1106,7 +1123,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "Proceed with Template",
     ),
     "processing": MessageLookupByLibrary.simpleMessage("Processing"),
+    "productsAvailable": MessageLookupByLibrary.simpleMessage(
+      "Products Available",
+    ),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "property": MessageLookupByLibrary.simpleMessage("Property All Risk"),
     "provider": MessageLookupByLibrary.simpleMessage("Provider"),
     "providerName": MessageLookupByLibrary.simpleMessage("Provider name"),
     "providerType": MessageLookupByLibrary.simpleMessage("Provider Type"),
@@ -1119,6 +1140,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "quarterly": MessageLookupByLibrary.simpleMessage("Quarterly"),
     "reEnrollment": MessageLookupByLibrary.simpleMessage("Re-enrollment:"),
     "reasonLabel": MessageLookupByLibrary.simpleMessage("Reason: "),
+    "recommendedForYou": MessageLookupByLibrary.simpleMessage(
+      "Recommended for You by Beyond Team",
+    ),
+    "recommendedForYouBody": MessageLookupByLibrary.simpleMessage(
+      "Based on your industry profile, this is your most relevant and recommended insurance line for your company",
+    ),
     "refundEligibilityDependsOnPolicyTerms":
         MessageLookupByLibrary.simpleMessage(
           "Refund eligibility depends on policy terms and effective date",
@@ -1296,8 +1323,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "Your session is over!\nPlease log in again or email Beyond Support\n",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "showAllRecommendations": MessageLookupByLibrary.simpleMessage(
+      "Show all recommendations",
+    ),
     "showAllResult": MessageLookupByLibrary.simpleMessage("Show All Result"),
     "showDetails": MessageLookupByLibrary.simpleMessage("Show details"),
+    "showProductBenefits": MessageLookupByLibrary.simpleMessage(
+      "Show Product benefits >",
+    ),
     "showResult": MessageLookupByLibrary.simpleMessage("Show Result"),
     "showingLabel": MessageLookupByLibrary.simpleMessage("Showing: "),
     "sickLeaveCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -1603,5 +1636,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "youMustUploadSignedAcknowledgement": MessageLookupByLibrary.simpleMessage(
       ", you must upload a signed acknowledgement confirming their current employment status.",
     ),
+    "yourIndustry": MessageLookupByLibrary.simpleMessage("Your Industry"),
   };
 }

@@ -19,7 +19,7 @@ class ManagerListItem {
   ManagerListItem.fromJson(dynamic json) {
     accessActiveList = json['access_active_list'];
     accessAdditionAndDeletions = json['access_addition_and_deletions'];
-    accessPayment = json['access_payment'];
+      accessPayment = json['access_payment'];
     accessPolicyDetails = json['access_policy_details'];
     accessUtilization = json['access_utilization'];
     companyIds = json['company_ids'] != null

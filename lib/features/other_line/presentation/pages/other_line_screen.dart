@@ -17,6 +17,7 @@ import '../../../settings/contact_helper.dart';
 import '../../../settings/presentation/cubit/settings_cubit.dart';
 import '../../data/models/template_model.dart';
 import '../cubit/other_line_cubit.dart';
+import '../widgets/recommendation_banner_design.dart';
 
 @RoutePage()
 class OtherLineScreen extends StatelessWidget {
@@ -86,6 +87,8 @@ class OtherLineScreen extends StatelessWidget {
                           text: context.localizations.insuranceOptionsText1,
                         ),
                       ),
+                      SizedBox(height: SizeConfig.bodyHeight * .02),
+                      RecommendationBannerDesign(),
                       SizedBox(height: SizeConfig.bodyHeight * .02),
                       Row(
                         children: [

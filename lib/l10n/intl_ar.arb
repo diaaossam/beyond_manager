@@ -379,6 +379,17 @@
   "selectAManager": "اختر مديرًا",
   "globalAccessRights": "صلاحيات الوصول العامة",
   "policiesAndAccessPermissions": "الوثائق وصلاحيات الوصول",
-  "submitChanges": "حفظ التغييرات"
+  "submitChanges": "حفظ التغييرات",
+  "yourIndustry": "مجالك",
+  "productsAvailable": "منتج متاح",
+  "highMatch70": "تطابق عالي (70%+)",
+  "mediumMatch40": "تطابق متوسط (40-69%)",
+  "lowMatchBelow40": "تطابق منخفض (أقل من 40%)",
+  "allProducts": "كل المنتجات",
+  "mediumMatch": "تطابق متوسط",
+  "lowMatch": "تطابق منخفض",
+  "insuranceProducts": "منتجات التأمين",
+  "showProductBenefits": "عرض مزايا المنتج >",
+  "getPersonalizedQuote": "احصل على عرض سعر مخصص"
 
 }

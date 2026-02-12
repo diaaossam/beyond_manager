@@ -69,19 +69,7 @@ class UtilizationNotification extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (n.message != null)
-                          AppText.title(
-                            text: n.message!,
-                            textSize: 13,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        if (n.createdAt != null) ...[
-                          6.verticalSpace,
-                          AppText.hint(
-                            text: n.createdAt!,
-                            textSize: 11,
-                          ),
-                        ],
+
                       ],
                     ),
                   ),

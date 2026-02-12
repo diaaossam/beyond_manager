@@ -99,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "allFieldsMarkedWithAsterisk": MessageLookupByLibrary.simpleMessage(
       "يجب ملء جميع الحقول المميزة بعلامة النجمة (*)",
     ),
+    "allProducts": MessageLookupByLibrary.simpleMessage("كل المنتجات"),
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟",
     ),
@@ -322,6 +323,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "generalRequirements": MessageLookupByLibrary.simpleMessage(
       "المتطلبات العامة",
     ),
+    "getPersonalizedQuote": MessageLookupByLibrary.simpleMessage(
+      "احصل على عرض سعر مخصص",
+    ),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
     "globalAccessRights": MessageLookupByLibrary.simpleMessage(
       "صلاحيات الوصول العامة",
@@ -333,6 +337,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "إرشادات الإضافة والحذف لشركة التأمين",
     ),
     "hasFamilyMembersAutoSelected": m2,
+    "highMatch70": MessageLookupByLibrary.simpleMessage("تطابق عالي (70%+)"),
     "hiringDate": MessageLookupByLibrary.simpleMessage("تاريخ التوظيف"),
     "hrAccessTip": MessageLookupByLibrary.simpleMessage(
       "يتم التحقق من جميع البيانات قبل الإرسال. تأكد من اختيار وثيقة وتعبئة جميع الحقول المطلوبة.",
@@ -360,6 +365,7 @@ class MessageLookup extends MessageLookupByLibrary {
           "تنتهي تغطية التأمين في تاريخ السريان المحدد",
         ),
     "insurancePlans": MessageLookupByLibrary.simpleMessage("خطط التأمين"),
+    "insuranceProducts": MessageLookupByLibrary.simpleMessage("منتجات التأمين"),
     "invalidEmail": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال بريد إلكتروني صحيح",
     ),
@@ -370,6 +376,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "legibility": MessageLookupByLibrary.simpleMessage("الوضوح:"),
     "lifeInsurancePlan": MessageLookupByLibrary.simpleMessage(
       "خطة التأمين على الحياة",
+    ),
+    "lowMatch": MessageLookupByLibrary.simpleMessage("تطابق منخفض"),
+    "lowMatchBelow40": MessageLookupByLibrary.simpleMessage(
+      "تطابق منخفض (أقل من 40%)",
     ),
     "manageMemberAdditionsDeletions": MessageLookupByLibrary.simpleMessage(
       "إدارة إضافات وحذف الأعضاء لوثائق التأمين الخاصة بك",
@@ -398,6 +408,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "medicalInsurance": MessageLookupByLibrary.simpleMessage("التأمين الطبي"),
     "medicalInsurancePlan": MessageLookupByLibrary.simpleMessage(
       "خطة التأمين الطبي",
+    ),
+    "mediumMatch": MessageLookupByLibrary.simpleMessage("تطابق متوسط"),
+    "mediumMatch40": MessageLookupByLibrary.simpleMessage(
+      "تطابق متوسط (40-69%)",
     ),
     "member": MessageLookupByLibrary.simpleMessage("العضو #"),
     "memberFullName": MessageLookupByLibrary.simpleMessage("اسم العضو الكامل"),
@@ -540,6 +554,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "proceedWithTemplate": MessageLookupByLibrary.simpleMessage(
       "المتابعة بالقالب",
     ),
+    "productsAvailable": MessageLookupByLibrary.simpleMessage("منتج متاح"),
     "reEnrollment": MessageLookupByLibrary.simpleMessage("إعادة التسجيل:"),
     "reasonLabel": MessageLookupByLibrary.simpleMessage("السبب: "),
     "refundEligibilityDependsOnPolicyTerms":
@@ -613,6 +628,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "سيؤدي تحديد العضو الرئيسي إلى تحديد جميع أفراد أسرته تلقائيًا. يجب حذفهم معًا كوحدة عائلية.",
     ),
     "sendRequest": MessageLookupByLibrary.simpleMessage("إرسال الطلب"),
+    "showProductBenefits": MessageLookupByLibrary.simpleMessage(
+      "عرض مزايا المنتج >",
+    ),
     "showingLabel": MessageLookupByLibrary.simpleMessage("عرض: "),
     "single": MessageLookupByLibrary.simpleMessage("أعزب"),
     "size": MessageLookupByLibrary.simpleMessage("الحجم:"),
@@ -820,5 +838,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "youMustUploadSignedAcknowledgement": MessageLookupByLibrary.simpleMessage(
       "، فيجب عليك تحميل إقرار موقع يؤكد حالة توظيفهم الحالية.",
     ),
+    "yourIndustry": MessageLookupByLibrary.simpleMessage("مجالك"),
   };
 }

@@ -6988,6 +6988,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Recommended for You by Beyond Team`
+  String get recommendedForYou {
+    return Intl.message(
+      'Recommended for You by Beyond Team',
+      name: 'recommendedForYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Based on your industry profile, this is your most relevant and recommended insurance line for your company`
+  String get recommendedForYouBody {
+    return Intl.message(
+      'Based on your industry profile, this is your most relevant and recommended insurance line for your company',
+      name: 'recommendedForYouBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property All Risk`
+  String get property {
+    return Intl.message(
+      'Property All Risk',
+      name: 'property',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show all recommendations`
+  String get showAllRecommendations {
+    return Intl.message(
+      'Show all recommendations',
+      name: 'showAllRecommendations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `High Match`
+  String get highMatch {
+    return Intl.message('High Match', name: 'highMatch', desc: '', args: []);
+  }
+
+  /// `Your Industry`
+  String get yourIndustry {
+    return Intl.message(
+      'Your Industry',
+      name: 'yourIndustry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Products Available`
+  String get productsAvailable {
+    return Intl.message(
+      'Products Available',
+      name: 'productsAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `High Match (70%+)`
+  String get highMatch70 {
+    return Intl.message(
+      'High Match (70%+)',
+      name: 'highMatch70',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medium Match (40-69%)`
+  String get mediumMatch40 {
+    return Intl.message(
+      'Medium Match (40-69%)',
+      name: 'mediumMatch40',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Low Match (Below 40%)`
+  String get lowMatchBelow40 {
+    return Intl.message(
+      'Low Match (Below 40%)',
+      name: 'lowMatchBelow40',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Products`
+  String get allProducts {
+    return Intl.message(
+      'All Products',
+      name: 'allProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medium Match`
+  String get mediumMatch {
+    return Intl.message(
+      'Medium Match',
+      name: 'mediumMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Low Match`
+  String get lowMatch {
+    return Intl.message('Low Match', name: 'lowMatch', desc: '', args: []);
+  }
+
+  /// `Insurance Products`
+  String get insuranceProducts {
+    return Intl.message(
+      'Insurance Products',
+      name: 'insuranceProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show Product benefits >`
+  String get showProductBenefits {
+    return Intl.message(
+      'Show Product benefits >',
+      name: 'showProductBenefits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Personalized Quote`
+  String get getPersonalizedQuote {
+    return Intl.message(
+      'Get Personalized Quote',
+      name: 'getPersonalizedQuote',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
