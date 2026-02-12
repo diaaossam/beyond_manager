@@ -179,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createHrAccess": MessageLookupByLibrary.simpleMessage(
       "إنشاء صلاحية موارد بشرية",
     ),
+    "createNewManager": MessageLookupByLibrary.simpleMessage("إنشاء مدير جديد"),
     "createNewRequest": MessageLookupByLibrary.simpleMessage("إنشاء طلب جديد"),
     "createNewRequestDesc": MessageLookupByLibrary.simpleMessage(
       "تقديم طلب إضافة أو حذف جديد لأعضائك. اختر بين الإدخال اليدوي أو تحميل القالب المجمع.",
@@ -322,6 +323,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "المتطلبات العامة",
     ),
     "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
+    "globalAccessRights": MessageLookupByLibrary.simpleMessage(
+      "صلاحيات الوصول العامة",
+    ),
     "guidedStepByStep": MessageLookupByLibrary.simpleMessage(
       "عملية موجهة خطوة بخطوة",
     ),
@@ -504,6 +508,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "policiesAffectedLabel": MessageLookupByLibrary.simpleMessage(
       "الوثائق المتأثرة...",
     ),
+    "policiesAndAccessPermissions": MessageLookupByLibrary.simpleMessage(
+      "الوثائق وصلاحيات الوصول",
+    ),
     "policyCoverage": MessageLookupByLibrary.simpleMessage("تغطية الوثيقة:"),
     "policy_status_active": MessageLookupByLibrary.simpleMessage("نشط"),
     "policy_status_all": MessageLookupByLibrary.simpleMessage("الكل"),
@@ -576,6 +583,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
     "searchRequests": MessageLookupByLibrary.simpleMessage("البحث عن الطلبات"),
+    "selectAManager": MessageLookupByLibrary.simpleMessage("اختر مديرًا"),
     "selectAddition": MessageLookupByLibrary.simpleMessage("اختر الإضافة"),
     "selectBoth": MessageLookupByLibrary.simpleMessage("اختر كلاهما"),
     "selectDeletion": MessageLookupByLibrary.simpleMessage("اختر الحذف"),
@@ -584,6 +592,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectInsurancePolicies": MessageLookupByLibrary.simpleMessage(
       "اختر وثائق التأمين",
     ),
+    "selectManager": MessageLookupByLibrary.simpleMessage("اختر المدير"),
     "selectMembersToDelete": MessageLookupByLibrary.simpleMessage(
       "اختر الأعضاء للحذف",
     ),
@@ -673,6 +682,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "submissionDateLabel": MessageLookupByLibrary.simpleMessage(
       "تاريخ التقديم...",
     ),
+    "submitChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
     "submitRequest": MessageLookupByLibrary.simpleMessage("إرسال الطلب"),
     "submittedRequests": MessageLookupByLibrary.simpleMessage(
       "الطلبات المقدمة",
@@ -713,6 +723,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "إصلاحات لأخطاء سابقة.",
     ),
     "updateBody3": MessageLookupByLibrary.simpleMessage("تحديث الآن"),
+    "updateExistingManager": MessageLookupByLibrary.simpleMessage(
+      "تحديث مدير موجود",
+    ),
+    "updateExistingManagerSubtitle": MessageLookupByLibrary.simpleMessage(
+      "اختر مديرًا لتحديث معلوماته وصلاحياته.",
+    ),
+    "updateManagerTip": MessageLookupByLibrary.simpleMessage(
+      "اختر مديرًا من القائمة لعرض وتعديل وثائقه وصلاحياته الحالية. يمكنك إضافة وثائق أخرى إذا لم تكن مُعيَّنة له كل الوثائق المتاحة.",
+    ),
     "updateTitle": MessageLookupByLibrary.simpleMessage("تحديث متاح"),
     "uploadDocumentsForFamilyMembers": MessageLookupByLibrary.simpleMessage(
       "قم بتحميل المستندات لأفراد الأسرة (شهادات الميلاد، شهادات الزواج، إلخ.)",

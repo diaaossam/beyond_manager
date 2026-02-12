@@ -66,4 +66,6 @@ class EndPoints {
   static const String getDeepDive = "/get/all/deep/dive/studies";
 
   static const String createHrAccess = "/post/hr/access";
+  static const String getManagers = "/get/all/manager";
+  static const String updateManager = "/put/hr/manager";
 }

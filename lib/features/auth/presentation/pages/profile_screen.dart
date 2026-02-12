@@ -77,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                 Expanded(
                   child: CustomButton.outline(
                     text: context.localizations.updateExistingManager,
-                    press: () {},
+                    press: () => context.router.push(UpdateExistingManagerRoute()),
                     textSize: 9,
                   ),
                 ),

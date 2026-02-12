@@ -370,6 +370,15 @@
   "requestDeepDiveSubtitle": "اطلب دراسة تعمق ← احصل على توصيات قابلة للتطبيق.",
   "whatWouldYouLikeToAnalyze": "ماذا تريد أن نحلل؟",
   "whatWouldYouLikeToAnalyzePlaceholder": "مثال: \"لماذا تكاليف خدمات الأسنان أعلى بـ 30% من المتوسط؟\"",
-  "studyResultsInfo": "نتائج الدراسة: عند اكتمال دراسة التعمق، ستظهر التوصيات في تاب \"التوصيات بناءً على التعمق\"."
+  "studyResultsInfo": "نتائج الدراسة: عند اكتمال دراسة التعمق، ستظهر التوصيات في تاب \"التوصيات بناءً على التعمق\".",
+  "createNewManager": "إنشاء مدير جديد",
+  "updateExistingManager": "تحديث مدير موجود",
+  "updateExistingManagerSubtitle": "اختر مديرًا لتحديث معلوماته وصلاحياته.",
+  "updateManagerTip": "اختر مديرًا من القائمة لعرض وتعديل وثائقه وصلاحياته الحالية. يمكنك إضافة وثائق أخرى إذا لم تكن مُعيَّنة له كل الوثائق المتاحة.",
+  "selectManager": "اختر المدير",
+  "selectAManager": "اختر مديرًا",
+  "globalAccessRights": "صلاحيات الوصول العامة",
+  "policiesAndAccessPermissions": "الوثائق وصلاحيات الوصول",
+  "submitChanges": "حفظ التغييرات"
 
 }

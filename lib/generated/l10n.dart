@@ -6918,6 +6918,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Select a manager to update their information and access rights.`
+  String get updateExistingManagerSubtitle {
+    return Intl.message(
+      'Select a manager to update their information and access rights.',
+      name: 'updateExistingManagerSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select a manager from the dropdown to view and edit their current policies and access permissions. You can add more policies if they are not assigned all available policies.`
+  String get updateManagerTip {
+    return Intl.message(
+      'Select a manager from the dropdown to view and edit their current policies and access permissions. You can add more policies if they are not assigned all available policies.',
+      name: 'updateManagerTip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Manager`
+  String get selectManager {
+    return Intl.message(
+      'Select Manager',
+      name: 'selectManager',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select a Manager`
+  String get selectAManager {
+    return Intl.message(
+      'Select a Manager',
+      name: 'selectAManager',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Global Access Rights`
+  String get globalAccessRights {
+    return Intl.message(
+      'Global Access Rights',
+      name: 'globalAccessRights',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Policies & Access Permissions`
+  String get policiesAndAccessPermissions {
+    return Intl.message(
+      'Policies & Access Permissions',
+      name: 'policiesAndAccessPermissions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Changes`
+  String get submitChanges {
+    return Intl.message(
+      'Submit Changes',
+      name: 'submitChanges',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

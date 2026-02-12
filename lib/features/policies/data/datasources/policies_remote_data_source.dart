@@ -73,7 +73,7 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
         .params({
           "page_number": page,
           "page_size": pageSize,
-          if (state != "all") "policy_state": state,
+          if (state != "All") "policy_state": state,
         })
         .factory((json) => MainPolicyModel.fromJsonList(json))
         .execute();

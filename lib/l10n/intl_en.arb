@@ -770,7 +770,7 @@
   "selectMemberToDeleteBody": "Search and select members - families will be auto-selected",
   "viewDeletionGuide": "View Deletion Guidelines for Selected Insurance",
   "important": "Important: ",
-  "importantBody":"Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.",
+  "importantBody": "Selecting a principal member will automatically select all their family members. They must be deleted together as a family unit.",
   "skip": "Skip",
   "configureUtilizationNotification": "Configure Utilization Notifications",
   "configureUtilizationNotificationBody": "Set thresholds for automatic alerts and reminders.",
@@ -793,6 +793,12 @@
   "whatWouldYouLikeToAnalyzePlaceholder": "Example: \"Why are our dental service costs 30% higher than average?\"",
   "studyResultsInfo": "Study Results: Once the deep dive study is completed, recommendations will appear in the \"Recommendations Based on Deep Dive\" tab.",
   "createNewManager": "Create New Manager",
-  "updateExistingManager": "Update Existing Manager"
-
+  "updateExistingManager": "Update Existing Manager",
+  "updateExistingManagerSubtitle": "Select a manager to update their information and access rights.",
+  "updateManagerTip": "Select a manager from the dropdown to view and edit their current policies and access permissions. You can add more policies if they are not assigned all available policies.",
+  "selectManager": "Select Manager",
+  "selectAManager": "Select a Manager",
+  "globalAccessRights": "Global Access Rights",
+  "policiesAndAccessPermissions": "Policies & Access Permissions",
+  "submitChanges": "Submit Changes"
 }

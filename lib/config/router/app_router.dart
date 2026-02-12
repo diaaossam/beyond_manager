@@ -59,5 +59,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: GuidelinesRoute.page),
     AutoRoute(page: DeletionGuidelinesRoute.page),
     AutoRoute(page: CreateHrAccessRoute.page),
+    AutoRoute(page: UpdateExistingManagerRoute.page),
   ];
 }

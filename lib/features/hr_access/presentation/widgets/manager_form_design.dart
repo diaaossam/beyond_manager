@@ -22,6 +22,9 @@ class ManagerFormDesign extends StatelessWidget {
   final ManagerFormData manager;
   final VoidCallback? onRemove;
   final GlobalKey<FormBuilderState> formKey;
+  /// When provided (e.g. update screen), use these instead of CreateHrAccessCubit for policy dropdown
+  final List<MainPolicyModel>? policiesForDropdown;
+  final bool isLoadingPolicies;
 
   const ManagerFormDesign({
     super.key,
@@ -29,6 +32,8 @@ class ManagerFormDesign extends StatelessWidget {
     required this.manager,
     this.onRemove,
     required this.formKey,
+    this.policiesForDropdown,
+    this.isLoadingPolicies = false,
   });
 
   @override
@@ -71,38 +76,13 @@ class ManagerFormDesign extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: BlocBuilder<CreateHrAccessCubit, BaseState<CreateHrAccessData>>(
-                  builder: (context, state) {
-                    return AppDropDown<MainPolicyModel>(
-                      name: 'policy_$index',
-                      isLoading:
-                          state.isLoading && state.identifier == "policies",
-                      hint: context.localizations.selectPolicy,
-                      label: context.localizations.selectPolicy,
-                      items: (state.data?.policies ?? [])
-                          .map<DropdownMenuItem<MainPolicyModel>>(
-                            (e) => DropdownMenuItem<MainPolicyModel>(
-                              value: e,
-                              child: AppText(
-                                text: e.policyNumber ?? '',
-                                textSize: 12,
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(
-                          errorText: context.localizations.validation,
-                        ),
-                      ]),
-                    );
-                  },
-                ),
+                child: _buildPolicyDropdown(context),
               ),
               SizedBox(width: SizeConfig.screenWidth * .03),
               Expanded(
                 child: CustomTextFormField(
                   name: 'name_$index',
+                  initialValue: manager.name,
                   label: context.localizations.name,
                   hintText: context.localizations.managerFullName,
                   validator: FormBuilderValidators.compose([
@@ -120,6 +100,7 @@ class ManagerFormDesign extends StatelessWidget {
               Expanded(
                 child: CustomTextFormField(
                   name: 'email_$index',
+                  initialValue: manager.email,
                   label: context.localizations.emailAddress,
                   keyboardType: TextInputType.emailAddress,
                   hintText: "email@example.com",
@@ -137,6 +118,7 @@ class ManagerFormDesign extends StatelessWidget {
               Expanded(
                 child: CustomTextFormField(
                   name: 'jobTitle_$index',
+                  initialValue: manager.jobTitle,
                   label: context.localizations.jobTitle,
                   hintText: context.localizations.jobTitle,
                   validator: FormBuilderValidators.compose([
@@ -151,6 +133,7 @@ class ManagerFormDesign extends StatelessWidget {
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomTextFormField(
             name: 'mobileNumber_$index',
+            initialValue: manager.mobileNumber,
             label: context.localizations.phoneNumber,
             keyboardType: TextInputType.phone,
             hintText: "01XXXXXXXXX",
@@ -176,12 +159,12 @@ class ManagerFormDesign extends StatelessWidget {
             spacing: SizeConfig.screenWidth * .04,
             runSpacing: SizeConfig.bodyHeight * .015,
             children: [
-              _buildCheckbox(context, 'accessPayment_$index', context.localizations.accessPayment),
-              _buildCheckbox(context, 'accessPolicyDetails_$index', context.localizations.accessPolicyDetails),
-              _buildCheckbox(context, 'accessUtilization_$index', context.localizations.accessUtilization),
-              _buildCheckbox(context, 'accessActiveList_$index', context.localizations.accessActiveList),
-              _buildCheckbox(context, 'accessAdditionAndDeletions_$index', context.localizations.accessAdditionAndDeletions),
-              _buildCheckbox(context, 'reimbursement_$index', context.localizations.reimbursement),
+              _buildCheckbox(context, 'accessPayment_$index', context.localizations.accessPayment, manager.accessPayment),
+              _buildCheckbox(context, 'accessPolicyDetails_$index', context.localizations.accessPolicyDetails, manager.accessPolicyDetails),
+              _buildCheckbox(context, 'accessUtilization_$index', context.localizations.accessUtilization, manager.accessUtilization),
+              _buildCheckbox(context, 'accessActiveList_$index', context.localizations.accessActiveList, manager.accessActiveList),
+              _buildCheckbox(context, 'accessAdditionAndDeletions_$index', context.localizations.accessAdditionAndDeletions, manager.accessAdditionAndDeletions),
+              _buildCheckbox(context, 'reimbursement_$index', context.localizations.reimbursement, manager.reimbursement),
             ],
           ),
         ],
@@ -189,12 +172,60 @@ class ManagerFormDesign extends StatelessWidget {
     );
   }
 
-  Widget _buildCheckbox(BuildContext context, String name, String label) {
-    return FormBuilderCheckbox(
-      contentPadding: EdgeInsets.zero,
+  Widget _buildPolicyDropdown(BuildContext context) {
+    if (policiesForDropdown != null) {
+      return AppDropDown<MainPolicyModel>(
+        name: 'policy_$index',
+        initialValue: manager.policy,
+        isLoading: isLoadingPolicies,
+        hint: context.localizations.selectPolicy,
+        label: context.localizations.selectPolicy,
+        items: (policiesForDropdown ?? [])
+            .map<DropdownMenuItem<MainPolicyModel>>(
+              (e) => DropdownMenuItem<MainPolicyModel>(
+                value: e,
+                child: AppText(text: e.policyNumber ?? '', textSize: 12),
+              ),
+            )
+            .toList(),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(
+            errorText: context.localizations.validation,
+          ),
+        ]),
+      );
+    }
+    return BlocBuilder<CreateHrAccessCubit, BaseState<CreateHrAccessData>>(
+      builder: (context, state) {
+        return AppDropDown<MainPolicyModel>(
+          name: 'policy_$index',
+          initialValue: manager.policy,
+          isLoading: state.isLoading && state.identifier == "policies",
+          hint: context.localizations.selectPolicy,
+          label: context.localizations.selectPolicy,
+          items: (state.data?.policies ?? [])
+              .map<DropdownMenuItem<MainPolicyModel>>(
+                (e) => DropdownMenuItem<MainPolicyModel>(
+                  value: e,
+                  child: AppText(text: e.policyNumber ?? '', textSize: 12),
+                ),
+              )
+              .toList(),
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(
+              errorText: context.localizations.validation,
+            ),
+          ]),
+        );
+      },
+    );
+  }
 
+  Widget _buildCheckbox(BuildContext context, String name, String label, [bool initial = false]) {
+    return FormBuilderCheckbox(
       name: name,
-      initialValue: false,
+      initialValue: initial,
+      contentPadding: EdgeInsets.zero,
       decoration: InputDecoration(
         border: InputBorder.none,
         contentPadding: EdgeInsets.zero,

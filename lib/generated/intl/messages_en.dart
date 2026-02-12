@@ -637,6 +637,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "getAQuote": MessageLookupByLibrary.simpleMessage("Get A Quote"),
     "getCovered": MessageLookupByLibrary.simpleMessage("Get 100%\nCovered"),
     "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
+    "globalAccessRights": MessageLookupByLibrary.simpleMessage(
+      "Global Access Rights",
+    ),
     "gold": MessageLookupByLibrary.simpleMessage("Gold"),
     "grandFatherName": MessageLookupByLibrary.simpleMessage("Third Name"),
     "guidedStepByStep": MessageLookupByLibrary.simpleMessage(
@@ -1056,6 +1059,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "policiesAffectedLabel": MessageLookupByLibrary.simpleMessage(
       "POLICIES AFFE...",
     ),
+    "policiesAndAccessPermissions": MessageLookupByLibrary.simpleMessage(
+      "Policies & Access Permissions",
+    ),
     "policyCoverage": MessageLookupByLibrary.simpleMessage("Policy Coverage:"),
     "policyDetails": MessageLookupByLibrary.simpleMessage("Policy Details"),
     "policyFile": MessageLookupByLibrary.simpleMessage("Policy File"),
@@ -1208,6 +1214,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "secondNameValidation": MessageLookupByLibrary.simpleMessage(
       "Second Name is required",
     ),
+    "selectAManager": MessageLookupByLibrary.simpleMessage("Select a Manager"),
     "selectAddition": MessageLookupByLibrary.simpleMessage("Select Addition"),
     "selectAppointmentTime": MessageLookupByLibrary.simpleMessage(
       "Select Time",
@@ -1226,6 +1233,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectInsurancePolicies": MessageLookupByLibrary.simpleMessage(
       "Select Insurance Policies",
     ),
+    "selectManager": MessageLookupByLibrary.simpleMessage("Select Manager"),
     "selectMemberToDelete": MessageLookupByLibrary.simpleMessage(
       "Select Members to Delete",
     ),
@@ -1380,6 +1388,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "SUBMISSION D...",
     ),
     "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+    "submitChanges": MessageLookupByLibrary.simpleMessage("Submit Changes"),
     "submitRequest": MessageLookupByLibrary.simpleMessage("Submit Request"),
     "submittedRequests": MessageLookupByLibrary.simpleMessage(
       "SUBMITTED REQUESTS",
@@ -1465,6 +1474,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateBody3": MessageLookupByLibrary.simpleMessage("Update Now"),
     "updateExistingManager": MessageLookupByLibrary.simpleMessage(
       "Update Existing Manager",
+    ),
+    "updateExistingManagerSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Select a manager to update their information and access rights.",
+    ),
+    "updateManagerTip": MessageLookupByLibrary.simpleMessage(
+      "Select a manager from the dropdown to view and edit their current policies and access permissions. You can add more policies if they are not assigned all available policies.",
     ),
     "updateTitle": MessageLookupByLibrary.simpleMessage("Update Available"),
     "uploadAttachments": MessageLookupByLibrary.simpleMessage(
