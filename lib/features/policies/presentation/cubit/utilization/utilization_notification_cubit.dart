@@ -64,8 +64,11 @@ class UtilizationNotificationCubit
       identifier: "getNotificationValues",
       call: () =>
           _policiesRepositoryImpl.getNotificationValues(policyId: policyId),
-      onSuccess: (data) => (state.data ?? UtilizationNotificationData())
-          .copyWith(notificationValueModel: data),
+      onSuccess: (data) {
+        getUtilizationNotifications(policyId: policyId,params: data);
+        return (state.data ?? UtilizationNotificationData())
+          .copyWith(notificationValueModel: data);
+      },
     );
   }
 

@@ -10,7 +10,7 @@ import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import '../../../../../config/helper/excel_helper.dart';
+import '../../../../../config/helper/download_service.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/app_bar/custom_app_bar.dart';
@@ -224,7 +224,7 @@ class _ActiveListBodyState extends State<ActiveListBody>
                           ),
                         );
                     final model = response.getOrElse(() => ActiveListModel());
-                    ExcelHelper().createActiveListExcel(
+                    DownloadServiceHelper().createActiveListExcel(
                       bigRecord: model.result ?? [],
                       isBusinessLife: model.isLife ?? true,
                       isMedical: model.isMedical ?? true,

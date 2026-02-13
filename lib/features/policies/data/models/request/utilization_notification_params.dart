@@ -9,5 +9,10 @@ class UtilizationNotificationParams {
     required this.notificationValueModel,
   });
 
-
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['policy_id'] = policyId;
+    map['notification_values'] = notificationValueModel.toJson();
+    return map;
+  }
 }

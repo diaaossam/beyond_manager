@@ -15,11 +15,15 @@ import '../../../../widgets/main_widget/app_text.dart';
 class AppSuccessDialogDesign extends StatelessWidget {
   final String title;
   final String body;
+  final String? buttonText;
+  final VoidCallback? onButtonPressed;
 
   const AppSuccessDialogDesign({
     super.key,
     required this.title,
     required this.body,
+    this.buttonText,
+    this.onButtonPressed,
   });
 
   @override
@@ -30,7 +34,7 @@ class AppSuccessDialogDesign extends StatelessWidget {
         child: Column(
           children: [
             SvgPicture.asset(Assets.icons.correct),
-            SizedBox(height: SizeConfig.bodyHeight*.02,),
+            SizedBox(height: SizeConfig.bodyHeight * .02),
             AppText(
               text: title,
               textSize: 13,
@@ -46,12 +50,10 @@ class AppSuccessDialogDesign extends StatelessWidget {
               textSize: 11,
             ),
             SizedBox(height: SizeConfig.bodyHeight * .08),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () {
+            InkWell(
+              onTap:
+                  onButtonPressed ??
+                  () {
                     Navigator.pop(context);
                     SchedulerBinding.instance.addPostFrameCallback((_) {
                       context.router.pushAndPopUntil(
@@ -60,16 +62,22 @@ class AppSuccessDialogDesign extends StatelessWidget {
                       );
                     });
                   },
-                  child: AppText(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  AppText(
                     text: context.localizations.home,
                     textSize: 16,
                     color: context.colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
-                ),
-                const SizedBox(width: 5),
-                ArrowExpandedForwardDesign(color: context.colorScheme.primary),
-              ],
+                  const SizedBox(width: 5),
+                  ArrowExpandedForwardDesign(
+                    color: context.colorScheme.primary,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

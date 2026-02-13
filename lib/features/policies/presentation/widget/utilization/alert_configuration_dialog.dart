@@ -188,6 +188,11 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                             context: context,
                             body:state.data?.msg??"" ,
                             title:context.localizations.success,
+                            buttonText: context.localizations.back,
+                            onButtonPressed: (){
+                              Navigator.pop(context);
+                              context.read<UtilizationNotificationCubit>().getNotificationValues(policyId: widget.policyId);
+                            }
                           );
                         }
                       },

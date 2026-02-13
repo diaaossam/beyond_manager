@@ -16,7 +16,7 @@ import '../../../../../widgets/main_widget/custom_button.dart';
 import '../../../../../widgets/no_item_design.dart';
 import '../../../../../widgets/app_failure.dart';
 import '../../../../../widgets/custom_expanded_tile_design.dart';
-import '../../../../../config/helper/excel_helper.dart';
+import '../../../../../config/helper/download_service.dart';
 import '../../../data/models/request/reimbursement_filter_model.dart';
 import '../../../data/models/response/reimbursement_model.dart';
 import '../../cubit/reimbursement/reimbursement_cubit.dart';
@@ -161,7 +161,7 @@ class _RembursementBodyState extends State<RembursementBody> {
                             ),
                           );
                           final model = response.getOrElse(() => ReimbursementResponseModel());
-                          ExcelHelper().createReimbursementExcel(
+                          DownloadServiceHelper().createReimbursementExcel(
                             reimbursementList: model.result ?? [],
                           );
                         },

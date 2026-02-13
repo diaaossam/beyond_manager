@@ -33,29 +33,20 @@ class UtilizationNotificationsBody extends StatefulWidget {
       _UtilizationNotificationsBodyState();
 }
 
-class _UtilizationNotificationsBodyState
-    extends State<UtilizationNotificationsBody> {
+class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsBody> {
+
   void _onTabChanged(int index) {
     widget.onTabIndexChanged(index);
     final cubit = context.read<UtilizationNotificationCubit>();
     if (index == 0) {
-      cubit.getUtilizationNotifications(policyId: widget.policyId);
+      if(cubit.state.data?.notificationValueModel != null){
+        cubit.getUtilizationNotifications(policyId: widget.policyId,params: cubit.state.data!.notificationValueModel!);
+      }
     } else {
       cubit.getDeepDiveStudy();
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.selectedTabIndex == 0) {
-        context.read<UtilizationNotificationCubit>().getUtilizationNotifications(policyId: widget.policyId);
-      } else {
-        context.read<UtilizationNotificationCubit>().getDeepDiveStudy();
-      }
-    });
-  }
 
   @override
   void didUpdateWidget(UtilizationNotificationsBody oldWidget) {
@@ -63,7 +54,9 @@ class _UtilizationNotificationsBodyState
     if (oldWidget.selectedTabIndex != widget.selectedTabIndex) {
       final cubit = context.read<UtilizationNotificationCubit>();
       if (widget.selectedTabIndex == 0) {
-        cubit.getUtilizationNotifications(policyId: widget.policyId);
+        if(cubit.state.data?.notificationValueModel != null){
+          cubit.getUtilizationNotifications(policyId: widget.policyId,params: cubit.state.data!.notificationValueModel!);
+        }
       } else {
         cubit.getDeepDiveStudy();
       }
@@ -153,7 +146,7 @@ class _UtilizationNotificationsBodyState
                         onRetry: () => context
                             .read<UtilizationNotificationCubit>()
                             .getUtilizationNotifications(
-                              policyId: widget.policyId,
+                              policyId: widget.policyId,params: state.data!.notificationValueModel!
                             ),
                       )
                     else

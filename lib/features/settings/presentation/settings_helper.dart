@@ -6,11 +6,18 @@ class SettingsHelper {
     required BuildContext context,
     required String title,
     required String body,
+    String? buttonText,
+    VoidCallback? onButtonPressed,
   }) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AppSuccessDialogDesign(title: title, body: body);
+        return AppSuccessDialogDesign(
+          title: title,
+          body: body,
+          buttonText: buttonText,
+          onButtonPressed: onButtonPressed,
+        );
       },
     );
   }

@@ -4,7 +4,9 @@ import 'package:bond/widgets/no_item_design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../config/helper/download_service.dart';
 import '../../../../../core/extensions/color_extensions.dart';
+import '../../../../../widgets/download_tile_design.dart';
 import '../../../../../widgets/loading/loading_widget.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 
@@ -27,6 +29,7 @@ class RecommendationCardDesign extends StatelessWidget {
         child: LoadingWidget(),
       );
     }
+
 
     final list = studies ?? [];
     return SliverToBoxAdapter(
@@ -108,6 +111,7 @@ class RecommendationCardDesign extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
+                              10.horizontalSpace,
                               if (study.status != null)
                                 Container(
                                   padding: EdgeInsets.symmetric(
@@ -153,6 +157,17 @@ class RecommendationCardDesign extends StatelessWidget {
                               text: 'Policy: ${study.policyName}',
                               textSize: 11,
                             ),
+                          if(study.hasReplyAttachment == true)...[
+                            4.verticalSpace,
+                            Center(
+                              child: DownloadTile(
+                                enabled: true,
+                                label: study.replyAttachmentFilename??"",
+                                onTap: () =>DownloadServiceHelper().downloadAndOpenFile(url: study.replyAttachmentUrl??"",name: study.replyAttachmentFilename??""),
+                              ),
+                            )
+                          ]
+
                         ],
                       ),
                     ),

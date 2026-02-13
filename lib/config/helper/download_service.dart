@@ -32,7 +32,7 @@ class FileOperationResult {
   }
 }
 
-class ExcelHelper {
+class DownloadServiceHelper {
   Future<String> _getSaveDirectory() async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
+import '../../../../../config/helper/download_service.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
-import '../../../../../core/utils/app_constant.dart';
 import '../../../../../core/utils/app_size.dart';
+import '../../../../../widgets/download_tile_design.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../data/models/response/policy_payment.dart';
 
@@ -47,19 +46,17 @@ class CustomPaymentBody extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _DownloadTile(
+                  child: DownloadTile(
                     enabled: !_checkInvoice(),
                     label: context.localizations.invoiceFile,
-                    onTap: () =>
-                        _onOpenFile(context: context, url: result.invoiceFile),
+                    onTap: () => DownloadServiceHelper().downloadAndOpenFile(url: result.invoiceFile??"",name: result.invoiceFileName??""),
                   ),
                 ),
                 Expanded(
-                  child: _DownloadTile(
+                  child: DownloadTile(
                     enabled: !_checkPayment(),
                     label: context.localizations.paymentFile,
-                    onTap: () =>
-                        _onOpenFile(context: context, url: result.paymentFile),
+                    onTap: () =>DownloadServiceHelper().downloadAndOpenFile(url: result.paymentFile??"",name: result.paymentFileName??""),
                   ),
                 ),
               ],
@@ -115,72 +112,4 @@ class CustomPaymentBody extends StatelessWidget {
         result.paymentFileName.toString().isEmpty;
   }
 
-  Future<void> _onOpenFile({
-    required BuildContext context,
-    required String? url,
-  }) async {
-    if (url == null || url.isEmpty) {
-      AppConstant.showCustomSnakeBar(
-        context,
-        context.localizations.thereIsNoFile,
-        false,
-      );
-      return;
-    }
-
-    final canOpen = await canLaunchUrlString(url);
-    if (!canOpen) {
-      AppConstant.showCustomSnakeBar(
-        context,
-        context.localizations.cannotOpenFile,
-        false,
-      );
-      return;
-    }
-
-    await launchUrlString(url);
-  }
-}
-
-class _DownloadTile extends StatelessWidget {
-  final bool enabled;
-  final String label;
-  final VoidCallback onTap;
-
-  const _DownloadTile({
-    required this.enabled,
-    required this.label,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = context.colorScheme;
-    return InkWell(
-      onTap: enabled ? onTap : null,
-      child: Container(
-        padding: EdgeInsetsDirectional.symmetric(
-          horizontal: SizeConfig.screenWidth * .03,
-          vertical: SizeConfig.bodyHeight * .02,
-        ),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-        child: Row(
-          children: [
-            Icon(
-              Icons.download,
-              color: enabled ? Colors.black : colorScheme.shadow,
-            ),
-            const SizedBox(width: 5),
-            AppText(
-              fontWeight: FontWeight.w600,
-              color: enabled ? colorScheme.primary : colorScheme.shadow,
-              textDecoration: TextDecoration.underline,
-              text: label,
-              textSize: 12,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
