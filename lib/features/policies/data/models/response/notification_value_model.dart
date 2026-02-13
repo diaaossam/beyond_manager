@@ -6,6 +6,10 @@ class NotificationValueModel {
     this.policyId,
     this.totalConsumptionThreshold,
     this.userManagerId,
+    this.employeeAmountEnabled = false,
+    this.employeeTransactionCountEnabled = false,
+    this.monthlyConsumptionEnabled = false,
+    this.totalConsumptionEnabled = false,
   });
 
   NotificationValueModel.fromJson(dynamic json) {
@@ -24,12 +28,18 @@ class NotificationValueModel {
   num? policyId;
   num? totalConsumptionThreshold;
   num? userManagerId;
+  bool? totalConsumptionEnabled;
+
+  bool? monthlyConsumptionEnabled;
+
+  bool? employeeAmountEnabled;
+
+  bool? employeeTransactionCountEnabled;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['employee_amount_threshold'] = employeeAmountThreshold;
-    map['employee_transaction_count_threshold'] =
-        employeeTransactionCountThreshold;
+    map['employee_transaction_count_threshold'] = employeeTransactionCountThreshold;
     map['monthly_consumption_threshold'] = monthlyConsumptionThreshold;
     map['policy_id'] = policyId;
     map['total_consumption_threshold'] = totalConsumptionThreshold;

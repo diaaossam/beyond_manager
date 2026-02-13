@@ -818,6 +818,32 @@
   "lowMatch": "Low Match",
   "insuranceProducts": "Insurance Products",
   "showProductBenefits": "Show Product benefits >",
-  "getPersonalizedQuote": "Get Personalized Quote"
-
+  "getPersonalizedQuote": "Get Personalized Quote",
+  "consumptionExceeded": "Total consumption ({total} EGP) has exceeded the threshold of {threshold} EGP",
+  "@consumptionExceeded": {
+    "placeholders": {
+      "total": {},
+      "threshold": {}
+    }
+  },
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December",
+  "monthlyExceeded": "Monthly consumption for {month} ({total} EGP) has exceeded the threshold of {threshold} EGP",
+  "@monthlyExceeded": {
+    "placeholders": {
+      "month": {},
+      "total": {},
+      "threshold": {}
+    }
+  }
 }

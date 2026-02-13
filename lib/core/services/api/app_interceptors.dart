@@ -40,7 +40,7 @@ class AppInterceptors extends Interceptor {
     options.queryParameters["client_secret"] = env.Environment.clientSecret;
     options.queryParameters["client_secret"] = env.Environment.clientSecret;
     if (ApiConfig.userId != -1) {
-      options.queryParameters["user_manager_id"] = ApiConfig.userId;
+      options.queryParameters["user_manager_id"] = "5";
       options.queryParameters["company_id"] =
           UserDataService().getUserData()?.currentCompanyId ??
           CommonCaching.userModel?.currentCompanyId;

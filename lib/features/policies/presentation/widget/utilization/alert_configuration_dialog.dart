@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
@@ -24,8 +23,8 @@ class AlertConfigurationDialog extends StatefulWidget {
 
   const AlertConfigurationDialog({super.key, required this.policyId, required this.model});
 
-  static Future<bool?> show(BuildContext context, num policyId , NotificationValueModel model) {
-    return showGeneralDialog<bool?>(
+  static Future<NotificationValueModel?> show(BuildContext context, num policyId , NotificationValueModel model) {
+    return showGeneralDialog<NotificationValueModel?>(
       context: context,
       barrierDismissible: true,
       barrierLabel: context.localizations.alertConfiguration,
@@ -174,8 +173,7 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                           .employeeTransactionCountThresholdDescription,
                       enabled: _employeeTransactionCountEnabled,
                       unit: context.localizations.unitCount,
-                      onEnabledChanged: (v) =>
-                          setState(() => _employeeTransactionCountEnabled = v),
+                      onEnabledChanged: (v) => setState(() => _employeeTransactionCountEnabled = v),
                       name: "Employee_Transaction_Count",
                       initValue:  widget.model.employeeTransactionCountThreshold.toString(),
                     ),
@@ -184,18 +182,18 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                       listener: (context, state) {
                         if(state.isSuccess){
                           Future.delayed(Duration.zero,() {
-                            Navigator.pop(context,true);
-                          /*  SettingsHelper.showAlertDialog(
-                                context: context,
-                                body:state.data?.msg??"" ,
-                                title:context.localizations.success,
-                                buttonText: context.localizations.back,
-                                onButtonPressed: (){
-                                  Navigator.pop(context);
-                                }
-                            );*/
+                            Navigator.pop(context,NotificationValueModel(
+                              employeeAmountThreshold: num.tryParse(_formKey.fieldValue("Employee_Amount").toString()),
+                              monthlyConsumptionThreshold: num.tryParse(_formKey.fieldValue("Monthly_Consumption")),
+                              totalConsumptionThreshold: num.tryParse(_formKey.fieldValue("Total_Consumption")),
+                              employeeTransactionCountThreshold: num.tryParse(_formKey.fieldValue("Employee_Transaction_Count")),
+                              policyId: widget.policyId,
+                              employeeAmountEnabled: _employeeAmountEnabled,
+                              monthlyConsumptionEnabled: _monthlyConsumptionEnabled,
+                              totalConsumptionEnabled: _totalConsumptionEnabled,
+                              employeeTransactionCountEnabled: _employeeTransactionCountEnabled,
+                            ));
                           },);
-
                         }
                       },
                      builder: (context, state) {

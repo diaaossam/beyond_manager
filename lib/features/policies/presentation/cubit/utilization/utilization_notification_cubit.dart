@@ -59,16 +59,33 @@ class UtilizationNotificationCubit
     );
   }
 
-  Future<void> getNotificationValues({required num policyId}) async {
-    handleAsync(
-      identifier: "getNotificationValues",
-      call: () => _policiesRepositoryImpl.getNotificationValues(policyId: policyId),
-      onSuccess: (data) {
-        getUtilizationNotifications(policyId: policyId,params: data);
-        return (state.data ?? UtilizationNotificationData())
-          .copyWith(notificationValueModel: data);
-      },
-    );
+  Future<void> getNotificationValues({
+    required num policyId,
+    NotificationValueModel? notificationModel,
+  }) async {
+    if (notificationModel != null) {
+      getUtilizationNotifications(policyId: policyId, params: notificationModel);
+      emit(
+        state.copyWith(
+          data: (state.data ?? UtilizationNotificationData()).copyWith(
+            notificationValueModel: notificationModel,
+          ),
+        ),
+      );
+    }
+    else {
+      handleAsync(
+        identifier: "getNotificationValues",
+        call: () =>
+            _policiesRepositoryImpl.getNotificationValues(policyId: policyId),
+        onSuccess: (data) {
+          getUtilizationNotifications(policyId: policyId, params: data);
+          return (state.data ?? UtilizationNotificationData()).copyWith(
+            notificationValueModel: data,
+          );
+        },
+      );
+    }
   }
 
   Future<void> sendDeepDive({

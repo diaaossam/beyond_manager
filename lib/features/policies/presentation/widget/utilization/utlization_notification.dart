@@ -1,9 +1,15 @@
 import 'package:bond/features/policies/data/models/response/utilization_notification_item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../widgets/loading/loading_widget.dart';
+import '../../../../../widgets/main_widget/app_text.dart';
+import '../../../data/models/response/notification_value_model.dart';
+import 'notification_item_design.dart';
 
 class UtilizationNotification extends StatelessWidget {
   final UtilizationNotificationModel? notifications;
+  final NotificationValueModel values;
   final bool isLoading;
   final VoidCallback? onRetry;
 
@@ -12,65 +18,57 @@ class UtilizationNotification extends StatelessWidget {
     this.notifications,
     this.isLoading = false,
     this.onRetry,
+    required this.values,
   });
 
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const SliverFillRemaining(
-        child: LoadingWidget(),
-      );
+      return const SliverFillRemaining(child: LoadingWidget());
     }
-
     return SliverToBoxAdapter(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-/*          AppText.title(
+          AppText.title(
             text: context.localizations.utilizationNotifications,
             textSize: 14,
             fontWeight: FontWeight.w700,
           ),
           24.verticalSpace,
-          if (list.isEmpty)
-            Center(
-              child: Column(
-                children: [
-                  AppText.hint(
-                    text: context.localizations.noData,
-                    textSize: 12,
-                  ),
-                  if (onRetry != null) ...[
-                    12.verticalSpace,
-                    TextButton(
-                      onPressed: onRetry,
-                      child: Text(context.localizations.back),
-                    ),
-                  ],
-                ],
-              ),
-            )
-          else
-            ...list.map(
-              (n) => Padding(
-                padding: EdgeInsets.only(bottom: 12.h),
-                child: Material(
-                  color: context.colorScheme.surfaceContainerHighest
-                      .withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(12),
-                  child: Padding(
-                    padding: EdgeInsets.all(14.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-
-                      ],
-                    ),
-                  ),
-                ),
+          if (notifications?.exceededMembersTotalConsumptionThreshold != null) ...[
+            NotificationItemDesign(
+              body: context.localizations.consumptionExceeded(
+                notifications?.exceededMembersTotalConsumptionThreshold ?? "",
+                values.totalConsumptionThreshold ?? 0,
               ),
             ),
-          24.verticalSpace,*/
+            10.verticalSpace,
+          ],
+          if (notifications?.exceededMonths != null && notifications?.exceededMonths?.isNotEmpty == true) ...[
+            ...notifications!.exceededMonths!.map((e) {
+              return NotificationItemDesign(
+                body: context.localizations.monthlyExceeded(
+                  e.monthName??"",
+                  e.totalAmount??"0",
+                  values.monthlyConsumptionThreshold??"0"
+                ),
+              );
+            },),
+            10.verticalSpace,
+          ],
+
+
+          if (notifications?.exceededMembersEmployeeAmountThreshold != null && notifications?.exceededMembersEmployeeAmountThreshold?.isNotEmpty == true) ...[
+            ...notifications!.exceededMembersEmployeeAmountThreshold!.map((e) {
+              return NotificationItemDesign(
+                body: ""
+              );
+            },),
+            10.verticalSpace,
+          ],
+
+          24.verticalSpace,
         ],
       ),
     );

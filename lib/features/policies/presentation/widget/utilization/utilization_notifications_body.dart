@@ -79,102 +79,118 @@ class _UtilizationNotificationsBodyState
           prev.status != curr.status ||
           prev.data != curr.data,
       builder: (context, state) {
-        final data = state.data;
-        final isLoadingNotifications =
-            state.isLoading &&
-            state.identifier == "getUtilizationNotifications";
-        final isLoadingDeepDive =
-            state.isLoading && state.identifier == "getDeepDiveStudy";
-        final currentIndex = widget.selectedTabIndex;
-        final isLoading = currentIndex == 0
-            ? isLoadingNotifications
-            : isLoadingDeepDive;
-        return Padding(
-          padding: screenPadding(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: SizeConfig.bodyHeight * .02),
-              AppText.title(
-                text: context.localizations.configureUtilizationNotification,
-                textSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-              6.verticalSpace,
-              AppText.hint(
-                text:
-                    context.localizations.configureUtilizationNotificationBody,
-                textSize: 11,
-              ),
-              10.verticalSpace,
-              CustomButton(
-                text: context.localizations.configureUtilizationNotification,
-                press: () async {
-                  final response = await AlertConfigurationDialog.show(
-                    context,
-                    widget.policyId,
-                    data?.notificationValueModel ?? NotificationValueModel(),
-                  );
-                  if(response != null && response ==true){
-                    context.read<UtilizationNotificationCubit>().getNotificationValues(
-                      policyId: widget.policyId,
-                    );
-                  }
-                },
-                height: 50,
-              ),
-              10.verticalSpace,
-              Expanded(
-                child: CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: CupertinoSlidingSegmentedControl(
-                        backgroundColor: context.colorScheme.outline,
-                        thumbColor: context.colorScheme.primary,
-                        padding: const EdgeInsets.all(8),
-                        children: {
-                          0: SegmentItem(
-                            title:
-                                context.localizations.utilizationNotifications,
-                            selected: currentIndex == 0,
-                            width: SizeConfig.screenWidth * .4,
-                          ),
-                          1: SegmentItem(
-                            title: context.localizations.deepDiveStudy,
-                            selected: currentIndex == 1,
-                            width: SizeConfig.screenWidth * .4,
-                          ),
-                        },
-                        groupValue: currentIndex,
-                        onValueChanged: (value) => _onTabChanged(value!),
-                      ),
-                    ),
-                    SliverToBoxAdapter(child: 10.verticalSpace),
-                    if (currentIndex == 0)
-                      UtilizationNotification(
-                        notifications: data?.notifications,
-                        isLoading: isLoading,
-                        onRetry: () => context
+        return state.builder(
+          onTapRetry: () => context
+              .read<UtilizationNotificationCubit>()
+              .getNotificationValues(policyId: widget.policyId),
+          onSuccess: (data) {
+            final data = state.data;
+            final isLoadingNotifications =
+                state.isLoading &&
+                state.identifier == "getUtilizationNotifications";
+            final isLoadingDeepDive =
+                state.isLoading && state.identifier == "getDeepDiveStudy";
+            final currentIndex = widget.selectedTabIndex;
+            final isLoading = currentIndex == 0
+                ? isLoadingNotifications
+                : isLoadingDeepDive;
+            return Padding(
+              padding: screenPadding(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: SizeConfig.bodyHeight * .02),
+                  AppText.title(
+                    text:
+                        context.localizations.configureUtilizationNotification,
+                    textSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  6.verticalSpace,
+                  AppText.hint(
+                    text: context
+                        .localizations
+                        .configureUtilizationNotificationBody,
+                    textSize: 11,
+                  ),
+                  10.verticalSpace,
+                  CustomButton(
+                    text:
+                        context.localizations.configureUtilizationNotification,
+                    press: () async {
+                      final response = await AlertConfigurationDialog.show(
+                        context,
+                        widget.policyId,
+                        data?.notificationValueModel ??
+                            NotificationValueModel(),
+                      );
+                      if (response != null) {
+                        context
                             .read<UtilizationNotificationCubit>()
-                            .getUtilizationNotifications(
+                            .getNotificationValues(
                               policyId: widget.policyId,
-                              params: state.data!.notificationValueModel!,
-                            ),
-                      )
-                    else
-                      RecommendationCardDesign(
-                        studies: data?.deepStudy,
-                        isLoading: isLoading,
-                        onRetry: () => context
-                            .read<UtilizationNotificationCubit>()
-                            .getDeepDiveStudy(),
-                      ),
-                  ],
-                ),
+                              notificationModel: response,
+                            );
+                      }
+                    },
+                    height: 50,
+                  ),
+                  10.verticalSpace,
+                  Expanded(
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(
+                          child: CupertinoSlidingSegmentedControl(
+                            backgroundColor: context.colorScheme.outline,
+                            thumbColor: context.colorScheme.primary,
+                            padding: const EdgeInsets.all(8),
+                            children: {
+                              0: SegmentItem(
+                                title: context
+                                    .localizations
+                                    .utilizationNotifications,
+                                selected: currentIndex == 0,
+                                width: SizeConfig.screenWidth * .4,
+                              ),
+                              1: SegmentItem(
+                                title: context.localizations.deepDiveStudy,
+                                selected: currentIndex == 1,
+                                width: SizeConfig.screenWidth * .4,
+                              ),
+                            },
+                            groupValue: currentIndex,
+                            onValueChanged: (value) => _onTabChanged(value!),
+                          ),
+                        ),
+                        SliverToBoxAdapter(child: 10.verticalSpace),
+                        if (currentIndex == 0)
+                          UtilizationNotification(
+                            values: state.data!.notificationValueModel!,
+                            notifications: data?.notifications,
+                            isLoading: isLoading,
+                            onRetry: () => context
+                                .read<UtilizationNotificationCubit>()
+                                .getUtilizationNotifications(
+                                  policyId: widget.policyId,
+                                  params: state.data!.notificationValueModel!,
+                                ),
+                          )
+                        else
+                          RecommendationCardDesign(
+                            studies: data?.deepStudy,
+                            isLoading: isLoading,
+                            onRetry: () => context
+                                .read<UtilizationNotificationCubit>()
+                                .getDeepDiveStudy(),
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

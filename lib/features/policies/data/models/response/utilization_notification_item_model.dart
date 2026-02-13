@@ -1,36 +1,47 @@
+import 'package:bond/features/policies/presentation/policies_helper.dart';
+
 class UtilizationNotificationModel {
   UtilizationNotificationModel({
-      this.exceededMembersCountThreshold, 
-      this.exceededMembersEmployeeAmountThreshold, 
-      this.exceededMembersTotalConsumptionThreshold, 
-      this.exceededMonths, 
-      this.summary,});
+    this.exceededMembersCountThreshold,
+    this.exceededMembersEmployeeAmountThreshold,
+    this.exceededMembersTotalConsumptionThreshold,
+    this.exceededMonths,
+    this.summary,
+  });
 
   UtilizationNotificationModel.fromJson(dynamic json) {
     if (json['exceeded_members_count_threshold'] != null) {
       exceededMembersCountThreshold = [];
       json['exceeded_members_count_threshold'].forEach((v) {
-        exceededMembersCountThreshold?.add(ExceededMembersCountThreshold.fromJson(v));
+        exceededMembersCountThreshold?.add(
+          ExceededMembersCountThreshold.fromJson(v),
+        );
       });
     }
     if (json['exceeded_members_employee_amount_threshold'] != null) {
       exceededMembersEmployeeAmountThreshold = [];
       json['exceeded_members_employee_amount_threshold'].forEach((v) {
-        exceededMembersEmployeeAmountThreshold?.add(ExceededMembersEmployeeAmountThreshold.fromJson(v));
+        exceededMembersEmployeeAmountThreshold?.add(
+          ExceededMembersEmployeeAmountThreshold.fromJson(v),
+        );
       });
     }
-    exceededMembersTotalConsumptionThreshold = json['exceeded_members_total_consumption_threshold'];
+    exceededMembersTotalConsumptionThreshold =
+        json['exceeded_members_total_consumption_threshold'];
     if (json['exceeded_months'] != null) {
       exceededMonths = [];
       json['exceeded_months'].forEach((v) {
         exceededMonths?.add(ExceededMonths.fromJson(v));
       });
     }
-    summary = json['summary'] != null ? Summary.fromJson(json['summary']) : null;
+    summary = json['summary'] != null
+        ? Summary.fromJson(json['summary'])
+        : null;
   }
 
   List<ExceededMembersCountThreshold>? exceededMembersCountThreshold;
-  List<ExceededMembersEmployeeAmountThreshold>? exceededMembersEmployeeAmountThreshold;
+  List<ExceededMembersEmployeeAmountThreshold>?
+  exceededMembersEmployeeAmountThreshold;
   num? exceededMembersTotalConsumptionThreshold;
   List<ExceededMonths>? exceededMonths;
   Summary? summary;
@@ -38,12 +49,18 @@ class UtilizationNotificationModel {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     if (exceededMembersCountThreshold != null) {
-      map['exceeded_members_count_threshold'] = exceededMembersCountThreshold?.map((v) => v.toJson()).toList();
+      map['exceeded_members_count_threshold'] = exceededMembersCountThreshold
+          ?.map((v) => v.toJson())
+          .toList();
     }
     if (exceededMembersEmployeeAmountThreshold != null) {
-      map['exceeded_members_employee_amount_threshold'] = exceededMembersEmployeeAmountThreshold?.map((v) => v.toJson()).toList();
+      map['exceeded_members_employee_amount_threshold'] =
+          exceededMembersEmployeeAmountThreshold
+              ?.map((v) => v.toJson())
+              .toList();
     }
-    map['exceeded_members_total_consumption_threshold'] = exceededMembersTotalConsumptionThreshold;
+    map['exceeded_members_total_consumption_threshold'] =
+        exceededMembersTotalConsumptionThreshold;
     if (exceededMonths != null) {
       map['exceeded_months'] = exceededMonths?.map((v) => v.toJson()).toList();
     }
@@ -52,20 +69,17 @@ class UtilizationNotificationModel {
     }
     return map;
   }
-
 }
 
 class Summary {
-  Summary({
-      this.totalEmployees, 
-      this.totalMonthlySpending, 
-      this.totalSpending,});
+  Summary({this.totalEmployees, this.totalMonthlySpending, this.totalSpending});
 
   Summary.fromJson(dynamic json) {
     totalEmployees = json['total_employees'];
     totalMonthlySpending = json['total_monthly_spending'];
     totalSpending = json['total_spending'];
   }
+
   num? totalEmployees;
   num? totalMonthlySpending;
   num? totalSpending;
@@ -77,19 +91,19 @@ class Summary {
     map['total_spending'] = totalSpending;
     return map;
   }
-
 }
 
 class ExceededMonths {
-  ExceededMonths({
-      this.month, 
-      this.totalAmount,});
+  ExceededMonths({this.month, this.totalAmount, this.monthName});
 
   ExceededMonths.fromJson(dynamic json) {
     month = json['month'];
     totalAmount = json['total_amount'];
+    monthName = PoliciesHelper().convertMonth(month: json['month']);
   }
+
   String? month;
+  String? monthName;
   num? totalAmount;
 
   Map<String, dynamic> toJson() {
@@ -98,18 +112,16 @@ class ExceededMonths {
     map['total_amount'] = totalAmount;
     return map;
   }
-
 }
 
 class ExceededMembersEmployeeAmountThreshold {
-  ExceededMembersEmployeeAmountThreshold({
-      this.memberName, 
-      this.totalAmount,});
+  ExceededMembersEmployeeAmountThreshold({this.memberName, this.totalAmount});
 
   ExceededMembersEmployeeAmountThreshold.fromJson(dynamic json) {
     memberName = json['member_name'];
     totalAmount = json['total_amount'];
   }
+
   String? memberName;
   num? totalAmount;
 
@@ -119,18 +131,16 @@ class ExceededMembersEmployeeAmountThreshold {
     map['total_amount'] = totalAmount;
     return map;
   }
-
 }
 
 class ExceededMembersCountThreshold {
-  ExceededMembersCountThreshold({
-      this.memberName, 
-      this.usageCount,});
+  ExceededMembersCountThreshold({this.memberName, this.usageCount});
 
   ExceededMembersCountThreshold.fromJson(dynamic json) {
     memberName = json['member_name'];
     usageCount = json['usage_count'];
   }
+
   String? memberName;
   num? usageCount;
 
@@ -140,5 +150,4 @@ class ExceededMembersCountThreshold {
     map['usage_count'] = usageCount;
     return map;
   }
-
 }

@@ -24,10 +24,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(number) => "Card Number: ${number}";
 
+  static String m7(total, threshold) =>
+      "Total consumption (${total} EGP) has exceeded the threshold of ${threshold} EGP";
+
   static String m1(count) => "${count} document(s) selected";
 
   static String m2(count) =>
       "Has ${count} family members - will be auto-selected";
+
+  static String m8(month, total, threshold) =>
+      "Monthly consumption for ${month} (${total} EGP) has exceeded the threshold of ${threshold} EGP";
 
   static String m3(count) => "${count} photo(s) selected";
 
@@ -166,6 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "approvalCase": MessageLookupByLibrary.simpleMessage("Approval case"),
     "approved": MessageLookupByLibrary.simpleMessage("Approved"),
+    "april": MessageLookupByLibrary.simpleMessage("April"),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "arabicOrEnglishDocuments": MessageLookupByLibrary.simpleMessage(
       "Arabic or English documents accepted",
@@ -180,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "attachmentsValidation": MessageLookupByLibrary.simpleMessage(
       "Attachments is required",
     ),
+    "august": MessageLookupByLibrary.simpleMessage("August"),
     "automaticallyRenamedWithStaffNumber": MessageLookupByLibrary.simpleMessage(
       "Automatically renamed with Staff Number",
     ),
@@ -353,6 +361,7 @@ class MessageLookup extends MessageLookupByLibrary {
           "Set thresholds for automatic alerts and reminders.",
         ),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+    "consumptionExceeded": m7,
     "contactSupport": MessageLookupByLibrary.simpleMessage("Contact Support"),
     "continueButton": MessageLookupByLibrary.simpleMessage("Continue"),
     "continueToMethodSelection": MessageLookupByLibrary.simpleMessage(
@@ -388,6 +397,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "day": MessageLookupByLibrary.simpleMessage("Day"),
     "ddMmYyyy": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
+    "december": MessageLookupByLibrary.simpleMessage("December"),
     "deepDiveStudy": MessageLookupByLibrary.simpleMessage("Deep Dive Study"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete My Account"),
@@ -592,6 +602,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Family Unit Warning:",
     ),
     "fatherName": MessageLookupByLibrary.simpleMessage("Second Name"),
+    "february": MessageLookupByLibrary.simpleMessage("February"),
     "feedback": MessageLookupByLibrary.simpleMessage("Feedback"),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "fileSize": MessageLookupByLibrary.simpleMessage("File Size:"),
@@ -758,9 +769,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "isDeleted": MessageLookupByLibrary.simpleMessage("is Deleted"),
     "issuingType": MessageLookupByLibrary.simpleMessage("Issuing Type"),
     "item": MessageLookupByLibrary.simpleMessage("Item"),
+    "january": MessageLookupByLibrary.simpleMessage("January"),
     "jobDesciprtion": MessageLookupByLibrary.simpleMessage("job Description"),
     "jobTitle": MessageLookupByLibrary.simpleMessage("Job Title"),
     "jpgOrPngOnly": MessageLookupByLibrary.simpleMessage("JPG or PNG only"),
+    "july": MessageLookupByLibrary.simpleMessage("July"),
+    "june": MessageLookupByLibrary.simpleMessage("June"),
     "lab": MessageLookupByLibrary.simpleMessage("Laboratory"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "languageHint": MessageLookupByLibrary.simpleMessage(
@@ -809,6 +823,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "manualEntryDesc": MessageLookupByLibrary.simpleMessage(
       "Fill out forms on the platform to add members one by one. Best for small numbers of members.",
     ),
+    "march": MessageLookupByLibrary.simpleMessage("March"),
     "maritalStatus": MessageLookupByLibrary.simpleMessage("Marital Status"),
     "married": MessageLookupByLibrary.simpleMessage("Married"),
     "maternity": MessageLookupByLibrary.simpleMessage("Maternity"),
@@ -822,6 +837,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "maximumTemplateSizeIs10MB": MessageLookupByLibrary.simpleMessage(
       "Maximum template size is 10MB",
     ),
+    "may": MessageLookupByLibrary.simpleMessage("May"),
     "medical": MessageLookupByLibrary.simpleMessage("Medical"),
     "medicalInsurance": MessageLookupByLibrary.simpleMessage(
       "Medical Insurance",
@@ -878,6 +894,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Alert when consumption in a specific month reaches this amount.",
         ),
+    "monthlyExceeded": m8,
     "monthlySalary": MessageLookupByLibrary.simpleMessage("Monthly Salary"),
     "monthlyTrend": MessageLookupByLibrary.simpleMessage("Monthly Trend"),
     "morning": MessageLookupByLibrary.simpleMessage("Morning"),
@@ -966,6 +983,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Kindly download the Excel sheet template, complete the required date fields, and proceed to upload the file once more.",
     ),
     "notification": MessageLookupByLibrary.simpleMessage("Notification:"),
+    "november": MessageLookupByLibrary.simpleMessage("November"),
+    "october": MessageLookupByLibrary.simpleMessage("October"),
     "offers1": MessageLookupByLibrary.simpleMessage(
       "Insurance offers at an affordable price from reputable insurance companies",
     ),
@@ -1313,6 +1332,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sentSuccess": MessageLookupByLibrary.simpleMessage(
       "Emergency sent successfully",
     ),
+    "september": MessageLookupByLibrary.simpleMessage("September"),
     "service": MessageLookupByLibrary.simpleMessage("Service"),
     "service1": MessageLookupByLibrary.simpleMessage(
       "Exceptional after-sales services",
