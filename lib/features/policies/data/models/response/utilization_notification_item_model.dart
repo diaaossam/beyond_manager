@@ -1,12 +1,12 @@
-class UtilizationNotificationItemModel {
-  UtilizationNotificationItemModel({
+class UtilizationNotificationModel {
+  UtilizationNotificationModel({
       this.exceededMembersCountThreshold, 
       this.exceededMembersEmployeeAmountThreshold, 
       this.exceededMembersTotalConsumptionThreshold, 
       this.exceededMonths, 
       this.summary,});
 
-  UtilizationNotificationItemModel.fromJson(dynamic json) {
+  UtilizationNotificationModel.fromJson(dynamic json) {
     if (json['exceeded_members_count_threshold'] != null) {
       exceededMembersCountThreshold = [];
       json['exceeded_members_count_threshold'].forEach((v) {
@@ -28,6 +28,7 @@ class UtilizationNotificationItemModel {
     }
     summary = json['summary'] != null ? Summary.fromJson(json['summary']) : null;
   }
+
   List<ExceededMembersCountThreshold>? exceededMembersCountThreshold;
   List<ExceededMembersEmployeeAmountThreshold>? exceededMembersEmployeeAmountThreshold;
   num? exceededMembersTotalConsumptionThreshold;

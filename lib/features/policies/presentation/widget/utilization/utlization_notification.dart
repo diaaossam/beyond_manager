@@ -1,14 +1,9 @@
-import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/features/policies/data/models/response/utilization_notification_item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../widgets/loading/loading_widget.dart';
-import '../../../../../widgets/main_widget/app_text.dart';
 
 class UtilizationNotification extends StatelessWidget {
-  final List<UtilizationNotificationItemModel>? notifications;
+  final UtilizationNotificationModel? notifications;
   final bool isLoading;
   final VoidCallback? onRetry;
 
@@ -27,12 +22,11 @@ class UtilizationNotification extends StatelessWidget {
       );
     }
 
-    final list = notifications ?? [];
     return SliverToBoxAdapter(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppText.title(
+/*          AppText.title(
             text: context.localizations.utilizationNotifications,
             textSize: 14,
             fontWeight: FontWeight.w700,
@@ -76,7 +70,7 @@ class UtilizationNotification extends StatelessWidget {
                 ),
               ),
             ),
-          24.verticalSpace,
+          24.verticalSpace,*/
         ],
       ),
     );

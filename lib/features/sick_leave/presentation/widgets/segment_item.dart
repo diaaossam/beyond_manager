@@ -23,7 +23,7 @@ class SegmentItem extends StatelessWidget {
       width: width??SizeConfig.screenWidth * 0.25,
       child: Center(
         child: AppText(
-          textSize: 12,
+          textSize: 11,
           color: selected ? Colors.white : context.colorScheme.onSurface,
           fontWeight: FontWeight.w500,
           text: title,

@@ -61,11 +61,12 @@ class EndPoints {
 
 
   static const String setNotificationUtilization = "/post/utilization/notification/values";
-  static const String getUtilizationNotifications = "/get/utilization/notifications";
+  static const String getUtilizationNotifications = "/get/policy/utilization/notification";
   static const String sendDeepDive = "/post/deep/dive/study";
   static const String getDeepDive = "/get/all/deep/dive/studies";
 
   static const String createHrAccess = "/post/contact";
   static const String getManagers = "/get/all/manager";
   static const String updateManager = "/put/manager";
+  static const String getNotificationValue = "/get/utilization/notification/values";
 }

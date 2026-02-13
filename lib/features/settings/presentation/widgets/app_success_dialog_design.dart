@@ -30,9 +30,21 @@ class AppSuccessDialogDesign extends StatelessWidget {
         child: Column(
           children: [
             SvgPicture.asset(Assets.icons.correct),
-            AppText(text: title, textSize: 14, fontWeight: FontWeight.bold),
+            SizedBox(height: SizeConfig.bodyHeight*.02,),
+            AppText(
+              text: title,
+              textSize: 13,
+              fontWeight: FontWeight.w600,
+              maxLines: 5,
+              align: TextAlign.center,
+            ),
             SizedBox(height: SizeConfig.bodyHeight * .02),
-            AppText(align: TextAlign.center, text: body, maxLines: 2),
+            AppText.body(
+              align: TextAlign.center,
+              text: body,
+              maxLines: 5,
+              textSize: 11,
+            ),
             SizedBox(height: SizeConfig.bodyHeight * .08),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +62,7 @@ class AppSuccessDialogDesign extends StatelessWidget {
                   },
                   child: AppText(
                     text: context.localizations.home,
-                    textSize: 20,
+                    textSize: 16,
                     color: context.colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),

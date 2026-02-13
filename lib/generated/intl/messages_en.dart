@@ -657,7 +657,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "highMatch": MessageLookupByLibrary.simpleMessage("High Match"),
     "highMatch70": MessageLookupByLibrary.simpleMessage("High Match (70%+)"),
     "hiringDate": MessageLookupByLibrary.simpleMessage("Hiring Date"),
-    "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
     "home1": MessageLookupByLibrary.simpleMessage(
       "Beyond Insurance Brokerage is authorized and\nregulated by The Financial Regulatory Authority\n(FRA) Registration No. 103 for the year 2021 ",
     ),
@@ -1429,6 +1429,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "submittedRequestsCount": m5,
     "success": MessageLookupByLibrary.simpleMessage(
+      "Your Request Sent Successfully",
+    ),
+    "successEmergency": MessageLookupByLibrary.simpleMessage(
       "Your emergency support sent successfully",
     ),
     "successfulBooking": MessageLookupByLibrary.simpleMessage(

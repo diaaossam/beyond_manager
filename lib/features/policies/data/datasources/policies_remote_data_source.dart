@@ -6,10 +6,12 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/global_models/generic_model.dart';
 import '../../../../core/utils/api_config.dart';
 import '../models/request/reimbursement_filter_model.dart';
+import '../models/request/utilization_notification_params.dart';
 import '../models/request/utilization_notification_values.dart';
 import '../models/response/active_list_model.dart';
 import '../models/response/deep_study_model.dart';
 import '../models/response/main_policy_model.dart';
+import '../models/response/notification_value_model.dart';
 import '../models/response/policy_access_model.dart';
 import '../models/response/policy_details.dart';
 import '../models/request/get_active_list_params.dart';
@@ -48,13 +50,15 @@ abstract class PoliciesRemoteDataSource {
     required UtilizationNotificationValues utilizationNotificationValues,
   });
 
-  Future<List<UtilizationNotificationItemModel>> getUtilizationNotifications({
-    required num policyId,
+  Future<UtilizationNotificationModel> getUtilizationNotifications({
+    required UtilizationNotificationParams params,
   });
 
   Future<String> sendDeepDive({required num policyId, required String message});
 
   Future<List<DeepStudyModel>> getDeepStudy();
+
+  Future<NotificationValueModel> getNotificationValues({required num policyId});
 }
 
 @Injectable(as: PoliciesRemoteDataSource)
@@ -172,13 +176,13 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
   }
 
   @override
-  Future<List<UtilizationNotificationItemModel>> getUtilizationNotifications({
-    required num policyId,
+  Future<UtilizationNotificationModel> getUtilizationNotifications({
+    required UtilizationNotificationParams params,
   }) async {
     return await dioConsumer
         .get(EndPoints.getUtilizationNotifications)
-        .params({"policy_id": policyId})
-        .factory(UtilizationNotificationItemModel.fromJson)
+        .params(params.toJson())
+        .factory(UtilizationNotificationModel.fromJson)
         .execute();
   }
 
@@ -206,6 +210,17 @@ class PoliciesRemoteDataSourceImpl implements PoliciesRemoteDataSource {
         .get(EndPoints.getDeepDive)
         .params({"client_id": ApiConfig.userId})
         .factory(DeepStudyModel.fromJsonList)
+        .execute();
+  }
+
+  @override
+  Future<NotificationValueModel> getNotificationValues({
+    required num policyId,
+  }) async {
+    return await dioConsumer
+        .get(EndPoints.getNotificationValue)
+        .params({"policy_id": policyId})
+        .factory((json) => NotificationValueModel.fromJson(json['result']))
         .execute();
   }
 }

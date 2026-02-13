@@ -61,8 +61,8 @@ class _CreateEmergenceBodyState extends State<CreateEmergenceBody> {
                     note.clear();
                     SettingsHelper.showAlertDialog(
                       context: context,
-                      title: context.localizations.sentSuccess,
-                      body: context.localizations.success,
+                      body: context.localizations.sentSuccess,
+                      title: context.localizations.successEmergency,
                     );
                   }
 

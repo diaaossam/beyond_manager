@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
+import 'package:bond/core/extensions/widget_extensions.dart';
 import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
 import 'package:bond/features/policies/data/models/response/utilization_model.dart';
 import 'package:bond/gen/assets.gen.dart';
@@ -7,7 +9,9 @@ import 'package:bond/widgets/custom_search_text_form_field.dart';
 import 'package:bond/widgets/image_picker/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/utils/app_constant.dart';
 import '../../../../../core/utils/app_size.dart';
@@ -174,10 +178,19 @@ class _UtilitzationBodyState extends State<UtilitzationBody> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: SizeConfig.bodyHeight * .01),
-                            CustomButton(
+                          ],
+                        ),
+                      ),
+                    ),
+                    if(data.isMedical == true)...[
+                      SliverToBoxAdapter(child: SizedBox(height: SizeConfig.bodyHeight * .02)),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomButton(
                               isActive: (data.dashboardLink?.toString() ?? '').isNotEmpty,
                               text: "Utilization Dashboard",
+                              textSize: 10,
                               press: () {
                                 final dashboardUrl = data.dashboardLink?.toString() ?? '';
                                 if (dashboardUrl.isEmpty) {
@@ -196,10 +209,20 @@ class _UtilitzationBodyState extends State<UtilitzationBody> {
                                 }
                               },
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
+                          ),
+                          10.horizontalSpace,
+                          Expanded(
+                            child: CustomButton(
+                              textSize: 10,
+                              text: "Utilization Notifications",
+                              press: () {
+                              context.router.push(UtilizationNotificationsRoute(policyId: widget.policyId));
+                              },
+                            ),
+                          ),
+                        ],
+                      ).toSliver(),
+                    ],
                     SliverToBoxAdapter(
                       child: SizedBox(height: SizeConfig.bodyHeight * .02),
                     ),

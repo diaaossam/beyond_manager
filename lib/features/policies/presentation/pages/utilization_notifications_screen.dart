@@ -29,7 +29,7 @@ class _UtilizationNotificationsScreenState extends State<UtilizationNotification
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<UtilizationNotificationCubit>(),
+      create: (context) => sl<UtilizationNotificationCubit>()..getNotificationValues(policyId: widget.policyId),
       child: Scaffold(
         appBar: CustomAppBar(
           title: context.localizations.utilizationNotifications,

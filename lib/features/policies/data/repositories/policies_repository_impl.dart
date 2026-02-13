@@ -10,9 +10,11 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../models/request/reimbursement_filter_model.dart';
+import '../models/request/utilization_notification_params.dart';
 import '../models/request/utilization_notification_values.dart';
 import '../models/response/active_list_model.dart';
 import '../models/response/main_policy_model.dart';
+import '../models/response/notification_value_model.dart';
 import '../models/response/policy_access_model.dart';
 import '../models/response/policy_payment.dart';
 import '../models/response/reimbursement_model.dart';
@@ -105,11 +107,11 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
     return response;
   }
 
-  Future<Either<Failure, List<UtilizationNotificationItemModel>>>
-      getUtilizationNotifications({required num policyId}) async {
+  Future<Either<Failure, UtilizationNotificationModel>>
+  getUtilizationNotifications({required UtilizationNotificationParams params}) async {
     final response = await handleApi(
       () => policiesRemoteDataSource.getUtilizationNotifications(
-        policyId: policyId,
+       params: params
       ),
     );
     return response;
@@ -131,6 +133,15 @@ class PoliciesRepositoryImpl with ApiHandlerMixin {
   Future<Either<Failure, List<DeepStudyModel>>> getDeepStudy() async {
     final response = await handleApi(
       () => policiesRemoteDataSource.getDeepStudy(),
+    );
+    return response;
+  }
+
+  Future<Either<Failure, NotificationValueModel>> getNotificationValues({
+    required num policyId,
+  }) async {
+    final response = await handleApi(
+      () => policiesRemoteDataSource.getNotificationValues(policyId: policyId),
     );
     return response;
   }

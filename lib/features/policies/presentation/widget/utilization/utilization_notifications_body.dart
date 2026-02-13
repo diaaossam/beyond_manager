@@ -2,6 +2,7 @@ import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/utils/app_size.dart';
+import 'package:bond/features/policies/data/models/response/notification_value_model.dart';
 import 'package:bond/features/policies/presentation/cubit/utilization/utilization_notification_cubit.dart';
 import 'package:bond/features/policies/presentation/cubit/utilization/utilization_notification_data.dart';
 import 'package:bond/features/policies/presentation/widget/utilization/recommendation_card_design.dart';
@@ -32,9 +33,8 @@ class UtilizationNotificationsBody extends StatefulWidget {
       _UtilizationNotificationsBodyState();
 }
 
-class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsBody> {
-
-
+class _UtilizationNotificationsBodyState
+    extends State<UtilizationNotificationsBody> {
   void _onTabChanged(int index) {
     widget.onTabIndexChanged(index);
     final cubit = context.read<UtilizationNotificationCubit>();
@@ -50,9 +50,7 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.selectedTabIndex == 0) {
-        context.read<UtilizationNotificationCubit>().getUtilizationNotifications(
-              policyId: widget.policyId,
-            );
+        context.read<UtilizationNotificationCubit>().getUtilizationNotifications(policyId: widget.policyId);
       } else {
         context.read<UtilizationNotificationCubit>().getDeepDiveStudy();
       }
@@ -74,15 +72,18 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UtilizationNotificationCubit,
-        BaseState<UtilizationNotificationData>>(
+    return BlocBuilder<
+      UtilizationNotificationCubit,
+      BaseState<UtilizationNotificationData>
+    >(
       buildWhen: (prev, curr) =>
           prev.identifier != curr.identifier ||
           prev.status != curr.status ||
           prev.data != curr.data,
       builder: (context, state) {
         final data = state.data;
-        final isLoadingNotifications = state.isLoading &&
+        final isLoadingNotifications =
+            state.isLoading &&
             state.identifier == "getUtilizationNotifications";
         final isLoadingDeepDive =
             state.isLoading && state.identifier == "getDeepDiveStudy";
@@ -90,7 +91,6 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
         final isLoading = currentIndex == 0
             ? isLoadingNotifications
             : isLoadingDeepDive;
-
         return Padding(
           padding: screenPadding(),
           child: Column(
@@ -105,14 +105,18 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
               ),
               6.verticalSpace,
               AppText.hint(
-                text: context.localizations.configureUtilizationNotificationBody,
+                text:
+                    context.localizations.configureUtilizationNotificationBody,
                 textSize: 11,
               ),
               10.verticalSpace,
               CustomButton(
                 text: context.localizations.configureUtilizationNotification,
-                press: () =>
-                    AlertConfigurationDialog.show(context, widget.policyId),
+                press: () => AlertConfigurationDialog.show(
+                  context,
+                  widget.policyId,
+                  data?.notificationValueModel??NotificationValueModel(),
+                ),
                 height: 50,
               ),
               10.verticalSpace,
@@ -126,8 +130,8 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
                         padding: const EdgeInsets.all(8),
                         children: {
                           0: SegmentItem(
-                            title: context
-                                .localizations.utilizationNotifications,
+                            title:
+                                context.localizations.utilizationNotifications,
                             selected: currentIndex == 0,
                             width: SizeConfig.screenWidth * .4,
                           ),
@@ -149,7 +153,8 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
                         onRetry: () => context
                             .read<UtilizationNotificationCubit>()
                             .getUtilizationNotifications(
-                                policyId: widget.policyId),
+                              policyId: widget.policyId,
+                            ),
                       )
                     else
                       RecommendationCardDesign(

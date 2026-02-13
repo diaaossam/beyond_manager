@@ -624,9 +624,9 @@ class S {
     );
   }
 
-  /// `الرئيسية`
+  /// `Home`
   String get home {
-    return Intl.message('الرئيسية', name: 'home', desc: '', args: []);
+    return Intl.message('Home', name: 'home', desc: '', args: []);
   }
 
   /// `الدعم الفورى`
@@ -1215,9 +1215,19 @@ class S {
   }
 
   /// `Your emergency support sent successfully`
-  String get success {
+  String get successEmergency {
     return Intl.message(
       'Your emergency support sent successfully',
+      name: 'successEmergency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Request Sent Successfully`
+  String get success {
+    return Intl.message(
+      'Your Request Sent Successfully',
       name: 'success',
       desc: '',
       args: [],

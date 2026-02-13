@@ -3,6 +3,7 @@ import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
 import 'package:bond/core/extensions/validitor_extention.dart';
 import 'package:bond/core/utils/app_size.dart';
+import 'package:bond/features/policies/data/models/response/notification_value_model.dart';
 import 'package:bond/features/policies/presentation/cubit/utilization/utilization_notification_cubit.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
@@ -20,10 +21,11 @@ import '../../cubit/utilization/utilization_notification_data.dart';
 
 class AlertConfigurationDialog extends StatefulWidget {
   final num policyId;
+  final NotificationValueModel model;
 
-  const AlertConfigurationDialog({super.key, required this.policyId});
+  const AlertConfigurationDialog({super.key, required this.policyId, required this.model});
 
-  static Future<void> show(BuildContext context, num policyId) {
+  static Future<void> show(BuildContext context, num policyId , NotificationValueModel model) {
     return showGeneralDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -31,7 +33,7 @@ class AlertConfigurationDialog extends StatefulWidget {
       barrierColor: Colors.black.withValues(alpha: 0.5),
       transitionDuration: const Duration(milliseconds: 350),
       pageBuilder: (context, animation, secondaryAnimation) {
-        return AlertConfigurationDialog(policyId: policyId);
+        return AlertConfigurationDialog(policyId: policyId, model: model);
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         final curvedAnimation = CurvedAnimation(
@@ -50,8 +52,7 @@ class AlertConfigurationDialog extends StatefulWidget {
   }
 
   @override
-  State<AlertConfigurationDialog> createState() =>
-      _AlertConfigurationDialogState();
+  State<AlertConfigurationDialog> createState() => _AlertConfigurationDialogState();
 }
 
 class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
@@ -132,14 +133,11 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                       context,
                       name: "Total_Consumption",
                       title: context.localizations.totalConsumptionThreshold,
-                      description: context
-                          .localizations
-                          .totalConsumptionThresholdDescription,
+                      description: context.localizations.totalConsumptionThresholdDescription,
                       enabled: _totalConsumptionEnabled,
                       unit: context.localizations.unitEg,
-                      onEnabledChanged: (v) =>
-                          setState(() => _totalConsumptionEnabled = v),
-                      initValue: "50000",
+                      onEnabledChanged: (v) => setState(() => _totalConsumptionEnabled = v),
+                      initValue: widget.model.totalConsumptionThreshold.toString(),
                     ),
                     _buildThresholdSection(
                       context,
@@ -152,7 +150,7 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                       unit: context.localizations.unitEg,
                       onEnabledChanged: (v) =>
                           setState(() => _monthlyConsumptionEnabled = v),
-                      initValue: "2529",
+                      initValue: widget.model.monthlyConsumptionThreshold.toString(),
                     ),
                     _buildThresholdSection(
                       context,
@@ -165,7 +163,7 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                       unit: context.localizations.unitEg,
                       onEnabledChanged: (v) =>
                           setState(() => _employeeAmountEnabled = v),
-                      initValue: "5000",
+                      initValue:  widget.model.employeeAmountThreshold.toString(),
                     ),
                     _buildThresholdSection(
                       context,
@@ -180,7 +178,7 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                       onEnabledChanged: (v) =>
                           setState(() => _employeeTransactionCountEnabled = v),
                       name: "Employee_Transaction_Count",
-                      initValue: "10",
+                      initValue:  widget.model.employeeTransactionCountThreshold.toString(),
                     ),
                     20.verticalSpace,
                     BlocConsumer<UtilizationNotificationCubit, BaseState<UtilizationNotificationData>>(
@@ -188,8 +186,8 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                         if(state.isSuccess){
                           SettingsHelper.showAlertDialog(
                             context: context,
-                            title: context.localizations.success,
-                            body: state.data?.msg??"",
+                            body:state.data?.msg??"" ,
+                            title:context.localizations.success,
                           );
                         }
                       },
