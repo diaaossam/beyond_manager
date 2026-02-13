@@ -67,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addMembersManually": MessageLookupByLibrary.simpleMessage(
       "إضافة الأعضاء يدويًا",
     ),
+    "addNewPolicy": MessageLookupByLibrary.simpleMessage("+ إضافة وثيقة جديدة"),
     "additionAndDeletionForInsuranceCompany":
         MessageLookupByLibrary.simpleMessage("الإضافة والحذف لشركة التأمين"),
     "additionAndDeletions": MessageLookupByLibrary.simpleMessage(

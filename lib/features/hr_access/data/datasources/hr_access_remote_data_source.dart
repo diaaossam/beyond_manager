@@ -14,7 +14,8 @@ abstract class HrAccessRemoteDataSource {
     required num managerId,
     required String name,
     required bool reimbursement,
-    required List<PolicyAccessItem> policies,
+    required List<num> policyIds,
+    required List<PolicyAccessItem> policyLines,
   });
 }
 
@@ -26,7 +27,7 @@ class HrAccessRemoteDataSourceImpl implements HrAccessRemoteDataSource {
 
   @override
   Future<String> createHrAccess(List<ManagerFormData> managers) async {
-    final body = {'managers': managers.map((m) => m.toJson()).toList()};
+    final body = {'contacts': managers.map((m) => m.toJson()).toList()};
     return await dioConsumer
         .post(EndPoints.createHrAccess)
         .body(body)
@@ -52,13 +53,21 @@ class HrAccessRemoteDataSourceImpl implements HrAccessRemoteDataSource {
     required num managerId,
     required String name,
     required bool reimbursement,
-    required List<PolicyAccessItem> policies,
+    required List<num> policyIds,
+    required List<PolicyAccessItem> policyLines,
   }) async {
+    final firstLine = policyLines.isNotEmpty ? policyLines.first : null;
     final body = {
       'manager_id': managerId,
       'name': name,
       'reimbursement': reimbursement,
-      'policies': policies.map((p) => p.toJson()).toList(),
+      'access_payment': firstLine?.accessPayment ?? false,
+      'access_policy_details': firstLine?.accessPolicyDetails ?? false,
+      'access_utilization': firstLine?.accessUtilization ?? false,
+      'access_active_list': firstLine?.accessActiveList ?? false,
+      'access_addition_and_deletions': firstLine?.accessAdditionAndDeletions ?? false,
+      'policy_ids': policyIds,
+      'policy_lines': policyLines.map((p) => p.toJson()).toList(),
     };
     return await dioConsumer
         .put(EndPoints.updateManager, data: body)

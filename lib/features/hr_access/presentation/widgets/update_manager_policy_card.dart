@@ -109,7 +109,6 @@ class UpdateManagerPolicyCard extends StatelessWidget {
     required ValueChanged<bool?> onChanged,
   }) {
     return SizedBox(
-      width: SizeConfig.screenWidth * .42,
       child: InkWell(
         onTap: () => onChanged(!value),
         child: Row(

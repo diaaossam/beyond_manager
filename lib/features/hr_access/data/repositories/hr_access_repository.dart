@@ -30,14 +30,16 @@ class HrAccessRepository with ApiHandlerMixin {
     required num managerId,
     required String name,
     required bool reimbursement,
-    required List<PolicyAccessItem> policies,
+    required List<num> policyIds,
+    required List<PolicyAccessItem> policyLines,
   }) async {
     return handleApi(
       () async => await remoteDataSource.updateManager(
         managerId: managerId,
         name: name,
         reimbursement: reimbursement,
-        policies: policies,
+        policyIds: policyIds,
+        policyLines: policyLines,
       ),
     );
   }

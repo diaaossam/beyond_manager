@@ -6979,6 +6979,16 @@ class S {
     );
   }
 
+  /// `+ Add New Policy`
+  String get addNewPolicy {
+    return Intl.message(
+      '+ Add New Policy',
+      name: 'addNewPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Submit Changes`
   String get submitChanges {
     return Intl.message(

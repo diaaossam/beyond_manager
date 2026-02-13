@@ -379,6 +379,7 @@
   "selectAManager": "اختر مديرًا",
   "globalAccessRights": "صلاحيات الوصول العامة",
   "policiesAndAccessPermissions": "الوثائق وصلاحيات الوصول",
+  "addNewPolicy": "+ إضافة وثيقة جديدة",
   "submitChanges": "حفظ التغييرات",
   "yourIndustry": "مجالك",
   "productsAvailable": "منتج متاح",

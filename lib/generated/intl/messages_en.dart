@@ -99,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addMembersManually": MessageLookupByLibrary.simpleMessage(
       "Add Members Manually",
     ),
+    "addNewPolicy": MessageLookupByLibrary.simpleMessage("+ Add New Policy"),
     "addNewRequest": MessageLookupByLibrary.simpleMessage("Add new Request"),
     "addNthChild": m6,
     "addWife": MessageLookupByLibrary.simpleMessage("Add Wife"),

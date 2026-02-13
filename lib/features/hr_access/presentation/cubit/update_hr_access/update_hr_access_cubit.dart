@@ -42,7 +42,8 @@ class UpdateHrAccessCubit extends Cubit<BaseState<UpdateHrAccessData>>
     required num managerId,
     required String name,
     required bool reimbursement,
-    required List<PolicyAccessItem> policies,
+    required List<num> policyIds,
+    required List<PolicyAccessItem> policyLines,
   }) async {
     handleAsync(
       identifier: "update_manager",
@@ -50,10 +51,10 @@ class UpdateHrAccessCubit extends Cubit<BaseState<UpdateHrAccessData>>
         managerId: managerId,
         name: name,
         reimbursement: reimbursement,
-        policies: policies,
+        policyIds: policyIds,
+        policyLines: policyLines,
       ),
-      onSuccess: (msg) =>
-          (state.data ?? UpdateHrAccessData()).copyWith(msg: msg),
+      onSuccess: (msg) => (state.data ?? UpdateHrAccessData()).copyWith(msg: msg),
     );
   }
 }
