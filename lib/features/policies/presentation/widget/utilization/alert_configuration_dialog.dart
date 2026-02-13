@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
@@ -13,9 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
 import '../../../../../config/dependencies/injectable_dependencies.dart';
-import '../../../../settings/presentation/settings_helper.dart';
 import '../../../data/models/request/utilization_notification_values.dart';
 import '../../cubit/utilization/utilization_notification_data.dart';
 
@@ -25,8 +24,8 @@ class AlertConfigurationDialog extends StatefulWidget {
 
   const AlertConfigurationDialog({super.key, required this.policyId, required this.model});
 
-  static Future<void> show(BuildContext context, num policyId , NotificationValueModel model) {
-    return showGeneralDialog<void>(
+  static Future<bool?> show(BuildContext context, num policyId , NotificationValueModel model) {
+    return showGeneralDialog<bool?>(
       context: context,
       barrierDismissible: true,
       barrierLabel: context.localizations.alertConfiguration,
@@ -184,16 +183,19 @@ class _AlertConfigurationDialogState extends State<AlertConfigurationDialog> {
                     BlocConsumer<UtilizationNotificationCubit, BaseState<UtilizationNotificationData>>(
                       listener: (context, state) {
                         if(state.isSuccess){
-                          SettingsHelper.showAlertDialog(
-                            context: context,
-                            body:state.data?.msg??"" ,
-                            title:context.localizations.success,
-                            buttonText: context.localizations.back,
-                            onButtonPressed: (){
-                              Navigator.pop(context);
-                              context.read<UtilizationNotificationCubit>().getNotificationValues(policyId: widget.policyId);
-                            }
-                          );
+                          Future.delayed(Duration.zero,() {
+                            Navigator.pop(context,true);
+                          /*  SettingsHelper.showAlertDialog(
+                                context: context,
+                                body:state.data?.msg??"" ,
+                                title:context.localizations.success,
+                                buttonText: context.localizations.back,
+                                onButtonPressed: (){
+                                  Navigator.pop(context);
+                                }
+                            );*/
+                          },);
+
                         }
                       },
                      builder: (context, state) {

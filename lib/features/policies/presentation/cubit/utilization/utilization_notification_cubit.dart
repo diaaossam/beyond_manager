@@ -62,8 +62,7 @@ class UtilizationNotificationCubit
   Future<void> getNotificationValues({required num policyId}) async {
     handleAsync(
       identifier: "getNotificationValues",
-      call: () =>
-          _policiesRepositoryImpl.getNotificationValues(policyId: policyId),
+      call: () => _policiesRepositoryImpl.getNotificationValues(policyId: policyId),
       onSuccess: (data) {
         getUtilizationNotifications(policyId: policyId,params: data);
         return (state.data ?? UtilizationNotificationData())

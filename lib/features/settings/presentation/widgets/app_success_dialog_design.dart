@@ -67,7 +67,7 @@ class AppSuccessDialogDesign extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AppText(
-                    text: context.localizations.home,
+                    text: buttonText ?? context.localizations.home,
                     textSize: 16,
                     color: context.colorScheme.primary,
                     fontWeight: FontWeight.bold,

@@ -33,20 +33,22 @@ class UtilizationNotificationsBody extends StatefulWidget {
       _UtilizationNotificationsBodyState();
 }
 
-class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsBody> {
-
+class _UtilizationNotificationsBodyState
+    extends State<UtilizationNotificationsBody> {
   void _onTabChanged(int index) {
     widget.onTabIndexChanged(index);
     final cubit = context.read<UtilizationNotificationCubit>();
     if (index == 0) {
-      if(cubit.state.data?.notificationValueModel != null){
-        cubit.getUtilizationNotifications(policyId: widget.policyId,params: cubit.state.data!.notificationValueModel!);
+      if (cubit.state.data?.notificationValueModel != null) {
+        cubit.getUtilizationNotifications(
+          policyId: widget.policyId,
+          params: cubit.state.data!.notificationValueModel!,
+        );
       }
     } else {
       cubit.getDeepDiveStudy();
     }
   }
-
 
   @override
   void didUpdateWidget(UtilizationNotificationsBody oldWidget) {
@@ -54,8 +56,11 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
     if (oldWidget.selectedTabIndex != widget.selectedTabIndex) {
       final cubit = context.read<UtilizationNotificationCubit>();
       if (widget.selectedTabIndex == 0) {
-        if(cubit.state.data?.notificationValueModel != null){
-          cubit.getUtilizationNotifications(policyId: widget.policyId,params: cubit.state.data!.notificationValueModel!);
+        if (cubit.state.data?.notificationValueModel != null) {
+          cubit.getUtilizationNotifications(
+            policyId: widget.policyId,
+            params: cubit.state.data!.notificationValueModel!,
+          );
         }
       } else {
         cubit.getDeepDiveStudy();
@@ -105,11 +110,18 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
               10.verticalSpace,
               CustomButton(
                 text: context.localizations.configureUtilizationNotification,
-                press: () => AlertConfigurationDialog.show(
-                  context,
-                  widget.policyId,
-                  data?.notificationValueModel??NotificationValueModel(),
-                ),
+                press: () async {
+                  final response = await AlertConfigurationDialog.show(
+                    context,
+                    widget.policyId,
+                    data?.notificationValueModel ?? NotificationValueModel(),
+                  );
+                  if(response != null && response ==true){
+                    context.read<UtilizationNotificationCubit>().getNotificationValues(
+                      policyId: widget.policyId,
+                    );
+                  }
+                },
                 height: 50,
               ),
               10.verticalSpace,
@@ -146,7 +158,8 @@ class _UtilizationNotificationsBodyState extends State<UtilizationNotificationsB
                         onRetry: () => context
                             .read<UtilizationNotificationCubit>()
                             .getUtilizationNotifications(
-                              policyId: widget.policyId,params: state.data!.notificationValueModel!
+                              policyId: widget.policyId,
+                              params: state.data!.notificationValueModel!,
                             ),
                       )
                     else

@@ -12,7 +12,26 @@ class UtilizationNotificationParams {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['policy_id'] = policyId;
-    map['notification_values'] = notificationValueModel.toJson();
+    if (notificationValueModel.totalConsumptionThreshold != null &&
+        notificationValueModel.totalConsumptionThreshold != 0) {
+      map['total_consumption_threshold'] =
+          notificationValueModel.totalConsumptionThreshold ?? 0;
+    }
+    if (notificationValueModel.monthlyConsumptionThreshold != null &&
+        notificationValueModel.monthlyConsumptionThreshold != 0) {
+      map['monthly_consumption_threshold'] =
+          notificationValueModel.monthlyConsumptionThreshold ?? 0;
+    }
+    if (notificationValueModel.employeeAmountThreshold != null &&
+        notificationValueModel.employeeAmountThreshold != 0) {
+      map['employee_amount_threshold'] =
+          notificationValueModel.employeeAmountThreshold ?? 0;
+    }
+    if (notificationValueModel.employeeTransactionCountThreshold != null &&
+        notificationValueModel.employeeTransactionCountThreshold != 0) {
+      map['employee_transaction_count_threshold'] =
+          notificationValueModel.employeeTransactionCountThreshold ?? 0;
+    }
     return map;
   }
 }
