@@ -391,6 +391,9 @@
   "lowMatch": "تطابق منخفض",
   "insuranceProducts": "منتجات التأمين",
   "showProductBenefits": "عرض مزايا المنتج >",
-  "getPersonalizedQuote": "احصل على عرض سعر مخصص"
-
+  "getPersonalizedQuote": "احصل على عرض سعر مخصص",
+  "employeesExceededAmountThreshold": "تجاوز {count} موظفين حد الاستهلاك ({threshold} ج.م).",
+  "employeesExceededAmountExamples": "أمثلة: ",
+  "seeMore": "عرض المزيد",
+  "exceededEmployeesListTitle": "الموظفون الذين تجاوزوا الحد"
 }

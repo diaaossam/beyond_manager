@@ -14,8 +14,7 @@ class NotificationValueModel {
 
   NotificationValueModel.fromJson(dynamic json) {
     employeeAmountThreshold = json['employee_amount_threshold'] ?? 0;
-    employeeTransactionCountThreshold =
-        json['employee_transaction_count_threshold'] ?? 0;
+    employeeTransactionCountThreshold = json['employee_transaction_count_threshold'] ?? 0;
     monthlyConsumptionThreshold = json['monthly_consumption_threshold'] ?? 0;
     policyId = json['policy_id'];
     totalConsumptionThreshold = json['total_consumption_threshold'] ?? 0;

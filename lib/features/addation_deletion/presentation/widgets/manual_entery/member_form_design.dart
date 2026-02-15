@@ -621,7 +621,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                           flex: 2,
                           child: _tableHeaderCell(
                             context,
-                            context.localizations.policyNumber,
+                            context.localizations.policy,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -637,7 +637,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                           flex: 3,
                           child: _tableHeaderCell(
                             context,
-                            context.localizations.medicalInsurancePlan,
+                            context.localizations.plan1,
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -651,7 +651,6 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       ],
                     ),
                   ),
-                  // Data Rows
                   ...widget.policyList.asMap().entries.map((entry) {
                     final pIdx = entry.key;
                     final policy = entry.value;

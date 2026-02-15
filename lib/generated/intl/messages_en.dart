@@ -20,26 +20,32 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m6(count) => "Add ${count}th Child";
+  static String m7(count) => "Add ${count}th Child";
 
   static String m0(number) => "Card Number: ${number}";
 
-  static String m7(total, threshold) =>
+  static String m8(total, threshold) =>
       "Total consumption (${total} EGP) has exceeded the threshold of ${threshold} EGP";
 
   static String m1(count) => "${count} document(s) selected";
 
-  static String m2(count) =>
+  static String m2(count, threshold) =>
+      "${count} employees have exceeded consumption threshold (${threshold} EGP).";
+
+  static String m9(name, count) =>
+      "${name} have exceeded transaction count threshold (${count}} transactions).";
+
+  static String m3(count) =>
       "Has ${count} family members - will be auto-selected";
 
-  static String m8(month, total, threshold) =>
+  static String m10(month, total, threshold) =>
       "Monthly consumption for ${month} (${total} EGP) has exceeded the threshold of ${threshold} EGP";
 
-  static String m3(count) => "${count} photo(s) selected";
+  static String m4(count) => "${count} photo(s) selected";
 
-  static String m4(count) => "Selected: ${count} Members";
+  static String m5(count) => "Selected: ${count} Members";
 
-  static String m5(count) => "${count} Submitted Requests";
+  static String m6(count) => "${count} Submitted Requests";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -107,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addNewPolicy": MessageLookupByLibrary.simpleMessage("+ Add New Policy"),
     "addNewRequest": MessageLookupByLibrary.simpleMessage("Add new Request"),
-    "addNthChild": m6,
+    "addNthChild": m7,
     "addWife": MessageLookupByLibrary.simpleMessage("Add Wife"),
     "added": MessageLookupByLibrary.simpleMessage("Added"),
     "addition": MessageLookupByLibrary.simpleMessage("Addition"),
@@ -361,7 +367,7 @@ class MessageLookup extends MessageLookupByLibrary {
           "Set thresholds for automatic alerts and reminders.",
         ),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-    "consumptionExceeded": m7,
+    "consumptionExceeded": m8,
     "contactSupport": MessageLookupByLibrary.simpleMessage("Contact Support"),
     "continueButton": MessageLookupByLibrary.simpleMessage("Continue"),
     "continueToMethodSelection": MessageLookupByLibrary.simpleMessage(
@@ -550,6 +556,11 @@ class MessageLookup extends MessageLookupByLibrary {
           "Alert when any employee\'s number of transactions reaches this count.",
         ),
     "employees": MessageLookupByLibrary.simpleMessage("Employees"),
+    "employeesExceededAmountExamples": MessageLookupByLibrary.simpleMessage(
+      "Examples: ",
+    ),
+    "employeesExceededAmountThreshold": m2,
+    "employeesExceededTransactionThreshold": m9,
     "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "ensureAllDataComplies": MessageLookupByLibrary.simpleMessage(
@@ -594,6 +605,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "evening": MessageLookupByLibrary.simpleMessage("Evening"),
     "exampleLabel": MessageLookupByLibrary.simpleMessage("• Example:  "),
     "examples": MessageLookupByLibrary.simpleMessage("• Examples:"),
+    "exceededEmployeesListTitle": MessageLookupByLibrary.simpleMessage(
+      "Employees who exceeded threshold",
+    ),
     "expired": MessageLookupByLibrary.simpleMessage("Expired"),
     "expiredPolicy": MessageLookupByLibrary.simpleMessage("Expired Policy"),
     "exploreNow": MessageLookupByLibrary.simpleMessage("Explore now"),
@@ -664,7 +678,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "guidelinesOfAdditionAndDeletion": MessageLookupByLibrary.simpleMessage(
       "Guidelines of Addition and Deletion for Insurance Company",
     ),
-    "hasFamilyMembersAutoSelected": m2,
+    "hasFamilyMembersAutoSelected": m3,
     "highMatch": MessageLookupByLibrary.simpleMessage("High Match"),
     "highMatch70": MessageLookupByLibrary.simpleMessage("High Match (70%+)"),
     "hiringDate": MessageLookupByLibrary.simpleMessage("Hiring Date"),
@@ -894,7 +908,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Alert when consumption in a specific month reaches this amount.",
         ),
-    "monthlyExceeded": m8,
+    "monthlyExceeded": m10,
     "monthlySalary": MessageLookupByLibrary.simpleMessage("Monthly Salary"),
     "monthlyTrend": MessageLookupByLibrary.simpleMessage("Monthly Trend"),
     "morning": MessageLookupByLibrary.simpleMessage("Morning"),
@@ -1064,7 +1078,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "photosMustBeNamedWithStaffId": MessageLookupByLibrary.simpleMessage(
       "• Photos must be named with Staff ID",
     ),
-    "photosSelected": m3,
+    "photosSelected": m4,
     "physicalCard": MessageLookupByLibrary.simpleMessage("Physical Card"),
     "physical_therapy": MessageLookupByLibrary.simpleMessage(
       "Physical Therapy",
@@ -1261,6 +1275,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "secondNameValidation": MessageLookupByLibrary.simpleMessage(
       "Second Name is required",
     ),
+    "seeMore": MessageLookupByLibrary.simpleMessage("see more"),
     "selectAManager": MessageLookupByLibrary.simpleMessage("Select a Manager"),
     "selectAddition": MessageLookupByLibrary.simpleMessage("Select Addition"),
     "selectAppointmentTime": MessageLookupByLibrary.simpleMessage(
@@ -1308,7 +1323,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectStatus": MessageLookupByLibrary.simpleMessage("Select Status"),
     "selectType": MessageLookupByLibrary.simpleMessage("Select Type"),
     "selected": MessageLookupByLibrary.simpleMessage("Selected:"),
-    "selectedMembers": m4,
+    "selectedMembers": m5,
     "selectedPolicies": MessageLookupByLibrary.simpleMessage(
       "Selected Policies:",
     ),
@@ -1447,7 +1462,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "submittedRequests": MessageLookupByLibrary.simpleMessage(
       "SUBMITTED REQUESTS",
     ),
-    "submittedRequestsCount": m5,
+    "submittedRequestsCount": m6,
     "success": MessageLookupByLibrary.simpleMessage(
       "Your Request Sent Successfully",
     ),

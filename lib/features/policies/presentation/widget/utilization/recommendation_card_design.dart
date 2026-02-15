@@ -46,11 +46,6 @@ class RecommendationCardDesign extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppText.title(
-              text: context.localizations.deepDiveStudy,
-              textSize: 14,
-              fontWeight: FontWeight.w700,
-            ),
             12.verticalSpace,
             Row(
               children: [
@@ -61,6 +56,7 @@ class RecommendationCardDesign extends StatelessWidget {
                       ? context.localizations.noData
                       : '${list.length} ${context.localizations.deepDiveStudy}',
                   textSize: 11,
+                  fontWeight: FontWeight.w600,
                   color: context.colorScheme.onSurface.withValues(alpha: 0.85),
                 ),
               ],

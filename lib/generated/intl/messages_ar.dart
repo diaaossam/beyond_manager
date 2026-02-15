@@ -24,14 +24,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(count) => "${count} مستند محدد";
 
-  static String m2(count) =>
+  static String m2(count, threshold) =>
+      "تجاوز ${count} موظفين حد الاستهلاك (${threshold} ج.م).";
+
+  static String m3(count) =>
       "لديه ${count} أفراد من العائلة - سيتم التحديد تلقائيًا";
 
-  static String m3(count) => "${count} صورة محددة";
+  static String m4(count) => "${count} صورة محددة";
 
-  static String m4(count) => "المحدد: ${count} عضو";
+  static String m5(count) => "المحدد: ${count} عضو";
 
-  static String m5(count) => "${count} طلب مقدم";
+  static String m6(count) => "${count} طلب مقدم";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -267,6 +270,10 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "تنبيه عند وصول عدد معاملات أي موظف إلى هذا العدد.",
         ),
+    "employeesExceededAmountExamples": MessageLookupByLibrary.simpleMessage(
+      "أمثلة: ",
+    ),
+    "employeesExceededAmountThreshold": m2,
     "english": MessageLookupByLibrary.simpleMessage("إنجليزى"),
     "ensureAllDataComplies": MessageLookupByLibrary.simpleMessage(
       "يرجى التأكد من أن جميع البيانات تتوافق مع هذه الإرشادات قبل تقديم القالب الخاص بك لتجنب التأخير أو الرفض.",
@@ -297,6 +304,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "exampleLabel": MessageLookupByLibrary.simpleMessage("• مثال:  "),
     "examples": MessageLookupByLibrary.simpleMessage("• أمثلة:"),
+    "exceededEmployeesListTitle": MessageLookupByLibrary.simpleMessage(
+      "الموظفون الذين تجاوزوا الحد",
+    ),
     "familyUnitWarning": MessageLookupByLibrary.simpleMessage(
       "تحذير الوحدة العائلية:",
     ),
@@ -337,7 +347,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "guidelinesOfAdditionAndDeletion": MessageLookupByLibrary.simpleMessage(
       "إرشادات الإضافة والحذف لشركة التأمين",
     ),
-    "hasFamilyMembersAutoSelected": m2,
+    "hasFamilyMembersAutoSelected": m3,
     "highMatch70": MessageLookupByLibrary.simpleMessage("تطابق عالي (70%+)"),
     "hiringDate": MessageLookupByLibrary.simpleMessage("تاريخ التوظيف"),
     "hrAccessTip": MessageLookupByLibrary.simpleMessage(
@@ -514,7 +524,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "photosMustBeNamedWithStaffId": MessageLookupByLibrary.simpleMessage(
       "• يجب تسمية الصور برقم الموظف",
     ),
-    "photosSelected": m3,
+    "photosSelected": m4,
     "pickImage": MessageLookupByLibrary.simpleMessage("التقط صورة"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("التقط فيديو"),
     "pleaseUploadTheFilledExcelTemplate": MessageLookupByLibrary.simpleMessage(
@@ -599,6 +609,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "searchHint": MessageLookupByLibrary.simpleMessage("إبحث ..."),
     "searchRequests": MessageLookupByLibrary.simpleMessage("البحث عن الطلبات"),
+    "seeMore": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
     "selectAManager": MessageLookupByLibrary.simpleMessage("اختر مديرًا"),
     "selectAddition": MessageLookupByLibrary.simpleMessage("اختر الإضافة"),
     "selectBoth": MessageLookupByLibrary.simpleMessage("اختر كلاهما"),
@@ -621,7 +632,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectRequestType": MessageLookupByLibrary.simpleMessage("اختر نوع الطلب"),
     "selectStatus": MessageLookupByLibrary.simpleMessage("اختر الحالة"),
     "selected": MessageLookupByLibrary.simpleMessage("المحدد:"),
-    "selectedMembers": m4,
+    "selectedMembers": m5,
     "selectedPolicies": MessageLookupByLibrary.simpleMessage(
       "الوثائق المحددة:",
     ),
@@ -706,7 +717,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "submittedRequests": MessageLookupByLibrary.simpleMessage(
       "الطلبات المقدمة",
     ),
-    "submittedRequestsCount": m5,
+    "submittedRequestsCount": m6,
     "templateFormat": MessageLookupByLibrary.simpleMessage("تنسيق القالب:"),
     "templateUpload": MessageLookupByLibrary.simpleMessage("تحميل القالب"),
     "templateUploadDesc": MessageLookupByLibrary.simpleMessage(

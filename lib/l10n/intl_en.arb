@@ -153,6 +153,7 @@
   "nameOnInsuranceCard": "Name On Insurance Card: ",
   "category": "Category",
   "plan": "Plan: ",
+  "plan1": "Plan",
   "gold": "Gold",
   "createNewRequest": "Create New Request",
   "creationDate": "Creation Date: ",
@@ -845,5 +846,23 @@
       "total": {},
       "threshold": {}
     }
-  }
+  },
+  "employeesExceededAmountThreshold": "{name} have exceeded consumption threshold ({amount} EGP).",
+  "@employeesExceededAmountThreshold": {
+    "placeholders": {
+      "name": {},
+      "amount": {}
+    }
+  },
+  "employeesExceededTransactionThreshold": "{name} have exceeded transaction count threshold ({count}} transactions).",
+  "@employeesExceededTransactionThreshold": {
+    "placeholders": {
+      "name": {},
+      "count": {}
+    }
+  },
+  "employeesExceededAmountExamples": "Examples: ",
+  "seeMore": "see more",
+  "exceededEmployeesListTitle": "Employees who exceeded threshold",
+  "policy": "Policy"
 }

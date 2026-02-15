@@ -1354,6 +1354,11 @@ class S {
     return Intl.message('Plan: ', name: 'plan', desc: '', args: []);
   }
 
+  /// `Plan`
+  String get plan1 {
+    return Intl.message('Plan', name: 'plan1', desc: '', args: []);
+  }
+
   /// `Gold`
   String get gold {
     return Intl.message('Gold', name: 'gold', desc: '', args: []);
@@ -7237,6 +7242,56 @@ class S {
       desc: '',
       args: [month, total, threshold],
     );
+  }
+
+  /// `{name} have exceeded consumption threshold ({amount} EGP).`
+  String employeesExceededAmountThreshold(Object name, Object amount) {
+    return Intl.message(
+      '$name have exceeded consumption threshold ($amount EGP).',
+      name: 'employeesExceededAmountThreshold',
+      desc: '',
+      args: [name, amount],
+    );
+  }
+
+  /// `{name} have exceeded transaction count threshold ({count}} transactions).`
+  String employeesExceededTransactionThreshold(Object name, Object count) {
+    return Intl.message(
+      '$name have exceeded transaction count threshold ($count} transactions).',
+      name: 'employeesExceededTransactionThreshold',
+      desc: '',
+      args: [name, count],
+    );
+  }
+
+  /// `Examples: `
+  String get employeesExceededAmountExamples {
+    return Intl.message(
+      'Examples: ',
+      name: 'employeesExceededAmountExamples',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `see more`
+  String get seeMore {
+    return Intl.message('see more', name: 'seeMore', desc: '', args: []);
+  }
+
+  /// `Employees who exceeded threshold`
+  String get exceededEmployeesListTitle {
+    return Intl.message(
+      'Employees who exceeded threshold',
+      name: 'exceededEmployeesListTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Policy`
+  String get policy {
+    return Intl.message('Policy', name: 'policy', desc: '', args: []);
   }
 }
 
