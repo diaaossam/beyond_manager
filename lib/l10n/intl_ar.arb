@@ -393,6 +393,14 @@
   "showProductBenefits": "عرض مزايا المنتج >",
   "getPersonalizedQuote": "احصل على عرض سعر مخصص",
   "employeesExceededAmountThreshold": "تجاوز {count} موظفين حد الاستهلاك ({threshold} ج.م).",
+  "exceededMembersEmployeeAmountSummary": "تجاوز {employeeCount} موظفين حد الاستهلاك ({threshold} ج.م). أمثلة: {examples}",
+  "@exceededMembersEmployeeAmountSummary": {
+    "placeholders": {
+      "employeeCount": {},
+      "threshold": {},
+      "examples": {}
+    }
+  },
   "exceededMembersCountThresholdSummary": "تجاوز {employeeCount} موظفين حد عدد المعاملات ({threshold} معاملة). أمثلة: {examples}",
   "@exceededMembersCountThresholdSummary": {
     "placeholders": {

@@ -17,7 +17,7 @@ class NotificationItemDesign extends StatelessWidget {
         children: [
           AppImage.asset(Assets.images.logo.path, size: 50),
           10.horizontalSpace,
-          Expanded(child: AppText(text: body, maxLines: 10,fontWeight: FontWeight.w500,)),
+          Expanded(child: AppText(text: body, maxLines: 3,fontWeight: FontWeight.w500,)),
         ],
       ),
     );

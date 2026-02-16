@@ -7254,6 +7254,20 @@ class S {
     );
   }
 
+  /// `{employeeCount} employees have exceeded consumption threshold ({threshold} EGP). Examples: {examples}`
+  String exceededMembersEmployeeAmountSummary(
+    Object employeeCount,
+    Object threshold,
+    Object examples,
+  ) {
+    return Intl.message(
+      '$employeeCount employees have exceeded consumption threshold ($threshold EGP). Examples: $examples',
+      name: 'exceededMembersEmployeeAmountSummary',
+      desc: '',
+      args: [employeeCount, threshold, examples],
+    );
+  }
+
   /// `{name} have exceeded transaction count threshold ({count} transactions).`
   String employeesExceededTransactionThreshold(Object name, Object count) {
     return Intl.message(

@@ -2,6 +2,7 @@ import 'package:bond/features/policies/data/models/response/utilization_notifica
 import 'package:bond/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../widgets/loading/loading_widget.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
@@ -64,15 +65,32 @@ class UtilizationNotification extends StatelessWidget {
                   .exceededMembersEmployeeAmountThreshold!
                   .isNotEmpty) ...[
             _buildTitle(count: notifications!.exceededMembersEmployeeAmountThreshold!.length, title: context.localizations.employeeAmountThreshold),
-
-            ...notifications!.exceededMembersEmployeeAmountThreshold!.map((e) {
-              return NotificationItemDesign(
-                body: context.localizations.employeesExceededAmountThreshold(
-                  e.memberName ?? "",
-                  e.totalAmount?.toStringAsFixed(2) ?? "0",
+            NotificationItemDesign(
+              body: context.localizations.exceededMembersEmployeeAmountSummary(
+                notifications!.exceededMembersEmployeeAmountThreshold!.length,
+                _formatAmount(values.employeeAmountThreshold ?? 0),
+                '${notifications!.exceededMembersEmployeeAmountThreshold!.map((e) => "${e.memberName ?? ""} (${_formatAmount(e.totalAmount ?? 0)} ${context.localizations.unitEg})").join(", ")}...',
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 60.w, top: 4.h),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-              );
-            }),
+                onPressed: () => _showExceededMembersEmployeeAmountDialog(
+                  context,
+                  notifications!.exceededMembersEmployeeAmountThreshold!,
+                ),
+                child: AppText.body(
+                  text: context.localizations.viewAll,
+                  textSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
             10.verticalSpace,
           ],
 
@@ -115,6 +133,10 @@ class UtilizationNotification extends StatelessWidget {
     );
   }
 
+  static String _formatAmount(num value) {
+    return NumberFormat('#,##0.00').format(value);
+  }
+
   Widget _buildTitle({required String title, required num count}) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -131,6 +153,48 @@ class UtilizationNotification extends StatelessWidget {
             text: "${S.current.count}: ${count.toString()}",
             textSize: 12,
             fontWeight: FontWeight.w600,
+          ),
+        ],
+      ),
+    );
+  }
+
+  static void _showExceededMembersEmployeeAmountDialog(
+    BuildContext context,
+    List<ExceededMembersEmployeeAmountThreshold> list,
+  ) {
+    final l10n = context.localizations;
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: AppText.title(
+          text: l10n.exceededEmployeesListTitle,
+          textSize: 14,
+          maxLines: 20,
+          fontWeight: FontWeight.w600,
+        ),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: list.length,
+            itemBuilder: (_, i) {
+              final e = list[i];
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 6.h),
+                child: AppText.body(
+                  text: '${e.memberName ?? ""} (${_formatAmount(e.totalAmount ?? 0)} ${l10n.unitEg})',
+                  textSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              );
+            },
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: AppText.body(text: l10n.close, textSize: 14),
           ),
         ],
       ),

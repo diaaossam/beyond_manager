@@ -854,6 +854,14 @@
       "amount": {}
     }
   },
+  "exceededMembersEmployeeAmountSummary": "{employeeCount} employees have exceeded consumption threshold ({threshold} EGP). Examples: {examples}",
+  "@exceededMembersEmployeeAmountSummary": {
+    "placeholders": {
+      "employeeCount": {},
+      "threshold": {},
+      "examples": {}
+    }
+  },
   "employeesExceededTransactionThreshold": "{name} have exceeded transaction count threshold ({count} transactions).",
   "@employeesExceededTransactionThreshold": {
     "placeholders": {
