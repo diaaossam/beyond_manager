@@ -1,8 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class TokenRepository {
-
   Future<void> saveToken(String token);
 
   Future<void> deleteToken();
@@ -14,26 +13,27 @@ abstract class TokenRepository {
 
 @Injectable(as: TokenRepository)
 class TokenRepositoryImp implements TokenRepository {
-  final FlutterSecureStorage secureStorage;
+  final SharedPreferences sharedPreferences;
 
   final String tokenKey = 'token';
 
-  TokenRepositoryImp({required this.secureStorage});
+  TokenRepositoryImp({required this.sharedPreferences});
 
   @override
   Future<void> deleteToken() async {
-    await secureStorage.delete(key: tokenKey);
+    if(sharedPreferences.containsKey(tokenKey)){
+      await sharedPreferences.remove(tokenKey);
+    }
   }
-
 
   @override
   Future<void> saveToken(String token) async {
-    await secureStorage.write(key: tokenKey, value: token);
+    await sharedPreferences.setString(tokenKey, token);
   }
 
   @override
   Future<String?> getToken() async {
-    return await secureStorage.read(key: tokenKey);
+    return sharedPreferences.getString(tokenKey);
   }
 
   @override

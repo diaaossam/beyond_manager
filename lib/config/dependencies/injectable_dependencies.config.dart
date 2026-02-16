@@ -190,7 +190,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i620.DeviceHelper>(() => _i620.DeviceHelperImpl());
     gh.factory<_i734.TokenRepository>(
       () => _i734.TokenRepositoryImp(
-        secureStorage: gh<_i558.FlutterSecureStorage>(),
+        sharedPreferences: gh<_i460.SharedPreferences>(),
       ),
     );
     gh.factory<_i50.AppInterceptors>(
