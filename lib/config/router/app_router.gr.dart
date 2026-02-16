@@ -610,70 +610,18 @@ class HomeRoute extends _i51.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.InsuranceProductsScreen]
-class InsuranceProductsRoute
-    extends _i51.PageRouteInfo<InsuranceProductsRouteArgs> {
-  InsuranceProductsRoute({
-    _i52.Key? key,
-    String industryName = 'Healthcare',
-    int productsCount = 10,
-    List<_i51.PageRouteInfo>? children,
-  }) : super(
-         InsuranceProductsRoute.name,
-         args: InsuranceProductsRouteArgs(
-           key: key,
-           industryName: industryName,
-           productsCount: productsCount,
-         ),
-         initialChildren: children,
-       );
+class InsuranceProductsRoute extends _i51.PageRouteInfo<void> {
+  const InsuranceProductsRoute({List<_i51.PageRouteInfo>? children})
+    : super(InsuranceProductsRoute.name, initialChildren: children);
 
   static const String name = 'InsuranceProductsRoute';
 
   static _i51.PageInfo page = _i51.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<InsuranceProductsRouteArgs>(
-        orElse: () => const InsuranceProductsRouteArgs(),
-      );
-      return _i15.InsuranceProductsScreen(
-        key: args.key,
-        industryName: args.industryName,
-        productsCount: args.productsCount,
-      );
+      return const _i15.InsuranceProductsScreen();
     },
   );
-}
-
-class InsuranceProductsRouteArgs {
-  const InsuranceProductsRouteArgs({
-    this.key,
-    this.industryName = 'Healthcare',
-    this.productsCount = 10,
-  });
-
-  final _i52.Key? key;
-
-  final String industryName;
-
-  final int productsCount;
-
-  @override
-  String toString() {
-    return 'InsuranceProductsRouteArgs{key: $key, industryName: $industryName, productsCount: $productsCount}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! InsuranceProductsRouteArgs) return false;
-    return key == other.key &&
-        industryName == other.industryName &&
-        productsCount == other.productsCount;
-  }
-
-  @override
-  int get hashCode =>
-      key.hashCode ^ industryName.hashCode ^ productsCount.hashCode;
 }
 
 /// generated route for

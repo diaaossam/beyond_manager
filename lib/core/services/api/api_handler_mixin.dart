@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 
 import '../network/error/exceptions.dart';
 import '../network/error/failures.dart';
@@ -13,6 +14,7 @@ mixin ApiHandlerMixin {
         ServerFailure(code: error.statusCode ?? 0, error: error.errors),
       );
     } catch (error) {
+      Logger().e("${error.toString()}");
       return Left(ServerFailure(error: error.toString(), code: 0));
     }
   }

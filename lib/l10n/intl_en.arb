@@ -864,5 +864,10 @@
   "employeesExceededAmountExamples": "Examples: ",
   "seeMore": "see more",
   "exceededEmployeesListTitle": "Employees who exceeded threshold",
-  "policy": "Policy"
+  "policy": "Policy",
+  "close": "Close",
+  "leadReference": "Lead Reference",
+  "insuranceLine": "Insurance Line",
+  "matchLevel": "Match Level"
+
 }

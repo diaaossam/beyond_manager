@@ -17,6 +17,7 @@ import '../../../settings/contact_helper.dart';
 import '../../../settings/presentation/cubit/settings_cubit.dart';
 import '../../data/models/template_model.dart';
 import '../cubit/other_line_cubit.dart';
+import '../cubit/other_line_state.dart';
 import '../widgets/recommendation_banner_design.dart';
 
 @RoutePage()
@@ -26,16 +27,20 @@ class OtherLineScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<OtherLineCubit>()..getOtherLineTemplates(),
-      child: BlocBuilder<OtherLineCubit, BaseState<List<TemplateModel>>>(
+      create: (context) => sl<OtherLineCubit>()
+        ..getOtherLineTemplates()
+        ..getTopRecommendation(),
+      child: BlocBuilder<OtherLineCubit, BaseState<OtherLineStateData>>(
         builder: (context, state) {
           final cubit = context.read<OtherLineCubit>();
-          final templates = state.data ?? [];
-
+          final templates = state.data?.templates ?? [];
           return Scaffold(
             appBar: CustomAppBar(title: context.localizations.insuranceOptions),
             body: state.builder(
-              onTapRetry: () => cubit.getOtherLineTemplates(),
+              onTapRetry: () async {
+                cubit.getOtherLineTemplates();
+                cubit.getTopRecommendation();
+              },
               onSuccess: (data) {
                 return Padding(
                   padding: EdgeInsets.symmetric(
@@ -87,8 +92,10 @@ class OtherLineScreen extends StatelessWidget {
                           text: context.localizations.insuranceOptionsText1,
                         ),
                       ),
-                      SizedBox(height: SizeConfig.bodyHeight * .02),
-                      RecommendationBannerDesign(),
+                      if(data.recommendedModel != null)...[
+                        SizedBox(height: SizeConfig.bodyHeight * .02),
+                        RecommendationBannerDesign(model: data.recommendedModel!,),
+                      ],
                       SizedBox(height: SizeConfig.bodyHeight * .02),
                       Row(
                         children: [

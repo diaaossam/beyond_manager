@@ -120,6 +120,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/excel.svg
   String get excel => 'assets/icons/excel.svg';
 
+  /// File path: assets/icons/failure.svg
+  String get failure => 'assets/icons/failure.svg';
+
   /// File path: assets/icons/filter.svg
   String get filter => 'assets/icons/filter.svg';
 
@@ -161,6 +164,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/new_reservation.svg
   String get newReservation => 'assets/icons/new_reservation.svg';
+
+  /// File path: assets/icons/no data v2.svg
+  String get noDataV2 => 'assets/icons/no data v2.svg';
 
   /// File path: assets/icons/offer1.svg
   String get offer1 => 'assets/icons/offer1.svg';
@@ -295,6 +301,7 @@ class $AssetsIconsGen {
     email,
     emergencySupport,
     excel,
+    failure,
     filter,
     gallery,
     gender,
@@ -309,6 +316,7 @@ class $AssetsIconsGen {
     myRequest,
     myReservation,
     newReservation,
+    noDataV2,
     offer1,
     other,
     otherLine1,

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bond/core/extensions/app_localizations_extension.dart';
 import 'package:bond/core/extensions/color_extensions.dart';
+import 'package:bond/features/other_line/data/models/recommended_model.dart';
 import 'package:bond/widgets/main_widget/app_text.dart';
 import 'package:bond/widgets/main_widget/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/router/app_router.gr.dart';
 
 class RecommendationBannerDesign extends StatelessWidget {
-  const RecommendationBannerDesign({super.key});
+  final RecommendedModel model;
+
+  const RecommendationBannerDesign({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class RecommendationBannerDesign extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: AppText(
-                  text: context.localizations.highMatch,
+                  text: model.matchLevelDisplay??"",
                   textSize: 9,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -65,7 +68,7 @@ class RecommendationBannerDesign extends StatelessWidget {
           ),
           20.verticalSpace,
           AppText(
-            text: context.localizations.property,
+            text: model.name ?? "",
             fontWeight: FontWeight.w600,
             textSize: 14,
           ),
@@ -74,7 +77,7 @@ class RecommendationBannerDesign extends StatelessWidget {
             text: context.localizations.showAllRecommendations,
             press: () => context.router.push(InsuranceProductsRoute()),
             height: 35.h,
-          )
+          ),
         ],
       ),
     );

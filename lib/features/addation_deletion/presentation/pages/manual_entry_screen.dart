@@ -25,6 +25,7 @@ class ManualEntryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(context.router.stack.length);
     return BlocProvider(
       create: (context) => sl<AddationCubit>()
         ..fetchPolicyBranches(policyIds: policyIds)

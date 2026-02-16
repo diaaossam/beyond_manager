@@ -14,7 +14,7 @@ class AppColorScheme {
     error: Color(0xFFFF6B6B),
     inversePrimary: Color(0xffFAFAFA),
     onErrorContainer: Color(0xffFBEAEA),
-    tertiary: Color(0xff18EC82),
+    tertiary: Colors.green,
     onTertiaryContainer: Color(0xFFEBF0EE),
     primaryContainer: Color(0xffF6F6F6),
     onPrimaryContainer: Color(0xff3A6012),

@@ -56,6 +56,7 @@ class AppDropDown<T> extends StatelessWidget {
         icon: AppImage.asset(Assets.icons.arrowDown),
         onChanged: onChanged,
         initialValue: initialValue,
+        menuWidth: MediaQuery.of(context).size.width*0.9,
         decoration: InputDecoration(
           border: ThemeHelper().buildMainTffBorder(context: context),
           disabledBorder: ThemeHelper().buildMainTffBorder(context: context),

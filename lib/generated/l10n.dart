@@ -7293,6 +7293,36 @@ class S {
   String get policy {
     return Intl.message('Policy', name: 'policy', desc: '', args: []);
   }
+
+  /// `Close`
+  String get close {
+    return Intl.message('Close', name: 'close', desc: '', args: []);
+  }
+
+  /// `Lead Reference`
+  String get leadReference {
+    return Intl.message(
+      'Lead Reference',
+      name: 'leadReference',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Line`
+  String get insuranceLine {
+    return Intl.message(
+      'Insurance Line',
+      name: 'insuranceLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Match Level`
+  String get matchLevel {
+    return Intl.message('Match Level', name: 'matchLevel', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

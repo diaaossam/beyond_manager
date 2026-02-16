@@ -88,6 +88,8 @@ import '../../features/other_line/data/datasources/other_line_remote_data_source
     as _i932;
 import '../../features/other_line/data/repositories/other_line_repository_impl.dart'
     as _i214;
+import '../../features/other_line/presentation/cubit/all_recomended/recommended_cubit.dart'
+    as _i562;
 import '../../features/other_line/presentation/cubit/insurance/insurance_cubit.dart'
     as _i323;
 import '../../features/other_line/presentation/cubit/other_line_cubit.dart'
@@ -427,6 +429,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i401.LogoutCubit(gh<_i662.AuthRepository>()),
     );
     gh.factory<_i90.OtpCubit>(() => _i90.OtpCubit(gh<_i662.AuthRepository>()));
+    gh.factory<_i562.RecommendedCubit>(
+      () => _i562.RecommendedCubit(gh<_i214.OtherLineRepositoryImpl>()),
+    );
     gh.factory<_i323.InsuranceCubit>(
       () => _i323.InsuranceCubit(gh<_i214.OtherLineRepositoryImpl>()),
     );
