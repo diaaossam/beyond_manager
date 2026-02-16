@@ -79,15 +79,33 @@ class UtilizationNotification extends StatelessWidget {
           if (notifications?.exceededMembersCountThreshold != null &&
               notifications!.exceededMembersCountThreshold!.isNotEmpty) ...[
             _buildTitle(count: notifications!.exceededMembersCountThreshold!.length, title: context.localizations.employeeTransactionCountThreshold),
-            ...notifications!.exceededMembersCountThreshold!.map((e) {
-              return NotificationItemDesign(
-                body: context.localizations
-                    .employeesExceededTransactionThreshold(
-                      e.memberName ?? "",
-                      e.usageCount ?? "0",
-                    ),
-              );
-            }),
+            NotificationItemDesign(
+              body: context.localizations.exceededMembersCountThresholdSummary(
+                notifications!.exceededMembersCountThreshold!.length,
+                values.employeeTransactionCountThreshold ?? 0,
+                '${notifications!.exceededMembersCountThreshold!.map((e) => "${e.memberName ?? ""} (${e.usageCount ?? 0} transactions)").join(", ")}...',
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 60.w, top: 4.h),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                onPressed: () => _showExceededMembersCountDialog(
+                  context,
+                  notifications!.exceededMembersCountThreshold!,
+                  values.employeeTransactionCountThreshold ?? 0,
+                ),
+                child: AppText.body(
+                  text: context.localizations.viewAll,
+                  textSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
             10.verticalSpace,
           ],
 
@@ -113,6 +131,49 @@ class UtilizationNotification extends StatelessWidget {
             text: "${S.current.count}: ${count.toString()}",
             textSize: 12,
             fontWeight: FontWeight.w600,
+          ),
+        ],
+      ),
+    );
+  }
+
+  static void _showExceededMembersCountDialog(
+    BuildContext context,
+    List<ExceededMembersCountThreshold> list,
+    num threshold,
+  ) {
+    final l10n = context.localizations;
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: AppText.title(
+          text: l10n.exceededEmployeesListTitle,
+          textSize: 14,
+          maxLines: 20,
+          fontWeight: FontWeight.w600,
+        ),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: list.length,
+            itemBuilder: (_, i) {
+              final e = list[i];
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 6.h),
+                child: AppText.body(
+                  text: '${e.memberName ?? ""} (${e.usageCount ?? 0} ${l10n.unitCount})',
+                  textSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              );
+            },
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: AppText.body(text: l10n.close, textSize: 14),
           ),
         ],
       ),

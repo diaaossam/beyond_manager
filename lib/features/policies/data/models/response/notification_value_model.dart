@@ -27,6 +27,7 @@ class NotificationValueModel {
   num? policyId;
   num? totalConsumptionThreshold;
   num? userManagerId;
+
   bool? totalConsumptionEnabled;
 
   bool? monthlyConsumptionEnabled;

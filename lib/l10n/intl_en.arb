@@ -854,15 +854,24 @@
       "amount": {}
     }
   },
-  "employeesExceededTransactionThreshold": "{name} have exceeded transaction count threshold ({count}} transactions).",
+  "employeesExceededTransactionThreshold": "{name} have exceeded transaction count threshold ({count} transactions).",
   "@employeesExceededTransactionThreshold": {
     "placeholders": {
       "name": {},
       "count": {}
     }
   },
+  "exceededMembersCountThresholdSummary": "{employeeCount} employees have exceeded transaction count threshold ({threshold} transactions). Examples: {examples}",
+  "@exceededMembersCountThresholdSummary": {
+    "placeholders": {
+      "employeeCount": {},
+      "threshold": {},
+      "examples": {}
+    }
+  },
   "employeesExceededAmountExamples": "Examples: ",
   "seeMore": "see more",
+  "viewAll": "View All",
   "exceededEmployeesListTitle": "Employees who exceeded threshold",
   "policy": "Policy",
   "close": "Close",

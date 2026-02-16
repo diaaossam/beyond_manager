@@ -7254,13 +7254,27 @@ class S {
     );
   }
 
-  /// `{name} have exceeded transaction count threshold ({count}} transactions).`
+  /// `{name} have exceeded transaction count threshold ({count} transactions).`
   String employeesExceededTransactionThreshold(Object name, Object count) {
     return Intl.message(
-      '$name have exceeded transaction count threshold ($count} transactions).',
+      '$name have exceeded transaction count threshold ($count transactions).',
       name: 'employeesExceededTransactionThreshold',
       desc: '',
       args: [name, count],
+    );
+  }
+
+  /// `{employeeCount} employees have exceeded transaction count threshold ({threshold} transactions). Examples: {examples}`
+  String exceededMembersCountThresholdSummary(
+    Object employeeCount,
+    Object threshold,
+    Object examples,
+  ) {
+    return Intl.message(
+      '$employeeCount employees have exceeded transaction count threshold ($threshold transactions). Examples: $examples',
+      name: 'exceededMembersCountThresholdSummary',
+      desc: '',
+      args: [employeeCount, threshold, examples],
     );
   }
 
@@ -7277,6 +7291,11 @@ class S {
   /// `see more`
   String get seeMore {
     return Intl.message('see more', name: 'seeMore', desc: '', args: []);
+  }
+
+  /// `View All`
+  String get viewAll {
+    return Intl.message('View All', name: 'viewAll', desc: '', args: []);
   }
 
   /// `Employees who exceeded threshold`
