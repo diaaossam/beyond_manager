@@ -66,12 +66,10 @@ class PoliciesDataModel {
     policyStartDate = json['policy_start_date'];
     policyState = json['policy_state'];
     reimbursementBankAccount = json['reimbursement_bank_account'];
-    reqAcknowledgement = json['req_acknowledgement'];
     reqArabicName = json['req_arabic_name'];
     reqEmail = json['req_email'];
     reqHiringDate = json['req_hiring_date'];
     reqNationality = json['req_nationality'];
-    reqPhoto = json['req_photo'];
   }
   num? backAdditionDate;
   num? backDeletionDate;

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bond/config/router/app_router.gr.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/core/enum/gender.dart';
 import 'package:bond/features/addation_deletion/data/models/response/branch_response.dart';
@@ -6,26 +7,31 @@ import 'package:bond/features/addation_deletion/data/models/response/policies_da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:logger/logger.dart';
 import '../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../core/utils/app_size.dart';
 import '../../../../../widgets/loading/loading_widget.dart';
 import '../../../../../widgets/main_widget/app_text.dart';
 import '../../../../../widgets/main_widget/custom_button.dart';
-import '../../../../settings/presentation/settings_helper.dart';
 import '../../../data/models/enums/marital_status_enum.dart';
 import '../../../data/models/enums/nationality_enum.dart';
 import '../../../data/models/response/manual_entry_params.dart';
 import '../../../data/models/response/relationship_model.dart';
 import '../../cubit/addation/addation.dart';
 import '../../cubit/addation/addation_data.dart';
+import '../../pages/addition_attachments_screen.dart';
 import 'member_form_design.dart';
 
 class ManualEntryBody extends StatefulWidget {
   final List<PoliciesDataModel> selectedPolicies;
   final PoliciesDataModel policiesPermission;
 
-  const ManualEntryBody({super.key, required this.selectedPolicies, required this.policiesPermission});
+  const ManualEntryBody({
+    super.key,
+    required this.selectedPolicies,
+    required this.policiesPermission,
+  });
 
   @override
   State<ManualEntryBody> createState() => _ManualEntryBodyState();
@@ -34,7 +40,6 @@ class ManualEntryBody extends StatefulWidget {
 class _ManualEntryBodyState extends State<ManualEntryBody> {
   List<MemberFormData> members = [MemberFormData()];
   final _formKey = GlobalKey<FormBuilderState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -144,10 +149,79 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
             child: BlocConsumer<AddationCubit, BaseState<AddationData>>(
               listener: (context, state) {
                 if (state.isSuccess && state.identifier == "submit_members") {
-                  SettingsHelper.showAlertDialog(
+                  showDialog(
                     context: context,
-                    title: context.localizations.sentRequestSuccessTitle,
-                    body: context.localizations.sentRequestSuccessBody,
+                    barrierDismissible: false,
+                    builder: (dialogContext) {
+                      return AlertDialog(
+                        contentPadding: EdgeInsets.all(
+                          SizeConfig.screenWidth * .05,
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            AppText(
+                              text: dialogContext
+                                  .localizations
+                                  .sentRequestSuccessTitle,
+                              textSize: 14,
+                              fontWeight: FontWeight.w700,
+                              align: TextAlign.center,
+                            ),
+                            SizedBox(height: SizeConfig.bodyHeight * .01),
+                            AppText.body(
+                              align: TextAlign.center,
+                              text: dialogContext
+                                  .localizations
+                                  .sentRequestSuccessBody,
+                              maxLines: 5,
+                              textSize: 11,
+                            ),
+                            SizedBox(height: SizeConfig.bodyHeight * .03),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomButton.outline(
+                                    text: dialogContext
+                                        .localizations
+                                        .backToDashboard,
+                                    press: () {
+                                      Navigator.of(dialogContext).pop();
+                                      context.router.pushAndPopUntil(
+                                        const MainLayoutRoute(),
+                                        predicate: (route) => false,
+                                      );
+                                    },
+                                    borderColor:
+                                        dialogContext.colorScheme.outline,
+                                    textColor:
+                                        dialogContext.colorScheme.onSurface,
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: CustomButton(
+                                    text: dialogContext
+                                        .localizations
+                                        .uploadAttachments,
+                                    press: () {
+                                      Navigator.of(dialogContext).pop();
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (_) =>
+                                              const AdditionAttachmentsScreen(),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   );
                 }
               },
@@ -172,10 +246,11 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
                       flex: 2,
                       child: CustomButton(
                         text: context.localizations.submitRequest,
-                        press: () async{
-                          if (!_formKey.currentState!.saveAndValidate()) {
+                        press: () async {
+                         /* if (!_formKey.currentState!.saveAndValidate()) {
                             return;
-                          }
+                          }*/
+                          _formKey.currentState!.save();
                           final List<MemberFormData> extractedMembers =
                               _extractMembersFromForm();
                           context.read<AddationCubit>().submitMembers(
@@ -197,27 +272,24 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
   List<MemberFormData> _extractMembersFromForm() {
     final formData = _formKey.currentState?.value ?? {};
     final List<MemberFormData> extractedMembers = [];
-    final bool isMultiPolicy = widget.selectedPolicies.length > 1;
-
+    final bool isSinglePolicy = widget.selectedPolicies.length == 1;
     for (int i = 0; i < members.length; i++) {
       List<Map<String, dynamic>>? policyData;
-      if (isMultiPolicy) {
-        policyData = [];
-        for (int p = 0; p < widget.selectedPolicies.length; p++) {
-          final policy = widget.selectedPolicies[p];
-          final plan =
-              formData['policyPlan_${i}_$p'] as AddationBranchModel?;
-          final branch =
-              formData['policyBranch_${i}_$p'] as AddationBranchModel?;
-          policyData.add({
-            'number': policy.policyNumber,
-            'branch_id': branch?.branchId,
-            'plan_id': plan?.branchId,
-            'date': formData['policyDate_${i}_$p'],
-          });
-        }
+      policyData = [];
+      for (int p = 0; p < widget.selectedPolicies.length; p++) {
+        final policy = widget.selectedPolicies[p];
+        final plan = formData['policyPlan_${i}_$p'] as AddationBranchModel?;
+        final branch = formData['policyBranch_${i}_$p'] as AddationBranchModel?;
+        final additionDate = formData['additionDate_${i}_$p'] as String?;
+        policyData.add({
+          'policy_id': policy.policyNumber,
+          'branch_id': branch?.branchId,
+          'plan_id': plan?.branchId,
+          'addition_date': additionDate,
+        });
       }
 
+      
       extractedMembers.add(
         MemberFormData(
           relationship: formData['relationship_$i'] as RelationshipModel?,
@@ -227,18 +299,14 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
           nationalId: formData['nationalId_$i'] as String?,
           dateOfBirth: formData['dateOfBirth_$i'] as String?,
           hiringDate: formData['hiringDate_$i'] as String?,
-          additionDate: formData['additionDate_$i'] as String?,
           maritalStatus: formData['maritalStatus_$i'] as MaritalStatusEnum?,
           gender: formData['gender_$i'] as GenderEnum?,
           phoneNumber: formData['phoneNumber_$i'] as String?,
           emailAddress: formData['emailAddress_$i'] as String?,
-          medicalInsurancePlan: formData['medicalInsurancePlan_$i'],
           salary: formData['salary_$i'] as String?,
           iban: formData['iban_$i'] as String?,
           address: formData['address_$i'] as String?,
           photoFileName: formData['photoFileName_$i'] as String?,
-          acknowledgmentFileName:
-              formData['acknowledgmentFileName_$i'] as String?,
           staffNumber: formData['staffNumber_$i'] as String?,
           memberStatus: 'under_addition',
           policies: widget.selectedPolicies,
@@ -246,7 +314,8 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
         ),
       );
     }
-
+    
+    extractedMembers.forEach((element) => Logger().w(element.toJson()),);
     return extractedMembers;
   }
 }

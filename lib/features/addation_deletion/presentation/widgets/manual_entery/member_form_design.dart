@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:bond/config/helper/secure_file_picker.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
 import 'package:bond/features/addation_deletion/data/models/response/branch_response.dart';
 import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
@@ -259,7 +257,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
               if (isSinglePolicy) ...[
                 Expanded(
                   child: CustomTextFormField(
-                    name: 'additionDate_${widget.index}',
+                    name: 'additionDate_0_0',
                     label: context.localizations.additionDate,
                     hintText: context.localizations.ddMmYyyy,
                     suffixIcon: const Icon(Icons.calendar_today, size: 18),
@@ -278,7 +276,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       );
                       if (date != null) {
                         widget.formKey.currentState?.patchValue({
-                          "additionDate_${widget.index}": date.formattedDate,
+                          "additionDate_0_0": date.formattedDate,
                         });
                       }
                     },
@@ -403,7 +401,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                       children: [
                         Expanded(
                           child: AppDropDown(
-                            name: 'medicalInsurancePlan_${widget.index}',
+                            name: "policyPlan_0_0",
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(
                                 errorText: context.localizations.validation,
@@ -435,7 +433,7 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                         10.horizontalSpace,
                         Expanded(
                           child: AppDropDown(
-                            name: 'branch_${widget.index}',
+                            name: 'policyBranch_0_0',
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(
                                 errorText: context.localizations.validation,
@@ -508,58 +506,6 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
               ),
             ]),
           ),
-          if (widget.policiesPermission.reqPhoto == true) ...[
-            SizedBox(height: SizeConfig.bodyHeight * .02),
-            FormBuilderField<String>(
-              name: 'photoFileName_${widget.index}',
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(
-                  errorText: context.localizations.validation,
-                ),
-              ]),
-              builder: (FormFieldState<String> field) {
-                return _buildFileUpload(
-                  context: context,
-                  hasError: field.hasError,
-                  label: context.localizations.photoUpload,
-                  required: true,
-                  helperText: context.localizations.automaticallyRenamedWithStaffNumber,
-                  fileName: field.value,
-                  onTap: () async {
-                    File file = await SecureFilePicker.pickFile();
-                    field.didChange(file.path);
-                    setState(() {});
-                  },
-                );
-              },
-            ),
-          ],
-          if (widget.policiesPermission.reqAcknowledgement == true) ...[
-            SizedBox(height: SizeConfig.bodyHeight * .02),
-            FormBuilderField<String>(
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(
-                  errorText: context.localizations.validation,
-                ),
-              ]),
-              name: 'acknowledgmentFileName_${widget.index}',
-              builder: (FormFieldState<String> field) {
-                return _buildFileUpload(
-                  context: context,
-                  hasError: field.hasError,
-                  label: context.localizations.acknowledgmentStatement,
-                  required: true,
-                  helperText: context.localizations.uploadSignedAcknowledgment,
-                  fileName: field.value,
-                  onTap: () async {
-                    File file = await SecureFilePicker.pickFile();
-                    field.didChange(file.path);
-                    setState(() {});
-                  },
-                );
-              },
-            ),
-          ],
           SizedBox(height: SizeConfig.bodyHeight * .02),
           CustomTextFormField(
             name: 'staffNumber_${widget.index}',
@@ -795,103 +741,6 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
       textSize: 10,
       color: context.colorScheme.onSurface,
       align: TextAlign.center,
-    );
-  }
-
-  Widget _buildFileUpload({
-    required BuildContext context,
-    required String label,
-    bool required = false,
-    String? helperText,
-    String? fileName,
-    required VoidCallback onTap,
-    required bool hasError,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: hasError
-              ? context.colorScheme.error
-              : context.colorScheme.outline,
-        ),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              AppText(
-                text: label,
-                fontWeight: FontWeight.w600,
-                textSize: 12,
-                color: context.colorScheme.onSurface,
-              ),
-              if (required)
-                const AppText(
-                  text: " *",
-                  fontWeight: FontWeight.w700,
-                  textSize: 13,
-                  color: Colors.red,
-                ),
-            ],
-          ),
-          const SizedBox(height: 6),
-          InkWell(
-            onTap: onTap,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-              decoration: BoxDecoration(
-                border: Border.all(color: context.colorScheme.outline),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: context.colorScheme.outline,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: AppText(
-                      text: context.localizations.chooseFile,
-                      fontWeight: FontWeight.w600,
-                      textSize: 12,
-                      color: context.colorScheme.onSurface,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: AppText(
-                      text: fileName != null
-                          ? fileName.split('/').last
-                          : context.localizations.noFileChosen,
-                      fontWeight: FontWeight.w400,
-                      textSize: 11,
-                      color: fileName != null
-                          ? context.colorScheme.onSurface
-                          : context.colorScheme.shadow,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          if (helperText != null) ...[
-            const SizedBox(height: 4),
-            AppText(
-              text: helperText,
-              fontWeight: FontWeight.w400,
-              textSize: 11,
-              color: context.colorScheme.shadow,
-              maxLines: 2,
-            ),
-          ],
-        ],
-      ),
     );
   }
 }

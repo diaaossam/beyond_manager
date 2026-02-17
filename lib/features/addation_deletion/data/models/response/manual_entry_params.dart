@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:bond/features/addation_deletion/data/models/response/policies_data_addation.dart';
 import 'package:bond/features/addation_deletion/data/models/response/relationship_model.dart';
 import '../../../../../core/enum/gender.dart';
@@ -19,7 +17,6 @@ class MemberFormData {
   GenderEnum? gender;
   String? phoneNumber;
   String? emailAddress;
-  String? medicalInsurancePlan;
   String? salary;
   String? iban;
   String? address;
@@ -27,7 +24,7 @@ class MemberFormData {
   String? acknowledgmentFileName;
   String? staffNumber;
   String? memberStatus;
-  List<PoliciesDataModel> ? policies;
+  List<PoliciesDataModel>? policies;
   List<Map<String, dynamic>>? policyData;
 
   MemberFormData({
@@ -43,38 +40,17 @@ class MemberFormData {
     this.gender,
     this.phoneNumber,
     this.emailAddress,
-    this.medicalInsurancePlan,
     this.salary,
     this.iban,
     this.address,
     this.photoFileName,
-    this.acknowledgmentFileName,
     this.staffNumber,
     this.memberStatus,
     this.policies,
     this.policyData,
   });
 
-  Future<Map<String, dynamic>> toJson() async {
-    String? photoBase64;
-    String? acknowledgmentBase64;
-
-    if (photoFileName != null && photoFileName!.isNotEmpty) {
-      final file = File(photoFileName!);
-      if (await file.exists()) {
-        final bytes = await file.readAsBytes();
-        photoBase64 = base64Encode(bytes);
-      }
-    }
-
-    if (acknowledgmentFileName != null && acknowledgmentFileName!.isNotEmpty) {
-      final file = File(acknowledgmentFileName!);
-      if (await file.exists()) {
-        final bytes = await file.readAsBytes();
-        acknowledgmentBase64 = base64Encode(bytes);
-      }
-    }
-
+  Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'insured_member': fullNameEnglish,
       'ar_insured_member': fullNameArabic,
@@ -82,7 +58,6 @@ class MemberFormData {
       'staffid': staffNumber,
       'nationalnumber': nationalId,
       'mobilenumber': phoneNumber,
-      "plan_id": medicalInsurancePlan,
       "gender": gender == GenderEnum.male ? "male" : "female",
       "marital_status": maritalStatus?.name,
       'relation2_id': relationship?.id,
@@ -94,8 +69,6 @@ class MemberFormData {
       'salary': salary,
       'iban': iban,
       'address': address,
-      "member_photo": photoBase64,
-      "acknowledgment_statement": acknowledgmentBase64,
     };
     if (policyData != null && policyData!.isNotEmpty) {
       map['policy_data'] = policyData;

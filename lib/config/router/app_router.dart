@@ -18,6 +18,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: PolicyPaymentRoute.page),
     AutoRoute(page: PolicyInfoRoute.page),
     AutoRoute(page: ActiveListRoute.page),
+    AutoRoute(page: AddEmergenceRoute.page),
     AutoRoute(
       page: MainLayoutRoute.page,
       children: [
@@ -27,7 +28,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ProfileRoute.page),
       ],
     ),
-    AutoRoute(page: AddEmergenceRoute.page),
     AutoRoute(page: ProfileRoute.page),
     AutoRoute(page: ComplaintRoute.page),
     AutoRoute(page: UtilizationRoute.page),
