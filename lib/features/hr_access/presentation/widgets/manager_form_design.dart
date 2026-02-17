@@ -164,7 +164,7 @@ class ManagerFormDesign extends StatelessWidget {
               _buildCheckbox(context, 'accessUtilization_$index', context.localizations.accessUtilization, manager.accessUtilization),
               _buildCheckbox(context, 'accessActiveList_$index', context.localizations.accessActiveList, manager.accessActiveList),
               _buildCheckbox(context, 'accessAdditionAndDeletions_$index', context.localizations.accessAdditionAndDeletions, manager.accessAdditionAndDeletions),
-              _buildCheckbox(context, 'reimbursement_$index', context.localizations.reimbursement, manager.reimbursement),
+              _buildCheckbox(context, 'reimbursement_$index', context.localizations.reimbrursement, manager.reimbursement),
             ],
           ),
         ],

@@ -222,7 +222,7 @@ class _UpdateExistingManagerBodyState extends State<UpdateExistingManagerBody> {
                 ),
                 Expanded(
                   child: AppText(
-                    text: context.localizations.reimbursement,
+                    text: context.localizations.reimbrursement,
                     textSize: 12,
                     fontWeight: FontWeight.w500,
                     color: context.colorScheme.onSurface,

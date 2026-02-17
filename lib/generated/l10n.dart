@@ -339,89 +339,84 @@ class S {
     );
   }
 
-  /// `سعداء بانضمامك!`
+  /// `Happy to have you join us!`
   String get registerTitle {
     return Intl.message(
-      'سعداء بانضمامك!',
+      'Happy to have you join us!',
       name: 'registerTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `خطوات سريعة فقط… لتبدأ رحلتك معنا`
+  /// `Just a few quick steps… to start your journey with us`
   String get registerBody {
     return Intl.message(
-      'خطوات سريعة فقط… لتبدأ رحلتك معنا',
+      'Just a few quick steps… to start your journey with us',
       name: 'registerBody',
       desc: '',
       args: [],
     );
   }
 
-  /// `سعداء بعودتك من جديد !`
+  /// `Happy to have you back!`
   String get loginTitle {
     return Intl.message(
-      'سعداء بعودتك من جديد !',
+      'Happy to have you back!',
       name: 'loginTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `أدخل رقم هاتفك لتسجيل الدخول`
+  /// `Enter your phone number to log in`
   String get loginBody {
     return Intl.message(
-      'أدخل رقم هاتفك لتسجيل الدخول',
+      'Enter your phone number to log in',
       name: 'loginBody',
       desc: '',
       args: [],
     );
   }
 
-  /// `تسجيل الدخول`
+  /// `Log in`
   String get login {
-    return Intl.message('تسجيل الدخول', name: 'login', desc: '', args: []);
+    return Intl.message('Log in', name: 'login', desc: '', args: []);
   }
 
-  /// `تسجيل`
+  /// `Register`
   String get register {
-    return Intl.message('تسجيل', name: 'register', desc: '', args: []);
+    return Intl.message('Register', name: 'register', desc: '', args: []);
   }
 
-  /// `لا يوجد اتصال بالإنترنت`
+  /// `No internet connection`
   String get noInternet {
     return Intl.message(
-      'لا يوجد اتصال بالإنترنت',
+      'No internet connection',
       name: 'noInternet',
       desc: '',
       args: [],
     );
   }
 
-  /// `يبدو أن جهازك غير متصل بالإنترنت\nتحقق من الاتصال وحاول مرة أخرى`
+  /// `It seems your device is not connected to the internet.\nCheck the connection and try again.`
   String get noInternetBody {
     return Intl.message(
-      'يبدو أن جهازك غير متصل بالإنترنت\nتحقق من الاتصال وحاول مرة أخرى',
+      'It seems your device is not connected to the internet.\nCheck the connection and try again.',
       name: 'noInternetBody',
       desc: '',
       args: [],
     );
   }
 
-  /// `جاري التحميل...`
+  /// `Loading...`
   String get loadingText {
-    return Intl.message(
-      'جاري التحميل...',
-      name: 'loadingText',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Loading...', name: 'loadingText', desc: '', args: []);
   }
 
-  /// `إعادة المحاولة`
+  /// `Retry`
   String get retry {
-    return Intl.message('إعادة المحاولة', name: 'retry', desc: '', args: []);
+    return Intl.message('Retry', name: 'retry', desc: '', args: []);
   }
 
   /// `Welcome to Beyond Manger`
@@ -604,10 +599,10 @@ class S {
     );
   }
 
-  /// `كود تحقق خاطئ من فضلك تحقق من الرقم المطلوب`
+  /// `Invalid verification code, please check the required number`
   String get invalidOtp {
     return Intl.message(
-      'كود تحقق خاطئ من فضلك تحقق من الرقم المطلوب',
+      'Invalid verification code, please check the required number',
       name: 'invalidOtp',
       desc: '',
       args: [],
@@ -629,29 +624,29 @@ class S {
     return Intl.message('Home', name: 'home', desc: '', args: []);
   }
 
-  /// `الدعم الفورى`
+  /// `Emergency Support`
   String get emergencySupport {
     return Intl.message(
-      'الدعم الفورى',
+      'Emergency Support',
       name: 'emergencySupport',
       desc: '',
       args: [],
     );
   }
 
-  /// `وثائق التأمين`
+  /// `Insurance Policies`
   String get insurancePolicies {
     return Intl.message(
-      'وثائق التأمين',
+      'Insurance Policies',
       name: 'insurancePolicies',
       desc: '',
       args: [],
     );
   }
 
-  /// `الملف الشخصي`
+  /// `Profile`
   String get profile {
-    return Intl.message('الملف الشخصي', name: 'profile', desc: '', args: []);
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
   }
 
   /// `Beyond Services`
@@ -2017,16 +2012,6 @@ class S {
   /// `Ok`
   String get ok {
     return Intl.message('Ok', name: 'ok', desc: '', args: []);
-  }
-
-  /// `Reimbursement`
-  String get reimbursement {
-    return Intl.message(
-      'Reimbursement',
-      name: 'reimbursement',
-      desc: '',
-      args: [],
-    );
   }
 
   /// `Medical Network`
@@ -3674,10 +3659,10 @@ class S {
     return Intl.message('Count', name: 'count', desc: '', args: []);
   }
 
-  /// `يمكنك طلب رمز جديد خلال `
+  /// `You can request a new code within `
   String get dontReceiveCode {
     return Intl.message(
-      'يمكنك طلب رمز جديد خلال ',
+      'You can request a new code within ',
       name: 'dontReceiveCode',
       desc: '',
       args: [],
@@ -3719,40 +3704,35 @@ class S {
     );
   }
 
-  /// `لا توجد بيانات`
+  /// `No data`
   String get noDataTitle {
-    return Intl.message(
-      'لا توجد بيانات',
-      name: 'noDataTitle',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No data', name: 'noDataTitle', desc: '', args: []);
   }
 
-  /// `ستظهر بياناتك هنا عند استلامها`
+  /// `Your data will appear here when received`
   String get noDataBody {
     return Intl.message(
-      'ستظهر بياناتك هنا عند استلامها',
+      'Your data will appear here when received',
       name: 'noDataBody',
       desc: '',
       args: [],
     );
   }
 
-  /// `حدث خطأ غير متوقع`
+  /// `An unexpected error occurred`
   String get errorTitle {
     return Intl.message(
-      'حدث خطأ غير متوقع',
+      'An unexpected error occurred',
       name: 'errorTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `حدثت مشكلة أثناء تحميل البيانات، حاول مرة أخرى بعد قليل.`
+  /// `A problem occurred while loading the data. Please try again later.`
   String get errorBody {
     return Intl.message(
-      'حدثت مشكلة أثناء تحميل البيانات، حاول مرة أخرى بعد قليل.',
+      'A problem occurred while loading the data. Please try again later.',
       name: 'errorBody',
       desc: '',
       args: [],
@@ -4674,10 +4654,10 @@ class S {
     );
   }
 
-  /// `اسم العضو الكامل`
+  /// `Member Full Name`
   String get memberFullNameArabic {
     return Intl.message(
-      'اسم العضو الكامل',
+      'Member Full Name',
       name: 'memberFullNameArabic',
       desc: '',
       args: [],
@@ -7241,16 +7221,6 @@ class S {
       name: 'monthlyExceeded',
       desc: '',
       args: [month, total, threshold],
-    );
-  }
-
-  /// `{name} have exceeded consumption threshold ({amount} EGP).`
-  String employeesExceededAmountThreshold(Object name, Object amount) {
-    return Intl.message(
-      '$name have exceeded consumption threshold ($amount EGP).',
-      name: 'employeesExceededAmountThreshold',
-      desc: '',
-      args: [name, amount],
     );
   }
 

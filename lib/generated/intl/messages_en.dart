@@ -20,32 +20,35 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m7(count) => "Add ${count}th Child";
+  static String m0(count) => "Add ${count}th Child";
 
-  static String m0(number) => "Card Number: ${number}";
+  static String m1(number) => "Card Number: ${number}";
 
-  static String m8(total, threshold) =>
+  static String m2(total, threshold) =>
       "Total consumption (${total} EGP) has exceeded the threshold of ${threshold} EGP";
 
-  static String m1(count) => "${count} document(s) selected";
+  static String m3(count) => "${count} document(s) selected";
 
-  static String m2(count, threshold) =>
-      "${count} employees have exceeded consumption threshold (${threshold} EGP).";
+  static String m4(name, count) =>
+      "${name} have exceeded transaction count threshold (${count} transactions).";
 
-  static String m9(name, count) =>
-      "${name} have exceeded transaction count threshold (${count}} transactions).";
+  static String m5(employeeCount, threshold, examples) =>
+      "${employeeCount} employees have exceeded transaction count threshold (${threshold} transactions). Examples: ${examples}";
 
-  static String m3(count) =>
+  static String m6(employeeCount, threshold, examples) =>
+      "${employeeCount} employees have exceeded consumption threshold (${threshold} EGP). Examples: ${examples}";
+
+  static String m7(count) =>
       "Has ${count} family members - will be auto-selected";
 
-  static String m10(month, total, threshold) =>
+  static String m8(month, total, threshold) =>
       "Monthly consumption for ${month} (${total} EGP) has exceeded the threshold of ${threshold} EGP";
 
-  static String m4(count) => "${count} photo(s) selected";
+  static String m9(count) => "${count} photo(s) selected";
 
-  static String m5(count) => "Selected: ${count} Members";
+  static String m10(count) => "Selected: ${count} Members";
 
-  static String m6(count) => "${count} Submitted Requests";
+  static String m11(count) => "${count} Submitted Requests";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -113,7 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addNewPolicy": MessageLookupByLibrary.simpleMessage("+ Add New Policy"),
     "addNewRequest": MessageLookupByLibrary.simpleMessage("Add new Request"),
-    "addNthChild": m7,
+    "addNthChild": m0,
     "addWife": MessageLookupByLibrary.simpleMessage("Add Wife"),
     "added": MessageLookupByLibrary.simpleMessage("Added"),
     "addition": MessageLookupByLibrary.simpleMessage("Addition"),
@@ -263,7 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cannotOpenFile": MessageLookupByLibrary.simpleMessage("Cannot open file"),
-    "cardNumber": m0,
+    "cardNumber": m1,
     "cash": MessageLookupByLibrary.simpleMessage("Cash"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "categoryBody": MessageLookupByLibrary.simpleMessage(
@@ -330,6 +333,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clickToSelectYourFilledTemplate": MessageLookupByLibrary.simpleMessage(
       "Click to select your filled template",
     ),
+    "close": MessageLookupByLibrary.simpleMessage("Close"),
     "closeGuidelines": MessageLookupByLibrary.simpleMessage("Close Guidelines"),
     "commingSoon": MessageLookupByLibrary.simpleMessage("Coming Soon"),
     "companyName": MessageLookupByLibrary.simpleMessage("Company Name"),
@@ -367,7 +371,7 @@ class MessageLookup extends MessageLookupByLibrary {
           "Set thresholds for automatic alerts and reminders.",
         ),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-    "consumptionExceeded": m8,
+    "consumptionExceeded": m2,
     "contactSupport": MessageLookupByLibrary.simpleMessage("Contact Support"),
     "continueButton": MessageLookupByLibrary.simpleMessage("Continue"),
     "continueToMethodSelection": MessageLookupByLibrary.simpleMessage(
@@ -479,13 +483,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "documentsMustBeNamedWithStaffId": MessageLookupByLibrary.simpleMessage(
       "• Documents must be named with Staff ID",
     ),
-    "documentsSelected": m1,
+    "documentsSelected": m3,
     "done": MessageLookupByLibrary.simpleMessage("Done"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Dont have account?",
     ),
     "dontReceiveCode": MessageLookupByLibrary.simpleMessage(
-      "يمكنك طلب رمز جديد خلال ",
+      "You can request a new code within ",
     ),
     "downloadExcelReport": MessageLookupByLibrary.simpleMessage(
       "Download Excel Report",
@@ -526,7 +530,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "emergencyNoItem": MessageLookupByLibrary.simpleMessage(
       "There are no pending or old requests, please create a new request below",
     ),
-    "emergencySupport": MessageLookupByLibrary.simpleMessage("الدعم الفورى"),
+    "emergencySupport": MessageLookupByLibrary.simpleMessage(
+      "Emergency Support",
+    ),
     "emergencySupport1": MessageLookupByLibrary.simpleMessage(
       "Emergency Support",
     ),
@@ -559,8 +565,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "employeesExceededAmountExamples": MessageLookupByLibrary.simpleMessage(
       "Examples: ",
     ),
-    "employeesExceededAmountThreshold": m2,
-    "employeesExceededTransactionThreshold": m9,
+    "employeesExceededTransactionThreshold": m4,
     "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "ensureAllDataComplies": MessageLookupByLibrary.simpleMessage(
@@ -578,12 +583,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "Enter Primary Member\'s Data",
     ),
     "errorBody": MessageLookupByLibrary.simpleMessage(
-      "حدثت مشكلة أثناء تحميل البيانات، حاول مرة أخرى بعد قليل.",
+      "A problem occurred while loading the data. Please try again later.",
     ),
     "errorLoadingData": MessageLookupByLibrary.simpleMessage(
       "Error loading data",
     ),
-    "errorTitle": MessageLookupByLibrary.simpleMessage("حدث خطأ غير متوقع"),
+    "errorTitle": MessageLookupByLibrary.simpleMessage(
+      "An unexpected error occurred",
+    ),
     "error_bad_request": MessageLookupByLibrary.simpleMessage("Bad Request"),
     "error_bad_response": MessageLookupByLibrary.simpleMessage(
       "Bad response from server",
@@ -608,6 +615,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "exceededEmployeesListTitle": MessageLookupByLibrary.simpleMessage(
       "Employees who exceeded threshold",
     ),
+    "exceededMembersCountThresholdSummary": m5,
+    "exceededMembersEmployeeAmountSummary": m6,
     "expired": MessageLookupByLibrary.simpleMessage("Expired"),
     "expiredPolicy": MessageLookupByLibrary.simpleMessage("Expired Policy"),
     "exploreNow": MessageLookupByLibrary.simpleMessage("Explore now"),
@@ -678,7 +687,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "guidelinesOfAdditionAndDeletion": MessageLookupByLibrary.simpleMessage(
       "Guidelines of Addition and Deletion for Insurance Company",
     ),
-    "hasFamilyMembersAutoSelected": m3,
+    "hasFamilyMembersAutoSelected": m7,
     "highMatch": MessageLookupByLibrary.simpleMessage("High Match"),
     "highMatch70": MessageLookupByLibrary.simpleMessage("High Match (70%+)"),
     "hiringDate": MessageLookupByLibrary.simpleMessage("Hiring Date"),
@@ -738,6 +747,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "insuranceFund": MessageLookupByLibrary.simpleMessage("Insurance Fund"),
     "insuranceID": MessageLookupByLibrary.simpleMessage("Insurance ID"),
+    "insuranceLine": MessageLookupByLibrary.simpleMessage("Insurance Line"),
     "insuranceNetwork": MessageLookupByLibrary.simpleMessage(
       "Insurance Network",
     ),
@@ -754,7 +764,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Insurance Plan Type",
     ),
     "insurancePlans": MessageLookupByLibrary.simpleMessage("Insurance Plans"),
-    "insurancePolicies": MessageLookupByLibrary.simpleMessage("وثائق التأمين"),
+    "insurancePolicies": MessageLookupByLibrary.simpleMessage(
+      "Insurance Policies",
+    ),
     "insurancePolicies1": MessageLookupByLibrary.simpleMessage(
       "Insurance Policies",
     ),
@@ -773,7 +785,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please enter a valid email",
     ),
     "invalidOtp": MessageLookupByLibrary.simpleMessage(
-      "كود تحقق خاطئ من فضلك تحقق من الرقم المطلوب",
+      "Invalid verification code, please check the required number",
     ),
     "invalidPhone": MessageLookupByLibrary.simpleMessage(
       "Invalid Phone number",
@@ -800,6 +812,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "lastUpdated": MessageLookupByLibrary.simpleMessage("Last Updated : "),
     "lastUpdatedLabel": MessageLookupByLibrary.simpleMessage("Last Updated: "),
+    "leadReference": MessageLookupByLibrary.simpleMessage("Lead Reference"),
     "legibility": MessageLookupByLibrary.simpleMessage("Legibility:"),
     "lifeInsurancePlan": MessageLookupByLibrary.simpleMessage(
       "Life Insurance Plan",
@@ -808,15 +821,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "lineOfBusiness": MessageLookupByLibrary.simpleMessage(
       "Line of Business: ",
     ),
-    "loadingText": MessageLookupByLibrary.simpleMessage("جاري التحميل..."),
+    "loadingText": MessageLookupByLibrary.simpleMessage("Loading..."),
     "location": MessageLookupByLibrary.simpleMessage("Location"),
     "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
-    "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "login": MessageLookupByLibrary.simpleMessage("Log in"),
     "loginBody": MessageLookupByLibrary.simpleMessage(
-      "أدخل رقم هاتفك لتسجيل الدخول",
+      "Enter your phone number to log in",
     ),
     "loginTitle": MessageLookupByLibrary.simpleMessage(
-      "سعداء بعودتك من جديد !",
+      "Happy to have you back!",
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Log Out"),
     "logoutBody": MessageLookupByLibrary.simpleMessage(
@@ -840,6 +853,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "march": MessageLookupByLibrary.simpleMessage("March"),
     "maritalStatus": MessageLookupByLibrary.simpleMessage("Marital Status"),
     "married": MessageLookupByLibrary.simpleMessage("Married"),
+    "matchLevel": MessageLookupByLibrary.simpleMessage("Match Level"),
     "maternity": MessageLookupByLibrary.simpleMessage("Maternity"),
     "maximum10MBPerDocument": MessageLookupByLibrary.simpleMessage(
       "Maximum 10MB per document",
@@ -868,7 +882,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "member": MessageLookupByLibrary.simpleMessage("Member #"),
     "memberFullName": MessageLookupByLibrary.simpleMessage("Member Full Name"),
     "memberFullNameArabic": MessageLookupByLibrary.simpleMessage(
-      "اسم العضو الكامل",
+      "Member Full Name",
     ),
     "memberId": MessageLookupByLibrary.simpleMessage("Member Id"),
     "memberMustHaveCompletedMinimumCoverage": MessageLookupByLibrary.simpleMessage(
@@ -908,7 +922,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Alert when consumption in a specific month reaches this amount.",
         ),
-    "monthlyExceeded": m10,
+    "monthlyExceeded": m8,
     "monthlySalary": MessageLookupByLibrary.simpleMessage("Monthly Salary"),
     "monthlyTrend": MessageLookupByLibrary.simpleMessage("Monthly Trend"),
     "morning": MessageLookupByLibrary.simpleMessage("Morning"),
@@ -960,9 +974,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "No Data Found , please try again later",
     ),
     "noDataBody": MessageLookupByLibrary.simpleMessage(
-      "ستظهر بياناتك هنا عند استلامها",
+      "Your data will appear here when received",
     ),
-    "noDataTitle": MessageLookupByLibrary.simpleMessage("لا توجد بيانات"),
+    "noDataTitle": MessageLookupByLibrary.simpleMessage("No data"),
     "noDoctors": MessageLookupByLibrary.simpleMessage(
       "No doctors with this name",
     ),
@@ -971,10 +985,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noFileChosen": MessageLookupByLibrary.simpleMessage("No file chosen"),
     "noInternet": MessageLookupByLibrary.simpleMessage(
-      "لا يوجد اتصال بالإنترنت",
+      "No internet connection",
     ),
     "noInternetBody": MessageLookupByLibrary.simpleMessage(
-      "يبدو أن جهازك غير متصل بالإنترنت\nتحقق من الاتصال وحاول مرة أخرى",
+      "It seems your device is not connected to the internet.\nCheck the connection and try again.",
     ),
     "noPolicyDetailsFound": MessageLookupByLibrary.simpleMessage(
       "No policy details available",
@@ -1078,7 +1092,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "photosMustBeNamedWithStaffId": MessageLookupByLibrary.simpleMessage(
       "• Photos must be named with Staff ID",
     ),
-    "photosSelected": m4,
+    "photosSelected": m9,
     "physicalCard": MessageLookupByLibrary.simpleMessage("Physical Card"),
     "physical_therapy": MessageLookupByLibrary.simpleMessage(
       "Physical Therapy",
@@ -1086,6 +1100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pickImage": MessageLookupByLibrary.simpleMessage("Pick Image"),
     "pickVideo": MessageLookupByLibrary.simpleMessage("Pick video"),
     "plan": MessageLookupByLibrary.simpleMessage("Plan: "),
+    "plan1": MessageLookupByLibrary.simpleMessage("Plan"),
     "pleaseChooseOneMember": MessageLookupByLibrary.simpleMessage(
       "Please Choose Member",
     ),
@@ -1113,6 +1128,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "policiesAndAccessPermissions": MessageLookupByLibrary.simpleMessage(
       "Policies & Access Permissions",
     ),
+    "policy": MessageLookupByLibrary.simpleMessage("Policy"),
     "policyCoverage": MessageLookupByLibrary.simpleMessage("Policy Coverage:"),
     "policyDetails": MessageLookupByLibrary.simpleMessage("Policy Details"),
     "policyFile": MessageLookupByLibrary.simpleMessage("Policy File"),
@@ -1160,7 +1176,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "productsAvailable": MessageLookupByLibrary.simpleMessage(
       "Products Available",
     ),
-    "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "property": MessageLookupByLibrary.simpleMessage("Property All Risk"),
     "provider": MessageLookupByLibrary.simpleMessage("Provider"),
     "providerName": MessageLookupByLibrary.simpleMessage("Provider name"),
@@ -1185,16 +1201,17 @@ class MessageLookup extends MessageLookupByLibrary {
           "Refund eligibility depends on policy terms and effective date",
         ),
     "refunds": MessageLookupByLibrary.simpleMessage("Refunds:"),
-    "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
+    "register": MessageLookupByLibrary.simpleMessage("Register"),
     "registerBody": MessageLookupByLibrary.simpleMessage(
-      "خطوات سريعة فقط… لتبدأ رحلتك معنا",
+      "Just a few quick steps… to start your journey with us",
     ),
     "registerBody1": MessageLookupByLibrary.simpleMessage(
       "Enter your account details to create a new account",
     ),
-    "registerTitle": MessageLookupByLibrary.simpleMessage("سعداء بانضمامك!"),
+    "registerTitle": MessageLookupByLibrary.simpleMessage(
+      "Happy to have you join us!",
+    ),
     "reimbrursement": MessageLookupByLibrary.simpleMessage("Reimbrursement"),
-    "reimbursement": MessageLookupByLibrary.simpleMessage("Reimbursement"),
     "reimbursementRequests": MessageLookupByLibrary.simpleMessage(
       "Reimbursement Management",
     ),
@@ -1248,7 +1265,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "resetDetails": MessageLookupByLibrary.simpleMessage("Reset Details"),
     "resolution": MessageLookupByLibrary.simpleMessage("Resolution:"),
-    "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
+    "retry": MessageLookupByLibrary.simpleMessage("Retry"),
     "riskCarrier": MessageLookupByLibrary.simpleMessage("Risk Carrier"),
     "salaryConditional": MessageLookupByLibrary.simpleMessage(
       "Salary (Conditional)",
@@ -1323,7 +1340,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectStatus": MessageLookupByLibrary.simpleMessage("Select Status"),
     "selectType": MessageLookupByLibrary.simpleMessage("Select Type"),
     "selected": MessageLookupByLibrary.simpleMessage("Selected:"),
-    "selectedMembers": m5,
+    "selectedMembers": m10,
     "selectedPolicies": MessageLookupByLibrary.simpleMessage(
       "Selected Policies:",
     ),
@@ -1462,7 +1479,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "submittedRequests": MessageLookupByLibrary.simpleMessage(
       "SUBMITTED REQUESTS",
     ),
-    "submittedRequestsCount": m6,
+    "submittedRequestsCount": m11,
     "success": MessageLookupByLibrary.simpleMessage(
       "Your Request Sent Successfully",
     ),
@@ -1618,6 +1635,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verifyAllInformationForAccuracy": MessageLookupByLibrary.simpleMessage(
       "Verify all information for accuracy before submission",
     ),
+    "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
     "viewDeletionGuide": MessageLookupByLibrary.simpleMessage(
       "View Deletion Guidelines for Selected Insurance",
     ),
