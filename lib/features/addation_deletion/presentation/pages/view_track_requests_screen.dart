@@ -57,7 +57,6 @@ class _ViewTrackRequestsScreenState extends State<ViewTrackRequestsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: SizeConfig.bodyHeight * .03),
-                // Title
                 AppText(
                   text: "View / Track Requests",
                   fontWeight: FontWeight.w700,
@@ -74,7 +73,6 @@ class _ViewTrackRequestsScreenState extends State<ViewTrackRequestsScreen> {
                   maxLines: 2,
                 ),
                 SizedBox(height: SizeConfig.bodyHeight * .03),
-                // Statistics Cards
                 Row(
                   children: [
                     Expanded(
@@ -112,7 +110,6 @@ class _ViewTrackRequestsScreenState extends State<ViewTrackRequestsScreen> {
                   ],
                 ),
                 SizedBox(height: SizeConfig.bodyHeight * .04),
-                // Search Section
                 Row(
                   children: [
                     const Icon(Icons.search, size: 20),
@@ -229,10 +226,10 @@ class _ViewTrackRequestsScreenState extends State<ViewTrackRequestsScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: SizeConfig.bodyHeight * .02),
+                /*SizedBox(height: SizeConfig.bodyHeight * .02),
                 // Request Cards
                 ...requests.map((request) => _buildRequestCard(request)),
-                SizedBox(height: SizeConfig.bodyHeight * .02),
+                SizedBox(height: SizeConfig.bodyHeight * .02),*/
               ],
             ),
           ),

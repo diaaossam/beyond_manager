@@ -45,55 +45,34 @@ class DeletionMemberCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? context.colorScheme.primary
-                        : context.colorScheme.surface,
-                    border: Border.all(
-                      color: isSelected
-                          ? context.colorScheme.primary
-                          : context.colorScheme.shadow,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: isSelected
-                      ? const Icon(Icons.check, size: 14, color: Colors.white)
-                      : null,
-                ),
-                const SizedBox(width: 12),
                 Expanded(
                   child: AppText(
                     text: deletionMemberModel.insuredMember ?? 'N/A',
                     fontWeight: FontWeight.w600,
-                    textSize: 13,
+                    textSize: 12,
                     color: context.colorScheme.onSurface,
                   ),
                 ),
+                if (deletionMemberModel.principalInsuranceId == null ||
+                    deletionMemberModel.principalInsuranceId.toString().isEmpty)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF4A90E2),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child:  AppText(
+                      text:deletionMemberModel.relation.toString(),
+                      fontWeight: FontWeight.w600,
+                      textSize: 10,
+                      color: Colors.white,
+                    ),
+                  ),
               ],
             ),
-            SizedBox(height: SizeConfig.bodyHeight * .015),
-            if (deletionMemberModel.principalInsuranceId == null ||
-                deletionMemberModel.principalInsuranceId.toString().isEmpty)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 4,
-                ),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF4A90E2),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child:  AppText(
-                  text:deletionMemberModel.relation.toString(),
-                  fontWeight: FontWeight.w600,
-                  textSize: 10,
-                  color: Colors.white,
-                ),
-              ),
             SizedBox(height: SizeConfig.bodyHeight * .01),
             InfoRow(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -106,16 +85,17 @@ class DeletionMemberCard extends StatelessWidget {
               value: deletionMemberModel.nationalnumber ?? 'N/A',
               crossAxisAlignment: CrossAxisAlignment.center,
             ),
-            SizedBox(height: SizeConfig.bodyHeight * .008),
             InfoRow(
               keyData: "${context.localizations.insuranceID}:",
               value: deletionMemberModel.insuranceId ?? 'N/A',
               crossAxisAlignment: CrossAxisAlignment.center,
-            ), InfoRow(
+            ),
+            InfoRow(
               keyData: "${context.localizations.nationality}:",
               value: deletionMemberModel.nationality ?? 'N/A',
               crossAxisAlignment: CrossAxisAlignment.center,
-            ), InfoRow(
+            ),
+            InfoRow(
               keyData: "${context.localizations.principalInsuranceID}:",
               value: deletionMemberModel.principalInsuranceId ?? 'N/A',
               crossAxisAlignment: CrossAxisAlignment.center,

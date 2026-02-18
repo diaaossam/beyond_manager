@@ -272,7 +272,6 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
   List<MemberFormData> _extractMembersFromForm() {
     final formData = _formKey.currentState?.value ?? {};
     final List<MemberFormData> extractedMembers = [];
-    final bool isSinglePolicy = widget.selectedPolicies.length == 1;
     for (int i = 0; i < members.length; i++) {
       List<Map<String, dynamic>>? policyData;
       policyData = [];
@@ -282,7 +281,7 @@ class _ManualEntryBodyState extends State<ManualEntryBody> {
         final branch = formData['policyBranch_${i}_$p'] as AddationBranchModel?;
         final additionDate = formData['additionDate_${i}_$p'] as String?;
         policyData.add({
-          'policy_id': policy.policyNumber,
+          'policy_id': policy.policyId,
           'branch_id': branch?.branchId,
           'plan_id': plan?.branchId,
           'addition_date': additionDate,

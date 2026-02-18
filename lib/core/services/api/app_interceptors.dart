@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:bond/config/environment/environment_helper.dart' as env;
+import 'package:logger/logger.dart';
 
 import '../../../config/helper/context_helper.dart';
 import '../../../features/auth/data/models/response/user_model_helper.dart';

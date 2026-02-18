@@ -397,10 +397,21 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                   onTapRetry: () {},
                   listenTo: {"policyPlans", "policyBranches"},
                   onSuccess: (data) {
+                    final singlePolicyKey =
+                        widget.policyList.first.policyId?.toString() ?? '';
+
+                    final singlePolicyPlans =
+                        data.policyPlans?.result[singlePolicyKey] ??
+                            <AddationBranchModel>[];
+
+                    final singlePolicyBranches =
+                        data.branches?.result[singlePolicyKey] ??
+                            <AddationBranchModel>[];
+
                     return Row(
                       children: [
                         Expanded(
-                          child: AppDropDown(
+                          child: AppDropDown<AddationBranchModel>(
                             name: "policyPlan_0_0",
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(
@@ -408,31 +419,25 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                               ),
                             ]),
                             label: context.localizations.medicalInsurancePlan,
-                            isLoading:
-                                state.isLoading &&
+                            isLoading: state.isLoading &&
                                 state.identifier == "policyPlans",
                             hint: context.localizations.selectPlan,
-                            items:
-                                ((state.data?.policyPlans?.result.entries
-                                            .toList() ??
-                                        [])
-                                    .map(
-                                      (entry) => DropdownMenuItem(
-                                        value: entry,
-                                        child: AppText(
-                                          text: entry.value.isNotEmpty
-                                              ? entry.value.first.branchName
-                                                    .toString()
-                                              : "",
-                                        ),
-                                      ),
-                                    )
-                                    .toList()),
+                            items: singlePolicyPlans
+                                .map(
+                                  (plan) =>
+                                      DropdownMenuItem<AddationBranchModel>(
+                                    value: plan,
+                                    child: AppText(
+                                      text: plan.branchName,
+                                    ),
+                                  ),
+                                )
+                                .toList(),
                           ),
                         ),
                         10.horizontalSpace,
                         Expanded(
-                          child: AppDropDown(
+                          child: AppDropDown<AddationBranchModel>(
                             name: 'policyBranch_0_0',
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(
@@ -441,25 +446,19 @@ class _MemberFormDesignState extends State<MemberFormDesign> {
                             ]),
                             label: context.localizations.branch,
                             hint: context.localizations.selectBranch,
-                            isLoading:
-                                state.isLoading &&
+                            isLoading: state.isLoading &&
                                 state.identifier == "policyBranches",
-                            items:
-                                ((state.data?.branches?.result.entries
-                                            .toList() ??
-                                        [])
-                                    .map(
-                                      (entry) => DropdownMenuItem(
-                                        value: entry,
-                                        child: AppText(
-                                          text: entry.value.isNotEmpty
-                                              ? entry.value.first.branchName
-                                                    .toString()
-                                              : "",
-                                        ),
-                                      ),
-                                    )
-                                    .toList()),
+                            items: singlePolicyBranches
+                                .map(
+                                  (branch) =>
+                                      DropdownMenuItem<AddationBranchModel>(
+                                    value: branch,
+                                    child: AppText(
+                                      text: branch.branchName,
+                                    ),
+                                  ),
+                                )
+                                .toList(),
                           ),
                         ),
                       ],

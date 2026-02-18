@@ -25,8 +25,8 @@ class AddationBranchModel {
 
   factory AddationBranchModel.fromJson(Map<String, dynamic> json) {
     return AddationBranchModel(
-      branchId: json['branch_id'],
-      branchName: json['branch_name'],
+      branchId: json['branch_id']??json['id'],
+      branchName: json['branch_name']??json['name'],
     );
   }
 }

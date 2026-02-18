@@ -62,7 +62,6 @@ class _DeletionBodyState extends State<DeletionBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<DeletionCubit, BaseState<DeletionResponseModel>>(
       listener: (context, state) {
-
       },
       builder: (context, state) {
         final bloc =context.read<DeletionCubit>();
@@ -244,8 +243,7 @@ class _DeletionBodyState extends State<DeletionBody> {
                     state: state,
                     fetchNextPage: fetchNextPage,
                     addAutomaticKeepAlives: true,
-                    builderDelegate:
-                    PagedChildBuilderDelegate<DeletionMemberModel>(
+                    builderDelegate:PagedChildBuilderDelegate<DeletionMemberModel>(
                       firstPageProgressIndicatorBuilder: (context) => LoadingWidget(),
                       firstPageErrorIndicatorBuilder: (context) => AppFailureWidget(
                         callback: () => bloc.pagingController.refresh(),
@@ -275,8 +273,7 @@ class _DeletionBodyState extends State<DeletionBody> {
               ],
             ),
           ),
-          bottomNavigationBar: selectedMemberIds.isNotEmpty
-              ? Container(
+          bottomNavigationBar: selectedMemberIds.isNotEmpty ? Container(
             padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
             decoration: BoxDecoration(
               color: context.colorScheme.surface,
