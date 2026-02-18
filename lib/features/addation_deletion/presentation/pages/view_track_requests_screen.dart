@@ -202,34 +202,40 @@ class _ViewTrackRequestsScreenState extends State<ViewTrackRequestsScreen> {
                       textSize: 18,
                       color: context.colorScheme.onSurface,
                     ),
-                    Row(
-                      children: [
-                        CustomButton.outline(
-                          text: "Back to Dashboard",
-                          press: () {
-                            context.router.back();
-                          },
-                          borderColor: context.colorScheme.outline,
-                          textColor: context.colorScheme.onSurface,
-                          height: 36,
-                        ),
-                        const SizedBox(width: 12),
-                        CustomButton(
-                          text: "Create New Request",
-                          iconData: Icons.add,
-                          press: () {
-                            context.router.push(const SelectPoliciesRoute());
-                          },
-                          height: 36,
-                        ),
-                      ],
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: CustomButton.outline(
+                              text: "Back to Dashboard",
+                              press: () {
+                                context.router.back();
+                              },
+                              borderColor: context.colorScheme.outline,
+                              textColor: context.colorScheme.onSurface,
+                              height: 36,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: CustomButton(
+                              text: "Create New Request",
+                              iconData: Icons.add,
+                              press: () {
+                                context.router.push(const SelectPoliciesRoute());
+                              },
+                              height: 36,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-                /*SizedBox(height: SizeConfig.bodyHeight * .02),
+                SizedBox(height: SizeConfig.bodyHeight * .02),
                 // Request Cards
                 ...requests.map((request) => _buildRequestCard(request)),
-                SizedBox(height: SizeConfig.bodyHeight * .02),*/
+                SizedBox(height: SizeConfig.bodyHeight * .02),
               ],
             ),
           ),
