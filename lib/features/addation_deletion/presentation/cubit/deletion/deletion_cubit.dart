@@ -20,8 +20,7 @@ class DeletionCubit extends Cubit<BaseState<DeletionResponseModel>>
   Future<void> initPagination({required ActiveListParams params}) async {
     activeListParams = params;
     pagingController = PagingController<int, DeletionMemberModel>(
-      getNextPageKey: (state) =>
-          state.lastPageIsEmpty ? null : state.nextIntPageKey,
+      getNextPageKey: (state) => state.lastPageIsEmpty ? null : state.nextIntPageKey,
       fetchPage: (pageKey) async {
         final pageSize = activeListParams?.pageSize ?? 8;
         final response = await deletionRepository.fetchDeletionMembers(
@@ -54,5 +53,16 @@ class DeletionCubit extends Cubit<BaseState<DeletionResponseModel>>
     activeListParams = params;
     pagingController.refresh();
     emit(state.copyWith(status: BaseStatus.success));
+  }
+
+  Future<void> submitMembersToDelete(
+    Map<num, String> selectedMemberDates,
+    List<num> ids,
+  ) async {
+    handleAsync(
+      call: () => deletionRepository.submitMembersToDelete(selectedMemberDates,ids,),
+      onSuccess: (data) =>
+          (state.data ?? DeletionResponseModel()).copyWith(msg: data),
+    );
   }
 }

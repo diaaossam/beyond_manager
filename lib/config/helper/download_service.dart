@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:bond/features/policies/data/models/response/active_list_model.dart';
 import 'package:bond/features/policies/data/models/response/reimbursement_model.dart';
 import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -80,6 +81,7 @@ class DownloadServiceHelper {
       return FileOperationResult.failure('No data to export');
     }
 
+    Logger().w(bigRecord.length);
     try {
       final Workbook workbook = Workbook();
       final Worksheet sheet = workbook.worksheets[0];

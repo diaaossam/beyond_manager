@@ -1,11 +1,9 @@
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/features/auth/presentation/cubit/login_cubit/login_data.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import '../../../../../core/bloc/helper/async_handler.dart';
 import '../../../data/models/request/login_params.dart';
-import '../../../data/models/response/user_model.dart';
 import '../../../data/repositories/auth_repo_impl.dart';
 
 @injectable

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/features/emergency/data/models/emergency_params.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/bloc/helper/async_handler.dart';
 import '../../data/repositories/emergency_repo_impl.dart';
 
 @Injectable()

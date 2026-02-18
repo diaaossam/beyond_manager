@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/bloc/helper/either_extensions.dart';
-import 'package:bond/features/other_line/data/models/template_model.dart';
 import 'package:bond/features/other_line/data/repositories/other_line_repository_impl.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/bloc/helper/async_handler.dart';
 import 'other_line_state.dart';
 
 @injectable

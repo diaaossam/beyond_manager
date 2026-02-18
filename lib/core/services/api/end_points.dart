@@ -72,4 +72,6 @@ class EndPoints {
   static const String getTopRecommend = "/get/insurance/recommendation/top";
   static const String getAllRecommend = "/get/insurance/recommendations/all";
   static const String createCrmLeam = "/post/insurance/recommendation/create-lead";
+
+  static const String submitMembersToDelete = "/post/ticket/create/deletion";
 }

@@ -5,6 +5,8 @@ import '../../../../core/services/api/end_points.dart';
 import '../../../policies/data/models/request/get_active_list_params.dart';
 import '../models/request/policies_branches_params.dart';
 import '../models/request/policies_data_params.dart';
+import '../models/request/ticket_params.dart';
+import '../models/response/addition_deletion_ticket.dart';
 import '../models/response/branch_response.dart';
 import '../models/response/deletion_response_model.dart';
 import '../models/response/manual_entry_params.dart';
@@ -26,6 +28,13 @@ abstract class AddationDeletionRemoteDataSource {
   Future<BranchesResponse> fetchPoliciesBranches({required List<num> ids});
 
   Future<BranchesResponse> fetchPoliciesPlans({required List<num> ids});
+
+  Future<String> submitMembersToDelete(
+    Map<num, String> selectedMemberDates,
+    List<num> ids,
+  );
+
+  Future<AdditionDeletionTicket> fetchTickets({required TicketParams params});
 }
 
 @LazySingleton(as: AddationDeletionRemoteDataSource)
@@ -48,8 +57,6 @@ class AddationDeletionRemoteDataSourceImpl
     final List<num> policesId = (members.first.policies ?? [])
         .map<num>((e) => e.policyId ?? 0)
         .toList();
-
-    // Convert all members to JSON
     final List<Map<String, dynamic>> membersJson = [];
     for (var member in members) {
       membersJson.add(await member.toJson());
@@ -71,9 +78,12 @@ class AddationDeletionRemoteDataSourceImpl
   Future<DeletionResponseModel> fetchDeletionMembers({
     required ActiveListParams params,
   }) async {
+    String? idsString = (params.polices ?? []).join(",");
+    Map<String, dynamic> queryParams = params.toJson()
+      ..addAll({"policies": idsString});
     return await dioConsumer
         .get(EndPoints.deletionMember)
-        .params(params.toJson())
+        .params(queryParams)
         .factory((json) async => DeletionResponseModel.fromJson(json))
         .execute();
   }
@@ -107,6 +117,41 @@ class AddationDeletionRemoteDataSourceImpl
     return await dioConsumer
         .get(EndPoints.getPoliciesPlans)
         .params({"policy_ids": idsString})
+        .factory((json) async => BranchesResponse.fromJson(json))
+        .execute();
+  }
+
+  @override
+  Future<String> submitMembersToDelete(
+    Map<num, String> selectedMemberDates,
+    List<num> ids,
+  ) async {
+    final List<num> memberIds = selectedMemberDates.keys.toList();
+    List<Map<String, dynamic>> mapList = [
+      for (var entry in selectedMemberDates.entries)
+        {"deletion_date": entry.value},
+    ];
+    String idsString = ids.join(",");
+
+    return await dioConsumer
+        .post(EndPoints.submitMembersToDelete)
+        .params({
+          "deletion_member_ids": memberIds.join(","),
+          "ticket_type": "Addition and Deletion",
+          "policies": idsString,
+        })
+        .body({"members": mapList})
+        .factory((json) => json['result']['message'])
+        .execute();
+  }
+
+  @override
+  Future<AdditionDeletionTicket> fetchTickets({
+    required TicketParams params,
+  }) async {
+    return await dioConsumer
+        .get(EndPoints.getPoliciesPlans)
+        .params(params.toJson())
         .factory((json) async => BranchesResponse.fromJson(json))
         .execute();
   }

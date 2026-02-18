@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../core/bloc/helper/async_handler.dart';
 
 @injectable
 class LogoutCubit extends Cubit<BaseState<Unit>> with AsyncHandler<Unit> {

@@ -1,12 +1,13 @@
 import 'package:bond/core/services/network/error/failures.dart';
+import 'package:bond/features/addation_deletion/data/models/response/addition_deletion_ticket.dart';
 import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/services/api/api_handler_mixin.dart';
 import '../datasources/addation_deletion_remote_data_source.dart';
-import '../models/request/policies_branches_params.dart';
 import '../models/request/policies_data_params.dart';
+import '../models/request/ticket_params.dart';
 import '../models/response/branch_response.dart';
 import '../models/response/deletion_response_model.dart';
 import '../models/response/manual_entry_params.dart';
@@ -37,6 +38,18 @@ class AddationDeletionRepository with ApiHandlerMixin {
     return handleApi(() async => await remoteDataSource.submitMembers(members));
   }
 
+  Future<Either<Failure, String>> submitMembersToDelete(
+    Map<num, String> selectedMemberDates,
+    List<num> ids,
+  ) async {
+    return handleApi(
+      () async => await remoteDataSource.submitMembersToDelete(
+        selectedMemberDates,
+        ids,
+      ),
+    );
+  }
+
   Future<Either<Failure, PoliciesDataAddation>> fetchPoliciesData({
     required PoliciesDataParams policies,
   }) async {
@@ -58,6 +71,14 @@ class AddationDeletionRepository with ApiHandlerMixin {
   }) async {
     return handleApi(
       () async => await remoteDataSource.fetchPoliciesPlans(ids: ids),
+    );
+  }
+
+  Future<Either<Failure, AdditionDeletionTicket>> fetchTickets({
+    required TicketParams params,
+  }) async {
+    return handleApi(
+      () async => await remoteDataSource.fetchTickets(params: params),
     );
   }
 }

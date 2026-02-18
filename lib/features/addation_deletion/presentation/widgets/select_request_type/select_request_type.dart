@@ -110,8 +110,12 @@ class _SelectRequestTypeBodyState extends State<SelectRequestTypeBody> {
                     text: context.localizations.continueButton,
                     press: () {
                       if (selectedType == deletion) {
+                        List<int> policyIds = widget.selectedPolicies
+                            .map((policy) => policy.policyId!.toInt())
+                            .toList();
                         context.router.push(
                           SelectMembersToDeleteRoute(
+                            selectedPoliciesIds:policyIds,
                             selectedPolicies: widget.selectedPolicies,
                           ),
                         );

@@ -11,10 +11,12 @@ import '../widgets/deletion/deletion_body.dart';
 @RoutePage()
 class SelectMembersToDeleteScreen extends StatelessWidget {
   final List<PoliciesDataModel> selectedPolicies;
+  final List<int> selectedPoliciesIds;
 
   const SelectMembersToDeleteScreen({
     super.key,
     required this.selectedPolicies,
+    required this.selectedPoliciesIds,
   });
 
   @override
@@ -23,7 +25,10 @@ class SelectMembersToDeleteScreen extends StatelessWidget {
       create: (context) => sl<DeletionCubit>(),
       child: Scaffold(
         appBar: CustomAppBar(title: context.localizations.selectMemberToDelete),
-        body: DeletionBody(policies: selectedPolicies),
+        body: DeletionBody(
+          policies: selectedPolicies,
+          selectedPoliciesIds: selectedPoliciesIds,
+        ),
       ),
     );
   }

@@ -1,12 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/features/emergency/data/models/emergency_model.dart';
 import 'package:bond/features/emergency/data/repositories/emergency_repo_impl.dart';
 import 'package:injectable/injectable.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:logger/logger.dart';
-
+import '../../../../core/bloc/helper/async_handler.dart';
 import '../../../../core/utils/app_strings.dart';
 
 @injectable

@@ -1,5 +1,10 @@
 class DeletionResponseModel {
-  DeletionResponseModel({this.result, this.totalCount, this.totalPages});
+  DeletionResponseModel({
+    this.result,
+    this.totalCount,
+    this.totalPages,
+    this.msg,
+  });
 
   DeletionResponseModel.fromJson(dynamic json) {
     if (json['result'] != null) {
@@ -15,14 +20,17 @@ class DeletionResponseModel {
   List<DeletionMemberModel>? result;
   num? totalCount;
   num? totalPages;
+  String? msg;
 
   DeletionResponseModel copyWith({
     List<DeletionMemberModel>? result,
     num? totalCount,
     num? totalPages,
+    String? msg,
   }) => DeletionResponseModel(
     result: result ?? this.result,
     totalCount: totalCount ?? this.totalCount,
+    msg: msg ?? this.msg,
     totalPages: totalPages ?? this.totalPages,
   );
 

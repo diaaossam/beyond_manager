@@ -156,6 +156,7 @@ class ActiveListParams {
     int? deletionDateMonth,
     int? dobYear,
     int? dobMonth,
+    List<num>? polices,
   }) {
     return ActiveListParams(
       pageSize: pageSize ?? this.pageSize,
@@ -220,6 +221,7 @@ class ActiveListParams {
       deletionDateMonth: deletionDateMonth ?? this.deletionDateMonth,
       dobYear: dobYear ?? this.dobYear,
       dobMonth: dobMonth ?? this.dobMonth,
+      polices: polices ?? this.polices,
     );
   }
 }

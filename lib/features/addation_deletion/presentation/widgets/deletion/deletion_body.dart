@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../../config/router/app_router.gr.dart';
 import '../../../../../core/extensions/color_extensions.dart';
@@ -28,8 +29,13 @@ import 'deletion_member_card.dart';
 
 class DeletionBody extends StatefulWidget {
   final List<PoliciesDataModel> policies;
+  final List<int> selectedPoliciesIds;
 
-  const DeletionBody({super.key, required this.policies});
+  const DeletionBody({
+    super.key,
+    required this.policies,
+    required this.selectedPoliciesIds,
+  });
 
   @override
   State<DeletionBody> createState() => _DeletionBodyState();
@@ -40,6 +46,7 @@ class _DeletionBodyState extends State<DeletionBody> {
   ActiveListParams? getActiveListParams;
   Timer? _debounce;
   List<DeletionMemberModel> selectedMembers = [];
+  Map<num, String> selectedMemberDates = {};
 
   @override
   void initState() {
@@ -57,14 +64,12 @@ class _DeletionBodyState extends State<DeletionBody> {
     bloc.initPagination(params: getActiveListParams!);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DeletionCubit, BaseState<DeletionResponseModel>>(
-      listener: (context, state) {
-      },
+      listener: (context, state) {},
       builder: (context, state) {
-        final bloc =context.read<DeletionCubit>();
+        final bloc = context.read<DeletionCubit>();
         return Scaffold(
           body: SafeArea(
             child: CustomScrollView(
@@ -84,7 +89,9 @@ class _DeletionBodyState extends State<DeletionBody> {
                       CustomButton(
                         text: context.localizations.viewDeletionGuide,
                         iconData: Icons.folder_outlined,
-                        press: () => context.router.push(const DeletionGuidelinesRoute()),
+                        press: () => context.router.push(
+                          const DeletionGuidelinesRoute(),
+                        ),
                       ),
                       SizedBox(height: SizeConfig.bodyHeight * .02),
                       Container(
@@ -93,7 +100,10 @@ class _DeletionBodyState extends State<DeletionBody> {
                           color: const Color(0xFFFFFBEB),
                           borderRadius: BorderRadius.circular(8),
                           border: const Border(
-                            left: BorderSide(color: Color(0xFFF59E0B), width: 4),
+                            left: BorderSide(
+                              color: Color(0xFFF59E0B),
+                              width: 4,
+                            ),
                           ),
                         ),
                         child: Row(
@@ -115,19 +125,20 @@ class _DeletionBodyState extends State<DeletionBody> {
                                   ),
                                   children: [
                                     TextSpan(
-                                      text: "${context.localizations.important} ",
+                                      text:
+                                          "${context.localizations.important} ",
                                       style: TextStyle(
                                         fontSize: 11.sp,
                                         color: context.colorScheme.onSurface,
-                                        height: 1.4,fontWeight: FontWeight.w600
+                                        height: 1.4,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     TextSpan(
-                                      text:
-                                      context.localizations.importantBody,
+                                      text: context.localizations.importantBody,
                                       style: TextStyle(
-                                          fontSize: 11.sp,
-                                          color: context.colorScheme.onSurface,
+                                        fontSize: 11.sp,
+                                        color: context.colorScheme.onSurface,
                                       ),
                                     ),
                                   ],
@@ -152,7 +163,7 @@ class _DeletionBodyState extends State<DeletionBody> {
                                     }
                                     _debounce = Timer(
                                       const Duration(milliseconds: 300),
-                                          () {
+                                      () {
                                         getActiveListParams =
                                             getActiveListParams?.copyWith(
                                               name: value.toString(),
@@ -175,7 +186,7 @@ class _DeletionBodyState extends State<DeletionBody> {
                                     }
                                     _debounce = Timer(
                                       const Duration(milliseconds: 300),
-                                          () {
+                                      () {
                                         getActiveListParams =
                                             getActiveListParams?.copyWith(
                                               insuranceId: value.toString(),
@@ -199,7 +210,7 @@ class _DeletionBodyState extends State<DeletionBody> {
                                     }
                                     _debounce = Timer(
                                       const Duration(milliseconds: 300),
-                                          () {
+                                      () {
                                         getActiveListParams =
                                             getActiveListParams?.copyWith(
                                               staffId: value.toString(),
@@ -227,10 +238,11 @@ class _DeletionBodyState extends State<DeletionBody> {
                               ),
                               const Spacer(),
                               AppText(
-                                text: "${context.localizations.count} ${state.data?.totalCount}",
+                                text:
+                                    "${context.localizations.count} ${state.data?.totalCount}",
                               ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ]),
@@ -239,112 +251,144 @@ class _DeletionBodyState extends State<DeletionBody> {
                 10.verticalSpace.toSliver(),
                 PagingListener<int, DeletionMemberModel>(
                   controller: bloc.pagingController,
-                  builder: (context, state, fetchNextPage) => PagedSliverList<int, DeletionMemberModel>(
-                    state: state,
-                    fetchNextPage: fetchNextPage,
-                    addAutomaticKeepAlives: true,
-                    builderDelegate:PagedChildBuilderDelegate<DeletionMemberModel>(
-                      firstPageProgressIndicatorBuilder: (context) => LoadingWidget(),
-                      firstPageErrorIndicatorBuilder: (context) => AppFailureWidget(
-                        callback: () => bloc.pagingController.refresh(),
+                  builder: (context, state, fetchNextPage) =>
+                      PagedSliverList<int, DeletionMemberModel>(
+                        state: state,
+                        fetchNextPage: fetchNextPage,
+                        addAutomaticKeepAlives: true,
+                        builderDelegate:
+                            PagedChildBuilderDelegate<DeletionMemberModel>(
+                              firstPageProgressIndicatorBuilder: (context) =>
+                                  LoadingWidget(),
+                              firstPageErrorIndicatorBuilder: (context) =>
+                                  AppFailureWidget(
+                                    callback: () =>
+                                        bloc.pagingController.refresh(),
+                                  ),
+                              noItemsFoundIndicatorBuilder: (context) =>
+                                  EmptyWidgetDesign(),
+                              itemBuilder: (context, item, index) {
+                                final isSelected = selectedMemberIds.contains(
+                                  item.id,
+                                );
+                                return DeletionMemberCard(
+                                  deletionMemberModel: item,
+                                  isSelected: isSelected,
+                                  onTap: () {
+                                    setState(() {
+                                      if (isSelected) {
+                                        selectedMemberIds.remove(item.id);
+                                        selectedMembers.removeWhere(
+                                          (member) => member.id == item.id,
+                                        );
+                                        selectedMemberDates.remove(item.id);
+                                      } else {
+                                        selectedMemberIds.add(item.id!);
+                                        selectedMembers.add(item);
+                                      }
+                                    });
+                                  },
+                                  onDateSelected: (date) {
+                                    if (date != null && item.id != null) {
+                                      setState(
+                                        () => selectedMemberDates[item.id!] =
+                                            date,
+                                      );
+                                    }
+                                  },
+                                );
+                              },
+                            ),
                       ),
-                      noItemsFoundIndicatorBuilder: (context) => EmptyWidgetDesign(),
-                      itemBuilder: (context, item, index) {
-                        final isSelected = selectedMemberIds.contains(item.id);
-                        return DeletionMemberCard(
-                          deletionMemberModel: item,
-                          isSelected: isSelected,
-                          onTap: () {
-                            setState(() {
-                              if (isSelected) {
-                                selectedMemberIds.remove(item.id);
-                                selectedMembers.removeWhere((member) => member.id == item.id);
-                              } else {
-                                selectedMemberIds.add(item.id!);
-                                selectedMembers.add(item);
-                              }
-                            });
-                          },
-                        );
-                      },
-                    ),
-                  ),
                 ),
               ],
             ),
           ),
-          bottomNavigationBar: selectedMemberIds.isNotEmpty ? Container(
-            padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
-            decoration: BoxDecoration(
-              color: context.colorScheme.surface,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 10,
-                  offset: const Offset(0, -2),
-                ),
-              ],
-            ),
-            child: SafeArea(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: context.colorScheme.primary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+          bottomNavigationBar: selectedMemberIds.isNotEmpty
+              ? Container(
+                  padding: EdgeInsets.all(SizeConfig.screenWidth * .04),
+                  decoration: BoxDecoration(
+                    color: context.colorScheme.surface,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 10,
+                        offset: const Offset(0, -2),
+                      ),
+                    ],
+                  ),
+                  child: SafeArea(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          Icons.group,
-                          color: context.colorScheme.primary,
-                          size: 20,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
+                          decoration: BoxDecoration(
+                            color: context.colorScheme.primary.withValues(
+                              alpha: 0.1,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.group,
+                                color: context.colorScheme.primary,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 8),
+                              AppText(
+                                text: context.localizations.selectedMembers(
+                                  selectedMemberIds.length,
+                                ),
+                                fontWeight: FontWeight.w600,
+                                textSize: 14,
+                                color: context.colorScheme.primary,
+                              ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(width: 8),
-                        AppText(
-                          text: context.localizations.selectedMembers(selectedMemberIds.length),
-                          fontWeight: FontWeight.w600,
-                          textSize: 14,
-                          color: context.colorScheme.primary,
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CustomButton.outline(
+                                text: context.localizations.back,
+                                press: () {
+                                  context.router.back();
+                                },
+                                borderColor: context.colorScheme.outline,
+                                textColor: context.colorScheme.onSurface,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              flex: 2,
+                              child: CustomButton(
+                                text: context.localizations.continueButton,
+                                press: () {
+                                  context
+                                      .read<DeletionCubit>()
+                                      .submitMembersToDelete(
+                                        selectedMemberDates,
+                                        widget.selectedPoliciesIds,
+                                      );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomButton.outline(
-                          text: context.localizations.back,
-                          press: () {
-                            context.router.back();
-                          },
-                          borderColor: context.colorScheme.outline,
-                          textColor: context.colorScheme.onSurface,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        flex: 2,
-                        child: CustomButton(
-                          text: context.localizations.continueButton,
-                          press: () {
-                                },
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          )
+                )
               : null,
         );
       },
     );
   }
-
 }

@@ -4,6 +4,8 @@ import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/features/settings/data/repositories/settings_repo_impl.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/bloc/helper/async_handler.dart';
+
 @Injectable()
 class TermsCubit extends Cubit<BaseState<String>> with AsyncHandler<String> {
   final SettingsRepositoryImpl settingsRepositoryImpl;

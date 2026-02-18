@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/features/other_line/data/models/other_line_params.dart';
 import 'package:bond/features/other_line/data/repositories/other_line_repository_impl.dart';
 import 'package:dio/dio.dart';
@@ -10,6 +9,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../../../../core/bloc/helper/async_handler.dart';
 import 'insurance_data.dart';
 
 @injectable

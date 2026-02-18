@@ -5,6 +5,8 @@ import 'package:bond/features/sick_leave/data/models/sick_leave_analytics.dart';
 import 'package:bond/features/sick_leave/data/repositories/sick_leave_repo_impl.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../core/bloc/helper/async_handler.dart';
+
 @injectable
 class SickLeaveAnalyticsCubit extends Cubit<BaseState<SickLeaveAnalytics>>
     with AsyncHandler<SickLeaveAnalytics> {

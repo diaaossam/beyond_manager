@@ -5,6 +5,8 @@ import 'package:bond/features/policies/data/models/response/policy_details.dart'
 import 'package:bond/features/policies/data/repositories/policies_repository_impl.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../core/bloc/helper/async_handler.dart';
+
 part 'policy_details_state.dart';
 
 @injectable
