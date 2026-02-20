@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/helper/context_helper.dart';
+import 'config/router/app_back_button_dispatcher.dart';
 import 'config/router/app_router.dart';
 import 'core/bloc/helper/app_bloc.dart';
 import 'config/theme/app_theme.dart';
@@ -15,6 +17,9 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final _appRouter = AppRouter();
+  final _backButtonDispatcher = AppBackButtonDispatcher(
+    navigatorKey: NavigationService.navigatorKey,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +30,19 @@ class MyApp extends StatelessWidget {
           return BlocBuilder<GlobalCubit, void>(
             builder: (context, state) {
               final bloc = context.read<GlobalCubit>();
+              final baseConfig = _appRouter.config(navigatorObservers: () => []);
+              final routerConfig = RouterConfig<UrlState>(
+                routeInformationParser: baseConfig.routeInformationParser,
+                routeInformationProvider: baseConfig.routeInformationProvider,
+                routerDelegate: baseConfig.routerDelegate,
+                backButtonDispatcher: _backButtonDispatcher,
+              );
               return ScreenUtilInit(
                 designSize: const Size(360, 850),
                 minTextAdapt: true,
                 splitScreenMode: true,
                 child: MaterialApp.router(
-                  routerConfig: _appRouter.config(navigatorObservers: () => []),
+                  routerConfig: routerConfig,
                   title: AppStrings.appName,
                   builder: (context, child) {
                     return SafeArea(
@@ -63,3 +75,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
