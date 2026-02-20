@@ -13,5 +13,10 @@ class TicketsAdditionCubit extends Cubit<BaseState<AdditionDeletionTicket>>
 
   final AddationDeletionRepository deletionRepository;
 
-  void fetchTicketList({required TicketParams ticketParams}) {}
+  void fetchTicketList({required TicketParams ticketParams}) {
+    handleAsync(
+      call: () => deletionRepository.fetchTickets(params: ticketParams),
+      onSuccess: (data) => data,
+    );
+  }
 }

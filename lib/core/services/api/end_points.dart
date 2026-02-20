@@ -74,4 +74,5 @@ class EndPoints {
   static const String createCrmLeam = "/post/insurance/recommendation/create-lead";
 
   static const String submitMembersToDelete = "/post/ticket/create/deletion";
+  static const String getMyTickets = "/get/tickets/date";
 }

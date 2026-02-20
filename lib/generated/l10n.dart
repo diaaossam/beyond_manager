@@ -7326,6 +7326,181 @@ class S {
   String get matchLevel {
     return Intl.message('Match Level', name: 'matchLevel', desc: '', args: []);
   }
+
+  /// `SUBMISSION DATE`
+  String get submissionDate {
+    return Intl.message(
+      'SUBMISSION DATE',
+      name: 'submissionDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `POLICIES AFFECTED`
+  String get policiesAffected {
+    return Intl.message(
+      'POLICIES AFFECTED',
+      name: 'policiesAffected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MEMBERS COUNT`
+  String get membersCount {
+    return Intl.message(
+      'MEMBERS COUNT',
+      name: 'membersCount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `COMPLETION DATE`
+  String get completionDate {
+    return Intl.message(
+      'COMPLETION DATE',
+      name: 'completionDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Request`
+  String get deletionRequest {
+    return Intl.message(
+      'Deletion Request',
+      name: 'deletionRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members in this Request`
+  String get membersInThisRequest {
+    return Intl.message(
+      'Members in this Request',
+      name: 'membersInThisRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No requests found`
+  String get noRequestsFound {
+    return Intl.message(
+      'No requests found',
+      name: 'noRequestsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submitted`
+  String get statusSubmitted {
+    return Intl.message(
+      'Submitted',
+      name: 'statusSubmitted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Waiting HR`
+  String get statusWaitingHR {
+    return Intl.message(
+      'Waiting HR',
+      name: 'statusWaitingHR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get statusCompleted {
+    return Intl.message(
+      'Completed',
+      name: 'statusCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get statusPending {
+    return Intl.message('Pending', name: 'statusPending', desc: '', args: []);
+  }
+
+  /// `Unknown`
+  String get statusUnknown {
+    return Intl.message('Unknown', name: 'statusUnknown', desc: '', args: []);
+  }
+
+  /// `Missing IBAN for bank account reimbursement`
+  String get missingIbanReason {
+    return Intl.message(
+      'Missing IBAN for bank account reimbursement',
+      name: 'missingIbanReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide IBAN number or contact support for assistance`
+  String get missingIbanWhatToDo {
+    return Intl.message(
+      'Please provide IBAN number or contact support for assistance',
+      name: 'missingIbanWhatToDo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monitor and track all your addition and deletion requests`
+  String get viewRequestsBody {
+    return Intl.message(
+      'Monitor and track all your addition and deletion requests',
+      name: 'viewRequestsBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stage`
+  String get stage {
+    return Intl.message('Stage', name: 'stage', desc: '', args: []);
+  }
+
+  /// `{count} Members`
+  String countMembers(Object count) {
+    return Intl.message(
+      '$count Members',
+      name: 'countMembers',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Hide Details`
+  String get hideDetails {
+    return Intl.message(
+      'Hide Details',
+      name: 'hideDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Son`
+  String get son {
+    return Intl.message('Son', name: 'son', desc: '', args: []);
+  }
+
+  /// `Daughter`
+  String get daughter {
+    return Intl.message('Daughter', name: 'daughter', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

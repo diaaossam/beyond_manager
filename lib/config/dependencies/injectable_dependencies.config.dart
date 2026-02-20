@@ -42,6 +42,8 @@ import '../../features/addation_deletion/presentation/cubit/deletion/deletion_cu
     as _i856;
 import '../../features/addation_deletion/presentation/cubit/policies_data/policies_data_cubit.dart'
     as _i612;
+import '../../features/addation_deletion/presentation/cubit/tickets/tickets_model_cubit.dart'
+    as _i756;
 import '../../features/auth/data/datasources/auth_remote_data_source.dart'
     as _i107;
 import '../../features/auth/data/repositories/auth_repo_impl.dart' as _i662;
@@ -291,6 +293,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i856.DeletionCubit>(
       () => _i856.DeletionCubit(gh<_i198.AddationDeletionRepository>()),
+    );
+    gh.factory<_i756.TicketsAdditionCubit>(
+      () => _i756.TicketsAdditionCubit(gh<_i198.AddationDeletionRepository>()),
     );
     gh.factory<_i95.InitRemoteDataSource>(
       () => _i95.RegisterRemoteDataSourceImpl(

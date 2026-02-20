@@ -877,6 +877,27 @@
   "close": "Close",
   "leadReference": "Lead Reference",
   "insuranceLine": "Insurance Line",
-  "matchLevel": "Match Level"
+  "matchLevel": "Match Level",
+  "submissionDate": "SUBMISSION DATE",
+  "policiesAffected": "POLICIES AFFECTED",
+  "membersCount": "MEMBERS COUNT",
+  "completionDate": "COMPLETION DATE",
+  "deletionRequest": "Deletion Request",
+  "membersInThisRequest": "Members in this Request",
+  "noRequestsFound": "No requests found",
+  "statusSubmitted": "Submitted",
+  "statusWaitingHR": "Waiting HR",
+  "statusCompleted": "Completed",
+  "statusPending": "Pending",
+  "statusUnknown": "Unknown",
+  "missingIbanReason": "Missing IBAN for bank account reimbursement",
+  "missingIbanWhatToDo": "Please provide IBAN number or contact support for assistance",
+  "viewRequestsBody": "Monitor and track all your addition and deletion requests",
+  "stage": "Stage",
+  "countMembers": "{count} Members",
+  "@countMembers": {"placeholders": {"count": {}}},
+  "hideDetails": "Hide Details",
+  "son": "Son",
+  "daughter": "Daughter"
 
 }

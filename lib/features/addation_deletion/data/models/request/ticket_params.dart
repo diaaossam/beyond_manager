@@ -1,11 +1,11 @@
 class TicketParams {
   final String? stage;
   final String? memberName;
-  final num? staffid;
+  final String? staffid;
 
   TicketParams({this.stage, this.memberName, this.staffid});
 
-  TicketParams copyWith({String? stage, String? memberName, num? staffid}) =>
+  TicketParams copyWith({String? stage, String? memberName, String? staffid}) =>
       TicketParams(
         stage: stage ?? this.stage,
         memberName: memberName ?? this.memberName,

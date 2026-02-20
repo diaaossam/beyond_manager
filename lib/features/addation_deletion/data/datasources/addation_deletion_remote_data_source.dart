@@ -150,9 +150,9 @@ class AddationDeletionRemoteDataSourceImpl
     required TicketParams params,
   }) async {
     return await dioConsumer
-        .get(EndPoints.getPoliciesPlans)
+        .get(EndPoints.getMyTickets)
         .params(params.toJson())
-        .factory((json) async => BranchesResponse.fromJson(json))
+        .factory((json) async => AdditionDeletionTicket.fromJson(json))
         .execute();
   }
 }
