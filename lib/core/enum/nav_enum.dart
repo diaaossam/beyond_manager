@@ -9,8 +9,8 @@ enum UserNavItem {
 
   String get title => switch (this) {
     UserNavItem.home => S.current.home,
-    UserNavItem.emergencySupport => S.current.emergencySupport,
-    UserNavItem.insurancePolicies => S.current.insurancePolicies,
+    UserNavItem.emergencySupport => S.current.emergency,
+    UserNavItem.insurancePolicies => S.current.policies,
     UserNavItem.profile => S.current.profile,
   };
 

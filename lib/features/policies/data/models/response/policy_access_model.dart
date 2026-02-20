@@ -7,6 +7,7 @@ class PolicyAccessModel {
     this.companyId,
     this.policyId,
     this.accessAdditionAndDeletions,
+    this.accessSickLeave
   });
 
   PolicyAccessModel.fromJson(dynamic json) {
@@ -17,6 +18,7 @@ class PolicyAccessModel {
     companyId = json['company_id'];
     policyId = json['policy_id'];
     accessAdditionAndDeletions = json['access_addition_and_deletions'];
+    accessSickLeave = json['access_sick_leave'];
   }
 
   bool? accessActiveList;
@@ -24,17 +26,8 @@ class PolicyAccessModel {
   bool? accessPolicyDetails;
   bool? accessUtilization;
   bool? accessAdditionAndDeletions;
+  bool? accessSickLeave;
   num? companyId;
   num? policyId;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['access_active_list'] = accessActiveList;
-    map['access_payments'] = accessPayments;
-    map['access_policy_details'] = accessPolicyDetails;
-    map['access_utilization'] = accessUtilization;
-    map['company_id'] = companyId;
-    map['policy_id'] = policyId;
-    return map;
-  }
 }

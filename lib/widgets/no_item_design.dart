@@ -153,10 +153,6 @@ class _EmptyWidgetDesignState extends State<EmptyWidgetDesign>
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Animated particles
-          ...List.generate(6, (index) => _buildParticle(context, index)),
-
-          // Glow effect
           AnimatedBuilder(
             animation: _glowAnimation,
             builder: (context, child) {
@@ -233,7 +229,7 @@ class _EmptyWidgetDesignState extends State<EmptyWidgetDesign>
               );
             },
             child: AppImage.asset(
-              widget.icon ?? Assets.images.logo.path,
+              widget.icon ?? Assets.images.noData.path,
               size: 100.w,
               fit: BoxFit.cover,
             ),
@@ -243,55 +239,6 @@ class _EmptyWidgetDesignState extends State<EmptyWidgetDesign>
     );
   }
 
-  Widget _buildParticle(BuildContext context, int index) {
-    final colorScheme = context.colorScheme;
-    final colors = [
-      colorScheme.primary,
-      colorScheme.secondary,
-      const Color(0xFF22c1e0),
-      const Color(0xFFf15f6d),
-    ];
-
-    return AnimatedBuilder(
-      animation: _particleController,
-      builder: (context, child) {
-        final angle =
-            (index * math.pi / 3) + (_particleController.value * 2 * math.pi);
-        final radius =
-            80.w +
-            (math.sin(_particleController.value * math.pi * 2 + index) * 10);
-        final x = math.cos(angle) * radius;
-        final y = math.sin(angle) * radius;
-        final particleOpacity =
-            0.3 +
-            (math.sin(_particleController.value * math.pi * 2 + index * 2) *
-                0.4);
-
-        return Transform.translate(
-          offset: Offset(x, y),
-          child: Container(
-            width: 8.w,
-            height: 8.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: colors[index % colors.length].withValues(
-                alpha: particleOpacity,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: colors[index % colors.length].withValues(
-                    alpha: particleOpacity * 0.5,
-                  ),
-                  blurRadius: 8,
-                  spreadRadius: 2,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   Widget _buildTextContent(BuildContext context) {
     final colorScheme = context.colorScheme;

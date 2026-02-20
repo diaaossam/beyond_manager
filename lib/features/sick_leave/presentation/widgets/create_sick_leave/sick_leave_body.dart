@@ -307,6 +307,8 @@ class _CreateSickLeaveBodyState extends State<CreateSickLeaveBody> {
             builderDelegate: PagedChildBuilderDelegate<Result>(
               firstPageProgressIndicatorBuilder: (_) => const LoadingWidget(),
               firstPageErrorIndicatorBuilder: (_) => AppFailureWidget(
+                body: bloc.pagingController.error.toString(),
+                buttonText: context.localizations.reload,
                 callback: () => bloc.pagingController.refresh(),
               ),
               noItemsFoundIndicatorBuilder: (_) => const EmptyWidgetDesign(),

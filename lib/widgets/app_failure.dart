@@ -80,12 +80,7 @@ class _AppFailureWidgetState extends State<AppFailureWidget>
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Animated Icon or Image
-              if (widget.image != null)
-                _buildAnimatedImage()
-              else
-                _buildAnimatedIcon(colorScheme),
-
+              _buildAnimatedImage(),
               SizedBox(height: SizeConfig.bodyHeight * .04),
 
               // Animated Title
@@ -112,14 +107,13 @@ class _AppFailureWidgetState extends State<AppFailureWidget>
           Container(
                 padding: EdgeInsets.all(SizeConfig.bodyHeight * .02),
                 decoration: BoxDecoration(
-                  color:
-                      widget.backgroundColor?.withValues(alpha: 0.1) ??
+                  color: widget.backgroundColor?.withValues(alpha: 0.1) ??
                       Colors.red.withValues(alpha: 0.05),
                   shape: BoxShape.circle,
                 ),
                 child: AppImage.asset(
-                  widget.image!,
-                  height: SizeConfig.bodyHeight * .12,
+                  Assets.images.iDError.path,
+                  height: SizeConfig.bodyHeight * .25,
                   fit: BoxFit.cover,
                 ),
               )
@@ -133,49 +127,6 @@ class _AppFailureWidgetState extends State<AppFailureWidget>
     );
   }
 
-  Widget _buildAnimatedIcon(ColorScheme colorScheme) {
-    return BounceInDown(
-      duration: const Duration(milliseconds: 800),
-      child:
-          Container(
-                width: SizeConfig.bodyHeight * .15,
-                height: SizeConfig.bodyHeight * .15,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      widget.backgroundColor ?? Colors.red.shade100,
-                      widget.backgroundColor?.withValues(alpha: 0.3) ??
-                          Colors.red.shade50,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: (widget.backgroundColor ?? Colors.red).withValues(
-                        alpha: 0.2,
-                      ),
-                      blurRadius: 20,
-                      spreadRadius: 5,
-                    ),
-                  ],
-                ),
-                child: Icon(
-                  widget.icon ?? Icons.error_outline_rounded,
-                  size: SizeConfig.bodyHeight * .08,
-                  color: widget.iconColor ?? Colors.red.shade700,
-                ),
-              )
-              .animate(onPlay: (controller) => controller.repeat(reverse: true))
-              .scale(
-                duration: 1500.ms,
-                begin: const Offset(1, 1),
-                end: const Offset(1.05, 1.05),
-                curve: Curves.easeInOut,
-              ),
-    );
-  }
 
   Widget _buildAnimatedTitle(BuildContext context) {
     return FadeInUp(

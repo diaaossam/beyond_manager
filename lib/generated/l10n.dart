@@ -7501,6 +7501,36 @@ class S {
   String get daughter {
     return Intl.message('Daughter', name: 'daughter', desc: '', args: []);
   }
+
+  /// `Access Denied`
+  String get accessDenied {
+    return Intl.message(
+      'Access Denied',
+      name: 'accessDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You do not have permission to access this page. Please contact your administrator if you believe this is an error.`
+  String get accessDeniedBody {
+    return Intl.message(
+      'You do not have permission to access this page. Please contact your administrator if you believe this is an error.',
+      name: 'accessDeniedBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reload`
+  String get reload {
+    return Intl.message('Reload', name: 'reload', desc: '', args: []);
+  }
+
+  /// `Policies`
+  String get policies {
+    return Intl.message('Policies', name: 'policies', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:bond/core/bloc/helper/base_state.dart';
-import 'package:bond/core/bloc/helper/either_extensions.dart';
 import 'package:bond/features/policies/data/models/request/get_active_list_params.dart';
 import 'package:bond/features/policies/data/repositories/policies_repository_impl.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -27,8 +26,19 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
     );
     firstPageResponse.fold(
       (failure) {
-        throw Exception(
-          'Failed to fetch active policy list: ${failure.message}',
+        pagingController.value = pagingController.value.copyWith(
+          error: failure.message,
+          isLoading: false,
+        );
+        emit(
+          state.copyWith(
+            status: BaseStatus.success,
+            data: ActiveListModel(
+              isLife: true,
+              isMedical: true,
+              result: const [],
+            ),
+          ),
         );
       },
       (data) {
@@ -45,22 +55,29 @@ class ActivePolicyCubit extends Cubit<BaseState<ActiveListModel>>
         final response = await policiesRepositoryImpl.getActivePolicy(
           activeListParams: activeListParams!.copyWith(pageKey: pageKey),
         );
-        final newModel = response.fold((failure) {
-          throw Exception();
-        }, (data) => data);
-        final newItems = newModel.result ?? [];
-        final oldModel = state.data;
-        final combinedItems = [...?oldModel?.result, ...newItems];
-        final updatedModel = newModel.copyWith(result: combinedItems);
-        emit(state.copyWith(status: BaseStatus.success, data: updatedModel));
-        final isLastPage = newItems.length < pageSize;
-        if (isLastPage) {
-          pagingController.value = pagingController.value.copyWith(
-            hasNextPage: false,
-          );
-        }
-
-        return newItems;
+        return response.fold(
+          (failure) {
+            pagingController.value = pagingController.value.copyWith(
+              error: failure,
+              isLoading: false,
+            );
+            return <Result>[];
+          },
+          (data) {
+            final newItems = data.result ?? [];
+            final oldModel = state.data;
+            final combinedItems = [...?oldModel?.result, ...newItems];
+            final updatedModel = data.copyWith(result: combinedItems);
+            emit(state.copyWith(status: BaseStatus.success, data: updatedModel));
+            final isLastPage = newItems.length < pageSize;
+            if (isLastPage) {
+              pagingController.value = pagingController.value.copyWith(
+                hasNextPage: false,
+              );
+            }
+            return newItems;
+          },
+        );
       },
     );
   }

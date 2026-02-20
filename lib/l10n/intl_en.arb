@@ -898,6 +898,10 @@
   "@countMembers": {"placeholders": {"count": {}}},
   "hideDetails": "Hide Details",
   "son": "Son",
-  "daughter": "Daughter"
+  "daughter": "Daughter",
+  "accessDenied": "Access Denied",
+  "accessDeniedBody": "You do not have permission to access this page. Please contact your administrator if you believe this is an error.",
+  "reload": "Reload",
+  "policies": "Policies"
 
 }

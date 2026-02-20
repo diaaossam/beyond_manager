@@ -364,6 +364,10 @@ class $AssetsImagesGen {
   AssetGenImage get beyondServicesEN1 =>
       const AssetGenImage('assets/images/Beyond-Services-EN1.jpg');
 
+  /// File path: assets/images/ID error.png
+  AssetGenImage get iDError =>
+      const AssetGenImage('assets/images/ID error.png');
+
   /// File path: assets/images/bottom_login.png
   AssetGenImage get bottomLogin =>
       const AssetGenImage('assets/images/bottom_login.png');
@@ -409,6 +413,9 @@ class $AssetsImagesGen {
   AssetGenImage get networkImage =>
       const AssetGenImage('assets/images/network_image.png');
 
+  /// File path: assets/images/no data.png
+  AssetGenImage get noData => const AssetGenImage('assets/images/no data.png');
+
   /// File path: assets/images/no_network.png
   AssetGenImage get noNetwork =>
       const AssetGenImage('assets/images/no_network.png');
@@ -447,6 +454,7 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     beyondManagerLogo1,
     beyondServicesEN1,
+    iDError,
     bottomLogin,
     call2,
     carService,
@@ -460,6 +468,7 @@ class $AssetsImagesGen {
     logo4,
     medicalInsurance,
     networkImage,
+    noData,
     noNetwork,
     person,
     plane,
